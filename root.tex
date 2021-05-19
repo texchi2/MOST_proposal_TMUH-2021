@@ -1,6 +1,39 @@
 % !TEX encoding = UTF-8 Unicode
 \documentclass[12pt, a4paper]{article}
 
+\usepackage{xcolor}
+\definecolor{asparagus}{rgb}{0.53, 0.66, 0.42}
+
+\newenvironment{MyColorPar}[1]{% for RED marked of revision
+    \leavevmode\color{#1}\ignorespaces%
+}{%
+}%
+
+
+
+
+%\usepackage{url}
+
+\usepackage{array}
+\usepackage{ragged2e}
+\usepackage{rotating}
+\usepackage{tabularx} % wide table
+\usepackage{makecell}
+% \usepackage{array}
+\usepackage{colortbl} % \arrayrulecolor
+\usepackage{multirow} % \multirow
+\usepackage{hhline}
+\usepackage{siunitx} % for  1e-10 scientific notation
+%\usepackage{caption}
+%\usepackage{subcaption}
+\usepackage{booktabs, multirow} % for borders and merged ranges
+\usepackage{soul}% for underlines
+%\usepackage[table]{xcolor} % for cell colors
+\usepackage{changepage,threeparttable} 
+%%%
+
+
+
 \usepackage[bf]{caption}
 \newcommand{\bcaption}[2]{\caption{\textbf{#1} #2}}
 
