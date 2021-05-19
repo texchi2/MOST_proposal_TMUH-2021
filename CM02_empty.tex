@@ -1,0 +1,74 @@
+%  Revised on Oct 24, 1999 (done on Aug 20)--spring.
+%
+
+%\documentstyle[12pt]{article}
+\documentclass[12pt,a4paper,openany]{article}
+
+%\usepackage[square, comma, sort&compress]{natbib}
+\usepackage{cite}
+%\pagestyle{foot}
+\textheight=255mm
+%\textheight=240mm
+%\textwidth=160mm
+\textwidth=185mm
+\topmargin=-2.5cm
+%\topmargin=0cm
+\oddsidemargin=-1.5cm
+%\parskip 3mm
+%\setcounter{page}{1}
+
+\usepackage{cite}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead{} % 清除所有頁首設定
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\setlength{\headwidth}{\textwidth}
+
+\lfoot{表 CM02}
+\rfoot{共~~\pageref{LastPage}~~頁~~第{~~\thepage~~}頁}
+
+
+\usepackage{fontspec}
+%\usepackage[BoldFont, ItalicFont]{xeCJK}
+\usepackage[BoldFont]{xeCJK}
+\setCJKmainfont{標楷體}
+%\setCJKitalicfont{華康行書體}
+\XeTeXlinebreaklocale "zh"             %這兩行一定要加，中文才能自動換行
+\XeTeXlinebreakskip = 0pt plus 1pt     %這兩行一定要加，中文才能自動換行
+
+
+
+% define a macro
+%\def\texpsfig#1#2#3{\vbox{\kern #3\hbox{\special{psfile=#1}\kern #2}}\typeout{(#1)}}
+
+\begin{document}
+\newtheorem{thm}{Theorem}
+\newtheorem{lem}{Lemma}
+\newtheorem{cor}{Corollary}
+\newtheorem{prop}{Proposition}
+\newtheorem{conj}{Conjecture}
+%\input epsf   % load the epsf library
+
+\baselineskip 7mm
+
+\noindent
+\textbf{\large 二、研究計畫中英文摘要：}請就本計畫要點作一概述，並依本計畫性質自訂關鍵詞。 
+\begin{description}
+\item[（一）] 計畫中文摘要。（五百字以內） 
+\vspace{4mm}
+
+
+
+\vspace{4mm}
+\item[（二）]  計畫英文摘要。（五百字以內） 
+
+
+
+\end{description}
+\label{LastPage}
+\end{document}

@@ -1,0 +1,1225 @@
+% !TEX encoding = UTF-8 Unicode
+\documentclass[12pt, a4paper]{article}
+\usepackage{outlines}
+\usepackage{tikz}   % for DAG plot by  tikzpicture
+\usetikzlibrary{arrows}
+\input{arrowsnew}
+
+\usepackage{times}
+\usepackage{geometry}                % See geometry.pdf to learn the layout options. There are lots.
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{epstopdf}
+\usepackage{wrapfig}
+\usepackage{natbib}
+\bibpunct{(}{)}{;}{a}{}{,} % to follow the A&A style
+\usepackage[pdftex, plainpages=false, colorlinks=true, linkcolor=blue, citecolor=blue, bookmarks=false]{hyperref}
+\usepackage{setspace}
+\usepackage{multicol}
+\usepackage{sectsty}
+\usepackage{url}
+\usepackage{lipsum}
+\usepackage[tiny,compact]{titlesec}
+\usepackage{fancyhdr}
+\usepackage[font=footnotesize,labelfont=bf]{caption}
+\usepackage{verbatim}
+\usepackage[super]{nth}
+\usepackage{lastpage}
+
+% ---- Chinese characters --------------------------------------------------------
+\usepackage{CJKutf8}
+\newcommand{\cntext}[1]{\begin{CJK*}{UTF8}{bkai}#1\end{CJK*}}
+%----------------------------------------------------------------------------------------
+% --- Page Style ----
+
+%\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\setlength{\paperheight}{29.7cm}
+\setlength{\paperwidth}{21cm}
+\addtolength{\voffset}{-1in}
+\addtolength{\hoffset}{-1in}
+\setlength{\topmargin}{1in}
+\setlength{\oddsidemargin}{1.5cm}
+\setlength{\evensidemargin}{1.5cm}
+\setlength{\textwidth}{18cm}
+\setlength{\textheight}{23.5cm}
+\setlength{\footskip}{32pt}
+\setlength{\marginparsep}{0.5cm}
+\setlength{\marginparwidth}{1.5cm}
+\setlength{\headheight}{0pt}
+\setlength{\headsep}{1cm}
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{.1cm}
+
+%--- Fancy look --------------------------------------------------------------------------------------------
+\pagestyle{fancy} % for header and footer
+\fancyhf{} % clears the header and footer,
+\lhead{\fancyplain{}{\doctitle}}
+\rhead{\fancyplain{}{PI: Li-Hsing Chi}} % *** Fill your name here ***
+\cfoot{\fancyplain{}{\cntext{共} \pageref*{LastPage} \cntext{頁}~~~~\cntext{第} \thepage \cntext{頁}}}
+\lfoot{\underline{\cntext{表} C003}}
+
+% --- define the title page 
+
+\fancypagestyle{titlepage}{
+\renewcommand{\headrulewidth}{0pt}
+\rhead{}
+\lhead{}
+%\rfoot{}
+%\lfoot{}
+\cfoot{\fancyplain{}{\cntext{共} \pageref*{LastPage} \cntext{頁}~~~~\cntext{第} \thepage \cntext{頁}}}
+\lfoot{\underline{\cntext{表} C002}}
+}
+
+%----------------------------------------------------------------------------------------------------------------
+\bibliographystyle{apj}
+
+% --- additional stuff --------------------------------------------------------------------------------------
+\newcommand{\todo}[1]{{\color{red}$\blacksquare$~\textsf{[TODO: #1]}}}
+\newcommand{\doctitle}{Deep Learning in HNSCC} % *** Project Short Title ***
+
+
+% --------------------------------------------------------------------------------
+%%% for abbreviations, or acronyms
+\usepackage[automake, acronym, nopostdot]{glossaries} 
+\usepackage{glossary-inline}
+%\setacronymstyle{long-short}
+%\renewcommand*{\glossarysection}[2][]{} 
+%\renewcommand*{\glossarysection}[2][]{\textbf{#1}: }
+% for abbreviations environment
+%\newcommand{\abbrlabel}[1]{\makebox[3cm][l]{\textbf{#1}\ \dotfill}}
+\newenvironment{abbreviation}%{\begin{list}{}{\renewcommand{\makelabel}{\abbrlabel}}}{\end{list}}
+% \newenvironment{<name>}[<number>][<default>]
+
+
+\makeglossaries %https://tex.stackexchange.com/questions/110095/list-of-acronyms-is-not-displayed
+
+\newacronym{ihc}{IHC}{immunohistochemistry}
+\newacronym{fdr}{FDR}{false discovery rate}
+
+\newacronym{hpa}{HPA}{the Human Protein Atlas}
+
+\newacronym{hnscc}{HNSCC}{head and neck squamous cell carcinoma}
+\newacronym{tcga}{TCGA}{the Cancer Genome Atlas}
+\newacronym{tcpa}{TCPA}{the Cancer Proteome Atlas}
+\newacronym{rna}{RNA}{ribonucleic acid}
+\newacronym{rnaseq}{RNA-Seq}{RNA sequencing}
+\newacronym{lncrna}{lncRNA}{long non-coding RNA}
+%\newacronym{km}{KM}{Kaplan-Meier}
+\newacronym{rppa}{RPPAs}{reverse-phase protein arrays}
+\newacronym{rpma}{RPMA}{reverse-phase protein lysate microarray}
+
+
+
+\newacronym{go}{GO}{Gene Ontology}
+\newacronym{ipi}{IPI}{international protein index database}
+
+\newacronym{mmp}{MMP}{matrix metalloproteinase}
+ %DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, and DKC1
+ %ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, KIAA1683, and NPB
+
+\newacronym{DKK1}{DKK1}{dickkopf WNT signaling pathway inhibitor 1} 
+\newacronym{CAMK2N1}{CAMK2N1}{calcium/calmodulin dependent protein kinase II inhibitor 1} 
+\newacronym{STC2}{STC2}{stanniocalcin 2} 
+\newacronym{PGK1}{PGK1}{phosphoglycerate kinase 1} 
+\newacronym{SURF4}{SURF4}{surfeit 4} 
+\newacronym{USP10}{USP10}{ubiquitin specific peptidase 10} 
+\newacronym{NEDD4}{NEDD4}{neural precursor cell expressed, developmentally down-regulated 4}
+\newacronym{NDFIP1}{NDFIP1}{NEDD4 family interacting protein 1} 
+\newacronym{FOXA2}{FOXA2}{forkhead box A2} 
+\newacronym{STIP1}{STIP1}{stress-induced-phosphoprotein 1} 
+\newacronym{DKC1}{DKC1}{dyskeratosis congenita 1, dyskerin} 
+
+\newacronym{ZNF557}{ZNF557}{zinc finger protein 557} 
+\newacronym{ZNF266}{ZNF266}{zinc finger protein 266} 
+\newacronym{IL19}{IL19}{interleukin 19} 
+\newacronym{MYO1H}{MYO1H}{myosin 1H} 
+\newacronym{FCGBP}{FCGBP}{Fc fragment of IgG binding protein} 
+\newacronym{LOC148709}{LOC148709}{LncRNA LOC148709} 
+\newacronym{EVPLL}{EVPLL}{envoplakin-like protein} 
+\newacronym{PNMA5}{PNMA5}{paraneoplastic antigen like 5} 
+%\newacronym{KIAA1683}{KIAA1683}{IQCN, IQ Motif Containing N} 
+\newacronym{IQCN}{IQCN}{IQ motif containing N} % previous name KIAA1683
+% "IQ" refers to the first two amino acids of the motif: isoleucine (commonly) and glutamine (invariably)
+\newacronym{NPB}{NPB}{neuropeptide B} 
+
+ \newacronym{rt}{RT}{radiation therapy}
+ \newacronym{nccn}{NCCN}{National Comprehensive Cancer Network}
+ \newacronym{hif}{HIF}{hypoxia-inducible factor}
+ \newacronym{egfr}{EGFR}{epidermal growth factor receptor}
+ \newacronym{ras}{RAS}{rat sarcoma}
+ \newacronym{hras}{HRAS}{Harvey rat sarcoma viral oncoprotein}
+ \newacronym{erk}{ERK}{extracellular signal-regulated kinases}
+ \newacronym{us}{US}{United States}
+ \newacronym{fda}{FDA}{Food and Drug Administration}
+ \newacronym{tpf}{Tax-PF}{docetaxel, cisplatin, and 5-fluorouracil}
+ \newacronym{tki}{TKI}{tyrosine kinase inhibitor}
+ \newacronym{her}{HER}{human epidermal growth factor receptor}
+ \newacronym{ici}{ICI}{immune-checkpoint inhibitor}
+ %\newacronym{ctla4}{CTLA-4}{cytotoxic T lymphocyte antigen 4}
+ \newacronym{pd1}{PD-1}{programmed death 1}
+ %\newacronym{pdl1}{PD-L1}{programmed death ligand 1}
+ \newacronym{tim3}{TIM-3}{T-cell immunoglobulin mucin protein 3}
+ \newacronym{lag3}{LAG-3}{lymphocyte activation gene 3}
+ \newacronym{ifng}{IFN-$\gamma$}{interferon gamma}
+ \newacronym{tigit}{TIGIT}{T cell immunoglobin and immunoreceptor tyrosine-based inhibitory motif}
+ \newacronym{gitr}{GITR}{glucocorticoid-induced tumor necrosis factor receptor}
+ \newacronym{vista}{VISTA}{V-domain Ig suppressor of T-cell activation}
+ \newacronym{tmsb4x}{TMSB4X}{thymosin beta-4 X-linked}
+ \newacronym{emt}{EMT}{epithelial-mesenchymal-transition}
+ \newacronym{gdc}{GDC}{Genomic Data Commons}
+ \newacronym{nci}{NCI}{the National Cancer Institute}
+ \newacronym{gdac}{GDAC}{Genome Data Analysis Center}
+ \newacronym{rest}{REST}{Representational State Transfer} 
+ \newacronym{api}{API}{Application Programmable Interface}
+\newacronym{grch38}{GRCh38}{Genome Reference Consortium Homo sapiens genome assembly 38}
+\newacronym{fpkm}{FPKM}{Fragments per kilobase per million reads mapped}
+\newacronym{rsem}{RSEM}{RNA-Seq by Expectation-Maximization}
+\newacronym{slca}{SLC35E2A}{solute carrier family 35 member E2A}
+\newacronym{slcb}{SLC35E2B}{solute carrier family 35 member E2B}
+\newacronym{cde}{CDE}{Common Data Element}
+\newacronym{id}{ID}{identification}
+\newacronym{ajcc}{AJCC}{the American Joint Committee on Cancer}
+\newacronym{uicc}{UICC}{he Union for International Cancer Control}
+\newacronym{tnm}{TNM}{the tumor size (T), cervical lymph node metastases (N), and distal metastasis status (M)}
+\newacronym{ci95}{95\% CI}{95\% confidence interval}
+\newacronym{os}{OS}{overall survival}
+\newacronym{rfs}{RFS}{recurrence-free survival}
+\newacronym{hr}{HR}{hazard ratio}
+\newacronym{hpv}{HPV}{human papillomavirus}
+\newacronym{ene}{ENE}{extra-nodal extension}
+\newacronym{lvsi}{LVSI}{lymph-vascular space invasion}
+\newacronym{pni}{PNI}{perineural invasion}
+\newacronym{doi}{DOI}{depth of invasion}
+\newacronym{lnd}{LND}{lymph node density}
+\newacronym{wpoi5}{WPOI-5}{worst pattern of invasion score 5}
+\newacronym{glut4}{GLUT4}{glucose transporters 4}
+\newacronym{slc2a4}{SLC2A4}{solute carrier family 2 member A4}
+\newacronym{trim24}{TRIM24}{tripartite motif-containing 24}
+\newacronym{til}{TIL}{tumor-infiltrating lymphocytes}
+\newacronym{tmb}{TMB}{tumor mutational burden}
+
+%\newacronym{hpa}{HPA}{the Human Protein Atlas}
+\newacronym{cart}{CAR-T}{chimeric antigen receptor T cells}
+
+\newacronym{ptta}{PTTA}{P-value of t-test or ANOVA}
+\newacronym{anova}{ANOVA}{analysis of variance}
+\newacronym{lcms}{LC-MS/MS}{liquid chromatography with tandem mass spectrometry}
+\newacronym{maldi}{MALDI MS}{matrix-assisted laser desorption/ionization mass spectrometry}
+\newacronym{maldii}{MALDI IMS}{matrix-assisted laser desorption/ionization imaging mass spectrometry}
+
+\newacronym{pcr}{PCR}{polymerase chain reaction}
+\newacronym{rtpcr}{RT-PCR}{reverse-transcription PCR}
+\newacronym{qpcr}{RT-qPCR}{quantitative real-time reverse-transcription PCR}
+
+\newacronym{tmuh}{TMUH}{Taipei Medical University Hospital}
+
+\newacronym{dag}{DAG}{direct acyclic graph}
+
+%ohm$V3V1V2 disserttion
+\newacronym{cd}{CD}{cluster of differentiation}
+\newacronym{ctla4}{CTLA-4}{cytotoxic T-lymphocyte associated protein 4 (CD152)}
+\newacronym{clsm}{CLSM}{confocal laser scanning microscopy}
+\newacronym{dapi}{DAPI}{4’,6-diamidino‐2-phenylindole}
+\newacronym{dc}{DC}{dendritic cell}
+\newacronym{eb}{EB}{Epstein Barr virus}
+\newacronym{ent}{ENT}{ear- nose- and throat,  otorhinolaryngology}
+\newacronym{fas}{Fas}{Fas cell surface death receptor (CD95)} % ligand; Fas -> tumor necrosis factor (TNF) family; 
+\newacronym{fasl}{FasL}{Fas ligand (CD95L or CD178)} % FasL = CD95L or CD178; 
+\newacronym{gphase}{G-phase}{gap phases in mitosis}
+\newacronym{gvhd}{GVHD}{graft versus host disease}
+\newacronym{hiv}{HIV}{human immunodeficiency virus}
+\newacronym{hla}{HLA}{human leukocyte antigen}
+%\newacronym{hpv}{HPV}{human papilloma virus}
+\newacronym{icd}{ICD}{international classification of diseases}
+\newacronym{il}{IL}{interleukin}
+\newacronym{lc}{LC}{langerhans cell}
+\newacronym{lp}{LP}{lichen planus}
+\newacronym{lpl}{LPL}{leukoplakia}
+\newacronym{lpldys}{LPL-dys}{leukoplakia with dysplasia but without malignant transformation}
+\newacronym{lplca}{LPL‐ca}{leukoplakia with dysplasia with malignant transformation}
+\newacronym{mab}{mAb}{monoclonal antibody}
+\newacronym{mdsc}{MDSC}{myelo-derived suppressor cells}
+\newacronym{mhc}{MHC}{major histocompatibility complex}
+%\newacronym{mmp}{MMP}{matrix metalloproteinases}
+\newacronym{nkg2d}{NKG2D}{natural killer group 2 member D}
+%  MICA MICB is the ligand of NKG2D
+\newacronym{mica}{MICA}{MHC-class-I-polypeptide-related sequence A}
+\newacronym{micb}{MICB}{MHC-class-I-polypeptide-related sequence B}
+
+\newacronym{nsaid}{NSAID}{non-steroidal anti-inflammatory drugs}
+\newacronym{olp}{OLP}{oral lichen planus}
+\newacronym{oscc}{OSCC}{oral squamous cell carcinoma}
+\newacronym{pdl1}{PD‐L1}{programmed death-ligand 1 (CD274)}
+\newacronym{pmod}{PMOD}{potentially malignant oral disorder}
+\newacronym{ptld}{PTLD}{post‐transplant lymphoproliferative disorder}
+\newacronym{pvl}{PVL}{proliferative verrucous leukoplakia}
+\newacronym{sir}{SIR}{standard incidence ratio}
+\newacronym{sot}{SOT}{solid organ transplantation}
+\newacronym{taa}{TAA}{tumor associated antigen}
+\newacronym{tam}{TAM}{tumor associated macrophage}
+\newacronym{tcr}{TCR}{T cell receptor}
+%\newacronym{til}{TIL}{tumor infiltrating lymphocyte}
+\newacronym{tgf}{TGF}{transforming growth factor}
+\newacronym{th}{Th}{T helper}
+\newacronym{tls}{TLS}{tertiary lymphoid structure}
+%\newacronym{tnm}{TNM}{tumor, node, metastasis classification system}
+\newacronym{trail}{TRAIL}{tumor necrosis factor-related apoptosis‐inducing ligand}
+\newacronym{treg}{Treg}{regulatory T cell}
+
+\newacronym{aldh2}{ALDH2}{aldehyde dehydrogenase 2}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%---------------------------------
+%
+%. Document
+%
+% -----------------------------------------------------------------------------------------------------------------
+%\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+% MOST template from https://github.com/kuochuanpan/most_proposal/blob/master/most_proposal.tex
+\begin{document}
+% MOST page
+%\includegraphics[trim=1.5cm 0 0 3cm]{cover.pdf}
+
+\thispagestyle{titlepage}
+
+\clearpage
+% \cntext{TMU 口腔醫學院 2021 project}
+% The real title page
+\title{\Large \vspace{-2.5cm} Deep Learning for Biomarker Discovery in Head and Neck Squamous Cell Carcinoma}
+%\author{Li-Hsing Chi}
+%\date{May 2021}
+
+\author{\small PI: Li-Hsing Chi (\cntext{祁力行})$^{1,2}$\\
+{\footnotesize $^{1}$ \quad Division of Oral and Maxillofacial Surgery, Department of Dentistry\unskip, 
+%    Taipei Municipal Wanfang Hospital\unskip, Taipei\unskip, Taiwan\\
+Wan Fang Hospital\unskip, Taipei Medical University}\\
+    
+{\footnotesize $^{2}$ \quad Division of Oral and Maxillofacial Surgery, Department of Dentistry\unskip,
+    Taipei Medical University Hospital\unskip, Taipei Medical University}\\
+    
+%$^{4}$ \quad Genomics Research Center\unskip, Academia Sinica\unskip, Taipei\unskip, Taiwan\\
+    
+%$^{5}$ \quad Graduate Institute of Biomedical Informatics, College of Medical Science and Technology\unskip, Taipei Medical University\unskip, No.172-1, Sec. 2, Keelung Rd.\unskip, Taipei 106\unskip, Taiwan\\
+
+%Taipei\unskip, Taiwan\\
+%{\footnotesize $^1$ Department of Physics and Astronomy, Michigan State University, East Lansing, MI 48824, USA}\\
+%{\footnotesize $^2$Institute of Astronomy, Nation Tsing Hua University, Hsinchu 30013, Taiwan}\\ 
+%{\footnotesize $^3$Department of Physics, Nation Tsing Hua University, Hsinchu 30013, Taiwan}
+}
+\date{\small \today}
+
+
+\maketitle
+
+\thispagestyle{titlepage}
+
+% ------------------------------------------------------
+%
+% Abstract
+%
+% ------------------------------------------------------
+
+\begin{abstract}
+
+
+\textbf{Background:}
+Head and neck squamous cell carcinoma (\acrshort{hnscc}) represents a significant health concern worldwide. Surgery and systemic therapy are still the standard of care for \acrshort{hnscc} patients. The break-through improvement of those interventions should depend on 1) the discovery of high impact prognostic biomarkers, and 2) proper treatment planning by accurate sub-population of those patients.
+The survival analysis of the \acrfull{tcga} dataset is a well-known method to discover the gene expression-based biomarkers of \acrshort{hnscc}. It is necessary to determine a cutoff point of the patients' dichotomization in survival analysis with the continuous gene expression measurements. There is some optimization software for cutoff mining.
+However, the software's determination of cutoffs is usually set at the median, 1/4 quantile, or 3/4 quantile of \acrfull{rnaseq} value to find a significant P-value by the Kaplan-Meier analysis. There are few clinicopathological features available on their pre-processed data sets.
+The survival analysis could conclude the manifest of clinical and transcriptomics data to find the prognostic biomarkers.
+
+%Methods: how the study was performed and statistical tests used
+\textbf{Methods:}
+R script was used to develop a comprehensive workflow, named "pvalueTex", running on the Rstudio platform. It includes data retrieving and pre-processing, feature selection, cutoff mining engine, Kaplan-Meier survival analysis, Cox proportional hazard, and modeling to discover prognostic biomarkers.
+
+
+% Results: the main findings
+\textbf{Results:}
+Using pvalueTex on the \acrshort{tcga} \acrshort{hnscc} cohort, we scanned human protein-coding genes (20,500) programmatically. After adjustment with other confounders, we found that the clinical tumor stage and the surgical margin involvement are independent risk factors in patient survival. 
+According to the resulting tables with Bonferroni adjusted P-value under optimal cutoff as well as hazard ratio $(>=1.5)$, there were ten candidate biomarkers, named as DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, and DKC1, which are significantly associated with the poor prognosis of \acrfull{os}. At the same time, the other ten genes were over-expressed in the better survival patients (with hazard ratio $<=0.5$), named as ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, IQCN (previous name as KIAA1683), and NPB.
+
+
+%*** validated by \acrfull{hpa}.
+Further validations are warranted.
+Deep learning
+
+
+\thispagestyle{titlepage}
+% Conclusions: brief summary and potential implications
+\textbf{Conclusions:}
+Those 11 validated biomarkers (DKK1, CAMK2N1, STC2, PGK1, SURF4, NDFIP1, STIP1, DKC1, ZNF557, ZNF266, and FCGBP), clinical tumor size, and surgical margin status are independent prognosis factors in \acrshort{hnscc}.
+\acrshort{tmsb4x} could affect enhanced proliferation and metastasis in vitro and in vivo of \acrshort{hnscc} by the animal study.
+We suggested expression data of \acrshort{rnaseq} and proteomics will help pvalueTex, equipped with an optimal cutoff finder, to facilitate the biomarker discovery in terms of tumor-agnostic therapy.
+
+
+%Survival analysis using the Cancer Genome Atlas (TCGA) dataset is a well-known method to discover gene expression-based prognostic biomarkers of head and neck squamous cell carcinoma (HNSCC). It is necessary to determine a cutoff point by patients' dichotomization for the continuous gene expression. Usually, an optimization algorithm for cutoff determination has been set at the median or quantiles of RNA sequencing value.
+%There are few clinicopathological features available on those pre-processed datasets. (feature selection or feature engineering issue)
+% validated by the other HNSCC cohort:
+%1) poor prognosis: CAMK2N1 (0.048214), PGK1 (0.009978), SURF4 (0.023127), USP10 (0.017768), NDFIP1 (0.022758), FOXA2 (0.001587);\\ % FOXA2 (0.038125)
+%2) better prognosis: IL19 (0.049731), FCGBP (0.005658), KIAA1683 (IQCN, 0.005886), NPB (0.014177);\\
+
+% row 20: The result showed ten overexpressed genes (symbol as DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, and DKC1) are significantly associated with a poor prognosis of overall survival. Furthermore, the other ten overexpressed genes (symbol as ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, IQCN - former symbol as KIAA1683, and NPB) are correlated with better survival.
+
+
+% Keywords
+\textbf{Keyword:}
+%\keyword{
+Head and Neck Squamous Cell Carcinoma (HNSCC);
+%Genome Database\sep
+the Cancer Genome Atlas (TCGA);
+RNA-sequencing;
+Survival Analysis;
+Optimal Cutoff;
+Biomarker; % Discovery\sep
+%Tumor Type-agnostic Therapy\sep
+%Immuno-Oncology\sep
+%Targeted Therapy\sep
+%Systemic Therapy\sep
+Surgical Margin;
+Holistic Cancer Care;
+Therapeutic Relationship;
+Mindfulness Meditation
+%}
+
+\cntext{中文摘要。}
+
+\end{abstract}
+
+\clearpage
+
+
+
+
+%\thispagestyle{titlepage}
+% ------------------------------------------------------
+%
+% Introduction
+% https://www.most.gov.tw/most/attachments/8eb87bfc-502c-4da8-b026-f9a499ae1622
+% http://lgdntu.blogspot.com/2015/01/blog-post.html 專訪張典顯與楊慕華老師
+% writing a fundable grant:
+% critically significant, how do I approach this (解釋得很清楚，不可以草率，或僅止於做流水帳),  is there any 替代策略 (fallback approaches)
+% just like 一篇 manuscript (手稿) 適合投到哪個 journal (期刊) 需要仔細審度
+% being concise and precise (NIH: maximal 12 pages)
+% ------------------------------------------------------
+%「研究計畫之背景及目的: 詳述研究計畫之背景、目的、重要性及國內外有關本計畫之研究情況、重要參 考文獻之評述等」、
+%「研究方法、進行步驟及執行進度」、
+%「預期完成之工作項目 及成果」、
+%「經費」
+%「對社會的貢獻」
+%\section{Introduction}」
+
+\section*{\cntext{(一)研究計畫之背景及目的}} % 大約 3 頁 Background and Significance
+%請詳述本研究計畫之背景、目的 具體目標 (Specific Aims)、重要性及國內外有關本計畫之研究情況、重要參考文獻之評述等。
+
+% *** 講一個故事，先告訴大家領域的重要性和重大發現，然後再告訴大家什麼重要的問題尚待解決，而我所提的研究方案能提供什麼樣的解答，這就是 "rationale"
+\begin{outline}
+\1 Big picture.
+\1 Specific and important problems.
+\2 How much has been done and how much hasn’t?
+\2 How am I able to contribute solving the important and unsolved questions?
+\end{outline}
+% * 研究背景的介紹需具備邏輯連貫性，且要與研究主軸相關聯。最佳的寫作方式是利用背景介紹點出尚未解決之問題，同時引出研究之重要議題。
+% *長期目標願景 (long-term goal) 說清楚，包含哪些是領域當中重要但未解決的議題，以及個人的研究主題和此有何關聯
+% then 將個人的研究主題和其它重要的主題連結 (to attract your reviewers)
+
+% 文獻回顧及評述: review articles then discussion => 有助於說明計畫的重要性、創新性 
+%*** 應就其中重要、關鍵的論文提出與之論辯、對話的過程，歸納出過去研究中值得參考的成果及論點，有哪些值得檢討、翻盤的盲點，以及迄今未獲解決或被忽略的面向，乃至前人研究的錯誤。
+
+
+
+%\chapter{Introduction}
+\label{chap:intro}
+%\chaptermark{Epidemiology, Etiology, Pathogenesis, and Treatment of HNSCC}
+
+%Introduction
+%Background of the Problem
+%Statement of the Problem
+%Purpose of the Study
+%Research Questions
+%Significance of the Study
+%Definition of Terms
+%Assumptions, Limitations, and Delimitations
+%Conclusion
+
+%\section*{Background}
+
+\section*{Biological Hallmarks of Cancer}
+
+The multi-step process of genetic alteration is contributing to the development of cancer. The accumulation of mutation, amplification, or chromosomal aberrations in proto-oncogenes or tumor-suppressor genes might be the consequence of the stimulation from intrinsic or extrinsic environments.
+Since cancer cells acquired the ten biological hallmarks, these functional capabilities consist of sustaining proliferative signaling and evading growth suppressors, resisting cell death, enabling replicative immortality, inducing angiogenesis, activating invasion with metastasis, deregulating cellular energetics and metabolism, avoiding immune destruction, tumor-promoting inflammation, and genome instability and mutation \citep{Hanahan2000, Hanahan2011, Hanahan2017}. The tumor micro-environment, which is composed of cancer cells and tumor‐associated fibroblasts, infiltrating immune cells, and angiogenic vascular cells.
+
+metabolic reprogramming
+The concept that cancer cells alter their utilization of energy sources—notably glucose—to support their proliferation was introduced almost 90 years ago by Otto Warburg, who observed that certain cultured-cancer cells have enhanced uptake of glucose, which is metabolized via glycolysis, even in the presence of oxygen levels that normally should favor oxidative phosphorylation.
+aerobic glycolysis
+GLUT4 \citep{Chang2017b}
+lactate
+glutamine
+
+
+%===================
+%http://www.biomedicine.org.tw/Upload/07_DNA甲基化程度在大腸直腸癌扮演的角色.pdf
+%脊椎動物之基因體中約20\%之序列為5'-GC-3' (簡稱CpG)之雙核苷酸(dinucleotide)。然而有 些長約1至2kb之序列段，其CpG含量高達60% (CpG islands)
+Epigenetic trinity in cancer: CpG islands
+60\% protein-coding genes with CpG islands on their promoter region
+
+(
+McGough JM, Yang D, Huang S, et al. DNA methylation represses IFN-gamma-induced and signal transducer and activator of transcription 1-mediated IFN regulatory factor 8 activation in colon carcinoma cells. Mol Cancer Res 2008;6:1841-1851.
+)
+methyl CpG-binding domain protein; MBD prevents TF binding on the promoter of gene
+=> causing impairment of mismatch repair: MMR => microsatellite instable: MSI
+
+%環境因子的致癌機轉
+=>CpG hypermethylation
+turn off tumor suppressor genes
+=>CpG Hypomethylation turn on oncogene
+DKK1
+...
+loss of gene imprinting <- hypomethylation
+alleles 
+..
+histone methylation
+%http://webcache.googleusercontent.com/search?q=cache:z8zvnjS-C3AJ:sites.mc.ntu.edu.tw/board.php?courseID%3D83%26f%3Ddoc%26folderID%3D581%26cid%3D3060&client=safari&hl=en&gl=tw&strip=1&vwsrc=0
+%雖然以上我們討論的是癌症的基因體，但癌症的厲害就是它本來就利用人體原有的生物機制來生存（co-opting），因此，以上在癌症觀察到的基因體複雜性，其實也存在於正常人體.
+
+%從最早，很單純的基因之exon序列，轉錄成mRNA，再轉譯成polypeptide，形成protein，到現在還要考慮epigenetics、mi RNA、TUF (ENCODE將之名為transcripts of unknown function (TUF)=> non-coding RNA 後來很紅)、chromosome environment，基因體的複雜性真是增加了不知多少倍，這也提醒我們在了解基因功能方面，必需更有全面性的關照。這也是「基因體醫學」必需以「基因體科學」為基礎的道理。
+
+
+
+
+
+\section*{Head and Neck Squamous Cell Carcinoma}
+\label{sec:section}
+
+Head and neck squamous cell carcinoma (HNSCC), which is derived from the oral cavity, oropharynx, hypopharynx and larynx, is the sixth common cancer worldwide \citep{Siegel2016}, as well as the fourth leading cancer causes of death for males in Taiwan  \citep{MOHW_death2017}. The age-standardized incidence rate of \acrshort{hnscc} in males is 42.43 per 100,000 persons \citep{MOHW_incidence2018}. 
+ Primary prevention by minimizing exposure to known carcinogens is promising, but limited success is achieved due to addiction, economic, or social issues.
+ In Asian population, ALDH2 mutaion plays a very important rule to cause HNSCC.
+The mortality rate of HNSCC patients in the male is 11.1-fold greater than that in women.
+Some factors, including carcinogens in tobacco and betel nut, consumption of alcohol, \acrfull{hpv} infection, physical irritations, or host susceptibility, may contribute to the etiology of HNSCC \citep{Ko1995,Znaori2003} (Figure \ref{fig:DAG_etiology}).
+
+
+%\paragraph{Ancient History of \acrshort{hnscc}}
+% \citep{Fornaciari2012}
+% \citep{Rehemtulla2010}
+%Inchingolo, F., Santacroce, L., Ballini, A., Topi, S., Dipalma, G., Haxhirexha, K., Bottalico, L., \& Charitos, I. A. (2020). Oral cancer: A historical review. In International Journal of Environmental Research and Public Health (Vol. 17, Issue 9). MDPI AG. https://doi.org/10.3390/ijerph17093168 \citep{Inchingolo2020}
+
+\paragraph{Incidence}
+
+\paragraph{Etiology}
+While the main risk factors for HNC remain tobacco and alcohol abuse, oncogenic viruses such as human papilloma virus and Epstein–Barr virus play a major carcinogenic role in tumors of the oropharynx and nasopharynx, respectively.\citep{Ferrarotto2017}
+Figure \ref{fig:DAG_etiology}
+
+
+
+
+
+Overview of HNSCC (Indian)
+https://www.intechopen.com/books/oral-cancer/oral-cancer-an-overview
+
+% ALDH2 mutaion 戒酒有理
+% 在美國北加州參加演講。
+% 很棒！心得是：該戒酒了，至少要去檢測 ALDH2 基因是否突變影響解酒酵素→ 因為乙醛堆積致癌！
+% 菸與酒在全身癌症的貢獻度是可以相比的。只有壞處沒有好處
+% http://taies.org/
+% 喝酒臉紅（酒精不耐症）表示危險，因為代謝酒精的酵素不正常，身體容易大量累積乙醛，這是一級致癌物。
+% 尤其是，如果酒精不耐者加上吸菸，口腔癌罹患機會，是一般人的400 倍。
+% 酒駕更會製造社會問題。
+% 
+% #鼓勵檢測 ALDH2 基因
+% #建議酒精不耐者戒酒
+% #戒菸戒酒同樣重要
+% #適量紅酒對亞洲民族的心血管完全沒有好處
+% #亞洲人一天最多10克酒精相當於350mL鋁罐啤酒
+% 
+% 專題演講 : Alcohol Intolerance: An Under-Recognized Health Risk and Precision Oral Cancer
+% 演 講 者: Che-Hong Chen, PhD.
+% 陳哲宏
+% Alcohol lntolerance Education Society
+% 台灣酒精不耐淀衛教協會
+% LINE ID: jchehong
+% Email: chehong@stanford.edu
+% STANFORD
+% SCHOOL OF MEDICINE
+% Stanforl Cuirersity Medical Center
+% Chemical and Systems Biology
+% 歡迎捐款!協會慈善捐款收據備索
+% 郵政劃撥劃撥帳號:50434421
+% http://taies.org/
+% 戶名:社團法人台灣酒精不耐症衛教協會
+% 謝謝陳老師的演講，我是提問的 北醫 祁力行。
+% 戒菸戒酒都能使用藥物幫忙，加上專業衛教，建立動機、鞏固決心，我還知道一些中醫穴道，雷射針灸可以幫忙戒除之，多管齊下。
+% Acetaldehyde
+% 老師提到戒酒已有藥物，Disulfiram 正是抑制 ALDH1，讓乙醯醛堆積，酒後症狀嚴重。:-)
+
+
+%\paragraph{Treatment}
+
+
+The modern treatment of HNSCC should be done by surgery alone, radiation therapy alone, or a combination of them with adjuvant chemotherapy according to National Comprehensive Cancer Network (NCCN) guidelines \citep{Pfishter2019}. Despite those interventions, the 5-year survival rate for this disease has improved only marginally over the past decade, and recurrent disease is observed in ~50\% of all patients \citep{Forastiere2001,Warnakulasuriya2009}. By comparison with new systemic treatments seen in other solid tumours, the prognostic result of targeted therapy, ex. EGFR inhibitors, in HNSCC patients has remained relatively stationary in recent years. \citep{Argiris2015a}. 
+%%
+Head and neck squamous cell carcinoma (HNSCC), including oral, oropharyngeal, and hypopharyngeal origin, is the fourth leading cancer causes of death for males in Taiwan \citep{MOHW_death2017}. The age-standardized incidence rate of HNSCC in males is 42.43 per 100,000 persons \citep{MOHW_incidence2018}. 
+% chemotherapy => systemic therapy
+The treatment strategies of HNSCC are surgery alone, systemic therapy with concurrent radiation therapy (systemic therapy/RT), or surgery with adjuvant systemic therapy/RT (according to National Comprehensive Cancer Network, NCCN Clinical Practice Guidelines in HNSCC, Version 2.2020) \citep{Pfister2020a}. Despite the improvement in those interventions, the survival of HNSCC has improved only marginally over the past decade worldwide \citep{hpa2019}. The critical advancement of targeted therapy and immuno-oncology should benefit from emerging prognostic biomarkers, which guide the development of modern systemic therapy.
+% Pfister, D. G.
+
+%%Oral cavity and oropharyngeal cancer account for more than 7000 deaths annually, with an annual incidence of more than 30,000 new cases within the United States. 1  Worldwide it is the sixth most common malignancy, with incidence varying greatly among different geographic locations. Its prevalence can range from countries with rates similar to those in the United States, to countries such as India, where death from oral cavity cancer is one of the top three forms of cancer death. As well in Taiwan, HNSCC is one of the top four forms of cancer death. 
+%Despite improvements in treatment, long-term survival rates are relatively unchanged over the past 30 years.
+
+
+%Chemotherapy
+%Checkpoint inhibitor immunotherapy
+
+%HNSCC expresses higher levels of Nuclear factor-kappa B (NF-κB), which proposed a hypothesis that inhibition of NF-κB will attenuates cancer cell proliferation. \citep{Yamamoto2001} The presence of cyclin D1 overexpression has been correlated with increased cervical lymphatic metastases, in terms of poor prognosis. \citep{Akervall1997}...as an independent predictor of nodal metastasis, grade, and adverse pathological features.
+
+%% http://web.tccf.org.tw/lifetype/index.php?op=ViewArticle&articleId=4480&blogId=1 振興醫院血液腫瘤科 陳國維醫師
+%%, such as mutation of TP53, ..., overexpression of .....
+%Prognostic significance of p53 mutation has been reported.
+%% TP53 gene => p53 protein; mutation of TP53
+Accumulative knowledge showed that some biomarkers have prognostic significance in \acrshort{hnscc}. For example, node-negative HNSCC patients with p53 aberrant overexpression were found to have lower survival \citep{DeVicente2004}.
+The mutations of TP53 are one of the most frequent abnormalities in \acrshort{hnscc} found within up to 70\% of specimen \citep{Alsner2001, Singh2016, Wang2017, WARD2018}.
+% TP53 mutations are comprised of eight classes: missense, nonsense, frame-shift deletion, frame-shift insertion, in-frame deletion, in-frame insertion, silent and splice-site.
+%*** biomarkers for radio-resistance or proton therapy? Concurrent systemic therapy: \citep{Brockstein2020} (UpToDate database)
+Overexpression of hypoxia-inducible factor (HIF)-1 alpha \citep{Aebersold2001} or Ki-67 \citep{Couture2002} was found to be correlated with poor response to radiotherapy of HNSCC. The epidermal growth factor receptor (EGFR) \citep{O-Charoenrat2000} \citep{Bentzen2005} and matrix metalloproteinase (MMP) involved in the escape of cancer cells from immunosurveillance \citep{Stefanidakis2006}. MMP were also found to be over-expressed to promote invasion and metastasis of HNSCC \citep{Harrington2017} through the activation of $\acrshort{tgf}\beta$ in terms of promoting epithelial-to-mesenchymal transition (EMT). 
+
+
+\subsection{Prognostic Biomarkers guide the Treatment of \acrshort{hnscc}}
+A biomarker can be either predictive or prognostic. A predictive marker predicts benefit from a specific treatment; it helps to select a particular treatment over another. A prognostic marker predicts the natural history of disease (survival), independent of treatment. It can indicate a need for further treatment, but does not help to determine which treatment. 
+The ROC Plotter is the first online transcriptome-level validation tool for predictive biomarkers.
+% http://www.rocplot.org
+
+The management of head and neck malignancies is site and histology specific, and requires a multidisciplinary team approach. In this chapter, we review the current knowledge of \acrshort{hnscc}, and discuss ongoing and future research aiming to improve the management and outcomes of patients with these malignancies.
+
+
+% from manuscript of TMSB4X 2017
+% https://docs.google.com/document/d/1j0GBllab9qr7JqB14z2KBCVGO0OkVXWQpcxCdJ3llVE/edit?usp=sharing)
+Introduction
+
+Head and neck squamous cell carcinoma (HNSCC), which is derived from the oral cavity, oropharynx and hypopharynx in more than 90\% \citep{Warnakulasuriya2009}, is the fifth leading cause of cancer death in Taiwan. The mortality rate of HNSCC patients in the male is 11.1-fold greater than that in women. The age-standardized incidence rate of HNSCC in males exceeds 30 in 100,000 populations in Taiwan \citep{MOHW2016, MOHW_incidence2018}.
+% trend from 2016 to 2018?
+Some factors, including virus infection, alcohol, carcinogens in betel quid and tobacco, physical irritations, or host susceptibility, may contribute to HNSCC \citep{Ko1995} \citep{Znaori2003}. The modern treatment of HNSCC should be done by surgery alone, radiation therapy alone, or a combination of them with adjuvant chemotherapy according to National Comprehensive Cancer Network (NCCN) guidelines \citep{Pfister2020a}. Despite those interventions, the 5-year survival rate for this disease has improved only marginally over the past decade, and recurrent disease is observed in 50\% of all patients \citep{Warnakulasuriya2009} \citep{Forastiere2001}. By comparison with modern systemic therapies seen in other solid tumors, the prognostic result of targeted therapy, ex. EGFR inhibitors, in HNSCC patients has remained relatively stationary in recent years \citep{Argiris2015a}. Patients with early-stage cancer often manifest minimal physical evidence, which usually ignored by themselves, resulting in delayed diagnosis regarding poor tumor control and patient survival. Therefore, quitting bad habits, routine screening in high-risk population and early intervention will be helpful to improve their survival while maintaining the quality of life. The key advancement of those interventions should be i) the discovery of high impact diagnostic/prognostic biomarkers, ii) and planning of the proper treatment modalities for accurate sub-grouped HNSCC patients.
+Recent decade, proteomics analysis is a promising approach to the identification of proteins with various abundance related to the prognostic categorisation of cancer \citep{Sallam2015}. MALDI IMS generates profiles and two-dimensional ion density maps of molecules, which are primarily peptides or proteins, directly from the surface of thin tissue sections of HNSCC \citep{Xie2016}. These data give the relative abundance of the molecules with their spatial distribution in tissue samples. Comparative proteomics analysis by using LC-MS/MS analysis to identify the differentially expressed proteins in HNSCC was also reported in previous articles \citep{Wei2009} \citep{Chanthammachat2013}. 
+Here we used both MALDI IMS and LC-MS/MS for the biomarker mining. In consensus candidates from these two modalities, TMSB4X has lowest expression level in normal oral mucosa, whereas it is highly abundant in late-stage HNSCC samples. Then, we used immunohistochemistry (IHC) staining to confirm the expression level of endogenous TMSB4X with clinicopathological survival analysis. Furthermore, we knocked down TMSB4X in HNSCC cell line and found that tumor growth and metastasis is attenuated. Taking all together, through multiple proteomics approaches we elucidated that TMSB4X might be a new candidate for HNSCC therapy.
+
+
+\subsubsection{Surgical Oncology for \acrshort{hnscc}}
+Biomarkers guidance with molecular pathology for surgical margin security and strong confidence of diagnosis
+
+There is 52.2\% of cases having mutations in the adjacent normal tissues was also observed in \acrshort{hnscc} surgical specimen \citep{Singh2016}. It is believed to increase the risk of local recurrence.
+
+\paragraph{Prognosis}
+
+\subsubsection{Radiation Oncology for \acrshort{hnscc}}
+Biomarkers is PET-scan
+poor differentiated SCC, NPC treated by CCRT
+
+\paragraph{Prognosis}
+
+
+
+
+
+%}
+
+
+\subsubsection{Medical Oncology for \acrshort{hnscc}}
+Modern Systemic Therapy is guided by biomarkers.
+
+\paragraph{Immune System and Cancer}
+% balanced Yan and Yin 陰陽要調合
+Two-faced roles of tumor-associated neutrophils, eosinophils, and basophils
+
+*** Tex's opinion: there is no "central console" of immune control system, which disseminated remote regular % 地方自治 
+
+chronic inflammation by mechanical force or chemicals
+=> or even in autoimmune disease:
+Risks from disease and treatment
+Autoimmune disorders generally attack a single organ or part of the body, often causing inflammation in the affected area. In some cases, that inflammation may increase cancer risk. 
+At the same time, tumor necrosis factor (TNF) inhibitors or immunosuppressant (e.x. cyclosporin), help reduce inflammation and also are suspected of increasing the risk of multiple cancers. It may impair the ability to kill cancer cells.
+
+two of ten hallmarks: avoiding immune destruction, tumor-promoting inflammation \citep{Ohman2015}
+
+
+
+The basic principles that guide cancer immunology are immune surveillance \citep{BURNET1957, Shankaran2001}, immune editing, and immune tolerance.
+%immunosurveillance
+Peritumoral immune responses might predict patients’ prognosis in a wide range of cancers. Beyond local accumulation, systemic immune response in serum is seen in patients with \acrshort{hnscc} \citep{Lee2010a}.
+% immunoediting 敵消我長的過程
+Moreover, the immune response is not only achieving protection of the host but also editing the immunogenicity of tumours \citep{Dunn2002}.
+The cancer immunoediting includes elimination, equilibrium then escape.
+%elimination by immunosurveillance
+The cells, which have aberrant major histocompatibility complex (MHC) class I expression, will be eliminated by cytotoxic mechanism or induction of apoptosis by immune cells, involving granulocytes (neutrophils, eosinophils, and basophils), macrophages, natural
+killer cells, in innate immunity \citep{Tallerico2013}.
+Tumour-associated macrophages include  M1, which has antitumoral properties, and M2, which has tumour-promoting phenotype in \acrshort{hnscc} \citep{Kumar2019}.
+
+Through dendritic cells presenting the tumor antigens to T helper cells in context with MHC class II molecules, naive or memory T cells will conduct activation of  T cells and adaptive immunity \citep{Banchereau2000}. 
+The plasmacytoid cells are a subtype of dendritic cells that are one of the main sources of secreting \acrshort{ifng}. 
+T cells consist of at least five subgroups: Th1 (CD4+), Th2 (CD4+), Th17 (CD4+), regulatory T cells (CD4+ CD25+ Tregs), and cytotoxic T cells (CD8+). 
+Cytotoxic T cells is triggered by helper T cells to attack directly and execute those tumor cells, whose antigen is presented by dendritic cells, via effector molecules such as perforin and granzyme. Cytotoxic T cells also use TRAIL receptor to release signal on tumor's FasL to induce cell apoptosis.
+% By inducing intracellular signaling through lck, the CD8 coreceptor is an important factor affecting TCR‐mediated T cell activation and modulation of immunosuppression and cytotoxicity.
+All subsets play important roles in mucosal immune response, including antitumoral responses. T cells represent approximately 10\% of the total cells in a tumour mass \citep{Balkwill2012}.
+
+% equilibrium under immunoselection:  Cancer cells avoid immunosurveillance by the selection of non-immunogenic tumour-cell variants % 鄭爺爺
+***When immunosurveillance systems are not able to eradicate the tumor cells, the result may be tumor dormancy, where an equilibrium with defending cells occurs.
+
+equilibrium represents a time of tumour cell persistence without progression.
+equilibrium is maintained solely by adaptive immunity
+The interplay of the potentially malignant cells and immune cells from immunosurveillance, equilibrium to tumor escape.
+Lymphocytes of adaptive immunity have the capacity to take over and exert enough antitumoral effects to kill and limit tumour growth, and the tumour is thus kept in their dormitory \citep{Koebel2007}.
+The tumour cells in equilibrium are highly immunogenic (unedited), whereas those spontaneously exiting equilibrium (escape) that become growing tumours have attenuated immunogenicity (edited)—results that place this process temporally between elimination and escape \citep{Koebel2007}.
+maintaining cancer in an equilibrium state may represent a relevant goal of cancer immunotherapy in which augmentation of adaptive tumour immunity could result in improved tumour control. *** A TREATMENT GOALS
+%the downregulation or loss of expression of HLA class I molecules
+% decoy receptors for TRAIL: DcR3, Decoy receptor 3 (DcR3), to prevent FasR-FasL interactions by competitively binding to membrane-bound Fas ligand; FasL binds to DcR3 (TNFRSF6B) without TRAIL function 假的誘餌
+% Death receptors:  tumour-necrosis-factor (TNF) receptor 1, CD95 (also known as FAS) and two receptors for TNF-related apoptosis-inducing ligand (TRAILR1 and TRAILR2).
+
+
+% escape under immunesubversion: by the active suppression of the immune response
+Escape is the process wherein the immunologically sculpted tumor expands in an uncontrolled manner in the immunocompetent host \citep{Dunn2002, Dunn2004}.
+It was suggested by increasing the presence of Tregs in terms of suppression of Th1 and cytotoxic T cells response by \acrfull{ctla4} \citep{Halvorsen2014}.
+Moreover, myelo-derived suppressor cells (MDSCs, CD34+) could also down-regulation of granzyme from T cells in \acrshort{hnscc} \citep{Si2019}.
+The antitumoral effect of adaptive immunity also help to the tumour evolution. It lets tumour cells to modify immunogenicity to avoid immune recognition, and to resist the cytotoxicity of T cells.
+The activated oncogenes can trigger 1) DNA-damage sensors, [such as ATM (ataxia-telangiectasia mutated) and ATR (ATM and Rad3 related)]; 2) checkpoint kinases, [such as CHK1 (checkpoint kinase 1 homologue) and CHK2]; 3) and the tumour-suppressor protein p53. 
+The transcription factor, p53, that is activated by many genotoxic insults and induces cellular apoptosis. The gene TP53, encoding p53, is frequently mutated or functionally inactivated in cancer cells.
+Through suppression of the DNA-damage response by above mechanisms, tumor cells might downregulation of NKG2D ligands (\acrshort{mica}, \acrshort{micb}) to avoid recognition by NKG2D-expressing NK cells, natural killer T (NKT) cells, $\gamma\delta$ T cells and some cytolytic CD8+ $\alpha\beta$ T cells \citep{Ljunggren2007}. They also express PD‐L1 and Fas ligand to suppress cytotoxic T cells \citep{Zitvogel2006}. Thus, the cell-cycle arrest, DNA repair or apoptosis (aka. DNA-damage response) of tumor cells will be inhibited.
+The activation of $\acrshort{tgf}\beta$ in terms of promoting epithelial-to-mesenchymal transition (EMT). 
+%IL-10
+% Activation of the DNA-damage response by cell-intrinsic stimuli (oncogene activation or reactive oxygen species, ROS) or therapy activates the ATM (ataxia-telangiectasia mutated)–CHK1 (checkpoint kinase 1 homologue) pathway. This pathway leads either to p53- or NKG2D- (ligand: MICA or MICB) dependent apoptosis of tumour cells.
+% NKG2D (Natural-killer group 2, member D). A lectin-type activating receptor that is encoded by the NK complex and is expressed at the surface of NK cells, NKT cells, γδ T cells and some cytolytic CD8+ αβ T cells. 
+% The ligands for NKG2D are MHC-class-I-polypeptide-related sequence A (MICA) and MICB in humans; and retinoic acid early transcript 1 (RAE1) and H60 in mice
+
+% 小巷弄防巷戰 (金門防線)
+Finally, tumor cells have downregulated homing receptors, and malformation of peripheral vacularity. It causes hypoxia and increased interstitial pressure which lead to a hostile microenvironment for against the infiltrating defense cells \citep{Ljunggren2007}.
+
+
+%{ references
+ICI, hallmarks of cancer
+%** Sharma, P. et al. Cancer Immunotherapy. in Holland‐Frei Cancer Medicine 1–23 (John Wiley & Sons, Inc., 2017). doi:doi:10.1002/9781119000822.hfcm068.
+
+%**1. Öhman, J. Potentially Malignant Disorders and Oral cancer -A study on Immunosurveillance. GUPEA (University of Gothenburg. Sahlgrenska Academy, 2015). doi:10.16880/sec.2015.58.01.107.
+https://gupea.ub.gu.se/handle/2077/37523 a dissertation of HNSCC
+%gupea_2077_37523_4.pdf
+
+There is 5 papers for this dissertation. :-)
+The concept of immunosurveillance originally proposed by Dunn et al. in 2004 is well in line with the findings in this thesis of PMOD and oral cancer.
+
+%** Cillo, A. R., Kürten, C. H. L., Tabib, T., Qi, Z., Onkar, S., Wang, T., … Vignali, D. A. A. (2020). Immune Landscape of Viral- and Carcinogen-Driven Head and Neck Cancer. Immunity, 52(1), 183-199.e9. https://doi.org/10.1016/j.immuni.2019.11.014
+HPV or chemicals (with Graphical Abstract)
+
+
+
+\paragraph{Immunotherapy for \acrshort{hnscc}}
+Immune Response in \acrshort{hnscc}
+Cancer Immunotherapy
+
+The basic principles that guide cancer immunology are immune surveillance, immune editing, and immune tolerance.
+\citep{Sharma2017}
+
+ICI immune-checkpoint molecule
+%Figure15_cite_Ferrarotto2017.png
+
+
+%% 
+Evasion of apoptosis contributes to the acquisition of initial oncogenesis, resistance to chemotherapy and to immune effectors
+The apoptotic program is carried out through two main pathways: the mitochondrial pathway, which involves mitochondrial outer-membrane permeabilization (MOMP)61; and the death-receptor pathway, which involves ligation of a plasma-membrane receptor, leading to the formation of a death-inducing signalling complex (DISC).
+
+% a long way to go becoming cancer
+Chronic inflammation is a risk factor in promoting carcinogenesis. The persistent inflammation in oral lichen planus (with reticular striations) was found that the influx of T helper, cytotoxic T cells, and B cells were increased in oral mucosa with moderate to severe dysplasia and oral squamous cell carcinoma compared to normal or mild dysplasia \citep{Gannot2002}. The infiltration of T cells and dendritic cells were also found in oral lichen planus \citep{Lorenzini2013}.
+The incidence of malignant transformation of oral lichen planus is approximately 0.5–1.5\% \citep{Bermejo-Fenoll2009}, while oral leukoplakia is about 10\%.
+
+\paragraph{Prognosis}
+
+%%%%%%%%%%%
+X
+
+ The font size must be 10 point or larger and footnotes\footnote{This is a footnote.} must be two sizes smaller than the text\footnote{This is another footnote.} but no smaller than eight points. Chapter, section, or other headings should be of a consistent font and size throughout the ETD, as should labels for illustrations, charts, and figures.  
+
+%\subsection{Creating a Subsection}
+%\label{sec:subsection}
+
+%\subsubsection{Creating a Subsubsection}
+
+%\paragraph{This is a heading level below subsubsection}
+
+
+
+This is a table:
+% currsize is not set in the long table environment, so we need to set it before we set it up.
+\makeatletter
+\let\@currsize\normalsize
+\makeatother
+
+% tabular environments are set to be single-spaced in the  thesis class,  but long tables do not use tabular
+% to get around this, set the spacing to single spacing at the start of the long table environment, and set it back to double-spacing at the end of it
+
+
+
+\section*{Our Previous Publication}
+In the proteomics study, identification of the differentially expressed proteins in \acrshort{hnscc} could be helped by the analyses of \acrfull{lcms} and \acrfull{maldi}. \acrshort{maldi} analysis could capture samples from the surface of \acrshort{hnscc} specimen and generate two-dimensional ion density maps of those molecules, primarily peptides or proteins. The maps give the relative abundance of the molecules with their spatial distribution.
+We also applied the \acrshort{maldi} to analyze paired (N) normal and (T) tumor samples from \acrshort{hnscc}, as well as \acrshort{lcms} analysis in \acrshort{hnscc} cell lines to identify tumor-associated biomarkers. 
+Our results from the proteomics study showed several proteins found to be over-expressed in advanced \acrshort{hnscc}. We identified that \acrfull{tmsb4x} is one of the most significant candidates. Higher \acrshort{tmsb4x} expression in the tumor was validated by evaluating N/T-paired \acrshort{hnscc} samples at both RNA and protein levels. Overexpression of \acrshort{tmsb4x} is significantly associated with poor prognosis of \acrshort{os} and \acrfull{rfs} in \acrshort{hnscc} patients. The silencing of \acrshort{tmsb4x} expression in the \acrshort{hnscc} cell line reduced the proliferation and invasion ability in vitro and inhibited the cervical lymph node metastasis in vivo. 
+
+\section*{Holistic Cancer Care}
+
+%****************%
+%\subsubsection{Holistic Cancer Care} 
+% carcinogenesis by epigenetic control (placebo/nocebo), Bruce Lipton introduced mind-brain-body system. (gene expression is not an independent $X_mrna$, which is correlated with other $X_body, X_stress, X_inflammation, X_ros$)
+% cancer care with person-central approach, PCA; Cullen, Carl Rogers
+
+%TCGA treated by surgery and more; TNM available yes
+
+%discussion: the third limitation
+There are eighty-one ($X_1 ... X_{81}$) physical, pathological and social conditions derived from participants available for survival modeling in the TCGA, 
+% since it has comprehensive clinical features, 
+such as age, gender, residual tumor, vital status, days\_to\_last\_followup, cancer stage, smoking duration, exposure to alcohol, asbestos, radioactive radon. 
+However, the TCGA did not collect other features from holistic cancer care.
+% Input $X_1...X_n$ (e.x. patients features: such as age, gender, gene expression, cancer stage; emotional 情緒(心)
+Going for holistic cancer care\cite{Mehta2019}\cite{Iftikhar2021} spiritual and emotional condition is equally essential comparing with physical and social status (see Figure \ref{fig:figure5}).
+
+%
+World Health Organisation has called worldwide for delivering people-centred (or person-centred) care from the physical, emotional, socioeconomic, and spiritual perspectives\cite{WHO2015}\cite{Ling-ChengMong2021}.
+Core principles can be taken to achieve people-centred and integrated health service delivery. 
+The first principle is holistic – focusing on physical, socioeconomic, mental, and emotional well-being. 
+Holistic care has been defined that care and sees the person as a whole with psychological, social, and environmental levels of needs and goals.
+%that considers  factors rather than just the symptoms of disease or ill-health.
+The second principle is empowering – supporting people to manage and take responsibility for their health,
+%Empowerment: the process of supporting people and communities to take control of their own health needs resulting, 
+for example, in the uptake of healthier behaviors or the ability to self-manage illnesses.
+People-centred care requires that people have the education and support they need to make decisions and participate in their care.
+%Glossary:
+%People-centred care: an approach to care that consciously adopts individuals’, carers’, families’ and communities’ perspectives as participants in, and beneficiaries of, trusted health systems that respond to their needs and preferences in humane and holistic ways. People-centred care also requires that people have the education and support they need to make decisions and participate in their own care. It is organized around the health needs and expectations of people rather than diseases (7,8) 
+%Person-centred care: care approaches and practices that see the person as a whole with many levels of needs and goals, with these needs coming from their own personal social determinants of health.
+%(1. World Health Organization. WHO global strategy on people-centred and integrated health services: interim report. https://apps.who.int/iris/handle/10665/155002 (2015).)
+
+
+%*** make Figure 5 holistic: Figure_5_holisticCare.pdf
+\begin{figure}[hp]
+\centering
+\includegraphics[width=14cm]{Figure_5_holisticCare.pdf}
+\bcaption{The concept of holistic care for \acrshort{hnscc} patients.}
+{\\Beyond carcinogenesis - Under the mind-brain-body axis, a stressful environment (giant \textcolor{black}{black} arrow) will trigger emotional reception. The subconscious mind (brain) will release stress hormones and inflammation signals in response to the emotion. The physical body's internal environment (cells) alters epigenetic control in gene regulation and mRNA expression. In a long incubation time, the tissue/cells will be transformed into dysplasia then malignancy (e.x. HNSCC) with helping from known carcinogens.\\
+Cancer care - Holistic care should take care of cancer patients' spiritual, emotional, physical, and socioeconomic needs. Physical care will be carried out by medication therapy or surgery. After establishing a therapeutic relationship (TR), the physicians' spiritual properties (empathy, sympathy, and compassion) will engage their patients and recover their self-compassion to gain resilience against the disease through their mind-brain-body axis.
+Thus, we suggest electric healthcare records (EHR) include physical, pathological, psychological data, and even more spiritual information. The \acrshort{tcga} should collect "holistic features" as well (\textcolor{green}{green} dashed line).}
+\label{fig:figure5}
+\end{figure}
+%meridian and emotion has mutual reaction
+%meridian effect tissue and organ
+%(autonomic nerve system, myofascial network, prefrontal cortex)
+%placebo-effect influence on drug discovery
+%gene expression in deep learning
+%Ching, T. et al. Opportunities and obstacles for deep learning in biology and medicine. J. R. Soc. Interface 15, (2018).
+%慈悲心 利他心
+%博士班學生，越研究越發現，科學的不足，心理與靈性的力量，更是背後推動的冥冥力量，身心靈是合一的
+%#正念 除了可以減壓，還可以治癒疼痛
+% modify the dark environment 改造患者的心，就能改造他的身體環境，有利消除癌症
+
+
+%we educate them
+%1. Mong, L.-C., Liao, F., Chiou, J. & Chiang, P. Tips for Integrating Spiritual Care Delivery in Dental Education. in Asia Pacific Medical Education Conference. Short Communication 5 (National University of Singapore, 2021).\cite{Ling-ChengMong2021}
+Spiritual care is the key to holistic healthcare in dental practice\cite{Ling-ChengMong2021} and cancer patient care\cite{Hulett2016}. 
+It is mindful of patient's mental health, emotional changes, socioeconomic during healthcare.  %Taking patient’s socioeconomic statement and supporting system thoroughly for building a holistic consideration. 
+We are learning to listen proactively.
+It is aware of the patient's spiritual needs.
+%Applying the holistic healthcare strategies, such as the shared decision making, to collect more spiritual-related information of patients in the treating process and adjusting the approaches dynamically.\cite{Ling-ChengMong2021}
+% mindfulness-based cognitive therapies [MBCT]
+%%%% MBSR "念" 今天的心 專心才有幸福感(味覺嗅覺靈敏專心吃
+Jon Kabat-Zinn has introduced the mindfulness-Based Stress Reduction (MBSR) program in 1979\cite{Niazi2011}. MBSR composes the contemplative, spiritually based Buddhist philosophy, which promotes a nonjudgmental, accepting, and patient worldview and teaches relaxation through focused awareness on breathing during meditation. It employs (static) mindfulness meditation to alleviate suffering associated with physical (pain), psychosomatic and psychiatric disorders.
+%是1979年麻薩諸塞大學的榮譽教授Jon Kabat-Zinn => 佛教禪修的mindfulness 正念止觀（中譯建譯：自我覺察）帶入西方身心醫學及心理學領域。
+The Chinese Qigong and Tai Chi, belonging to movement-meditative-breathing interventions, also encourage (dynamic) mindfulness and self-awareness. 
+%Search Inside Yourself was born at Google in 2007 when one of Google’s earliest engineers, Chade-Meng Tan, gathered a team of leading experts in mindfulness, neuroscience, leadership and emotional intelligence to develop an internal course for fellow Google employees lovingly called Search Inside Yourself (SIY).
+% 目的與功效  出入息 呼吸念頭 回到覺知，不再被潛意識自動導航干擾情緒
+%正念，放下二元評價 正念覺知 XAI saliency mapping and trustworthiness in deep learning
+%覺知 漸入空性 Y=wX + bias
+%解決情緒苦(七情) 四聖諦
+%慈悲心 安心（情緒穩定）
+%了卻見人苦的「慈悲心」易感者同理心 empathy
+%道歉不是一段文字，不是一個儀式（療癒冤親債主來自慈悲心）
+%冤親債主 決定不再影響環境 基因 expression，減少意外與疾病、癌症
+A systematic review of spiritually based interventions and psychoneuroimmunological (PNI) outcomes in breast cancer survivorship was reported by Hulett et al.\cite{Hulett2016}. 
+%Objective This is a review of spiritually based interventions (eg, mindfulness-based stress reduction, MBSR) that utilized psychoneuroimmunological (PNI) outcome measures in breast cancer survivors. Specifically, this review sought to examine the evidence regarding relationships between spiritually based interventions, psychosocial-spiritual outcomes, and biomarker outcomes in breast cancer survivors. 
+%Methods A systematic search of 9 online databases was conducted for articles of original research, peer-reviewed, randomized and nonrandomized control trials from 2005-2015. Data were extracted in order to answer selected questions regarding relationships between psychosocial-spiritual and physiological measures utilized in spiritually based interventions. Implications for future spiritually based interventions in breast cancer survivorship are discussed. Results Twenty-two articles were reviewed. 
+%mindfulness-based cancer recovery (MBCR) 
+Psychosocial stress is associated with cancer incidence and poor survival\cite{Chida2008}.
+These impacts might be mediated through the hypothalamic-pituitary-adrenal (HPA) axis\cite{Hsiao2012}.
+Thus, cortisol is one of the most common (objective) outcomes studied in PNI factors. % others: interleukin, cytokines, lymphocytes (CD4+, CD8+), CD56+, vitals signs, telomere length, telomere activity, HRV
+The standardized, psychosocial (subjective) measures include depression, stress, quality of life, anxiety, fatigue, mindfulness, mood, and specific spiritual growth (i.e., the meaning of life)\cite{Hsiao2012}. %  body-mind-spirit (BMS) group therapy in the Meaning in Life questionnaire (MLQ) including two sub-scales: MLQ-Presence and MLQ-Search.
+% The MLQ [15] for measuring psychological well-being consists of two subscales: the 5-item MLQ-Presence subscale, measuring the subjective sense that one’s life is meaningful, and the 5-item MLQ-Search subscale, measuring the drive and orientation toward finding meaning in one’s life.
+%Compared with control groups, intervention groups demonstrated positive mental health outcomes and improved or stable neuroendocrine-immune profiles, although limitations exist. %Design methods have improved with regard to increased use of comparison groups compared with previous reviews. There are few spiritually based interventions that specifically measure religious or spiritual constructs. Similarly, there are few existing studies that utilize standardized religious or spiritual measures with PNI outcome measures. 
+Findings suggest that mindfulness meditation could stabilize neuroendocrine-immune activity (measured by PNI biomarkers) in breast cancer patients comparing to control groups\cite{Hulett2016}.
+%This review revealed a positive pattern between spiritually-based interventions and several PNI biomarker outcomes, suggesting that spiritually-based interventions offer positive mental and physiological health benefits. 
+%For breast cancer survivors, these studies suggested that engaging in spiritually-based practices may improve or stabilize the immune profile dysregulation that occurs with breast cancer.\cite{Hulett2016}.
+%From a PNI perspective, future spiritually based interventions should include standardized measures of religiousness and spirituality in order to understand relationships between and among religiousness, spirituality, and neuroendocrine-immune outcomes. Future research should now focus on determining the minimum dose and duration needed to improve or stabilize neuroendocrine-immune function, as well as 
+%diverse setting needs, including tele-medicine practice for survivors who are too ill to travel to group sessions or lack economic resources.
+% 自動導航（潛意識）易受情緒影響，造成焦慮、發炎、免疫 Cancer
+%Mindfulness based stress reduction provides psychological benefit and restores immune function of women newly diagnosed with breast cancer: A randomized trial with active control.
+%BACKGROUND: Women newly diagnosed with breast cancer experience psychological distress, accompanied by reduced Natural Killer Cell Activity (NKCA) and altered levels of cytokines, which may compromise cancer control. Few studies have evaluated psycho-immune outcomes of mindfulness-based stress reduction (MBSR) for women newly diagnosed with breast cancer in comparison to an active control condition. OBJECTIVE: The purpose of this study was to determine whether MBSR benefits psychological, behavioral, and immunological function in women recently diagnosed with breast cancer. DESIGN: After confirmation of breast cancer staging, women diagnosed with early-stage breast cancer (n = 192) were randomized to an 8-week MBSR program or an 8-week active control condition (ACC). The ACC consisted of a series of cancer recovery and health education classes. Both MBSR and the ACC were administered in group format. METHODS: Women completed psychometric instruments and provided blood for NKCA and cytokine levels at pre-, mid-, and completion of program, as well as at 1- and 6-months post-program. One hundred and twenty four women completed all five-assessments (MBSR, n = 63; ACC, n = 61). Hierarchical linear modeling was used to analyze trajectories of outcomes over time and between groups. 
+%RESULTS: Compared to the ACC group, women randomized to MBSR exhibited decreasing trajectories of perceived stress, fatigue, sleep disturbance, and depressive symptoms. 
+%Further, compared to women randomized to ACC, MBSR women exhibited trajectories demonstrating significantly more rapid restoration of NKCA, accompanied by 
+%lower circulating TNF-alpha levels, lower IL-6 production =>  pro-inflammatory cytokines
+%and greater IFN-gamma production => IFN gamma supports an immune-mediated response against cancer and this may be important during the transition following cancer treatment
+A randomized clinical trial with active control proved that early provision of MBSR for women newly diagnosed with breast cancer provides psychological benefits (reduction of stress, fatigue, sleep disturbance, and depressive symptoms), and also optimizes immune functions (higher natural killer cell activity, higher \acrshort{ifng}, lower TNF-alpha, lower IL-6) supportive of cancer survival\cite{WitekJanusek2019}.
+
+
+
+%%%% PCA and ECA: the way to delivery of MBSR
+The therapeutic relationship (TR) is essential towards spiritual care.
+According to clinical experience in healthcare, sometimes patients could tell the physicians: "How amazing it is. I want to talk about myself more when I visit this doctor whom I trust."
+In 1979, Carl Rogers wrote\cite{Rogers1979}: "I find that when I am closest to my inner, intuitive self, when I am somehow in touch with the unknown in me, when perhaps I am in a slightly altered state of consciousness, then whatever I do seems to be full of healing. Then simply my presence is releasing and helpful."
+Carl Rogers developed person-centered theory that the therapist is providing the appropriate social-environmental conditions for their patients\cite{Rogers1957}\cite{Joseph2004}\cite{Griffiths2013}.
+Person-centred theory holds that the innate tendency towards growth and development is facilitated by the six conditions described by Rogers in 1957\cite{Rogers1957}:\\
+%For constructive personality change to occur, it is necessary that these conditions exist and continue over a period of time: 
+1. Two persons are in psychological contact. \\
+2. The first, whom we shall term the client, is in a state of incongruence (or not harmony), being vulnerable or anxious. \\
+3. The second person, whom we shall term the therapist, is congruent
+or integrated with the relationship. \\
+4. The therapist experiences "unconditional positive regard" for the client. \\
+5. The therapist experiences an empathic understanding of the client's
+internal frame of reference and endeavors to communicate this experience to the client. \\
+6. The communication to the client of the therapist's empathic understanding and unconditional positive regard is to a minimal degree achieved.\\
+%empowering
+%(一)雙方有心理的接觸。
+%(二)當事人正感到焦慮或不一致(incongruence)。 
+%(三)治療者在治療關係中是一致的 (congruence, agreement or harmony; compatibility)、真實的或真誠的。
+%(四)治療者能夠對當事人表現出無條件的關懷。無條件關懷(不批判/頓悟)
+%(五)治療者能夠同理的瞭解當事人的內在，並努力傳達「我懂你的」。
+%(六) 第五點只要有個適當的開始，療癒就會開始
+%Dealing with negative emotions. 情緒影響，造成焦慮、發炎、免疫 Cancer
+As the cancer patient feels intense negative emotions of extreme pleasure, anger, overthinking, sadness, fear, shock, anxiety, 
+%七情: 喜、怒、思、悲、恐、驚、憂
+depression, fatigue, stress, it is not the patient-centred therapist’s task to remove these feelings: the task is to stay with the patient’s experiences. 
+% 只是陪伴
+%The research implication is to investigate the necessity and sufficiency of the six conditions.
+%Rogers, C. R. A Theory of Therapy, Personality, and Interpersonal Relationships: As Developed in the Client-centered Framework. in Psychology: A Study of a Science. Study 1, Volume 3: Formulations of the Person and the Social Context (ed. Koch, S.) 184–256 (McGraw Hill, 1959).\cite{Rogers1959}
+%PCA理論 by *** Tex Chi
+%治療關係的六核心條件: 說好話 眼對眼 engaging 用真心
+%以心印心 engaging
+%身心相連 body-mind connection
+%捨末求本 find the source: emotion
+Holistic healthcare providers will engage his/her patients with eye-to-eye contact in terms of mind-to-mind connection. Their empathy, sympathy, and compassion is induced by the suffering of patients from those diseases. They will try to treat patients by prescribing medicine (and "themselves") or performing surgery.
+Thus, the healing resilience of patients will be induced by unconditional positive regard. % of healing.
+The patients will trust those who take care of them and have the confidence to increase the capacity to recover from diseases through a mind-brain-body connection manner (see Figure \ref{fig:figure5}).
+%身心靈全人醫療，展現魅力、慈悲心，靈性成熟的醫師，用藥物或手術來治療病患時，「他自己本身」就具有療癒效果
+%「把自己當藥方開出去」
+%Spirituality
+%慈悲心 compassion 
+%同情心 sympathy
+%同理心 empathy
+%non-verbal contact
+
+
+%Personhood: Carl Rogers
+% ***尋找生命的意義 meaning of life
+%真誠、能深刻地善解人意
+%非認知性核心能力
+%正念止觀(在當下) mindfulness meditation
+%人人有自癒能力 resilience
+%真誠 (Genuineness/Validity/Bona Fides) 善意?
+%內在聲音與外在態度一致/明心見性/超越的意識狀態 (Congruence/Consistency)
+%共情理解(設身處地/同理心/除我執 自他不二) (Empathic Understanding of Reference/Track)
+%無條件關懷(不批判/頓悟) (unconditional positive regard) 只是陪伴
+%***引導出案主的無條件自我關懷 => 療癒/復原力（resilience）by 諮商員的靈性功力
+%治療關係: 
+%Tex Chi's Therapeutic relationship: patient said "I would like to talk about myself more when I visit this doctor who I trusted" % 不自覺就講出，不自主就想要聽從他的建議，不再有抗拒
+%I find that when I am closest to my inner, intuitive self, when I am somehow in touch with the unknown in me, when perhaps I am in a slightly altered state of consciousness, then whatever I do seems to be full of healing. Then simply my presence is releasing and helpful\cite{Rogers1979}.
+%當最接近我的內在、直覺的自我，當我與我內在那不知名的角落（the unknown in me）接觸時(靈性)，當我有一些不一樣的意識狀態時（明心見性），我發現，單純只是我的存在（presence）就能鬆綁案主而且具有療效的。
+%Rogers, C. R. The Foundations of the Person-Centered Approach. Education 100, 98–107 (1979).
+%***「診後說三句，更勝良帖十方」
+
+
+%% why holistic? 太極 氣功 情緒 myofascia and sympathetic system
+%中醫人體觀－五臟與經絡情緒 工作坊《課程簡介》情緒是人體自身的氣，我們因情緒而調動它，也因它內傷，誘發情緒的原因有外在和內在，外在多跟經絡接收訊息的能力有關，當外在的影響如果沒有適當阻斷的時候，也會影響到五臟功能；內生的情緒則多以活出自我價值感有關，當我們活出此生想要體驗的人生與成就，我們就能夠不受情緒控制而保持內在平靜，這一切的源頭皆與我們是否活出真實的自己有關。
+%養生和治療的原則:
+%一、某些病症可以透過食療而改善的會建議自行調養
+%二、某些病症已需要醫療輔助的時候會建議醫食同時進行勿偏癈其一
+%三、某些病症需要醫療系統監控的時候會建議多找幾家醫院醫師綜合性評估
+%四、沒有一勞永逸的食療，不宜執著特定的食療神話
+%五、體質會變，所以變的是療法，而不是讓體質去適應固定療程
+%六、認識自己身體的狀態比吸收營養資訊更重要
+%七、沒有好或不好的飲食或療法，只有適不適合自身體質的療法
+%情志養生 喜、怒、思、悲、恐 or 七情
+%喜、怒、思、悲、恐為代表，就稱為五志 Joy, anger, thought, sadness, fear
+%喜、怒、思、悲、恐、"驚憂"，稱為七氣，即七情。加之以寒熱，稱為九氣
+%人俯仰於天地之間
+%順從四季氣候變化
+%保養正氣陶冶性情
+%自我療癒身心靈疾病
+%自他不二 心存正念 向內看，解決苦之源
+%1.衷心懺悔
+%2.真心感謝
+%3.誠意祝福
+%4.永存善念 慈悲
+%5.心無恐懼: 情志養生
+%每位醫師都可以成為「創傷知情者」幫助我們身邊的病患，懂他的心靈創傷，讓他有安全感， 才有機會改變疾病的走向
+%"每一位患者都有自癒能力， 我們知情之後， 也要逐步讓他本人知情， 看見之後， 在良好的「治療關係」中， 協助他們漸漸找回自己的療癒。（以他們自己的腳步）"
+%解說：患者的自癒力就是復原力（resilience),  強調「治療關係」（安全、 信任、 分享權力、 自決） 以及”知情”(暸解過往創傷經驗對自身的影響，進而開始療癒的過程）的重要性。
+
+%% why holistic? % Environment 環境 => 分享權力、 自決 empowering
+The WHO's second principle is empowering – supporting people to manage and take responsibility for their health.
+Bruce Lipton introduced mind-brain-body system in 1992\cite{Mokhtari2011}\cite{Kobisi2012}\cite{Gustafson2017}.
+%Lipton 1992, epinephrine and histamine signals in endothelium, %心智作用
+In a state of fear, the brain releases chemicals of stress hormones and inflammatory cytokines.
+Conversely, dopamine, oxytocin, vasopressin, and growth hormone will be released by the central nervous system in response to the perception of love.
+% Arginine vasopressin (AVP) and oxytocin (OXT) are two centrally released neuropeptides that are involved in shaping essential social behaviors, like aggression, social recognition, and social motivation.
+%Bruce Lipton: the biology of belief %信念的力量 \cite{Lipton2015}
+%placebo effect and the old belief of genetic determinism\cite{Mokhtari2011}\cite{Kobisi2012}\cite{Gustafson2017}
+%biowell 勿膨脹自我: 我非常擔心，所謂的科學實驗，研究的疾病，發明的藥物，都會潛藏一種危機，因為它的療效與科學證據，都是建立在「意識統一場域」中，科學家在研究時，一定希望有效，能夠發現別人沒有發現且有用的事情，所以「成功」還是會帶有「人為的意念」。
+%那麼，這個結果不「公正」。甚至，當原來藥物發明者的心念改變了，（開始只想賺錢），那麼藥物的作用就更無法掌握。也許，藥物副作用會很嚴重。而目前科學的解釋是，只是因為個體的基因差異。
+%% 1. Kobisi, W. Mind inhibitors. in The 30th International Congress Of The World Federation Of Hemophilia, July 8‐12 vol. 18 170–171 (John Wiley & Sons, Ltd, 2012).
+%As a person with hemophilia (PWH), my passion led me to conduct personal research to uncover the main cause of my drawbacks in my education, my career, and my romantic life. I have experienced unjustified conflicts in my social relations, feeling stale in mind and body
+%Findings: Through my research, I uncovered that I used to suffer from what I call 'mind inhibitors' these were the hidden cause of my life disorders and spontaneous bleeds. These mind inhibitors are responsible for locking the body factor receptors, blocking body energy centres (like the solar plexus), discouraging the super-intelligent body cells from running their auto-healing system, and paralyzing the instinctive high-speed cellular response to external molecular treatment. 
+%Mind inhibitors originate from different sources like thinking of oneself in a victim role, anxiety about medical treatments, lack of financial stability, negative attitudes, self-rejection, and contradictory thoughts and feelings. 
+%Conclusion: Mind inhibitors should be handled as seriously as biological inhibitors. As Dr. Bruce Lipton explains in his book, 'The Biology of Belief'\cite{Lipton2015}: DNA does not control our biology; instead DNA is controlled by signals from outside the cell. Our bodies can be changed as we retrain our thinking, since thoughts are made of energy that affects the cellular energy level, and thus everything is created twice: once in our minds and then the physical creation follows. % 萬法唯心造
+Holistic healthcare should be considered for treating patients as a complete synchronized system of soul, mind, and body; treatment should include more than medication or surgery, but a holistic approach would also address the patient's need for a subconscious paradigm shift in the person's thought and belief system.\cite{Kobisi2012}\cite{Lipton2015}
+
+
+%騙過你的病-安慰劑效應 
+%The Placebo Effect (film by Emmanuelle Sapin, Pascal Goblot)\cite{Sapin2014}
+%1. Sapin, E. & Goblot, P. L’effet placebo (English: The Placebo Effect) [enregistrement vidéo] : le formidable pouvoir de l’auto-guérison. 53 PP-Quebec (Cinéfête, 2014).\cite{Sapin2014}
+% https://biblio.bdeb.qc.ca/in/sim/faces/details.xhtml;jsessionid=E3DD39109012D0BEA598E6E5B66A4FD2?id=p::usmarcdef_0000058243&posInPage=8
+%1. Finniss, D. G. Placebo Effects: Historical and Modern Evaluation. in International review of neurobiology vol. 139 1–27 (2018).\cite{Finniss2018}
+%蓋倫劑量 placebo effect 身心靈醫學的核心
+In 1772, Willian Cullen, a British physician, wrote that  "I own that I did not trust much to it, but I gave it because it is necessary to give a medicine, and as what I call a placebo. If I had thought of any internal medicine, it would have been a dose of the Dover's powders (made up of Ipecac and opium)."\cite{Kerr2008}\cite{Finniss2018}
+Cullen studied the objective science of analytical chemistry. He also studied that the patient's therapeutic response could be influenced by his
+subjective, psychosomatic, or "sympathetic constitution"\cite{Kerr2008}.
+%Cullen developed a theory of "sympathy" (or empathy) which informed his ideas about clinical medicine dealing with the psychosomatic theory of illness and mind-body therapeutics. % he do 炮製
+Cullen's theory of sympathy (or empathy) is a mind-body therapeutics, a kind of "vital force" that animated the human body, joint function, and transmitted sensation to target organs\cite{Forget2003}\cite{Kerr2008}.
+%This finely calibrated, rational use of active placebo treatment, in which the physician-dispensed weak, physiologically active substance in order to please and calm the patient rather than to cure the patient's underlying disorder, was a product of the rational scientific culture of the 18th century Scottish Enlightenment and its embrace of a grounded, empirical approach to medicine. %啟蒙運動
+%Cullen found the power of mind-body interaction that a physician's therapeutic intentions could be triggered by sympathy\cite{Sapin2014}.
+%How does placebo effect work in patient's internal environment?  %改造患者的心，就能改造他的身體環境，有利消除癌症
+%安慰劑效應的科學研究，驚人地發現現代西方醫學的不確定性。
+%前額葉背側區 (dorsolateral prefrontal cortex)  是形成安慰劑療效的關鍵(PCA「治療關係」的生理學依據)
+%But modern research, especially the results of neuroimaging studies, has shown unequivocally that placebo-induced analgesia is real in the sense that the neural correlates of the sensation of pain are reduced, in the same way that they would be reduced by a decrease in the intensity of a pain-evoking stimulus or by the administration of an analgesic drug\cite{Eippert2009}\cite{Watson2009}. 
+Pain researchers are united in the belief that placebo analgesia is real, in the sense that the neural processes that represent pain are reduced in neuroimaging studies\cite{Bennett2018}. 
+The anterior cingulate cortex and the dorsolateral prefrontal cortex of the brain have been found to be activated by placebo administration\cite{Benedetti2005}\cite{Benedetti2011}\cite{Carlino2011}\cite{Bennett2018}. 
+The prefrontal cortex runs conscious mind generating empathy and love, and will be influenced during mindfulness meditation\cite{Krummenacher2010}\cite{Bennett2018}.
+%prefrontal lobe 理智腦 意識 正念 杏仁核 prefrontal cortex runs conscious mind「安慰劑」placebo effect，也已經有科學證明，與醫師、病患的意識（前額葉）功能，非常有關係。這也是負責同理心與愛的腦區。
+%sympathy 富有同情心、慈悲心，靈性高度成熟的醫師，不是只用藥物或手術來治療病患，「他自己本身」就具有療癒效果。
+The physician could listen and interpret the patient's sympathetic disorder and select either placebos to please (influence the patients' emotional states) or medicine to cure the patient's disorder.
+%placebo effect 安慰劑的研究，拓展了我們對醫病關係的理解，回歸到以病患為中心。
+%醫療處理的不只是藥物和手術，人更是必須處理的對象，把病患看作一個整體，要掌握身與心的個人特質。
+%#正念 減壓，療癒疼痛\cite{Krummenacher2010}\cite{Bennett2018}、免疫系統、內分泌系統或自律神經系統相關的疾病，以及憂鬱症、焦慮症 
+%The idea of placebo as a diluted but active substance persisted into the 19th century but the term also came to mean a physiologically inert substance - bread or lactose, for example. Inert substances began to be used in comparative clinical trials during the first half of the 19th century but this latter meaning of the term was given particular impetus at the end of the 19th century and the beginning of the 20th century, when inert substances were used as controls in pharmacological experiments. This shift in meaning may have reflected the rise of a new emphasis (or even metaphysics) in medicine, in which the molecular make up of an active drug assumed central importance, and any other positive benefits were seen as non-specific, placebo effects.\cite{Kerr2008} % 漸漸被特意忽略
+%物理作用、信號，雷射針灸
+%non-verbal contact
+%前額葉內側 (medial prefrontal cortex)
+%額葉底部(orbitofrontal cortex)
+%%%%%%%%
+% mindfulness meditation
+% 人的腦波一般分為β（12-30Hz）、α(8-12Hz）、θ(4-8Hz)、δ（1-4Hz)，四種波。當我們處於清醒、警覺狀態時，腦波是處於高頻率的β波。隨著身心狀態逐漸放鬆，卸下防衛時，腦波頻率也會逐漸下降至α、θ波，此時身心狀態是處於最寧靜、創造能力最好、對事情洞察能力最佳的狀態。如果能夠安祥進入睡眠階段，則腦波會降至δ波。靜坐時不僅可以使腦波由快速的β波降至α、θ波
+%In human EEG studies, cortical theta wave (4–7 Hz) tends to appear during meditative, drowsy, hypnotic or sleeping states in older children and adults. Theta is a frequency lower than consciousness. Theta is actually a brain function also associated with imagination.
+
+%cancer therapy by 患者自癒 Mindfulness Meditation help 復原力（resilience）
+%Self-Compassion  慈悲
+% 除我執 global self-esteem:
+%自戀（narcissism）1. Neff, K. D. & Vonk, R. Self-compassion versus global self-esteem: Two different ways of relating to oneself. J. Pers. 77, 23–50 (2009).\cite{Neff2009}
+
+%%%% healing and cure by Changing the Environment 環境
+%genetic determinism 所以我們的科學家依舊在研究，基因對癌症的影響（單向）
+The genetics of the cell gives all kinds of potentials. % 自性空
+Environmental signals from the cell membrane can go into the nucleus via signal transduction. The signal selectively changes the reading of our gene, e.g., epigenetics regulation, controlling cell behaviors.% including genetics.
+The central dogma of molecular biology should be modified as environmental signals to regulatory protein to DNA to RNA and then to protein.
+Epigenetics control says that genetic expression is directly due to the environment of our cells and our perception of the environment\cite{Gustafson2017} (e.x. stressful environment, see Figure \ref{fig:figure5}).
+% so do the cancer
+%Individual treatment and avoiding assumptions. Although it is useful for therapists to have a knowledge of the trauma literature on the general reactions of people who experience trauma, the therapist should not assume that this knowledge necessarily applies to each and every client\cite{Joseph2004}.
+%The membrane proteins and the chromosomal proteins that control the DNA, called regulatory proteins. But even those proteins are controlled by environmental signals. %It is not DNA to RNA to protein.
+%療癒 
+Study showed that after several hours of meditation, the expression of some inflammatory genes changed\cite{Gustafson2017}.
+%You can change your genetic activity by how you change your response to the environment. 
+%to recognize your perceptions, via signal transduction, are translated into biological behavior and your genetic activity.
+Becoming aware of our behavior's subconscious source allows us to change our lives by rewriting the programs (in the subconscious mind) of limitation or the things that interfere with us.
+Warburg effect\cite{Warburg1956}\cite{Chang2017b} is an example of carcinogenesis and metabolic reprogramming of cells by some environmental factors.
+%honeymoon by Lipton 愛自己就是渡蜜月；其實是 正念 mindfulness (因為自他不二）
+%You are creating a world of joy and love, and that’s called the honeymoon. When we fall in love, we stop focusing our conscious mind in thought and start keeping it present. 
+%It is called being mindful. 
+%You’ve been looking for yourself your whole life.
+%愛、性、正念止觀
+%Science has recognized that immediately after falling in love, we enter a period of mindfulness where we keep our conscious mind present.
+%You start running programs that are based on your conscious wishes and desires. All of a sudden, without the programs—without the subconscious programs—we begin to experience a heavenly life.
+%%%%%% carcinogenesis
+%95\% of cognitive behavior runs on subconscious program:
+%70\% %對於健康有不良影響 => 卻是惡劣競爭下的生存技能
+%Of the downloaded behaviors acquired before age 7, the vast majority—70\% or more—are programs of limitation, disempowerment, and self-sabotage. These programs were acquired from other people, not from ourselves, with a survival advantage.
+%Being subconscious, those programs acquired from other people before age 7, are occurring without conscious recognition and awareness. 
+The survival advantage programs, such as limitation, disempowerment, and self-sabotage, will affect epigenetic regulation.
+Genes are not self-actualizing. %The control of genes is not due to any inherent activity in the DNA itself. 
+The regulation of genetic activity is due to the interaction of the cell with environmental signals.
+%Less than 1\% of disease is associated with genetics. 
+Over 90\% of disease is a total reflection of the environment.% and especially our programming.
+%the disempowering, self-sabotaging behaviors that we acquired in the first 7 years.
+%the cell membrane through receptors picking up the signals and translating them into biology, which then sends signals into the nucleus, which then controls the genetic activity.
+The mind-brain-body axis shows that subconscious fear causes releasing of inflammatory and stress hormones from the brain in terms of cell alteration in DNA methylation, mutation, mRNA expression. 
+%Carcinogenesis will occur if the reprogramming is persistent for a longer time.
+Moreover, long-term stress could be correlated with cancer metastasis\cite{Lutgendorf2010}\cite{Moreno-Smith2010}\cite{Du2020}\cite{Xu2021},
+and cancer initiation\cite{Lutgendorf2010}\cite{Powell2013}\cite{Iftikhar2021}.(see Figure \ref{fig:figure5}) %HNSCC
+Adverse psychosocial experiences in early life, such as child maltreatment, caregiver stress, and community violence, have been associated in epidemiological studies with an increased risk of diabetes, heart disease, cancers, and psychiatric illnesses. 
+The possible molecular mechanisms could be also related with the mind-brain-body axis\cite{Berens2017}.
+%Additional work has shed light on the potential molecular mechanisms by which early adversity becomes "biologically embedded" in altered physiology across body systems.\cite{Berens2017}
+%%%%%
+
+%% TCGA new holistic features %%%%%
+Our current \acrshort{hnscc} study summarizes that six candidate biomarkers, clinical T stage, and surgical margin are independent prognosis factors.
+The prognosis model with coefficients is established from \acrshort{tcga} \acrshort{hnscc} cohort. The important input $X_1...X_n$ should be patients' features: age, specific six gene expressions, clinical T stage, and surgical margin so far.
+When we consider the survival prediction model in holistic manner,
+ground truth Y (e.x. patient's survival):\\[0.5cm]
+%Y$:\\[0.3cm]
+$Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + ... + \beta_n X_n + \epsilon$\\[0.5cm]
+Gene expression is not an independent $X_{mrna}$. It could be correlated with other (for example)\\ $X_{body}, X_{stress}, X_{fear}, X_{meaningOfLife}, X_{inflammation}, X_{empathy}$ factors.\\
+There is much work to be done in investigating the functional network more fully\cite{Rogers1959}.
+%We wish the TCGA does collect more holistic features from their participants in the future.
+%依舊是以管窺天
+% https://link.springer.com/referenceworkentry/10.1007%2F978-1-4419-1428-6_575
+%癌症與身心靈的重要關係：中醫、citation? emotional centered approach
+We suggest TCGA should cover more holistic features:
+cortisol is one of the most common objective outcomes studied in psychoneuroimmunological (PNI) factor, interleukin, cytokines, lymphocytes (CD4+, CD8+), CD56+, vitals signs, telomere length, telomere activity, and heart rate variability (HRV).
+The standardized, psychosocial (subjective) measures include depression, stress, quality of life, anxiety, fatigue, mindfulness, mood, and specific spiritual growth (i.e., the meaning of life)\cite{Hsiao2012}.
+%冤親債主的意念 unknown X factors 回到我們的文章
+Since psychological benefit (reduction of stress, fatigue, sleep disturbance, and depressive symptoms) also optimizes immune function (higher natural killer cell activity, higher \acrshort{ifng}, lower TNF-alpha, lower IL-6) in terms of better survival of cancer patients.
+
+% holistic EHR
+Moreover, we encourage physicians to write their electric healthcare record (EHR) in a "holistic way".
+% Deep Patient:  
+Deep learning can convert EHR to the Fast Healthcare Interoperability Resources (FHIR) format\cite{Rajkomar2018}\cite{HealthLevelSeven2019} for handling free-text notes by physicians.
+Deep learning can also derive patient representations that offer improved clinical predictions\cite{Miotto2016}.
+%=> Level 4 Record-keeping and Data Exchange for the healthcare process (clinical data) %Under HL7, RESTful
+%Allergy, Problem,
+%Procedure,
+%CarePlan/Goal,
+%ServiceRequest,
+%Family History,
+%Risk Assessment (APGAR, Glasgow coma scale)
+%condition: physical, mental
+%{observations: 
+%vital signs, 
+%body temperature, body weight and body height, 
+%x-ray, 
+%laboratory data, 
+%pulse oximetry, 
+%ECG, EEG, EMG, 
+%clinical findings (symptom and sign), 
+%tobacco exposure, family support, cognitive status and pregnancy status.
+%death assertion
+%HIV, HBV, HCV status
+%}
+%https://mos2718.github.io/FHIRspec/Index.html
+%https://www.hl7.org/fhir/patient.html
+%https://mos2718.github.io/FHIRspec/Spec/Patient/EHR_Patient.docx
+Once the holistic feature is available, a graph convolutional neural network (GCNN) is mandatory for further survival analysis\cite{Ching2018a}.
+
+In Taipei Medical University Hospital, holistic-enabled EHR has been designed as the holistic dental chart for our outpatient with psycho-social-spiritual evaluation\cite{Ling-ChengMong2021}:\\
+1. Emotional: stable/depression/ anxiety/ agitated/ perplexed\\
+2. Interaction: expression disorder/ confusion/ hard to make decision/ uncooperative to dental treatment\\
+3. Social: (disturbing living/ disturbing working/ disturbing other life aspect)\\
+4. Function loss(subjectively): mastication/ pronunciation/ life quality/ state of mind\\
+5. Self-expectation: lack of confidence/ low self-esteem/ social-withdrawal\\
+6. Impact to life: financial problem/ family problem\\
+7. Medical relationship: bad experience of dental treatment/ loss confidence to dentist/ anxious to treatment/ side-effects/ litigation experience\\[0.1cm]
+
+In personal history section of admission note for inpatient:\\
+<Habits>\\
+-Tobacco: \underline{ }\underline{ } pack/day for \underline{ }\underline{ } years\\
+-Alcohol drinking: Occasionally\\
+-Betel nuts: \underline{ }\underline{ } nuts/day for \underline{ }\underline{ } years\\
+<Social/Economic Evaluation>\\
+-Living condition: Living with family\\
+-Family support: Well\\
+-Main caregiver: Spouse\\
+-Financial support: Sufficient\\
+<Psychological Evaluation>\\
+Stable but worry about this oral lesion\\
+Suspected to be abuse or neglected victim: negative\\
+<Spiritual Assessment>\\
+Religion: Nil\\
+Diagnosed with life-threatening diseases or terminal stage of chronic diseases or cancers? No
+
+
+\section*{Figure}
+
+% This code uses the tikz package
+%\begin{frame}[fragile]
+%\frametitle{Directed acyclic graphs for %\acrshort{hnscc}}
+\begin{figure}
+\centering
+\begin{tikzpicture}[scale=4, every node/.style={scale=1.3}] %, transform shape]
+\node (v0) at (-1.49,1.64) {Age/Gender};
+\node (v1) at (0.705,1.42) {Alcohol/Betel/Cigarette};
+\node (v2) at (-1.18,-1.38) {Healthy Food/Exercise};
+\node (v3) at (-0.167,0.515) {Other Risky Behavior};
+\node (v4) at (1.19,-1.52) {\large \acrshort{hnscc}};
+
+\draw [-latexnew, arrowhead=0.5cm, line width=4pt, ultra thick, dashed] (v0) .. controls (-0.408,1.72) and (0.325,1.64) .. (v1);
+\draw [-latexnew, arrowhead=1cm, line width=4pt, ultra thick, green, dashed] (v0) edge (v2);
+\draw [-latexnew, arrowhead=0.5cm, line width=4pt, ultra thick, dashed] (v0) .. controls (-0.761,1.13) and (-0.318,0.754) .. (v3);
+\draw [-latexnew, arrowhead=0.5cm, line width=4pt, ultra thick, red] (v0) .. controls (-0.852,0.234) and (0.0430,-0.821) .. (v4);
+\draw [-latexnew, arrowhead=2cm, line width=4pt, ultra thick, red] (v1) .. controls (1.30,0.923) and (1.46,-0.0573) .. (v4);
+%  \draw [options/.expand once=\x] (0,-1.2*\i) -- (3,-1.2*\i) node [right] {\x};
+\draw [-latexnew, arrowhead=1cm, line width=0.4cm, ultra thick, green] (v2) edge (v4);
+\draw [-latexnew, arrowhead=1cm, line width=4pt, ultra thick, red] (v3) edge (v4);
+\end{tikzpicture}
+\caption{\label{fig:DAG_etiology} HNSCC will be caused by ABC or viruses.}
+
+\end{figure}
+
+
+
+\section*{Conclusion}
+
+We need more biomarkers.
+\clearpage
+
+
+
+%%%%%%%%%%%%%%%%%
+
+\section*{\cntext{(二)研究方法、進行步驟及執行進度}}
+%1.本計畫採用之研究方法與原因。2.預計可能遭遇之困難及解決途徑 fallback approaches
+% ***執行的策略
+% 科技部鼓勵研究主題的系統性，也鼓勵具研究能力者從事較大型但 可能是較困難的長期研究。在建立研究架構的同時，要審慎考慮如何適當分配 每一年的執行進度。例如，容易有具體成果的部分可能要先放在前面作為基 礎，較困難的部分便可以逐年按部就班地進行調查分析。
+
+Specific Aims %特定研究目標 (specific aims), 執行策略不能互相綁在一起, go paralleling, and equally balanced
+Aim 1: central issue 1 with preliminary data (key data); fallback approaches %先以概要式的背景介紹破題，點出研究目標的重要性，然後用邏輯之陳述將如何達成目標的策略和方法講清楚。請務必注意：每個研究目標基本上需具備其獨立性 (Independence)，但其重要性卻要在目標之間有所連結，且要能回應總體目標之研究顯著性。
+Aim 2: central issue 2 with preliminary data (key data); fallback approaches
+Aim 3: central issue 3 without preliminary data; fallback approaches % 需有充分的文獻分析和縝密的論述來補足，使得 “convincing power” 依然強而有力
+
+\cntext{執行進度} % Flow Chart
+
+proposal main body %(計畫的主體內容)” 解釋每個 aim 要怎麼做，著重策略之邏輯性鋪陳，盡量使論述具有說服力。非新創一個方法或技術平台，不須要詳細交代步驟
+
+
+
+%%%%%%
+%\include{chapter0}
+%\include{chapter1} % introduction
+%\include{chapter2} % Review of Literature
+%\include{chapter3} % Methodology (Research Design & Methods)
+%\include{chapter4} % Results (Presentation of Research) C004 or C005...
+%%%%%
+
+\section{\cntext{(三)預期完成之工作項目、成果及績效}}
+%1.預期完成之工作項目。2.對於學術研究、國家發展及其他應用方面預期之貢獻。3.對於參與之工作人員，預期可獲之訓練。4.預期完成之研究成果及績效(如期刊論文、研討會論文、專書、技術報告、專利或技術移轉等質與量之預期績效)。請詳述其必要性以及預期成果等。
+
+\clearpage
+
+\section{\cntext{計畫經費之編列}}
+% 核定的經費不會高於所 要求的預算，如經費不足對日後計畫執行也是障礙，因此每項經費的使用最好 想清楚，說明白，比如設備費，逐年需購買哪些圖書?何以需購買電腦、筆 電，尤其國立大學設備資源較充裕，平均四年即更新汰舊電腦，編列時還經常 可見便宜行事的情況，複製經費編列，以致於每年都購買電腦或印表機，顯見 並不適合。參與國際會議及移地研究，停留天數及其必要性都需填寫，說明越 清楚，通過的機會就越高。此外，編列項目越詳細越好，免得日後有需要時， 因計畫書未列，校方不准核銷，而影響計畫的進行。
+The third page looks like this. 
+
+\section{\cntext{對社會的貢獻}}
+
+\section{\cntext{過去研究之表現}}
+% 申請人過去五年著作及五年以上且深具影響之著作，最好詳細? 精簡
+% * 系統的關聯性 for one researcher
+%而有條理地說明自己近五年來研究的系統性、延續性以及對學界的貢獻，如果 能列出每篇論文被引用的次數，或哪些重要期刊論文曾引用，可以更凸顯自己 的優勢，爭取更有利的評分。個人學術表現既如此重要，因此每一次的申請都 應記得更新個人資料 C302 表，確認與完成登錄著作目錄之作業，產生近 5 年著 作目錄表
+
+ % ------------------------------------------------------
+%
+% References
+%
+% ------------------------------------------------------
+ \clearpage
+\renewcommand\bibsection{\section*{REFERENCES}}
+\setlength{\bibsep}{2pt}
+\bibliography{IEEEabrv, pvalueTex, TMSB4X, TCGA_margin_cutoff, SLC2A4_metabolism.bib, Holistic, Deep_Learning-Radiomics, Deep_Learning}
+
+\end{document}
+

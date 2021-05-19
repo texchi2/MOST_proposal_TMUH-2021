@@ -1,0 +1,129 @@
+%  Revised on Oct 24, 1999 (done on Aug 20)--spring.
+%
+
+%\documentstyle[12pt]{article}
+\documentclass[12pt,a4paper,openany]{article}
+
+%\usepackage[square, comma, sort&compress]{natbib}
+\usepackage{cite}
+%\pagestyle{foot}
+\textheight=255mm
+%\textheight=240mm
+%\textwidth=160mm
+\textwidth=185mm
+\topmargin=-2.5cm
+%\topmargin=0cm
+\oddsidemargin=-1.5cm
+%\parskip 3mm
+%\setcounter{page}{1}
+
+\usepackage{cite}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{multirow}
+\pagestyle{fancy}
+\fancyhead{} % 清除所有頁首設定
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\setlength{\headwidth}{\textwidth}
+
+\rfoot{共~~\pageref{LastPage}~~頁~~第{~~\thepage~~}頁}
+\lfoot{研究成果}
+%\rfoot{ 共 \pageref{LastPage} 頁 第  \thepage   頁} 
+
+\usepackage{fontspec}
+%\usepackage[BoldFont, ItalicFont]{xeCJK}
+\usepackage{xeCJK}
+%\usepackage[ItalicFont]{xeCJK}
+\setCJKmainfont{標楷體}
+%\setCJKitalicfont{華康行書體}
+\XeTeXlinebreaklocale "zh"             %這兩行一定要加，中文才能自動換行
+\XeTeXlinebreakskip = 0pt plus 1pt     %這兩行一定要加，中文才能自動換行
+
+
+
+% define a macro
+%\def\texpsfig#1#2#3{\vbox{\kern #3\hbox{\special{psfile=#1}\kern #2}}\typeout{(#1)}}
+
+\begin{document}
+\newtheorem{thm}{Theorem}
+\newtheorem{lem}{Lemma}
+\newtheorem{cor}{Corollary}
+\newtheorem{prop}{Proposition}
+\newtheorem{conj}{Conjecture}
+%\input epsf   % load the epsf library
+
+\baselineskip 7mm
+
+\begin{center}
+{\bf \large  {\color {red}106} 年度自然司專題計畫主持人近五年研究成果 }
+\end{center}
+
+
+姓名：　　　　 職稱：　　　　 　服務機關系所：　　　　　　　　
+
+\begin{enumerate}
+ \item [一、]近五年內(2012/1/1～2016/12/31)已出版之最具代表性研究成果至多六篇，擇其中五篇電子檔上傳。
+ {\small (請依序填寫：姓名,著作名稱,發表年份,期刊,卷數,頁次,IF,▲：被引用次數，並以＊號註記該篇所有的通訊作者)}\newline
+ {\color{red}\small （請務必更新個人資料表C302-C303，未來審查時將以該表之內容為準）}
+  % 輸入 第一項內容 
+  \begin{enumerate}
+  \item[1.]  Lin
+  \item[2.]  Lin
+  \end{enumerate}
+ 
+ 
+ \item [二、]
+近五年內獲獎情形及重要會議邀請演講至多五項。
+
+% 輸入 第二項內容 
+
+ \item [三、] 近五年內其他資料：擔任國際重要學術學會理監事、國際知名學術期刊編輯或評審委員等。
+ 
+ \item [四、] 請簡述上述代表性研究成果之個人重要貢獻（至多一頁）。
+ 
+ \item [五、] 研發成果智慧財產權及其應用績效：
+ \begin{itemize}
+ \item[1.]  專利：請填入目前仍有效之專利。「類別」請填入代碼：
+  (A)發明專利(B)新型專利(C)新式樣專利。
+  \begin{table}[h!]
+  \centering
+  \begin{tabular}{|l|l|l|l|l|l|l|l|}
+  \hline
+  \multirow{2}{*}{類別} & \multirow{2}{*}{專利名稱} & \multirow{2}{*}{國別} & \multirow{2}{*}{專利號碼} & \multirow{2}{*}{發明人} & \multirow{2}{*}{專利權人} & 專利核准 & \multirow{2}{*}{科技部計畫編號} \\ 
+   &   &  &  &  &  & 日    期 &    \\ \hline
+   &  &  &  &  &  &   &  \\ \hline
+   &  &  &  &  &  &   &  \\ \hline
+   &  &  &  &  &  &   &  \\ \hline
+   &  &  &  &  &  &   &  \\ \hline
+  \end{tabular}
+  \end{table}
+ 
+  \item[2.] 技術移轉：
+   \begin{table}[h!]
+   \centering
+   \begin{tabular}{|l|l|l|l|l|l|l|}
+   \hline
+   \multirow{2}{*}{技術名稱} & \multirow{2}{*}{專利名稱} & \multirow{2}{*}{授權單位} & \multirow{2}{*}{被授權單位} & \multirow{2}{*}{簽約日期}  & 權利金,衍生 & \multirow{2}{*}{科技部計畫編號} \\ 
+    &   &  &  &  &   利益金等 &    \\ \hline
+    &  &  &  &  &  &     \\ \hline
+    &  &  &  &  &  &     \\ \hline
+ 
+   \end{tabular}
+   \end{table}
+ \end{itemize}
+ 
+ 
+\end{enumerate}
+ 
+
+
+% 輸入 第三項內容 
+
+ 
+
+\label{LastPage}
+\end{document}
