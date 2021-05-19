@@ -1,5 +1,9 @@
 % !TEX encoding = UTF-8 Unicode
 \documentclass[12pt, a4paper]{article}
+
+\usepackage[bf]{caption}
+\newcommand{\bcaption}[2]{\caption{\textbf{#1} #2}}
+
 \usepackage{outlines}
 \usepackage{tikz}   % for DAG plot by  tikzpicture
 \usetikzlibrary{arrows}
@@ -94,6 +98,10 @@
 
 
 \makeglossaries %https://tex.stackexchange.com/questions/110095/list-of-acronyms-is-not-displayed
+
+\newacronym{cnn}{CNN}{Convolutional Neural Network}
+\newacronym{gnn}{GNN}{Graph Neural Network}
+\newacronym{gcnn}{GCNN}{Graph Convolutional Neural Network}
 
 \newacronym{ihc}{IHC}{immunohistochemistry}
 \newacronym{fdr}{FDR}{false discovery rate}
@@ -203,7 +211,7 @@
 %\newacronym{hpa}{HPA}{the Human Protein Atlas}
 \newacronym{cart}{CAR-T}{chimeric antigen receptor T cells}
 
-\newacronym{ptta}{PTTA}{P-value of t-test or ANOVA}
+\newacronym{ptta}{PTTA}{\textit{P} value of t-test or ANOVA}
 \newacronym{anova}{ANOVA}{analysis of variance}
 \newacronym{lcms}{LC-MS/MS}{liquid chromatography with tandem mass spectrometry}
 \newacronym{maldi}{MALDI MS}{matrix-assisted laser desorption/ionization mass spectrometry}
@@ -329,32 +337,44 @@ Wan Fang Hospital\unskip, Taipei Medical University}\\
 \textbf{Background:}
 Head and neck squamous cell carcinoma (\acrshort{hnscc}) represents a significant health concern worldwide. Surgery and systemic therapy are still the standard of care for \acrshort{hnscc} patients. The break-through improvement of those interventions should depend on 1) the discovery of high impact prognostic biomarkers, and 2) proper treatment planning by accurate sub-population of those patients.
 The survival analysis of the \acrfull{tcga} dataset is a well-known method to discover the gene expression-based biomarkers of \acrshort{hnscc}. It is necessary to determine a cutoff point of the patients' dichotomization in survival analysis with the continuous gene expression measurements. There is some optimization software for cutoff mining.
-However, the software's determination of cutoffs is usually set at the median, 1/4 quantile, or 3/4 quantile of \acrfull{rnaseq} value to find a significant P-value by the Kaplan-Meier analysis. There are few clinicopathological features available on their pre-processed data sets.
+However, the software's determination of cutoffs is usually set at the median, 1/4 quantile, or 3/4 quantile of \acrfull{rnaseq} value to find a significant \textit{P} value by the Kaplan-Meier analysis. There are few clinicopathological features available on their pre-processed data sets.
 The survival analysis could conclude the manifest of clinical and transcriptomics data to find the prognostic biomarkers.
 
 %Methods: how the study was performed and statistical tests used
 \textbf{Methods:}
-R script was used to develop a comprehensive workflow, named "pvalueTex", running on the Rstudio platform. It includes data retrieving and pre-processing, feature selection, cutoff mining engine, Kaplan-Meier survival analysis, Cox proportional hazard, and modeling to discover prognostic biomarkers.
+R script was used to develop a comprehensive workflow, named "pvalueTex", running on the Rstudio platform. It includes data retrieving and pre-processing, feature selection, cutoff mining engine, Kaplan-Meier survival analysis, Cox proportional hazard modeling to discover prognostic biomarkers.
+We further plan to develop a deep-learning based data mining as well as validation platform. It might incorporate the Cancer Imaging Archive (TCIA) whole slide images of pathology and RNA-Seq data for survival analysis.
+Graph convolutional neural network (GCNN) will be used for feature extraction from whole slide images.
+Graph neural network (GNN) will be applied on construction of gene expression network.
+%GNN graph neural network for CNN convolutional neural network
+%The Cancer Imaging Archive (TCIA) whole slide by Deep learning (ResNet)
+% *** AI: deep learning, machine learning \citep{Huang2020}
+%plot http://iltabiai.github.io/tips/latex/2015/09/15/latex-tikzdevice-r.html
+%***Deep learning-based cancer survival prognosis from RNA-Seq data: approaches and evaluations
+%*transfer learning from TCGA model
+%torchvision, NanoMets Models
+%save checkpoint, load then deepcopy()
 
 
+% P-value => \textit{P} value
 % Results: the main findings
-\textbf{Results:}
+\textbf{Preliminary Results:}
 Using pvalueTex on the \acrshort{tcga} \acrshort{hnscc} cohort, we scanned human protein-coding genes (20,500) programmatically. After adjustment with other confounders, we found that the clinical tumor stage and the surgical margin involvement are independent risk factors in patient survival. 
-According to the resulting tables with Bonferroni adjusted P-value under optimal cutoff as well as hazard ratio $(>=1.5)$, there were ten candidate biomarkers, named as DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, and DKC1, which are significantly associated with the poor prognosis of \acrfull{os}. At the same time, the other ten genes were over-expressed in the better survival patients (with hazard ratio $<=0.5$), named as ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, IQCN (previous name as KIAA1683), and NPB.
+According to the resulting tables with Bonferroni adjusted \textit{P} value under optimal cutoff as well as hazard ratio $(>=1.5)$, there were ten candidate biomarkers, named as DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, and DKC1, which are significantly associated with the poor prognosis of \acrfull{os}. At the same time, the other ten genes were over-expressed in the better survival patients (with hazard ratio $<=0.5$), named as ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, IQCN (previous name as KIAA1683), and NPB.
 
 
 %*** validated by \acrfull{hpa}.
-Further validations are warranted.
-Deep learning
+Further validation will be conducted by using deep learning.
+% are warranted 
 
 
-\thispagestyle{titlepage}
+%\thispagestyle{titlepage}
 % Conclusions: brief summary and potential implications
 \textbf{Conclusions:}
-Those 11 validated biomarkers (DKK1, CAMK2N1, STC2, PGK1, SURF4, NDFIP1, STIP1, DKC1, ZNF557, ZNF266, and FCGBP), clinical tumor size, and surgical margin status are independent prognosis factors in \acrshort{hnscc}.
-\acrshort{tmsb4x} could affect enhanced proliferation and metastasis in vitro and in vivo of \acrshort{hnscc} by the animal study.
-We suggested expression data of \acrshort{rnaseq} and proteomics will help pvalueTex, equipped with an optimal cutoff finder, to facilitate the biomarker discovery in terms of tumor-agnostic therapy.
-
+%Those 11 validated biomarkers (DKK1, CAMK2N1, STC2, PGK1, SURF4, NDFIP1, STIP1, DKC1, ZNF557, ZNF266, and FCGBP), 
+The candidate biomarkers, clinical tumor size, and surgical margin status are independent prognosis factors in \acrshort{hnscc}.
+We suggest that expression data of \acrshort{rnaseq} with associated pathological images will help to facilitate the biomarker discovery in terms of tumor-agnostic therapy.
+% pvalueTex, equipped with an optimal cutoff finder, 
 
 %Survival analysis using the Cancer Genome Atlas (TCGA) dataset is a well-known method to discover gene expression-based prognostic biomarkers of head and neck squamous cell carcinoma (HNSCC). It is necessary to determine a cutoff point by patients' dichotomization for the continuous gene expression. Usually, an optimization algorithm for cutoff determination has been set at the median or quantiles of RNA sequencing value.
 %There are few clinicopathological features available on those pre-processed datasets. (feature selection or feature engineering issue)
@@ -371,15 +391,19 @@ We suggested expression data of \acrshort{rnaseq} and proteomics will help pvalu
 Head and Neck Squamous Cell Carcinoma (HNSCC);
 %Genome Database\sep
 the Cancer Genome Atlas (TCGA);
+the Cancer Imaging Archive (TCIA);
 RNA-sequencing;
 Survival Analysis;
 Optimal Cutoff;
-Biomarker; % Discovery\sep
+Biomarker Discovery; %\sep
 %Tumor Type-agnostic Therapy\sep
 %Immuno-Oncology\sep
 %Targeted Therapy\sep
 %Systemic Therapy\sep
 Surgical Margin;
+Deep Learning;
+Graph Neural Network (GNN);
+Graph Convolutional Neural Network (GCNN);
 Holistic Cancer Care;
 Therapeutic Relationship;
 Mindfulness Meditation
@@ -611,11 +635,8 @@ There is 52.2\% of cases having mutations in the adjacent normal tissues was als
 
 \paragraph{Prognosis}
 
-\subsubsection{Radiation Oncology for \acrshort{hnscc}}
-Biomarkers is PET-scan
-poor differentiated SCC, NPC treated by CCRT
-
-\paragraph{Prognosis}
+%\subsubsection{Radiation Oncology for \acrshort{hnscc}}
+%\paragraph{Prognosis}
 
 
 
@@ -634,7 +655,8 @@ Two-faced roles of tumor-associated neutrophils, eosinophils, and basophils
 *** Tex's opinion: there is no "central console" of immune control system, which disseminated remote regular % 地方自治 
 
 chronic inflammation by mechanical force or chemicals
-=> or even in autoimmune disease:
+
+** or even in autoimmune disease:
 Risks from disease and treatment
 Autoimmune disorders generally attack a single organ or part of the body, often causing inflammation in the affected area. In some cases, that inflammation may increase cancer risk. 
 At the same time, tumor necrosis factor (TNF) inhibitors or immunosuppressant (e.x. cyclosporin), help reduce inflammation and also are suspected of increasing the risk of multiple cancers. It may impair the ability to kill cancer cells.
@@ -731,9 +753,9 @@ The incidence of malignant transformation of oral lichen planus is approximately
 \paragraph{Prognosis}
 
 %%%%%%%%%%%
-X
+%X
 
- The font size must be 10 point or larger and footnotes\footnote{This is a footnote.} must be two sizes smaller than the text\footnote{This is another footnote.} but no smaller than eight points. Chapter, section, or other headings should be of a consistent font and size throughout the ETD, as should labels for illustrations, charts, and figures.  
+% The font size must be 10 point or larger and footnotes\footnote{This is a footnote.} must be two sizes smaller than the text\footnote{This is another footnote.} but no smaller than eight points. Chapter, section, or other headings should be of a consistent font and size throughout the ETD, as should labels for illustrations, charts, and figures.  
 
 %\subsection{Creating a Subsection}
 %\label{sec:subsection}
@@ -744,21 +766,16 @@ X
 
 
 
-This is a table:
-% currsize is not set in the long table environment, so we need to set it before we set it up.
-\makeatletter
-\let\@currsize\normalsize
-\makeatother
+%\makeatletter
+%\let\@currsize\normalsize
+%\makeatother
 
 % tabular environments are set to be single-spaced in the  thesis class,  but long tables do not use tabular
 % to get around this, set the spacing to single spacing at the start of the long table environment, and set it back to double-spacing at the end of it
 
 
 
-\section*{Our Previous Publication}
-In the proteomics study, identification of the differentially expressed proteins in \acrshort{hnscc} could be helped by the analyses of \acrfull{lcms} and \acrfull{maldi}. \acrshort{maldi} analysis could capture samples from the surface of \acrshort{hnscc} specimen and generate two-dimensional ion density maps of those molecules, primarily peptides or proteins. The maps give the relative abundance of the molecules with their spatial distribution.
-We also applied the \acrshort{maldi} to analyze paired (N) normal and (T) tumor samples from \acrshort{hnscc}, as well as \acrshort{lcms} analysis in \acrshort{hnscc} cell lines to identify tumor-associated biomarkers. 
-Our results from the proteomics study showed several proteins found to be over-expressed in advanced \acrshort{hnscc}. We identified that \acrfull{tmsb4x} is one of the most significant candidates. Higher \acrshort{tmsb4x} expression in the tumor was validated by evaluating N/T-paired \acrshort{hnscc} samples at both RNA and protein levels. Overexpression of \acrshort{tmsb4x} is significantly associated with poor prognosis of \acrshort{os} and \acrfull{rfs} in \acrshort{hnscc} patients. The silencing of \acrshort{tmsb4x} expression in the \acrshort{hnscc} cell line reduced the proliferation and invasion ability in vitro and inhibited the cervical lymph node metastasis in vivo. 
+
 
 \section*{Holistic Cancer Care}
 
@@ -1133,7 +1150,358 @@ Religion: Nil\\
 Diagnosed with life-threatening diseases or terminal stage of chronic diseases or cancers? No
 
 
-\section*{Figure}
+\section*{Preliminary Results}
+In our previous proteomics studies\cite{Tai2007}, identification of the differentially expressed proteins in \acrshort{hnscc} could be helped by the analyses of \acrfull{lcms} and \acrfull{maldi}. \acrshort{maldi} analysis could capture samples from the surface of \acrshort{hnscc} specimen and generate two-dimensional ion density maps of those molecules, primarily peptides or proteins. The maps give the relative abundance of the molecules with their spatial distribution.
+We also applied the \acrshort{maldi} to analyze paired (N) normal and (T) tumor samples from \acrshort{hnscc}, as well as \acrshort{lcms} analysis in \acrshort{hnscc} cell lines to identify tumor-associated biomarkers. 
+Our results from the proteomics study showed several proteins found to be over-expressed in advanced \acrshort{hnscc}. 
+We identified that \acrfull{tmsb4x} is one of the most significant candidatescite{Chi2017}. Higher \acrshort{tmsb4x} expression in the tumor was validated by evaluating N/T-paired \acrshort{hnscc} samples at both RNA and protein levels. Overexpression of \acrshort{tmsb4x} is significantly associated with poor prognosis of \acrshort{os} and \acrfull{rfs} in \acrshort{hnscc} patients. The silencing of \acrshort{tmsb4x} expression in the \acrshort{hnscc} cell line reduced the proliferation and invasion ability in vitro and inhibited the cervical lymph node metastasis in vivo. 
+\acrshort{tmsb4x} could affect enhanced proliferation and metastasis in vitro and in vivo of \acrshort{hnscc} by the animal study.
+%%%%%%%%%%
+
+
+% from pvalueTex
+The 9416 Kaplan-Meier plots with associated Cox's univariate and multivariate tables were generated by Cox modeling (see Figure \ref{fig:figure1}) and justified by the ranking of hazard ratios.
+The 967 genes were kept by criteria of uncorrected \textit{P} value (below 0.05) and \acrfull{hr} (greater than 1.5 or less than 0.5) (see Figure \ref{fig:figure2}(a) univariate, and Figure \ref{fig:figure2}(b) multivariate plots). 
+At the final step, a stringent criteria (Bonferroni \textit{P} value correction) was used to yield twenty candidates (see Figure \ref{fig:figure2}(c), (d)). 
+% before validation
+Among these candidates, ten overexpressed genes (symbol as DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, and DKC1) are significantly associated with a poor prognosis of  \acrshort{os} (see Table \ref{table:table1}). 
+The other ten overexpressed genes (symbol as ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, IQCN - former symbol as KIAA1683, and NPB) are correlated with better survival (see Table \ref{table:table3}, with their gene name).
+We made a volcano plot for 9416 genes by Kaplan-Meier \textit{P} value (less than 0.05, obtained during cutoff finding procedure) against the Cox hazard ratio (see Figure \ref{fig:figure3}). The plot reveals that the most significant (Bonferroni-adjusted \textit{P} $< 0.05$) candidate genes are located above the dotted line. At the same time, Cox's HR separated them on the two-side with prognostic impact.
+% => after validation: The result showed six overexpressed genes (symbol as CAMK2N1, PGK1, SURF4, USP10, NDFIP1, FOXA2) are significantly associated with a poor prognosis of overall survival. Furthermore, the four overexpressed genes (symbol as IL19, FCGBP, IQCN - former symbol as KIAA1683, and NPB) are correlated with better survival.
+
+%注意 強調GSE2837: 
+%The prognostic significance of the candidate genes has been validated by an independent patient cohort.
+% validation by GSE2837 cohort (with web-tools)
+%\subsubsection*{GSE2837} % non-TCGA
+% from Anwser2-2
+%by GEO GSE2837 HNSCC dataset (PrognoScan)
+After the discovery by our workflow, we validated the those 20 genes in the other independent \acrshort{hnscc} cohort (GSE2837).
+The survival significance (Kaplan-Meier \textit{P} value) is in the following probes among 10 genes:\\
+1) poor prognosis: CAMK2N1 (0.048214), PGK1 (0.009978), SURF4 (0.023127), USP10 (0.017768), NDFIP1 (0.022758), FOXA2 (0.001587);\\ % FOXA2 (0.038125)
+2) better prognosis: IL19 (0.049731), FCGBP (0.005658), KIAA1683 (IQCN, 0.005886), NPB (0.014177);\\
+%17 out of 20 candidates
+%?DKK1 (0.253635), 
+%Nevertheless, PrognoScan has group separation cut by a skewed manner, and the GSE2837 has far fewer participants than the TCGA cohort.
+%DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, DKC1;
+%ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, KIAA1683 (IQCN), NPB
+%Those 11 genes achieve similar positive and negative prognostic effect comparable with our proposed candidate genes. 
+Thus, these 10 candidates have been confirmed by a comparative study using the GSE2837 dataset other than the TCGA cohort. Please see Kaplan-Meier plots in Supplementary Figure S1.%\ref{fig:fig_GSE2837}.
+
+
+
+%\subsubsection{Figure 2:h}
+\begin{figure}[hp]
+\centering
+\includegraphics[width=14cm]{Figure2.pdf}
+\bcaption{\acrshort{hnscc} Cox's hazard ratio and \textit{P} value plot.}
+{(a) Univariate HR versus uncorrected \textit{P} value; (b) Multivariate HR versus uncorrected \textit{P} value; (c) Univariate HR versus Bonferroni corrected \textit{P} value; and (d) Multivariate HR versus Bonferroni corrected \textit{P} value.}
+\label{fig:figure2}
+\end{figure}
+
+% tables 1  3
+%%% tables
+% Table1
+% wide table \usepackage{tabularx}
+% makecell{}
+
+\begin{table}
+%\begin{sidewaystable}[hp]
+\centering
+\caption{ The top 10 genes overexpressed with poor prognosis in \acrshort{hnscc} (ranked by Bonferroni adjusted \textit{P} value) }
+\arrayrulecolor[rgb]{0.255,0.255,0.255}
+\resizebox{\linewidth}{!}{
+%\begin{tabular}{|l|l|l|l|l|l|l|l|c|}
+\begin{tabularx}{\textwidth}{|l|p{3.5cm}|l|l|l|l|l|l|c|} % *** capital X or p{2cm}
+% p{2cm}
+\hline
+\multicolumn{1}{|c|}{\multirow{2}{*}{Gene ID}} & \multicolumn{1}{c|}{\multirow{2}{*}{Gene Description}}     & \multicolumn{2}{c|}{Kaplan-Meier survival}                                                                                   & \multicolumn{2}{c|}{Univariate~}                                                        & \multicolumn{2}{c|}{Multivariate}                                                       & \multirow{2}{*}{Remark}                     \\ 
+\cline{3-8}
+\multicolumn{1}{|c|}{}                         & \multicolumn{1}{c|}{}                                      & \multicolumn{1}{c|}{\textit{P} value}               & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Adjusted \\\textit{P} value\end{tabular}} & \multicolumn{1}{c|}{HR*}                   & 95\% CI                                    & HR*                                        & 95\% CI                                    &                                             \\ 
+\hline
+DKK1                                           & dickkopf WNT signaling pathway inhibitor 1                 & \num{8.9e-8}                               & 0.001                                                                           & 2.266                                      & 1.666-3.082                                & 2.135                                      & 1.559-2.924                                &                                           \\ 
+\hline
+CAMK2N1                                        & calcium/calmodulin-dependent protein kinase II inhibitor 1 & \num{2.9e-7}                               & 0.002                                                                           & 2.101                                      & 1.572-2.809                                & 2.007                                      & 1.490-2.704                                & \checkmark                                          \\ 
+\hline
+STC2                                           & stanniocalcin 2                                            & \num{6.5e-7}                               & 0.004                                                                           & 2.147                                      & 1.578-2.921                                & 2.075                                      & 1.515-2.843                                &                                           \\ 
+\hline
+PGK1                                           & phosphoglycerate kinase 1                                  & \num{9.1e-7}                               & 0.006                                                                           & 2.127                                      & 1.563-2.895                                & 2.046                                      & 1.498-2.795                                & \checkmark                                          \\ 
+\hline
+SURF4                                          & surfeit 4                                                  & \num{9.6e-7}                               & 0.006                                                                           & 2.055                                      & 1.531-2.757                                & 2.089                                      & 1.543-2.829                                & \checkmark                                           \\ 
+\hline
+USP10                                          & ubiquitin specific peptidase 10                            & \num{1.7e-6}                               & 0.012                                                                           & 2.083                                      & 1.532-2.834                                & 2.119                                      & 1.551-2.895                                & \checkmark                                         \\ 
+\hline
+NDFIP1                                         & Nedd4 family interacting protein 1                         & \num{2.6e-6}                               & 0.017                                                                           & 2.031                                      & 1.502-2.746                                & 2.027                                      & 1.483-2.771                                & \checkmark                                           \\ 
+\hline
+FOXA2                                          & forkhead box A2                                            & \num{2.7e-6}                               & 0.018                                                                           & 1.976                                      & 1.479-2.640                                & 1.914                                      & 1.426-2.569                                & \checkmark                                          \\ 
+\hline
+STIP1                                          & stress-induced-phosphoprotein 1                            & \num{4.3e-6}                              & 0.029                                                                           & 1.958                                      & 1.463-2.621                                & 1.957                                      & 1.451-2.640                                &                                           \\ 
+\hline
+DKC1                                           & dyskeratosis congenita 1, dyskerin                         & \num{6.3e-6}                               & 0.042                                                                           & 2.046                                      & 1.490-2.808                                & 1.837                                      & 1.332-2.534                                &                                           \\ 
+\hline
+\multicolumn{1}{|l!{\color{black}\vrule}}{}    & \multicolumn{1}{l!{\color{black}\vrule}}{}                 & \multicolumn{1}{l!{\color{black}\vrule}}{} & \multicolumn{1}{l!{\color{black}\vrule}}{}                                      & \multicolumn{1}{l!{\color{black}\vrule}}{} & \multicolumn{1}{l!{\color{black}\vrule}}{} & \multicolumn{1}{l!{\color{black}\vrule}}{} & \multicolumn{1}{l!{\color{black}\vrule}}{} & \multicolumn{1}{l!{\color{black}\vrule}}{}  \\ 
+\arrayrulecolor{black}\hline
+\multicolumn{9}{|l!{\color{black}\vrule}}{\begin{tabular}[c]{@{}l@{}}Selection criteria:~~\\~Kaplan-Meier Bonferroni adjusted \textit{P} $< 0.05 $~\\~Cox's univariate and multivariate$ HR >= 1.5$ \end{tabular}}                                                                                                                                                                                                                                                              \\ 
+\hline
+\multicolumn{9}{|l!{\color{black}\vrule}}{* Cox's model: \textit{P} $< 0.001$ }                                                                                                                                                                                                                                                                                                                                                                                                  \\ 
+\hline
+\multicolumn{9}{|l!{\color{black}\vrule}}{Remark: \checkmark validated by GSE2837}                                                                                                                                                                                                                                                                                                                                                             \\
+\hline
+\end{tabularx}
+}
+\arrayrulecolor{black}
+\label{table:table1}
+
+%\end{sidewaystable}
+\end{table}
+
+
+
+
+%\subsubsection{Table3/legend} or Table 2?
+%Table3. The 10 candidate genes overexpressed with better prognosis in HNSCC (ranked by Bonferroni corrected Kaplan-Meier P-value).
+\begin{table}[hp]
+\centering
+\caption{The other top 10 genes overexpressed with better prognosis in \acrshort{hnscc} (ranked by Bonferroni corrected \textit{P} value) }
+\arrayrulecolor[rgb]{0.255,0.255,0.255}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{|l|l|l|l|l|l|l|l|c|} 
+\hline
+\multicolumn{1}{|c|}{\multirow{2}{*}{Gene ID}} & \multicolumn{1}{c|}{\multirow{2}{*}{Gene Description}} & \multicolumn{2}{l|}{Kaplan-Meier survival}                                                                                                                                                & \multicolumn{2}{c|}{Univariate~}                                                                        & \multicolumn{2}{c|}{Multivariate}                                                                       & \multicolumn{1}{l|}{\multirow{2}{*}{Remark}}  \\ 
+\cline{3-8}
+\multicolumn{1}{|c|}{}                         & \multicolumn{1}{c|}{}                                  & \multicolumn{1}{c!{\color{black}\vrule}}{\textit{P} value}                                  & \multicolumn{1}{c!{\color{black}\vrule}}{\begin{tabular}[c]{@{}c@{}}Adjusted\\~\textit{P} value\end{tabular}} & \multicolumn{1}{c!{\color{black}\vrule}}{HR*}   & \multicolumn{1}{c!{\color{black}\vrule}}{95\% CI}     & \multicolumn{1}{c!{\color{black}\vrule}}{HR*}   & \multicolumn{1}{c!{\color{black}\vrule}}{95\% CI}     & \multicolumn{1}{l|}{}                         \\ 
+\cline{1-2}\arrayrulecolor{black}\cline{3-8}\arrayrulecolor[rgb]{0.255,0.255,0.255}\cline{9-9}
+ZNF557                                         & zinc finger protein 557                                & \multicolumn{1}{l!{\color{black}\vrule}}{\textcolor[rgb]{0,0,0.471}{\num{8.6e-8}}} & \multicolumn{1}{l!{\color{black}\vrule}}{0.001}                                                      & \multicolumn{1}{l!{\color{black}\vrule}}{0.465} & \multicolumn{1}{l!{\color{black}\vrule}}{0.348-0.619} & \multicolumn{1}{l!{\color{black}\vrule}}{0.499} & \multicolumn{1}{l!{\color{black}\vrule}}{0.372-0.669} &                                              \\ 
+\cline{1-2}\arrayrulecolor{black}\cline{3-8}\arrayrulecolor[rgb]{0.255,0.255,0.255}\cline{9-9}
+ZNF266                                         & zinc finger protein 266                                & \textcolor[rgb]{0,0,0.471}{\num{2.2e-7}}                                           & 0.001                                                                                                & 0.474                                           & 0.355-0.632                                           & 0.453                                           & 0.338-0.607                                           &                                              \\ 
+\hline
+IL19                                           & interleukin 19                                         & \textcolor[rgb]{0,0,0.471}{}\num{3.7e-7}\textcolor[rgb]{0,0,0.471}{}               & 0.002                                                                                                & 0.472                                           & 0.351-0.635                                           & 0.459                                           & 0.340-0.619                                           & \checkmark                                            \\ 
+\hline
+MYO1H                                          & myosin 1H                                              & \textcolor[rgb]{0,0,0.471}{}\num{3.8e-7}\textcolor[rgb]{0,0,0.471}{}               & 0.003                                                                                                & 0.468                                           & 0.347-0.632                                           & 0.467                                           & 0.344-0.634                                           &                                              \\ 
+\hline
+FCGBP                                          & Fc fragment of IgG binding protein                     & \textcolor[rgb]{0,0,0.471}{}\num{1.2e-6}\textcolor[rgb]{0,0,0.471}{}               & 0.008                                                                                                & 0.484                                           & 0.359-0.653                                           & 0.496                                           & 0.366-0.674                                           &  \checkmark                                           \\ 
+\hline
+LOC148709                                      & LncRNA LOC148709                                       & \textcolor[rgb]{0,0,0.471}{\num{1.5e-6}}                                           & 0.010                                                                                                & 0.499                                           & 0.374-0.666                                           & 0.485                                           & 0.361-0.652                                           &                                              \\ 
+\hline
+EVPLL                                          & envoplakin-like protein                                & \textcolor[rgb]{0,0,0.471}{\num{2.0e-6}}                                           & 0.013                                                                                                & 0.490                                           & 0.363-0.661                                           & 0.494                                           & 0.364-0.672                                           &                                              \\ 
+\hline
+PNMA5                                          & paraneoplastic antigen like 5                          & \textcolor[rgb]{0,0,0.471}{\num{2.6e-6}}                                           & 0.017                                                                                                & 0.499                                           & 0.371-0.671                                           & 0.481                                           & 0.357-0.650                                           &                                              \\ 
+\hline
+KIAA1683                                       & new name as IQ Motif Containing N (IQCN)                           & \textcolor[rgb]{0,0,0.471}{\num{3.1e-6}}                                           & 0.020                                                                                                & 0.500                                           & 0.371-0.673                                           & 0.483                                           & 0.356-0.654                                           &   \checkmark                                           \\ 
+\hline
+NPB                                            & neuropeptide B                                         & \textcolor[rgb]{0,0,0.471}{\num{4.0e-6}}                                           & 0.027                                                                                                & 0.460                                           & 0.328-0.646                                           & 0.457                                           & 0.324-0.646                                           &      \checkmark                                        \\ 
+\hline
+                                               &                                                        &                                                                                    &                                                                                                      &                                                 &                                                       &                                                 &                                                       & \multicolumn{1}{l|}{}                         \\ 
+\hline
+\multicolumn{9}{|l|}{\begin{tabular}[c]{@{}l@{}}Selection criteria:~\\~Kaplan-Meier Bonferroni adjusted \textit{P} value \textless{} 0.05~\\~Cox's univariate and multivariate HR \textgreater{}= 1.5\\ * Cox's model: \textit{P} value \textless{} 0.001\\lncRNA: Long non-coding RNA\\Remark: \checkmark Validated by GSE2837 ~\end{tabular}}                                                                                                                                                                                                                 \\
+\hline
+\end{tabular}
+}
+\arrayrulecolor{black}
+\label{table:table3}
+\end{table}
+
+
+
+
+%\subsubsection{Figure 3:h}
+\begin{figure}[hp]
+\centering
+\includegraphics[width=14cm]{TCGA_HNSC_Optimal_Overall_allPlot_unKM_P_multiHR-Figure3.pdf} % .png from PvalueplotKM_20genes_Bonf.pdf
+\bcaption{Volcano plot of genes under survival analyses.}
+{X axis: unadjusted \textit{P} value of Kaplan-Meier survival (-log10 transformed).
+Y axis: multivariate hazard ratio from Cox proportional regression model.
+Dotted line: significant Bonferroni corrected \textit{P} value. 
+\textcolor{red}{Red dots} mark 10 genes (unvalidated), which impact on poor prognosis ($HR>=1.5$). \textcolor{green}{Green dots} mark 10 genes (unvalidated), which affect on better survival ($HR<=0.5$).}
+\label{fig:figure3}
+\end{figure}
+% new figure of volcano plot: TCGA_HNSC_Optimal_Overall_allPlot_unKM_P_multiHR.pdf, -log10(raw KM P-value) vs Cox multivariate HR
+% X axis: "frequency" (number of uncorrected P-values less than 0.05 during Kaplan-Meier cutoff finding procedure). X axis: adjusted Kaplan-Meier P-value.
+
+\clearpage
+
+
+After validated by GSE2837, our top 1 candidate is \acrfull{CAMK2N1}. The Kaplan-Meier curve reveals 152 patients bearing the higher expression of \acrshort{CAMK2N1} were suffered from only 35\% of 5-year \acrshort{os} rate. In comparison, the other 262 patients with lower expression (the cutoff at 0.027(RSEM)) had a better prognosis (adjusted \textit{P} = $0.002$) (see Figure \ref{fig:figure4}(a)).
+Figure \ref{fig:figure4}(b)'s cumulative \textit{P} value plot shows that the uncorrected 147 \textit{P} values ($< 0.05$) have been estimated by a serial cut from 144 to 290 persons for grouping the cohort in our cutoff finding procedure (cutofFinder\_func.R, see Figure \ref{fig:figure1}, cutoff engine). The smallest \textit{P} value (\num{2.97e-7}), when cut on n=262 (63.3\% of 414), has been defined as an optimal \textit{P} value.
+Conversely, the most associated gene with better survival is \acrfull{IL19}. In Figure \ref{fig:figure4}(c), a Kaplan-Meier curve reveals 215 patients bearing the higher expression of \acrshort{IL19} had 60\% of 5-year OS survival rate (adjusted \textit{P} = $0.002$). The cutoff finding procedure (cutofFinder\_func.R) generated cumulative \textit{P} value plot in Figure \ref{fig:figure4}(d). The 161 uncorrected \textit{P} values were estimated by a serial cut from 125 to 286 for grouping the cohort. The smallest \textit{P} value (\num{3.73e-7}), when cut on n=199 (48.1\% of total cohort 414), has been defined as an optimal \textit{P} value with a cutoff value -0.147(RSEM) of \acrshort{rnaseq}.
+%The second candidate, which improving patient survival, is ZNF266.
+%\subsubsection{Tables} in main article
+
+%\subsubsection{Figure 4:h}
+\begin{figure}[hp]
+\centering
+\includegraphics[width=15cm]{Figure_4_CAMK2N1_IL19.pdf}
+\bcaption{Kaplan-Meier survival analyses, by cutoff finding.}
+{(a) Kaplan-Meier plot of CAMK2N1 under optimal \textit{P} value, and (b) the cutoff is derived from cumulative \textit{P} value plot of CAMK2N1. (c) Kaplan-Meier plot of IL19 under optimal \textit{P} value, and (d) the cutoff is derived from cumulative \textit{P} value plot of IL19.}
+\label{fig:figure4}
+\end{figure}
+
+\clearpage
+
+Table \ref{table:table1} shows ten overexpressed genes are associated with poor prognosis in \acrshort{hnscc}, ranked by adjusted Kaplan-Meier \textit{P} value.
+Six out of ten genes has been validated by using GSE2837.
+We found those six candidates have the Cox's univariate and multivariate HR above 1.914.
+%There were few published articles of \acrfull{SURF4} and \acrfull{NDFIP1} (\acrshort{NEDD4}: \acrlong{NEDD4}), which were related to cancer research.
+In Table \ref{table:table2}, % table 3
+after adjustment of confounders, \acrshort{CAMK2N1} overexpression is the independent prognostic factor (multivariate HR 2.007 [95\% CI: 1.490-2.704, \textit{P} $<$ 0.001]), as well as clinical T stage (HR 1.982 [95\% CI: 1.048-3.745, \textit{P} = 0.035]) and surgical margins status (HR 1.631 [95\% CI: 1.182-2.250, \textit{P} = 0.003]). 
+Older age (more than 65) also worse the survival (HR 1.391 [95\% CI: 1.025-1.888, \textit{P} = 0.034]). 
+The M stage could be ignored in this cohort due to only 3 out of 414 patients with distant metastasis.
+
+
+
+
+
+
+%\subsubsection{Table3/legend} Table 3
+%Table 2. Univariate/Multivariate Cox's proportional hazards regression analyses on OS time of DKK1 gene expression in HNSCC.
+%(P-value Significant codes is denoted as  0.01 mark as *; 0.001 mark as **; if $<$0.001  mark as ***)
+\begin{table}[hp]
+\centering
+\caption{Univariate/multivariate Cox's proportional hazards regression analyses on OS time of CAMK2N1 gene expression in HNSCC}
+\arrayrulecolor[rgb]{0.255,0.255,0.255}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{|l|l|l|l|l|l|l|l|} 
+%\begin{tabularx}{\textwidth}{|p{2.5cm}|l|l|l|l|l|l|l|} 
+\arrayrulecolor{black}\cline{1-2}\arrayrulecolor[rgb]{0.255,0.255,0.255}\cline{3-8}
+\multicolumn{2}{|l!{\color{black}\vrule}}{\multirow{2}{*}{Features}}                                                          & \multicolumn{3}{c|}{Univariate}                                                                                                                                                                                                                & \multicolumn{3}{c|}{Multivariate}                                                                                                                                                                                                               \\ 
+\cline{3-8}
+\multicolumn{2}{|l!{\color{black}\vrule}}{}                                                                                   & \multicolumn{1}{l!{\color{black}\vrule}}{HR}                                   & \multicolumn{1}{c!{\color{black}\vrule}}{CI95\%}                              & \multicolumn{1}{l!{\color{black}\vrule}}{\textit{P}~value}                    & \multicolumn{1}{l!{\color{black}\vrule}}{HR}                                   & \multicolumn{1}{c!{\color{black}\vrule}}{CI95\%}                              & \multicolumn{1}{l!{\color{black}\vrule}}{\textit{P}~value}                     \\ 
+\arrayrulecolor{black}\hline
+\multirow{2}{*}{Gender}                 & \multicolumn{1}{l!{\color{black}\vrule}}{{\cellcolor[rgb]{0.62,0.812,0.878}}Female} & \multicolumn{1}{l!{\color{black}\vrule}}{{\cellcolor[rgb]{0.62,0.812,0.878}}1} & \multicolumn{1}{l!{\color{black}\vrule}}{{\cellcolor[rgb]{0.62,0.812,0.878}}} & \multicolumn{1}{l!{\color{black}\vrule}}{{\cellcolor[rgb]{0.62,0.812,0.878}}} & \multicolumn{1}{l!{\color{black}\vrule}}{{\cellcolor[rgb]{0.62,0.812,0.878}}1} & \multicolumn{1}{l!{\color{black}\vrule}}{{\cellcolor[rgb]{0.62,0.812,0.878}}} & \multicolumn{1}{l!{\color{black}\vrule}}{{\cellcolor[rgb]{0.62,0.812,0.878}}}  \\ 
+\cline{2-8}
+                                        & Male                                                                                & 1.157                                                                          & 0.843-1.587                                                                   & 0.367                                                                         & 1.076                                                                          & 0.767-1.510                                                                   & 0.671                                                                          \\ 
+\arrayrulecolor[rgb]{0.255,0.255,0.255}\hline
+\multirow{2}{*}{Age at diagnosis}       & {\cellcolor[rgb]{0.62,0.812,0.878}}=65y                                             & {\cellcolor[rgb]{0.62,0.812,0.878}}1                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}1                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}                                            \\ 
+\cline{2-8}
+                                        & 65y                                                                                 & 1.329                                                                          & 0.990-1.784                                                                   & 0.058                                                                         & 1.391                                                                          & 1.025-1.888                                                                   & \textcolor{red}{0.034}                                                         \\ 
+\hline
+\multirow{2}{*}{Clinical T Status}      & {\cellcolor[rgb]{0.62,0.812,0.878}}T1+T2                                            & {\cellcolor[rgb]{0.62,0.812,0.878}}1                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}1                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}                                            \\ 
+\cline{2-8}
+                                        & T3+T4                                                                               & 1.409                                                                          & 1.028-1.931                                                                   & \textcolor{red}{0.033}                                                        & 1.982                                                                          & 1.048-3.745                                                                   & \textcolor{red}{0.035}                                                         \\ 
+\hline
+\multirow{2}{*}{Clinical N Status}      & {\cellcolor[rgb]{0.62,0.812,0.878}}N0                                               & {\cellcolor[rgb]{0.62,0.812,0.878}}1                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}1                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}                                            \\ 
+\cline{2-8}
+                                        & N1-3                                                                                & 1.185                                                                          & 0.890-1.577                                                                   & 0.246                                                                         & 1.145                                                                          & 0.801-1.636                                                                   & 0.457                                                                          \\ 
+\hline
+\multirow{2}{*}{Clinical M Status}      & {\cellcolor[rgb]{0.62,0.812,0.878}}M0                                               & {\cellcolor[rgb]{0.62,0.812,0.878}}1                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}1                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}                                            \\ 
+\cline{2-8}
+                                        & M1                                                                                  & 4.097                                                                          & 1.009-16.644                                                                  & \textcolor{red}{0.049}                                                        & 7.314                                                                          & 1.590-33.631                                                                  & \textcolor{red}{0.011}                                                         \\ 
+\hline
+\multirow{2}{*}{Clinical Stage}         & {\cellcolor[rgb]{0.62,0.812,0.878}}Stage I+II                                       & {\cellcolor[rgb]{0.62,0.812,0.878}}1                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}1                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}                                            \\ 
+\cline{2-8}
+                                        & Stage III+IV                                                                        & 1.245                                                                          & 0.882-1.759                                                                   & 0.213                                                                         & 0.621                                                                          & 0.287-1.343                                                                   & 0.226                                                                          \\ 
+\hline
+\multirow{2}{*}{Surgical Margin status} & {\cellcolor[rgb]{0.62,0.812,0.878}}Negative                                         & {\cellcolor[rgb]{0.62,0.812,0.878}}1                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}1                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}                                            \\ 
+\cline{2-8}
+                                        & Positive                                                                            & 1.591                                                                          & 1.155–2.191                                                                   & \textcolor{red}{0.004}                                                        & 1.631                                                                          & 1.182-2.250                                                                   & \textcolor{red}{0.003}                                                         \\ 
+\hline
+\multirow{2}{*}{Tobacco Exposure}       & {\cellcolor[rgb]{0.62,0.812,0.878}}Low                                              & {\cellcolor[rgb]{0.62,0.812,0.878}}1                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}1                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}                                            \\ 
+\cline{2-8}
+                                        & High                                                                                & 1.364                                                                          & 1.008-1.844                                                                   & \textcolor{red}{0.044}                                                        & 1.363                                                                          & 0.990-1.875                                                                   & 0.058                                                                          \\ 
+\hline
+\multirow{2}{*}{RNA-Seq}                & {\cellcolor[rgb]{0.62,0.812,0.878}}Low                                              & {\cellcolor[rgb]{0.62,0.812,0.878}}1                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}1                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}                                            \\ 
+\cline{2-8}
+                                        & High                                                                                & 2.101                                                                          & 1.572-2.809                                                                   & \multicolumn{1}{c|}{\textcolor{red}{***}}                                     & 2.007                                                                          & 1.490-2.704                                                                   & \multicolumn{1}{c|}{\textcolor{red}{***}}                                      \\ 
+\hline
+\multicolumn{8}{|l|}{}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           \\ 
+\hline
+\multicolumn{8}{|l|}{(\textit{P}~value significant codes is denoted: red \textless{} 0.05; *** \textless{} 0.001)}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               \\
+\hline
+\end{tabular}
+} % end of \resizebox
+\arrayrulecolor{black}
+\label{table:table2}
+\end{table}
+
+
+
+
+In Table \ref{table:table3}, the other ten overexpressed genes have been found in better prognosis of \acrshort{hnscc} patients. Cox's univariate and multivariate HR is under 0.5.
+Four out of ten has been validated by using GSE2837.
+In Table \ref{table:table4},
+after adjustment of confounders, prognosis is influenced by advance clinical T Status (HR 1.961 [95\% CI: 1.035-3.714, \textit{P} = 0.039] ), positive surgical margin involvement (HR 1.631 [95\% CI: 1.18-2.254, \textit{P} = 0.003]) , and higher tobacco exposure (HR 1.453 [95\% CI: 1.055-2.000, \textit{P} = 0.022]).
+Overexpressed \acrshort{IL19} gene could has a protective influencce on prognosis (HR 0.499 [95\% CI: 0.372-0.669, \textit{P} $<$ 0.001]).
+
+
+In summary, those ten candidate biomarkers, clinical T stage, and surgical margin are independent prognosis factors in \acrshort{hnscc}.
+Thus, the prognosis model with coefficients is established from \acrshort{tcga} \acrshort{hnscc} cohort. 
+%The important input $X_1...X_n$ should be patients' features: age, specific ten gene expressions, clinical T stage, and surgical margin.
+%\\[0.5cm]
+% total 6+4 =10
+% After validation with an independent \acrshort{hnscc} cohort (GSE2837), the result showed six overexpressed genes (symbol as CAMK2N1, PGK1, SURF4, USP10, NDFIP1, FOXA2) are significantly associated with a poor prognosis of overall survival. 
+%Furthermore, the four overexpressed genes (symbol as IL19, FCGBP, IQCN - former symbol as KIAA1683, and NPB) are correlated with better survival.
+
+
+
+
+%\subsubsection{Table4/legend} Table 4
+\begin{table}[!hp]
+\centering
+\caption{Univariate/multivariate Cox's proportional hazards regression analyses on OS time of IL19 gene expression in HNSCC}
+\arrayrulecolor[rgb]{0.255,0.255,0.255}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{|l|l|l|l|l|l!{\color{black}\vrule}l!{\color{black}\vrule}l!{\color{black}\vrule}} 
+\arrayrulecolor{black}\cline{1-2}\arrayrulecolor[rgb]{0.255,0.255,0.255}\cline{3-8}
+\multicolumn{2}{|l!{\color{black}\vrule}}{\multirow{2}{*}{Features}}                                                          & \multicolumn{3}{c|}{Univariate}                                                                                                                                                                                                                & \multicolumn{3}{c|}{Multivariate}                                                                                                    \\ 
+\cline{3-8}
+\multicolumn{2}{|l!{\color{black}\vrule}}{}                                                                                   & \multicolumn{1}{l!{\color{black}\vrule}}{HR}                                   & \multicolumn{1}{c!{\color{black}\vrule}}{CI95\%}                              & \multicolumn{1}{l!{\color{black}\vrule}}{\textit{P}~value}                    & HR                                   & \multicolumn{1}{c!{\color{black}\vrule}}{CI95\%} & \textit{P}~value                           \\ 
+\arrayrulecolor{black}\hline
+\multirow{2}{*}{Gender}                 & \multicolumn{1}{l!{\color{black}\vrule}}{{\cellcolor[rgb]{0.62,0.812,0.878}}Female} & \multicolumn{1}{l!{\color{black}\vrule}}{{\cellcolor[rgb]{0.62,0.812,0.878}}1} & \multicolumn{1}{l!{\color{black}\vrule}}{{\cellcolor[rgb]{0.62,0.812,0.878}}} & \multicolumn{1}{l!{\color{black}\vrule}}{{\cellcolor[rgb]{0.62,0.812,0.878}}} & {\cellcolor[rgb]{0.62,0.812,0.878}}1 & {\cellcolor[rgb]{0.62,0.812,0.878}}              & {\cellcolor[rgb]{0.62,0.812,0.878}}        \\ 
+\cline{2-8}
+                                        & Male                                                                                & 1.157                                                                          & 0.843-1.587                                                                   & 0.367                                                                         & 1.183                                & 0.847-1.652                                      & 0.325                                      \\ 
+\hhline{>{\arrayrulecolor[rgb]{0.255,0.255,0.255}}|----->{\arrayrulecolor{black}}->{\arrayrulecolor{black}}->{\arrayrulecolor{black}}-|}
+\multirow{2}{*}{Age at diagnosis}       & {\cellcolor[rgb]{0.62,0.812,0.878}}=65y                                             & {\cellcolor[rgb]{0.62,0.812,0.878}}1                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}1 & {\cellcolor[rgb]{0.62,0.812,0.878}}              & {\cellcolor[rgb]{0.62,0.812,0.878}}        \\ 
+\arrayrulecolor[rgb]{0.255,0.255,0.255}\cline{2-5}\arrayrulecolor{black}\cline{6-6}\arrayrulecolor{black}\cline{7-7}\arrayrulecolor{black}\cline{8-8}
+                                        & 65y                                                                                 & 1.329                                                                          & 0.990-1.784                                                                   & 0.058                                                                         & 1.481                                & 1.087-2.018                                      & \textcolor{red}{0.013}                     \\ 
+\hhline{>{\arrayrulecolor[rgb]{0.255,0.255,0.255}}|----->{\arrayrulecolor{black}}->{\arrayrulecolor{black}}->{\arrayrulecolor{black}}-|}
+\multirow{2}{*}{Clinical T Status}      & {\cellcolor[rgb]{0.62,0.812,0.878}}T1+T2                                            & {\cellcolor[rgb]{0.62,0.812,0.878}}1                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}1 & {\cellcolor[rgb]{0.62,0.812,0.878}}              & {\cellcolor[rgb]{0.62,0.812,0.878}}        \\ 
+\arrayrulecolor[rgb]{0.255,0.255,0.255}\cline{2-5}\arrayrulecolor{black}\cline{6-6}\arrayrulecolor{black}\cline{7-7}\arrayrulecolor{black}\cline{8-8}
+                                        & T3+T4                                                                               & 1.409                                                                          & 1.028-1.931                                                                   & \textcolor{red}{0.033}                                                        & 2.175                                & 1.152-4.106                                      & \textcolor{red}{0.017}                     \\ 
+\hhline{>{\arrayrulecolor[rgb]{0.255,0.255,0.255}}|----->{\arrayrulecolor{black}}->{\arrayrulecolor{black}}->{\arrayrulecolor{black}}-|}
+\multirow{2}{*}{Clinical N Status}      & {\cellcolor[rgb]{0.62,0.812,0.878}}N0                                               & {\cellcolor[rgb]{0.62,0.812,0.878}}1                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}1 & {\cellcolor[rgb]{0.62,0.812,0.878}}              & {\cellcolor[rgb]{0.62,0.812,0.878}}        \\ 
+\arrayrulecolor[rgb]{0.255,0.255,0.255}\cline{2-5}\arrayrulecolor{black}\cline{6-6}\arrayrulecolor{black}\cline{7-7}\arrayrulecolor{black}\cline{8-8}
+                                        & N1-3                                                                                & 1.185                                                                          & 0.890-1.577                                                                   & 0.246                                                                         & 1.237                                & 0.864-1.770                                      & 0.245                                      \\ 
+\hhline{>{\arrayrulecolor[rgb]{0.255,0.255,0.255}}|----->{\arrayrulecolor{black}}->{\arrayrulecolor{black}}->{\arrayrulecolor{black}}-|}
+\multirow{2}{*}{Clinical M Status}      & {\cellcolor[rgb]{0.62,0.812,0.878}}M0                                               & {\cellcolor[rgb]{0.62,0.812,0.878}}1                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}1 & {\cellcolor[rgb]{0.62,0.812,0.878}}              & {\cellcolor[rgb]{0.62,0.812,0.878}}        \\ 
+\arrayrulecolor[rgb]{0.255,0.255,0.255}\cline{2-5}\arrayrulecolor{black}\cline{6-6}\arrayrulecolor{black}\cline{7-7}\arrayrulecolor{black}\cline{8-8}
+                                        & M1                                                                                  & 4.097                                                                          & 1.009-16.644                                                                  & \textcolor{red}{0.049}                                                        & 8.629                                & 1.879-39.63                                      & \textcolor{red}{0.006}                     \\ 
+\hhline{>{\arrayrulecolor[rgb]{0.255,0.255,0.255}}|----->{\arrayrulecolor{black}}->{\arrayrulecolor{black}}->{\arrayrulecolor{black}}-|}
+\multirow{2}{*}{Clinical Stage}         & {\cellcolor[rgb]{0.62,0.812,0.878}}Stage I+II                                       & {\cellcolor[rgb]{0.62,0.812,0.878}}1                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}1 & {\cellcolor[rgb]{0.62,0.812,0.878}}              & {\cellcolor[rgb]{0.62,0.812,0.878}}        \\ 
+\arrayrulecolor[rgb]{0.255,0.255,0.255}\cline{2-5}\arrayrulecolor{black}\cline{6-6}\arrayrulecolor{black}\cline{7-7}\arrayrulecolor{black}\cline{8-8}
+                                        & Stage III+IV                                                                        & 1.245                                                                          & 0.882-1.759                                                                   & 0.213                                                                         & 0.476                                & 0.222-1.024                                      & 0.057                                      \\ 
+\hhline{>{\arrayrulecolor[rgb]{0.255,0.255,0.255}}|----->{\arrayrulecolor{black}}->{\arrayrulecolor{black}}->{\arrayrulecolor{black}}-|}
+\multirow{2}{*}{Surgical Margin status} & {\cellcolor[rgb]{0.62,0.812,0.878}}Negative                                         & {\cellcolor[rgb]{0.62,0.812,0.878}}1                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}1 & {\cellcolor[rgb]{0.62,0.812,0.878}}              & {\cellcolor[rgb]{0.62,0.812,0.878}}        \\ 
+\arrayrulecolor[rgb]{0.255,0.255,0.255}\cline{2-5}\arrayrulecolor{black}\cline{6-6}\arrayrulecolor{black}\cline{7-7}\arrayrulecolor{black}\cline{8-8}
+                                        & Positive                                                                            & 1.591                                                                          & 1.155–2.191                                                                   & \textcolor{red}{0.004}                                                        & 1.63                                 & 1.180-2.252                                      & \textcolor{red}{0.003}                     \\ 
+\hhline{>{\arrayrulecolor[rgb]{0.255,0.255,0.255}}|----->{\arrayrulecolor{black}}->{\arrayrulecolor{black}}->{\arrayrulecolor{black}}-|}
+\multirow{2}{*}{Tobacco Exposure}       & {\cellcolor[rgb]{0.62,0.812,0.878}}Low                                              & {\cellcolor[rgb]{0.62,0.812,0.878}}1                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}1 & {\cellcolor[rgb]{0.62,0.812,0.878}}              & {\cellcolor[rgb]{0.62,0.812,0.878}}        \\ 
+\arrayrulecolor[rgb]{0.255,0.255,0.255}\cline{2-5}\arrayrulecolor{black}\cline{6-6}\arrayrulecolor{black}\cline{7-7}\arrayrulecolor{black}\cline{8-8}
+                                        & High                                                                                & 1.364                                                                          & 1.008-1.844                                                                   & \textcolor{red}{0.044}                                                        & 1.62                                 & 1.173-2.238                                      & \textcolor{red}{0.003}                     \\ 
+\hhline{>{\arrayrulecolor[rgb]{0.255,0.255,0.255}}|----->{\arrayrulecolor{black}}->{\arrayrulecolor{black}}->{\arrayrulecolor{black}}-|}
+\multirow{2}{*}{RNA-Seq}                & {\cellcolor[rgb]{0.62,0.812,0.878}}Low                                              & {\cellcolor[rgb]{0.62,0.812,0.878}}1                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}                                           & {\cellcolor[rgb]{0.62,0.812,0.878}}1 & {\cellcolor[rgb]{0.62,0.812,0.878}}              & {\cellcolor[rgb]{0.62,0.812,0.878}}        \\ 
+\arrayrulecolor[rgb]{0.255,0.255,0.255}\cline{2-5}\arrayrulecolor{black}\cline{6-6}\arrayrulecolor{black}\cline{7-7}\arrayrulecolor{black}\cline{8-8}
+                                        & High                                                                                & 0.472                                                                          & 0.351-0.635                                                                   & \multicolumn{1}{c|}{\textcolor{red}{***}}                                     & \multicolumn{1}{l|}{0.459}           & 0.340-0.619                                      & \multicolumn{1}{c|}{\textcolor{red}{***}}  \\ 
+\arrayrulecolor[rgb]{0.255,0.255,0.255}\cline{1-6}\arrayrulecolor{black}\cline{7-7}\arrayrulecolor[rgb]{0.255,0.255,0.255}\cline{8-8}
+\multicolumn{8}{|l|}{}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                \\ 
+\hline
+\multicolumn{8}{|l|}{(\textit{P}~value significant codes is denoted: red \textless{} 0.05; *** \textless{} 0.001)}                                                                                                                                                                                                                                                                                                                                                                                                    \\
+\hline
+\end{tabular}
+}% end of \resizebox
+\arrayrulecolor{black}
+\label{table:table4}
+\end{table}
+
+
+
+% end of result
+
+
+
+
+
+%%%%%
+
+%\section*{Figure}
 
 % This code uses the tikz package
 %\begin{frame}[fragile]
@@ -1177,9 +1545,25 @@ We need more biomarkers.
 % 科技部鼓勵研究主題的系統性，也鼓勵具研究能力者從事較大型但 可能是較困難的長期研究。在建立研究架構的同時，要審慎考慮如何適當分配 每一年的執行進度。例如，容易有具體成果的部分可能要先放在前面作為基 礎，較困難的部分便可以逐年按部就班地進行調查分析。
 
 Specific Aims %特定研究目標 (specific aims), 執行策略不能互相綁在一起, go paralleling, and equally balanced
-Aim 1: central issue 1 with preliminary data (key data); fallback approaches %先以概要式的背景介紹破題，點出研究目標的重要性，然後用邏輯之陳述將如何達成目標的策略和方法講清楚。請務必注意：每個研究目標基本上需具備其獨立性 (Independence)，但其重要性卻要在目標之間有所連結，且要能回應總體目標之研究顯著性。
-Aim 2: central issue 2 with preliminary data (key data); fallback approaches
-Aim 3: central issue 3 without preliminary data; fallback approaches % 需有充分的文獻分析和縝密的論述來補足，使得 “convincing power” 依然強而有力
+
+Aim 1: Construct a Deep Learning Platform of TCIA
+central issue 1 with preliminary data (key data); fallback approaches %先以概要式的背景介紹破題，點出研究目標的重要性，然後用邏輯之陳述將如何達成目標的策略和方法講清楚。請務必注意：每個研究目標基本上需具備其獨立性 (Independence)，但其重要性卻要在目標之間有所連結，且要能回應總體目標之研究顯著性
+We further plan to develop a deep-learning based data mining as well as validation platform. It might incorporate the Cancer Imaging Archive (TCIA) whole slide images of pathology and RNA-Seq data for survival analysis. 
+GNN graph neural network for CNN convolutional neural network
+%The Cancer Imaging Archive (TCIA) whole slide by Deep learning (ResNet)
+% *** AI: deep learning, machine learning \citep{Huang2020}
+%plot http://iltabiai.github.io/tips/latex/2015/09/15/latex-tikzdevice-r.html
+%***Deep learning-based cancer survival prognosis from RNA-Seq data: approaches and evaluations
+
+
+Aim 2: RNA-Seq Incorporated with Whole-slide Images from TCIA
+central issue 2 with preliminary data (key data); fallback approaches
+
+Aim 3: Survival Analysis of Whole-slide Images from TMU Biobank
+central issue 3 without preliminary data; fallback approaches % 需有充分的文獻分析和縝密的論述來補足，使得 “convincing power” 依然強而有力
+%*transfer learning from TCGA model
+%torchvision, NanoMets Models
+%save checkpoint, load then deepcopy()
 
 \cntext{執行進度} % Flow Chart
 
@@ -1196,7 +1580,14 @@ proposal main body %(計畫的主體內容)” 解釋每個 aim 要怎麼做，�
 %%%%%
 
 \section{\cntext{(三)預期完成之工作項目、成果及績效}}
-%1.預期完成之工作項目。2.對於學術研究、國家發展及其他應用方面預期之貢獻。3.對於參與之工作人員，預期可獲之訓練。4.預期完成之研究成果及績效(如期刊論文、研討會論文、專書、技術報告、專利或技術移轉等質與量之預期績效)。請詳述其必要性以及預期成果等。
+%1.預期完成之工作項目
+Validation of candidate biomarkers of HNSCC by TMU Biobank.
+%2.對於學術研究、國家發展及其他應用方面預期之貢獻
+for further drug development of systemic therapy of HNSCC (personalized medicine ) or \cntext{精準醫療}
+%3.對於參與之工作人員，預期可獲之訓練
+to improve the PyTorch and C ++ programming skill
+%4.預期完成之研究成果及績效(如期刊論文、研討會論文、專書、技術報告、專利或技術移轉等質與量之預期績效)。請詳述其必要性以及預期成果等。
+We will write Ph.D. dissertation as well manuscript for SCI publication.
 
 \clearpage
 
@@ -1204,7 +1595,7 @@ proposal main body %(計畫的主體內容)” 解釋每個 aim 要怎麼做，�
 % 核定的經費不會高於所 要求的預算，如經費不足對日後計畫執行也是障礙，因此每項經費的使用最好 想清楚，說明白，比如設備費，逐年需購買哪些圖書?何以需購買電腦、筆 電，尤其國立大學設備資源較充裕，平均四年即更新汰舊電腦，編列時還經常 可見便宜行事的情況，複製經費編列，以致於每年都購買電腦或印表機，顯見 並不適合。參與國際會議及移地研究，停留天數及其必要性都需填寫，說明越 清楚，通過的機會就越高。此外，編列項目越詳細越好，免得日後有需要時， 因計畫書未列，校方不准核銷，而影響計畫的進行。
 The third page looks like this. 
 
-\section{\cntext{對社會的貢獻}}
+%\section{\cntext{對社會的貢獻}}
 
 \section{\cntext{過去研究之表現}}
 % 申請人過去五年著作及五年以上且深具影響之著作，最好詳細? 精簡
