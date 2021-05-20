@@ -688,13 +688,12 @@ The critical advancement of immuno-oncology should benefit from emerging prognos
 %% http://web.tccf.org.tw/lifetype/index.php?op=ViewArticle&articleId=4480&blogId=1 振興醫院血液腫瘤科 陳國維醫師
 
 
-\subsection{??Prognostic Biomarkers guide the Treatment of \acrshort{hnscc}}
-A biomarker can be either predictive or prognostic. A predictive marker predicts benefit from a specific treatment; it helps to select a particular treatment over another. A prognostic marker predicts the natural history of disease (survival), independent of treatment. It can indicate a need for further treatment, but does not help to determine which treatment. 
- The key advancement of those interventions should be i) the discovery of high impact diagnostic/prognostic biomarkers, ii) and planning of the proper treatment modalities for accurate sub-grouped HNSCC patients.
-The ROC Plotter is the first online transcriptome-level validation tool for predictive biomarkers.
+%\subsection{??Prognostic Biomarkers guide the Treatment of \acrshort{hnscc}}
+%A biomarker can be either predictive or prognostic. A predictive marker predicts benefit from a specific treatment; it helps to select a particular treatment over another. A prognostic marker predicts the natural history of disease (survival), independent of treatment. It can indicate a need for further treatment, but does not help to determine which treatment.The key advancement of those interventions should be i) the discovery of high impact diagnostic/prognostic biomarkers, ii) and planning of the proper treatment modalities for accurate sub-grouped HNSCC patients.
+%The ROC Plotter is the first online transcriptome-level validation tool for predictive biomarkers.
 % http://www.rocplot.org
 
-The management of head and neck malignancies is site and histology specific, and requires a multidisciplinary team approach. In this chapter, we review the current knowledge of \acrshort{hnscc}, and discuss ongoing and future research aiming to improve the management and outcomes of patients with these malignancies.
+%The management of head and neck malignancies is site and histology specific, and requires a multidisciplinary team approach. In this chapter, we review the current knowledge of \acrshort{hnscc}, and discuss ongoing and future research aiming to improve the management and outcomes of patients with these malignancies.
 
 
 % from manuscript of TMSB4X 2017
@@ -703,9 +702,23 @@ The management of head and neck malignancies is site and histology specific, and
 
 
 \subsubsection{Surgical Oncology for \acrshort{hnscc}}
-Biomarkers guidance with molecular pathology for surgical margin security and strong confidence of diagnosis
+Biomarkers guidance with molecular pathology for surgical margin security and strong confidence of post-operation diagnosis.
 
 There is 52.2\% of cases having mutations in the adjacent normal tissues was also observed in \acrshort{hnscc} surgical specimen \citep{Singh2016}. It is believed to increase the risk of local recurrence.
+
+% revised surgical margin
+Moreover, The adverse pathological features are positive/close surgical margin ($<5 mm$), \acrfull{ene}, \acrfull{lvsi}, \acrfull{pni}, \acrfull{doi} ($>5 mm$), as well as metastatic \acrfull{lnd}\cite{Cheraghlou2018}, and \acrfull{wpoi5}, which was defined as tumor dispersion $>= 1 mm$ between tumor satellites or positive \acrshort{pni}/\acrshort{lvsi}\cite{Amin2017}.
+The features of \acrshort{doi}, \acrshort{lnd}, and tumor dispersion were not available on the \acrshort{tcga} dataset. The Brandwein-Gensler's risk model (lymphocytic host response, \acrshort{wpoi5}, and \acrshort{pni})\cite{Brandwein-Gensler2010}\cite{Sinha2018} was suggested to be routinely performed on pathological examination. In previous reports of \acrshort{hnscc}, the loco-regional failure will be high when the initial frozen section has a positive/close surgical margin, and even the final margin revision revealed negative\cite{Bulbul2019b}.
+According to Table \ref{table:table2} and Table \ref{table:table4} in our study, the positive surgical margin yielded a hazard ratio greater than 1.6 to influence on patient's \acrshort{os}.
+It was suggested by authors \cite{Scholl1986}\cite{Sutton2003}\cite{Shaw2004}\cite{Guillemaud2010a}\cite{Patel2010}\cite{Kuriakose2017}\cite{Shapiro2017}\cite{Saidak2018}\cite{Miguelanez-Medran2019}\cite{Saidak2019} that the reason of positive/close surgical margin is possibly due to tumor aggressiveness or dispersion (WPOI-5) instead of iatrogenic reason of surgery. The surgical margin status is suggested as an independent surrogate for tumor dispersion, and important in the \acrshort{hnscc} study. Thus, in the current study, we selected the common clinicopathological features, including gender, age, clinical T, clinical N, clinical M, surgical margin status, and tobacco exposure in the biomarker discovery for adjustment of confounders (details description at Materials and Methods section).
+
+%\subsection{Surgical Margin Issue}
+revised margin\cite{Clark2017a}
+%在許多已發表的 TCGA 分析的研究中，有些文章沒有辨明它，有的文章則認為對預後不重要(not significant)，
+to prove my hypothesis:
+%但接下來我要用力證明：這將會造成 biomarker discovery 的 bias, 因為 survival or prognosis 會有非常大差別，所以在研究中要 only R0 案例」。
+=> not really
+it should include all R* status, and see margins positive as an independent biomarker for the prognosis of \acrshort{hnscc} patients \citep{SLAUGHTER1953} \citep{Ha2003} \citep{Bilde2009} \citep{Tabor2001} \citep{Reis2011} \citep{Chi2020}.
 
 ****if deep learning of pathology could "see" P53 mutation on the surgical margin.
 %\paragraph{Prognosis}
@@ -724,7 +737,7 @@ There is 52.2\% of cases having mutations in the adjacent normal tissues was als
 
 
 
-\subsubsection{Immunotherapy for \acrshort{hnscc}}
+\subsection{Immunotherapy for \acrshort{hnscc}}
 Modern Systemic Therapy is guided by biomarkers.
 %Immune Response in \acrshort{hnscc}
 %Cancer Immunotherapy
@@ -1414,10 +1427,12 @@ We need validate and find more biomarkers from holistic EHR and pathological ima
 %1.本計畫採用之研究方法與原因。2.預計可能遭遇之困難及解決途徑 fallback approaches
 % ***執行的策略
 % 科技部鼓勵研究主題的系統性，也鼓勵具研究能力者從事較大型但 可能是較困難的長期研究。在建立研究架構的同時，要審慎考慮如何適當分配 每一年的執行進度。例如，容易有具體成果的部分可能要先放在前面作為基 礎，較困難的部分便可以逐年按部就班地進行調查分析。
+\begin{outline}
+
 
 Specific Aims %特定研究目標 (specific aims), 執行策略不能互相綁在一起, go paralleling, and equally balanced
 
-Aim 1: Construct a Deep Learning Platform of TCIA Survival Analysis
+\1 Aim 1: Construct a Deep Learning Platform of TCIA Survival Analysis
 central issue 1 with preliminary data (key data); fallback approaches %先以概要式的背景介紹破題，點出研究目標的重要性，然後用邏輯之陳述將如何達成目標的策略和方法講清楚。請務必注意：每個研究目標基本上需具備其獨立性 (Independence)，但其重要性卻要在目標之間有所連結，且要能回應總體目標之研究顯著性
 We further plan to develop a deep-learning based data mining as well as validation platform. It might incorporate whole slide images of pathology from the Cancer Imaging Archive (TCIA) and Taipei Medical University (TMU) biobank.
 %RNA-Seq data of \acrfull{tcga} for survival analysis. 
@@ -1434,7 +1449,7 @@ Graph convolutional neural network (GCNN) will be used for feature extraction fr
 %save checkpoint, load then deepcopy()
 
 
-Aim 2: Construct a Deep Learning Platform of EHR Survival Analysis
+\1 Aim 2: Construct a Deep Learning Platform of EHR Survival Analysis
 central issue 2 without preliminary data; fallback approaches % 需有充分的文獻分析和縝密的論述來補足，使得 “convincing power” 依然強而有力
 %*transfer learning from TCGA model
 %torchvision, NanoMets Models
@@ -1445,15 +1460,17 @@ Recurrent neural network (RNN) will deal with "holistic features" from electric 
 These patient's features should include physical, pathological, psychological data, and even more spiritual information investigated by physicians.
 
 
-Aim 3: RNA-Seq Incorporated with Whole-slide Images models from TCIA and TMU
+\1 Aim 3: RNA-Seq Incorporated with Whole-slide Images models from TCIA and TMU
 central issue 3 without preliminary data; fallback approaches
 Whole-slide Images models are the surrogate of expression data of RNA-Seq
 
-Aim 4: Biomarkers Discovery from RNA-Seq, Whole-slide Images, and EHR from TCGA and TMU biobank
+\1 Aim 4: Biomarkers Discovery from RNA-Seq, Whole-slide Images, and EHR from TCGA and TMU biobank
 central issue 4 without preliminary data; fallback approaches % 需有充分的文獻分析和縝密的論述來補足，使得 “convincing power” 依然強而有力
 %*transfer learning from TCGA model
 %torchvision, NanoMets Models
 %save checkpoint, load then deepcopy()
+\end{outline}
+
 
 \subsection{\cntext{執行進度}} % Flow Chart => Gantt chart
 % A flowchart of a TeX workflow
