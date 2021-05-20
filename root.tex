@@ -519,7 +519,7 @@ Mindfulness Meditation
 
 %\section*{Background}
 
-\section*{Biological Hallmarks of Cancer}
+\section{Biological Hallmarks of Cancer}
 
 The multi-step process of genetic alteration is contributing to the development of cancer. The accumulation of mutation, amplification, or chromosomal aberrations in proto-oncogenes or tumor-suppressor genes might be the consequence of the stimulation from intrinsic or extrinsic environments.
 Since cancer cells acquired the ten biological hallmarks, these functional capabilities consist of sustaining proliferative signaling and evading growth suppressors, resisting cell death, enabling replicative immortality, inducing angiogenesis, activating invasion with metastasis, deregulating cellular energetics and metabolism, avoiding immune destruction, tumor-promoting inflammation, and genome instability and mutation \citep{Hanahan2000, Hanahan2011, Hanahan2017}. The tumor micro-environment, which is composed of cancer cells and tumor‐associated fibroblasts, infiltrating immune cells, and angiogenic vascular cells.
@@ -532,10 +532,10 @@ The concept that cancer cells alter their utilization of energy sources—notabl
 %anaerobic glycolysis
 The Warburg effect\citep{Warburg1956} is an example of carcinogenesis and metabolic reprogramming of cells by some environmental factors.
 altered anaerobic glycolysis. 
-In our previous work\citep{Chang2017b}, the Warburg effect promotes the progression of \acrshort{hnscc}, which is partially attributed to the \acrlong{slc2a4} (\acrshort{slc2a4}, or \acrlong{glut4}, \acrshort{glut4}) and \acrfull{trim24} pathway\cite{Chang2017b}\cite{Mani2020}.
+In our previous work\citep{Chang2017b}, the Warburg effect promotes the progression of \acrshort{hnscc}, which is partially attributed to the \acrlong{slc2a4} (\acrshort{slc2a4}, or \acrlong{glut4}, \acrshort{glut4}) and \acrfull{trim24} pathway\citep{Chang2017b}\citep{Mani2020}.
 % Cited In for PMID: 28061796
-Lactic acidosis induced \acrshort{glut4} overexpression was also found in lung cancer cells\cite{Prado-Garcia2020}. 
-%The overexpression of \acrshort{glut4} will lead to higher glucose uptake in proliferating cancer cells\cite{Mani2020}.
+Lactic acidosis induced \acrshort{glut4} overexpression was also found in lung cancer cells\citep{Prado-Garcia2020}. 
+%The overexpression of \acrshort{glut4} will lead to higher glucose uptake in proliferating cancer cells\citep{Mani2020}.
 %There is a trend toward cancer type-agnostic study. 
 Glutamine is the other blood-borne source of energy and biomaterials for growth and proliferation of most cancer cells\citep{Hanahan2017}.
 %GLUT4 \citep{Chang2017b}
@@ -572,7 +572,7 @@ Glutamine is the other blood-borne source of energy and biomaterials for growth 
 
 
 
-\section*{Head and Neck Squamous Cell Carcinoma}
+\section{Head and Neck Squamous Cell Carcinoma}
 \label{sec:section}
 
 Head and neck squamous cell carcinoma (HNSCC), which is derived from the oral cavity, oropharynx, hypopharynx and larynx, is the sixth common cancer worldwide \citep{Siegel2016}, as well as the fourth leading cancer causes of death for males in Taiwan\citep{MOHW_death2017}. The age-standardized incidence rate of \acrshort{hnscc} in males is 42.43 per 100,000 persons\citep{MOHW_incidence2018}. The mortality rate of HNSCC patients in the male is 11.1-fold greater than that in women.
@@ -581,12 +581,39 @@ Head and neck squamous cell carcinoma (HNSCC), which is derived from the oral ca
 %  Patients with early-stage cancer often manifest minimal physical evidence, which usually ignored by themselves, resulting in delayed diagnosis regarding poor tumor control and patient survival. Therefore, quitting bad habits, routine screening in high-risk population and early intervention will be helpful to improve their survival while maintaining the quality of life. 
 
 
-\paragraph{Etiology}
+\subsection{Etiology}
 The main risk factors for HNSCC include carcinogens in tobacco and betel nut, alcohol, oncogenic viruses.
 In Asian population, \acrfull{aldh2} mutation plays a very important rule to enhance HNSCC\citep{Chien2019} by alcohol consumption.
 The oncogenic viruses such as \acrfull{hpv} and Epstein–Barr virus play a major carcinogenic role in tumors of the oropharynx and nasopharynx, respectively\citep{Ferrarotto2017}.
 Moreover, physical irritations, ionized radiation and host susceptibility may also contribute to the etiology of HNSCC\citep{Ko1995,Znaori2003} (Figure \ref{fig:DAG_etiology}).
 Primary prevention by minimizing exposure to known carcinogens is promising, but limited success is achieved due to addiction, economic, social or spiritual issues.
+
+
+% This code uses the tikz package
+%\begin{frame}[fragile]
+%\frametitle{Directed acyclic graphs for %\acrshort{hnscc}}
+\begin{figure}
+\centering
+\begin{tikzpicture}[scale=4, every node/.style={scale=1.3}] %, transform shape]
+\node (v0) at (-1.49,1.64) {Age/Gender};
+\node (v1) at (0.705,1.42) {Alcohol/Betel/Cigarette};
+\node (v2) at (-1.18,-1.38) {Healthy Food/Exercise};
+\node (v3) at (-0.167,0.515) {Other Risky Behavior};
+\node (v4) at (1.19,-1.52) {\large \acrshort{hnscc}};
+
+\draw [-latexnew, arrowhead=0.5cm, line width=4pt, ultra thick, dashed] (v0) .. controls (-0.408,1.72) and (0.325,1.64) .. (v1);
+\draw [-latexnew, arrowhead=1cm, line width=4pt, ultra thick, green, dashed] (v0) edge (v2);
+\draw [-latexnew, arrowhead=0.5cm, line width=4pt, ultra thick, dashed] (v0) .. controls (-0.761,1.13) and (-0.318,0.754) .. (v3);
+\draw [-latexnew, arrowhead=0.5cm, line width=4pt, ultra thick, red] (v0) .. controls (-0.852,0.234) and (0.0430,-0.821) .. (v4);
+\draw [-latexnew, arrowhead=2cm, line width=4pt, ultra thick, red] (v1) .. controls (1.30,0.923) and (1.46,-0.0573) .. (v4);
+%  \draw [options/.expand once=\x] (0,-1.2*\i) -- (3,-1.2*\i) node [right] {\x};
+\draw [-latexnew, arrowhead=1cm, line width=0.4cm, ultra thick, green] (v2) edge (v4);
+\draw [-latexnew, arrowhead=1cm, line width=4pt, ultra thick, red] (v3) edge (v4);
+\end{tikzpicture}
+\caption{\label{fig:DAG_etiology} HNSCC will be caused by ABC or viruses.}
+
+\end{figure}
+
 
 
 %\paragraph{Ancient History of \acrshort{hnscc}}
@@ -636,7 +663,7 @@ Primary prevention by minimizing exposure to known carcinogens is promising, but
 % 老師提到戒酒已有藥物，Disulfiram 正是抑制 ALDH1，讓乙醯醛堆積，酒後症狀嚴重。:-)
 
 
-\paragraph{Conventional Treatment}
+\subsection{Conventional Treatment}
 
 
 %The modern treatment of HNSCC should be done by surgery alone, radiation therapy alone, or a combination of them with adjuvant chemotherapy according to National Comprehensive Cancer Network (NCCN) guidelines \citep{Pfishter2019}. Despite those interventions, the 5-year survival rate for this disease has improved only marginally over the past decade, and recurrent disease is observed in ~50\% of all patients \citep{Forastiere2001,Warnakulasuriya2009}. By comparison with new systemic treatments seen in other solid tumours, the prognostic result of targeted therapy, ex. EGFR inhibitors, in HNSCC patients has remained relatively stationary in recent years. \citep{Argiris2015a}. 
@@ -661,7 +688,7 @@ The critical advancement of immuno-oncology should benefit from emerging prognos
 %% http://web.tccf.org.tw/lifetype/index.php?op=ViewArticle&articleId=4480&blogId=1 振興醫院血液腫瘤科 陳國維醫師
 
 
-\subsection{Prognostic Biomarkers guide the Treatment of \acrshort{hnscc}}
+\subsection{??Prognostic Biomarkers guide the Treatment of \acrshort{hnscc}}
 A biomarker can be either predictive or prognostic. A predictive marker predicts benefit from a specific treatment; it helps to select a particular treatment over another. A prognostic marker predicts the natural history of disease (survival), independent of treatment. It can indicate a need for further treatment, but does not help to determine which treatment. 
  The key advancement of those interventions should be i) the discovery of high impact diagnostic/prognostic biomarkers, ii) and planning of the proper treatment modalities for accurate sub-grouped HNSCC patients.
 The ROC Plotter is the first online transcriptome-level validation tool for predictive biomarkers.
@@ -680,7 +707,7 @@ Biomarkers guidance with molecular pathology for surgical margin security and st
 
 There is 52.2\% of cases having mutations in the adjacent normal tissues was also observed in \acrshort{hnscc} surgical specimen \citep{Singh2016}. It is believed to increase the risk of local recurrence.
 
-****if deep learning of pathology could "see" P53 mutation on the surgical margin
+****if deep learning of pathology could "see" P53 mutation on the surgical margin.
 %\paragraph{Prognosis}
 
 %\subsubsection{Radiation Oncology for \acrshort{hnscc}}
@@ -693,112 +720,27 @@ There is 52.2\% of cases having mutations in the adjacent normal tissues was als
 %}
 
 
-\subsubsection{Medical Oncology for \acrshort{hnscc}}
+%\subsubsection{Medical Oncology for \acrshort{hnscc}}
+
+
+
+\subsubsection{Immunotherapy for \acrshort{hnscc}}
 Modern Systemic Therapy is guided by biomarkers.
-
-\paragraph{***Immune System and Cancer}
-% balanced Yan and Yin 陰陽要調合
-Two-faced roles of tumor-associated neutrophils, eosinophils, and basophils
-
-*** Tex's opinion: there is no "central console" of immune control system, which disseminated remote regular % 地方自治 
-
-chronic inflammation by mechanical force or chemicals
-
-** or even in autoimmune disease:
-Risks from disease and treatment
-Autoimmune disorders generally attack a single organ or part of the body, often causing inflammation in the affected area. In some cases, that inflammation may increase cancer risk. 
-At the same time, tumor necrosis factor (TNF) inhibitors or immunosuppressant (e.x. cyclosporin), help reduce inflammation and also are suspected of increasing the risk of multiple cancers. It may impair the ability to kill cancer cells.
-
-two of ten hallmarks: avoiding immune destruction, tumor-promoting inflammation \citep{Ohman2015}
-
-
-
-The basic principles that guide cancer immunology are immune surveillance \citep{BURNET1957, Shankaran2001}, immune editing, and immune tolerance.
-%immunosurveillance
-Peritumoral immune responses might predict patients’ prognosis in a wide range of cancers. Beyond local accumulation, systemic immune response in serum is seen in patients with \acrshort{hnscc} \citep{Lee2010a}.
-% immunoediting 敵消我長的過程
-Moreover, the immune response is not only achieving protection of the host but also editing the immunogenicity of tumours \citep{Dunn2002}.
-The cancer immunoediting includes elimination, equilibrium then escape.
-%elimination by immunosurveillance
-The cells, which have aberrant major histocompatibility complex (MHC) class I expression, will be eliminated by cytotoxic mechanism or induction of apoptosis by immune cells, involving granulocytes (neutrophils, eosinophils, and basophils), macrophages, natural
-killer cells, in innate immunity \citep{Tallerico2013}.
-Tumour-associated macrophages include  M1, which has antitumoral properties, and M2, which has tumour-promoting phenotype in \acrshort{hnscc} \citep{Kumar2019}.
-
-Through dendritic cells presenting the tumor antigens to T helper cells in context with MHC class II molecules, naive or memory T cells will conduct activation of  T cells and adaptive immunity \citep{Banchereau2000}. 
-The plasmacytoid cells are a subtype of dendritic cells that are one of the main sources of secreting \acrshort{ifng}. 
-T cells consist of at least five subgroups: Th1 (CD4+), Th2 (CD4+), Th17 (CD4+), regulatory T cells (CD4+ CD25+ Tregs), and cytotoxic T cells (CD8+). 
-Cytotoxic T cells is triggered by helper T cells to attack directly and execute those tumor cells, whose antigen is presented by dendritic cells, via effector molecules such as perforin and granzyme. Cytotoxic T cells also use TRAIL receptor to release signal on tumor's FasL to induce cell apoptosis.
-% By inducing intracellular signaling through lck, the CD8 coreceptor is an important factor affecting TCR‐mediated T cell activation and modulation of immunosuppression and cytotoxicity.
-All subsets play important roles in mucosal immune response, including antitumoral responses. T cells represent approximately 10\% of the total cells in a tumour mass \citep{Balkwill2012}.
-
-% equilibrium under immunoselection:  Cancer cells avoid immunosurveillance by the selection of non-immunogenic tumour-cell variants % 鄭爺爺
-***When immunosurveillance systems are not able to eradicate the tumor cells, the result may be tumor dormancy, where an equilibrium with defending cells occurs.
-
-equilibrium represents a time of tumour cell persistence without progression.
-equilibrium is maintained solely by adaptive immunity
-The interplay of the potentially malignant cells and immune cells from immunosurveillance, equilibrium to tumor escape.
-Lymphocytes of adaptive immunity have the capacity to take over and exert enough antitumoral effects to kill and limit tumour growth, and the tumour is thus kept in their dormitory \citep{Koebel2007}.
-The tumour cells in equilibrium are highly immunogenic (unedited), whereas those spontaneously exiting equilibrium (escape) that become growing tumours have attenuated immunogenicity (edited)—results that place this process temporally between elimination and escape \citep{Koebel2007}.
-maintaining cancer in an equilibrium state may represent a relevant goal of cancer immunotherapy in which augmentation of adaptive tumour immunity could result in improved tumour control. *** A TREATMENT GOALS
-%the downregulation or loss of expression of HLA class I molecules
-% decoy receptors for TRAIL: DcR3, Decoy receptor 3 (DcR3), to prevent FasR-FasL interactions by competitively binding to membrane-bound Fas ligand; FasL binds to DcR3 (TNFRSF6B) without TRAIL function 假的誘餌
-% Death receptors:  tumour-necrosis-factor (TNF) receptor 1, CD95 (also known as FAS) and two receptors for TNF-related apoptosis-inducing ligand (TRAILR1 and TRAILR2).
-
-
-% escape under immunesubversion: by the active suppression of the immune response
-Escape is the process wherein the immunologically sculpted tumor expands in an uncontrolled manner in the immunocompetent host \citep{Dunn2002, Dunn2004}.
-It was suggested by increasing the presence of Tregs in terms of suppression of Th1 and cytotoxic T cells response by \acrfull{ctla4} \citep{Halvorsen2014}.
-Moreover, myelo-derived suppressor cells (MDSCs, CD34+) could also down-regulation of granzyme from T cells in \acrshort{hnscc} \citep{Si2019}.
-The antitumoral effect of adaptive immunity also help to the tumour evolution. It lets tumour cells to modify immunogenicity to avoid immune recognition, and to resist the cytotoxicity of T cells.
-The activated oncogenes can trigger 1) DNA-damage sensors, [such as ATM (ataxia-telangiectasia mutated) and ATR (ATM and Rad3 related)]; 2) checkpoint kinases, [such as CHK1 (checkpoint kinase 1 homologue) and CHK2]; 3) and the tumour-suppressor protein p53. 
-The transcription factor, p53, that is activated by many genotoxic insults and induces cellular apoptosis. The gene TP53, encoding p53, is frequently mutated or functionally inactivated in cancer cells.
-Through suppression of the DNA-damage response by above mechanisms, tumor cells might downregulation of NKG2D ligands (\acrshort{mica}, \acrshort{micb}) to avoid recognition by NKG2D-expressing NK cells, natural killer T (NKT) cells, $\gamma\delta$ T cells and some cytolytic CD8+ $\alpha\beta$ T cells \citep{Ljunggren2007}. They also express PD‐L1 and Fas ligand to suppress cytotoxic T cells \citep{Zitvogel2006}. Thus, the cell-cycle arrest, DNA repair or apoptosis (aka. DNA-damage response) of tumor cells will be inhibited.
-The activation of $\acrshort{tgf}\beta$ in terms of promoting epithelial-to-mesenchymal transition (EMT). 
-%IL-10
-% Activation of the DNA-damage response by cell-intrinsic stimuli (oncogene activation or reactive oxygen species, ROS) or therapy activates the ATM (ataxia-telangiectasia mutated)–CHK1 (checkpoint kinase 1 homologue) pathway. This pathway leads either to p53- or NKG2D- (ligand: MICA or MICB) dependent apoptosis of tumour cells.
-% NKG2D (Natural-killer group 2, member D). A lectin-type activating receptor that is encoded by the NK complex and is expressed at the surface of NK cells, NKT cells, γδ T cells and some cytolytic CD8+ αβ T cells. 
-% The ligands for NKG2D are MHC-class-I-polypeptide-related sequence A (MICA) and MICB in humans; and retinoic acid early transcript 1 (RAE1) and H60 in mice
-
-% 小巷弄防巷戰 (金門防線)
-Finally, tumor cells have downregulated homing receptors, and malformation of peripheral vacularity. It causes hypoxia and increased interstitial pressure which lead to a hostile microenvironment for against the infiltrating defense cells \citep{Ljunggren2007}.
-
-
-%{ references
-ICI, hallmarks of cancer
-%** Sharma, P. et al. Cancer Immunotherapy. in Holland‐Frei Cancer Medicine 1–23 (John Wiley & Sons, Inc., 2017). doi:doi:10.1002/9781119000822.hfcm068.
-
-%**1. Öhman, J. Potentially Malignant Disorders and Oral cancer -A study on Immunosurveillance. GUPEA (University of Gothenburg. Sahlgrenska Academy, 2015). doi:10.16880/sec.2015.58.01.107.
-https://gupea.ub.gu.se/handle/2077/37523 a dissertation of HNSCC
-%gupea_2077_37523_4.pdf
-
-There is 5 papers for this dissertation. :-)
-The concept of immunosurveillance originally proposed by Dunn et al. in 2004 is well in line with the findings in this thesis of PMOD and oral cancer.
-
-%** Cillo, A. R., Kürten, C. H. L., Tabib, T., Qi, Z., Onkar, S., Wang, T., … Vignali, D. A. A. (2020). Immune Landscape of Viral- and Carcinogen-Driven Head and Neck Cancer. Immunity, 52(1), 183-199.e9. https://doi.org/10.1016/j.immuni.2019.11.014
-HPV or chemicals (with Graphical Abstract)
-
-
-
-\paragraph{Immunotherapy for \acrshort{hnscc}}
-Immune Response in \acrshort{hnscc}
-Cancer Immunotherapy
-
-The basic principles that guide cancer immunology are immune surveillance, immune editing, and immune tolerance\citep{Sharma2017}.
-
-ICI immune-checkpoint molecule
+%Immune Response in \acrshort{hnscc}
+%Cancer Immunotherapy
+The basic principles that guide cancer Immunotherapy are immune surveillance, immune editing, and immune tolerance\citep{Sharma2017}, involving immune-checkpoint molecules.
 %Figure15_cite_Ferrarotto2017.png
+Until the immuno-oncology era, \acrfull{ici} was introduced since 2014 for treating \acrshort{hnscc}\citep{Seiwert2014}\citep{Swanson2015}.
+The \acrshort{ici} works on immune checkpoint molecules, including \acrfull{pd1}, \acrfull{ctla4}, \acrfull{tim3}, \acrfull{lag3}, \acrfull{tigit}, \acrfull{gitr}, and \acrfull{vista}\citep{Mei2020}.
+The \acrshort{us} \acrshort{fda} has approved the anti-\acrshort{pd1} agents (e.g. pembrolizumab and nivolumab) as a monotherapy for the platinum-treated patients with recurrent or metastatic \acrshort{hnscc}\citep{Cramer2019}. 
+According to the phase 3 KEYNOTE-048 study, \acrshort{pdl1} is a validated biomarker used in clinical guidance for candidate selection of pembrolizumab\citep{Burtness2019}\citep{Gavrielatou2020}.
+However, because of the complexity of immune-tumor interaction, \acrshort{ici} has 20\% response rate to \acrfull{pdl1} expressed patients (over 50\% in \acrlong{ihc}, \acrshort{ihc} staining of \acrshort{hnscc})\citep{Swanson2015}\citep{Gavrielatou2020}.
 
-
-%% 
-Evasion of apoptosis contributes to the acquisition of initial oncogenesis, resistance to chemotherapy and to immune effectors
-The apoptotic program is carried out through two main pathways: the mitochondrial pathway, which involves mitochondrial outer-membrane permeabilization (MOMP)61; and the death-receptor pathway, which involves ligation of a plasma-membrane receptor, leading to the formation of a death-inducing signalling complex (DISC).
-
-% a long way to go becoming cancer
-Chronic inflammation is a risk factor in promoting carcinogenesis. The persistent inflammation in oral lichen planus (with reticular striations) was found that the influx of T helper, cytotoxic T cells, and B cells were increased in oral mucosa with moderate to severe dysplasia and oral squamous cell carcinoma compared to normal or mild dysplasia \citep{Gannot2002}. The infiltration of T cells and dendritic cells were also found in oral lichen planus \citep{Lorenzini2013}.
-The incidence of malignant transformation of oral lichen planus is approximately 0.5–1.5\% \citep{Bermejo-Fenoll2009}, while oral leukoplakia is about 10\%.
-
-%\paragraph{Prognosis}
-
+Currently, Pembrolizumab and nivolumab's success is also based on a common biomarker (e.g., \acrshort{pd1}) crossing several types of cancer.
+It shows a model of tumor type-agnostic therapy\citep{Yan2018}.
+%*** PD-L1/PD-L2 is a biomarker; Keynote-012
+There are several common biomarkers of \acrfull{ici} under evaluation, including \acrfull{til}, \acrfull{ifng}, and \acrfull{tmb}\citep{Gavrielatou2020}.
+The other \acrshort{ici}, anti-\acrshort{lag3} (pelatlimab), is currently evaluated under the phase I/IIA\citep{Cristina2019} (ClinicalTrials.gov Identifier: NCT01968109) and II-IVA\citep{Neal2019} (NCT04080804) studies.
 %%%%%%%%%%%
 %X
 
@@ -824,7 +766,7 @@ The incidence of malignant transformation of oral lichen planus is approximately
 
 
 
-\section*{Holistic Cancer Care}
+\section{Holistic Cancer Care}
 
 %****************%
 %\subsubsection{Holistic Cancer Care} 
@@ -1198,15 +1140,16 @@ In Taipei Medical University Hospital, holistic-enabled EHR has been designed as
 %Diagnosed with life-threatening diseases or terminal stage of chronic diseases or cancers? No
 
 
-\section*{Preliminary Results}
-In our previous transtriptomics study\cite{Chi2020}, %\citep{Tai2007},
+\section{Preliminary Results}
+In our previous transtriptomics study\citep{Chi2020}, %\citep{Tai2007},
 % from pvalueTex
-the 9416 Kaplan-Meier plots with associated Cox's univariate and multivariate tables were generated by Cox modeling (see Figure \ref{fig:figure1}) and justified by the ranking of hazard ratios.
-The 967 genes were kept by criteria of uncorrected \textit{P} value (below 0.05) and \acrfull{hr} (greater than 1.5 or less than 0.5) (see Figure \ref{fig:figure2}(a) univariate, and Figure \ref{fig:figure2}(b) multivariate plots). 
-At the final step, a stringent criteria (Bonferroni \textit{P} value correction) was used to yield twenty candidates (see Figure \ref{fig:figure2}(c), (d)). 
+the 9416 Kaplan-Meier plots with associated Cox's univariate and multivariate tables were generated by Cox modeling %(see Figure \ref{fig:figure1}) 
+and justified by the ranking of hazard ratios.
+The 967 genes were kept by criteria of uncorrected \textit{P} value (below 0.05) and \acrfull{hr} (greater than 1.5 or less than 0.5). %(see Figure \ref{fig:figure2}(a) univariate, and Figure \ref{fig:figure2}(b) multivariate plots). 
+At the final step, a stringent criteria (Bonferroni \textit{P} value correction) was used to yield twenty candidates. %(see Figure \ref{fig:figure2}(c), (d)). 
 % before validation
-Among these candidates, ten overexpressed genes (symbol as DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, and DKC1) are significantly associated with a poor prognosis of  \acrshort{os} (see Table \ref{table:table1}). 
-The other ten overexpressed genes (symbol as ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, IQCN - former symbol as KIAA1683, and NPB) are correlated with better survival (see Table \ref{table:table3}, with their gene name).
+Among these candidates, ten overexpressed genes (symbol as DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, and DKC1) are associated with a poor prognosis of  \acrshort{os}.% (see Table \ref{table:table1}). 
+The other ten overexpressed genes (symbol as ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, IQCN - former symbol as KIAA1683, and NPB) are correlated with better survival.% (see Table \ref{table:table3}, with their gene name).
 We made a volcano plot for 9416 genes by Kaplan-Meier \textit{P} value (less than 0.05, obtained during cutoff finding procedure) against the Cox hazard ratio (see Figure \ref{fig:figure3}). The plot reveals that the most significant (Bonferroni-adjusted \textit{P} $< 0.05$) candidate genes are located above the dotted line. At the same time, Cox's HR separated them on the two-side with prognostic impact.
 % => after validation: The result showed six overexpressed genes (symbol as CAMK2N1, PGK1, SURF4, USP10, NDFIP1, FOXA2) are significantly associated with a poor prognosis of overall survival. Furthermore, the four overexpressed genes (symbol as IL19, FCGBP, IQCN - former symbol as KIAA1683, and NPB) are correlated with better survival.
 
@@ -1226,16 +1169,17 @@ The survival significance (Kaplan-Meier \textit{P} value) is in the following pr
 %DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, DKC1;
 %ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, KIAA1683 (IQCN), NPB
 %Those 11 genes achieve similar positive and negative prognostic effect comparable with our proposed candidate genes. 
-Thus, these 10 candidates have been confirmed by a comparative study using the GSE2837 dataset other than the TCGA cohort. Please see Kaplan-Meier plots in Supplementary Figure S1.%\ref{fig:fig_GSE2837}.
+Thus, these 10 candidates have been confirmed by a comparative study using the GSE2837 dataset other than the TCGA cohort.
+%Please see Kaplan-Meier plots in Supplementary Figure S1.%\ref{fig:fig_GSE2837}.
 
 
 
 %\subsubsection{Figure 2:h}
 \begin{figure}[hp]
 \centering
-\includegraphics[width=14cm]{Figure2.pdf}
-\bcaption{\acrshort{hnscc} Cox's hazard ratio and \textit{P} value plot.}
-{(a) Univariate HR versus uncorrected \textit{P} value; (b) Multivariate HR versus uncorrected \textit{P} value; (c) Univariate HR versus Bonferroni corrected \textit{P} value; and (d) Multivariate HR versus Bonferroni corrected \textit{P} value.}
+%\includegraphics[width=14cm]{Figure2.pdf}
+%\bcaption{\acrshort{hnscc} Cox's hazard ratio and \textit{P} value plot.}
+%{(a) Univariate HR versus uncorrected \textit{P} value; (b) Multivariate HR versus uncorrected \textit{P} value; (c) Univariate HR versus Bonferroni corrected \textit{P} value; and (d) Multivariate HR versus Bonferroni corrected \textit{P} value.}
 \label{fig:figure2}
 \end{figure}
 
@@ -1245,101 +1189,7 @@ Thus, these 10 candidates have been confirmed by a comparative study using the G
 % wide table \usepackage{tabularx}
 % makecell{}
 
-\begin{table}
-%\begin{sidewaystable}[hp]
-\centering
-\caption{ The top 10 genes overexpressed with poor prognosis in \acrshort{hnscc} (ranked by Bonferroni adjusted \textit{P} value) }
-\arrayrulecolor[rgb]{0.255,0.255,0.255}
-\resizebox{\linewidth}{!}{
-%\begin{tabular}{|l|l|l|l|l|l|l|l|c|}
-\begin{tabularx}{\textwidth}{|l|p{3.5cm}|l|l|l|l|l|l|c|} % *** capital X or p{2cm}
-% p{2cm}
-\hline
-\multicolumn{1}{|c|}{\multirow{2}{*}{Gene ID}} & \multicolumn{1}{c|}{\multirow{2}{*}{Gene Description}}     & \multicolumn{2}{c|}{Kaplan-Meier survival}                                                                                   & \multicolumn{2}{c|}{Univariate~}                                                        & \multicolumn{2}{c|}{Multivariate}                                                       & \multirow{2}{*}{Remark}                     \\ 
-\cline{3-8}
-\multicolumn{1}{|c|}{}                         & \multicolumn{1}{c|}{}                                      & \multicolumn{1}{c|}{\textit{P} value}               & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Adjusted \\\textit{P} value\end{tabular}} & \multicolumn{1}{c|}{HR*}                   & 95\% CI                                    & HR*                                        & 95\% CI                                    &                                             \\ 
-\hline
-DKK1                                           & dickkopf WNT signaling pathway inhibitor 1                 & \num{8.9e-8}                               & 0.001                                                                           & 2.266                                      & 1.666-3.082                                & 2.135                                      & 1.559-2.924                                &                                           \\ 
-\hline
-CAMK2N1                                        & calcium/calmodulin-dependent protein kinase II inhibitor 1 & \num{2.9e-7}                               & 0.002                                                                           & 2.101                                      & 1.572-2.809                                & 2.007                                      & 1.490-2.704                                & \checkmark                                          \\ 
-\hline
-STC2                                           & stanniocalcin 2                                            & \num{6.5e-7}                               & 0.004                                                                           & 2.147                                      & 1.578-2.921                                & 2.075                                      & 1.515-2.843                                &                                           \\ 
-\hline
-PGK1                                           & phosphoglycerate kinase 1                                  & \num{9.1e-7}                               & 0.006                                                                           & 2.127                                      & 1.563-2.895                                & 2.046                                      & 1.498-2.795                                & \checkmark                                          \\ 
-\hline
-SURF4                                          & surfeit 4                                                  & \num{9.6e-7}                               & 0.006                                                                           & 2.055                                      & 1.531-2.757                                & 2.089                                      & 1.543-2.829                                & \checkmark                                           \\ 
-\hline
-USP10                                          & ubiquitin specific peptidase 10                            & \num{1.7e-6}                               & 0.012                                                                           & 2.083                                      & 1.532-2.834                                & 2.119                                      & 1.551-2.895                                & \checkmark                                         \\ 
-\hline
-NDFIP1                                         & Nedd4 family interacting protein 1                         & \num{2.6e-6}                               & 0.017                                                                           & 2.031                                      & 1.502-2.746                                & 2.027                                      & 1.483-2.771                                & \checkmark                                           \\ 
-\hline
-FOXA2                                          & forkhead box A2                                            & \num{2.7e-6}                               & 0.018                                                                           & 1.976                                      & 1.479-2.640                                & 1.914                                      & 1.426-2.569                                & \checkmark                                          \\ 
-\hline
-STIP1                                          & stress-induced-phosphoprotein 1                            & \num{4.3e-6}                              & 0.029                                                                           & 1.958                                      & 1.463-2.621                                & 1.957                                      & 1.451-2.640                                &                                           \\ 
-\hline
-DKC1                                           & dyskeratosis congenita 1, dyskerin                         & \num{6.3e-6}                               & 0.042                                                                           & 2.046                                      & 1.490-2.808                                & 1.837                                      & 1.332-2.534                                &                                           \\ 
-\hline
-\multicolumn{1}{|l!{\color{black}\vrule}}{}    & \multicolumn{1}{l!{\color{black}\vrule}}{}                 & \multicolumn{1}{l!{\color{black}\vrule}}{} & \multicolumn{1}{l!{\color{black}\vrule}}{}                                      & \multicolumn{1}{l!{\color{black}\vrule}}{} & \multicolumn{1}{l!{\color{black}\vrule}}{} & \multicolumn{1}{l!{\color{black}\vrule}}{} & \multicolumn{1}{l!{\color{black}\vrule}}{} & \multicolumn{1}{l!{\color{black}\vrule}}{}  \\ 
-\arrayrulecolor{black}\hline
-\multicolumn{9}{|l!{\color{black}\vrule}}{\begin{tabular}[c]{@{}l@{}}Selection criteria:~~\\~Kaplan-Meier Bonferroni adjusted \textit{P} $< 0.05 $~\\~Cox's univariate and multivariate$ HR >= 1.5$ \end{tabular}}                                                                                                                                                                                                                                                              \\ 
-\hline
-\multicolumn{9}{|l!{\color{black}\vrule}}{* Cox's model: \textit{P} $< 0.001$ }                                                                                                                                                                                                                                                                                                                                                                                                  \\ 
-\hline
-\multicolumn{9}{|l!{\color{black}\vrule}}{Remark: \checkmark validated by GSE2837}                                                                                                                                                                                                                                                                                                                                                             \\
-\hline
-\end{tabularx}
-}
-\arrayrulecolor{black}
-\label{table:table1}
 
-%\end{sidewaystable}
-\end{table}
-
-
-
-
-%\subsubsection{Table3/legend} or Table 2?
-%Table3. The 10 candidate genes overexpressed with better prognosis in HNSCC (ranked by Bonferroni corrected Kaplan-Meier P-value).
-\begin{table}[hp]
-\centering
-\caption{The other top 10 genes overexpressed with better prognosis in \acrshort{hnscc} (ranked by Bonferroni corrected \textit{P} value) }
-\arrayrulecolor[rgb]{0.255,0.255,0.255}
-\resizebox{\linewidth}{!}{%
-\begin{tabular}{|l|l|l|l|l|l|l|l|c|} 
-\hline
-\multicolumn{1}{|c|}{\multirow{2}{*}{Gene ID}} & \multicolumn{1}{c|}{\multirow{2}{*}{Gene Description}} & \multicolumn{2}{l|}{Kaplan-Meier survival}                                                                                                                                                & \multicolumn{2}{c|}{Univariate~}                                                                        & \multicolumn{2}{c|}{Multivariate}                                                                       & \multicolumn{1}{l|}{\multirow{2}{*}{Remark}}  \\ 
-\cline{3-8}
-\multicolumn{1}{|c|}{}                         & \multicolumn{1}{c|}{}                                  & \multicolumn{1}{c!{\color{black}\vrule}}{\textit{P} value}                                  & \multicolumn{1}{c!{\color{black}\vrule}}{\begin{tabular}[c]{@{}c@{}}Adjusted\\~\textit{P} value\end{tabular}} & \multicolumn{1}{c!{\color{black}\vrule}}{HR*}   & \multicolumn{1}{c!{\color{black}\vrule}}{95\% CI}     & \multicolumn{1}{c!{\color{black}\vrule}}{HR*}   & \multicolumn{1}{c!{\color{black}\vrule}}{95\% CI}     & \multicolumn{1}{l|}{}                         \\ 
-\cline{1-2}\arrayrulecolor{black}\cline{3-8}\arrayrulecolor[rgb]{0.255,0.255,0.255}\cline{9-9}
-ZNF557                                         & zinc finger protein 557                                & \multicolumn{1}{l!{\color{black}\vrule}}{\textcolor[rgb]{0,0,0.471}{\num{8.6e-8}}} & \multicolumn{1}{l!{\color{black}\vrule}}{0.001}                                                      & \multicolumn{1}{l!{\color{black}\vrule}}{0.465} & \multicolumn{1}{l!{\color{black}\vrule}}{0.348-0.619} & \multicolumn{1}{l!{\color{black}\vrule}}{0.499} & \multicolumn{1}{l!{\color{black}\vrule}}{0.372-0.669} &                                              \\ 
-\cline{1-2}\arrayrulecolor{black}\cline{3-8}\arrayrulecolor[rgb]{0.255,0.255,0.255}\cline{9-9}
-ZNF266                                         & zinc finger protein 266                                & \textcolor[rgb]{0,0,0.471}{\num{2.2e-7}}                                           & 0.001                                                                                                & 0.474                                           & 0.355-0.632                                           & 0.453                                           & 0.338-0.607                                           &                                              \\ 
-\hline
-IL19                                           & interleukin 19                                         & \textcolor[rgb]{0,0,0.471}{}\num{3.7e-7}\textcolor[rgb]{0,0,0.471}{}               & 0.002                                                                                                & 0.472                                           & 0.351-0.635                                           & 0.459                                           & 0.340-0.619                                           & \checkmark                                            \\ 
-\hline
-MYO1H                                          & myosin 1H                                              & \textcolor[rgb]{0,0,0.471}{}\num{3.8e-7}\textcolor[rgb]{0,0,0.471}{}               & 0.003                                                                                                & 0.468                                           & 0.347-0.632                                           & 0.467                                           & 0.344-0.634                                           &                                              \\ 
-\hline
-FCGBP                                          & Fc fragment of IgG binding protein                     & \textcolor[rgb]{0,0,0.471}{}\num{1.2e-6}\textcolor[rgb]{0,0,0.471}{}               & 0.008                                                                                                & 0.484                                           & 0.359-0.653                                           & 0.496                                           & 0.366-0.674                                           &  \checkmark                                           \\ 
-\hline
-LOC148709                                      & LncRNA LOC148709                                       & \textcolor[rgb]{0,0,0.471}{\num{1.5e-6}}                                           & 0.010                                                                                                & 0.499                                           & 0.374-0.666                                           & 0.485                                           & 0.361-0.652                                           &                                              \\ 
-\hline
-EVPLL                                          & envoplakin-like protein                                & \textcolor[rgb]{0,0,0.471}{\num{2.0e-6}}                                           & 0.013                                                                                                & 0.490                                           & 0.363-0.661                                           & 0.494                                           & 0.364-0.672                                           &                                              \\ 
-\hline
-PNMA5                                          & paraneoplastic antigen like 5                          & \textcolor[rgb]{0,0,0.471}{\num{2.6e-6}}                                           & 0.017                                                                                                & 0.499                                           & 0.371-0.671                                           & 0.481                                           & 0.357-0.650                                           &                                              \\ 
-\hline
-KIAA1683                                       & new name as IQ Motif Containing N (IQCN)                           & \textcolor[rgb]{0,0,0.471}{\num{3.1e-6}}                                           & 0.020                                                                                                & 0.500                                           & 0.371-0.673                                           & 0.483                                           & 0.356-0.654                                           &   \checkmark                                           \\ 
-\hline
-NPB                                            & neuropeptide B                                         & \textcolor[rgb]{0,0,0.471}{\num{4.0e-6}}                                           & 0.027                                                                                                & 0.460                                           & 0.328-0.646                                           & 0.457                                           & 0.324-0.646                                           &      \checkmark                                        \\ 
-\hline
-                                               &                                                        &                                                                                    &                                                                                                      &                                                 &                                                       &                                                 &                                                       & \multicolumn{1}{l|}{}                         \\ 
-\hline
-\multicolumn{9}{|l|}{\begin{tabular}[c]{@{}l@{}}Selection criteria:~\\~Kaplan-Meier Bonferroni adjusted \textit{P} value \textless{} 0.05~\\~Cox's univariate and multivariate HR \textgreater{}= 1.5\\ * Cox's model: \textit{P} value \textless{} 0.001\\lncRNA: Long non-coding RNA\\Remark: \checkmark Validated by GSE2837 ~\end{tabular}}                                                                                                                                                                                                                 \\
-\hline
-\end{tabular}
-}
-\arrayrulecolor{black}
-\label{table:table3}
-\end{table}
 
 
 
@@ -1378,8 +1228,8 @@ Conversely, the most associated gene with better survival is \acrfull{IL19}. In 
 
 \clearpage
 
-Table \ref{table:table1} shows ten overexpressed genes are associated with poor prognosis in \acrshort{hnscc}, ranked by adjusted Kaplan-Meier \textit{P} value.
-Six out of ten genes has been validated by using GSE2837.
+%Table \ref{table:table1} shows ten overexpressed genes are associated with poor prognosis in \acrshort{hnscc}, ranked by adjusted Kaplan-Meier \textit{P} value.
+Six out of ten preliminary candidates has been validated by using GSE2837.
 We found those six candidates have the Cox's univariate and multivariate HR above 1.914.
 %There were few published articles of \acrfull{SURF4} and \acrfull{NDFIP1} (\acrshort{NEDD4}: \acrlong{NEDD4}), which were related to cancer research.
 In Table \ref{table:table2}, % table 3
@@ -1456,8 +1306,8 @@ The M stage could be ignored in this cohort due to only 3 out of 414 patients wi
 
 
 
-In Table \ref{table:table3}, the other ten overexpressed genes have been found in better prognosis of \acrshort{hnscc} patients. Cox's univariate and multivariate HR is under 0.5.
-Four out of ten has been validated by using GSE2837.
+%In Table \ref{table:table3}, the other ten overexpressed genes have been found in better prognosis of \acrshort{hnscc} patients. Cox's univariate and multivariate HR is under 0.5.
+%Four out of ten has been validated by using GSE2837.
 In Table \ref{table:table4},
 after adjustment of confounders, prognosis is influenced by advance clinical T Status (HR 1.961 [95\% CI: 1.035-3.714, \textit{P} = 0.039] ), positive surgical margin involvement (HR 1.631 [95\% CI: 1.18-2.254, \textit{P} = 0.003]) , and higher tobacco exposure (HR 1.453 [95\% CI: 1.055-2.000, \textit{P} = 0.022]).
 Overexpressed \acrshort{IL19} gene could has a protective influencce on prognosis (HR 0.499 [95\% CI: 0.372-0.669, \textit{P} $<$ 0.001]).
@@ -1544,36 +1394,16 @@ Thus, the prognosis model with coefficients is established from \acrshort{tcga} 
 
 %\section*{Figure}
 
-% This code uses the tikz package
-%\begin{frame}[fragile]
-%\frametitle{Directed acyclic graphs for %\acrshort{hnscc}}
-\begin{figure}
-\centering
-\begin{tikzpicture}[scale=4, every node/.style={scale=1.3}] %, transform shape]
-\node (v0) at (-1.49,1.64) {Age/Gender};
-\node (v1) at (0.705,1.42) {Alcohol/Betel/Cigarette};
-\node (v2) at (-1.18,-1.38) {Healthy Food/Exercise};
-\node (v3) at (-0.167,0.515) {Other Risky Behavior};
-\node (v4) at (1.19,-1.52) {\large \acrshort{hnscc}};
+\clearpage
 
-\draw [-latexnew, arrowhead=0.5cm, line width=4pt, ultra thick, dashed] (v0) .. controls (-0.408,1.72) and (0.325,1.64) .. (v1);
-\draw [-latexnew, arrowhead=1cm, line width=4pt, ultra thick, green, dashed] (v0) edge (v2);
-\draw [-latexnew, arrowhead=0.5cm, line width=4pt, ultra thick, dashed] (v0) .. controls (-0.761,1.13) and (-0.318,0.754) .. (v3);
-\draw [-latexnew, arrowhead=0.5cm, line width=4pt, ultra thick, red] (v0) .. controls (-0.852,0.234) and (0.0430,-0.821) .. (v4);
-\draw [-latexnew, arrowhead=2cm, line width=4pt, ultra thick, red] (v1) .. controls (1.30,0.923) and (1.46,-0.0573) .. (v4);
-%  \draw [options/.expand once=\x] (0,-1.2*\i) -- (3,-1.2*\i) node [right] {\x};
-\draw [-latexnew, arrowhead=1cm, line width=0.4cm, ultra thick, green] (v2) edge (v4);
-\draw [-latexnew, arrowhead=1cm, line width=4pt, ultra thick, red] (v3) edge (v4);
-\end{tikzpicture}
-\caption{\label{fig:DAG_etiology} HNSCC will be caused by ABC or viruses.}
+\section{Deep Learning in Bioinformatics}
 
-\end{figure}
+how machine learning could help us?
+why deep learning?
 
+\section{Conclusion}
 
-
-\section*{Conclusion}
-
-We need more biomarkers.
+We need validate and find more biomarkers from holistic EHR and pathological images by the way of deep learning.
 \clearpage
 
 
@@ -1761,7 +1591,7 @@ The third page looks like this.
 \end{document}
 
 
-%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\smartdiagramset{uniform sequence color=true}
 % sequence diagram; flow diagram:horizontal
 % 2021
@@ -1787,3 +1617,195 @@ The third page looks like this.
 \smartdiagramset{module x sep=15}
 \smartdiagram[flow diagram:horizontal]{Aim3, Aim4}
 %\end{center}
+
+
+%%%%%%%%%%
+
+\paragraph{Immune System and Cancer}
+% balanced Yan and Yin 陰陽要調合
+Two-faced roles of tumor-associated neutrophils, eosinophils, and basophils
+
+*** Tex's opinion: there is no "central console" of immune control system, which disseminated remote regular % 地方自治 
+
+chronic inflammation by mechanical force or chemicals
+
+** or even in autoimmune disease:
+Risks from disease and treatment
+Autoimmune disorders generally attack a single organ or part of the body, often causing inflammation in the affected area. In some cases, that inflammation may increase cancer risk. 
+At the same time, tumor necrosis factor (TNF) inhibitors or immunosuppressant (e.x. cyclosporin), help reduce inflammation and also are suspected of increasing the risk of multiple cancers. It may impair the ability to kill cancer cells.
+
+two of ten hallmarks: avoiding immune destruction, tumor-promoting inflammation \citep{Ohman2015}
+
+
+
+The basic principles that guide cancer immunology are immune surveillance \citep{BURNET1957, Shankaran2001}, immune editing, and immune tolerance.
+%immunosurveillance
+Peritumoral immune responses might predict patients’ prognosis in a wide range of cancers. Beyond local accumulation, systemic immune response in serum is seen in patients with \acrshort{hnscc} \citep{Lee2010a}.
+% immunoediting 敵消我長的過程
+Moreover, the immune response is not only achieving protection of the host but also editing the immunogenicity of tumours \citep{Dunn2002}.
+The cancer immunoediting includes elimination, equilibrium then escape.
+%elimination by immunosurveillance
+The cells, which have aberrant major histocompatibility complex (MHC) class I expression, will be eliminated by cytotoxic mechanism or induction of apoptosis by immune cells, involving granulocytes (neutrophils, eosinophils, and basophils), macrophages, natural
+killer cells, in innate immunity \citep{Tallerico2013}.
+Tumour-associated macrophages include  M1, which has antitumoral properties, and M2, which has tumour-promoting phenotype in \acrshort{hnscc} \citep{Kumar2019}.
+
+Through dendritic cells presenting the tumor antigens to T helper cells in context with MHC class II molecules, naive or memory T cells will conduct activation of  T cells and adaptive immunity \citep{Banchereau2000}. 
+The plasmacytoid cells are a subtype of dendritic cells that are one of the main sources of secreting \acrshort{ifng}. 
+T cells consist of at least five subgroups: Th1 (CD4+), Th2 (CD4+), Th17 (CD4+), regulatory T cells (CD4+ CD25+ Tregs), and cytotoxic T cells (CD8+). 
+Cytotoxic T cells is triggered by helper T cells to attack directly and execute those tumor cells, whose antigen is presented by dendritic cells, via effector molecules such as perforin and granzyme. Cytotoxic T cells also use TRAIL receptor to release signal on tumor's FasL to induce cell apoptosis.
+% By inducing intracellular signaling through lck, the CD8 coreceptor is an important factor affecting TCR‐mediated T cell activation and modulation of immunosuppression and cytotoxicity.
+All subsets play important roles in mucosal immune response, including antitumoral responses. T cells represent approximately 10\% of the total cells in a tumour mass \citep{Balkwill2012}.
+
+% equilibrium under immunoselection:  Cancer cells avoid immunosurveillance by the selection of non-immunogenic tumour-cell variants % 鄭爺爺
+***When immunosurveillance systems are not able to eradicate the tumor cells, the result may be tumor dormancy, where an equilibrium with defending cells occurs.
+
+equilibrium represents a time of tumour cell persistence without progression.
+equilibrium is maintained solely by adaptive immunity
+The interplay of the potentially malignant cells and immune cells from immunosurveillance, equilibrium to tumor escape.
+Lymphocytes of adaptive immunity have the capacity to take over and exert enough antitumoral effects to kill and limit tumour growth, and the tumour is thus kept in their dormitory \citep{Koebel2007}.
+The tumour cells in equilibrium are highly immunogenic (unedited), whereas those spontaneously exiting equilibrium (escape) that become growing tumours have attenuated immunogenicity (edited)—results that place this process temporally between elimination and escape \citep{Koebel2007}.
+maintaining cancer in an equilibrium state may represent a relevant goal of cancer immunotherapy in which augmentation of adaptive tumour immunity could result in improved tumour control. *** A TREATMENT GOALS
+%the downregulation or loss of expression of HLA class I molecules
+% decoy receptors for TRAIL: DcR3, Decoy receptor 3 (DcR3), to prevent FasR-FasL interactions by competitively binding to membrane-bound Fas ligand; FasL binds to DcR3 (TNFRSF6B) without TRAIL function 假的誘餌
+% Death receptors:  tumour-necrosis-factor (TNF) receptor 1, CD95 (also known as FAS) and two receptors for TNF-related apoptosis-inducing ligand (TRAILR1 and TRAILR2).
+
+
+% escape under immunesubversion: by the active suppression of the immune response
+Escape is the process wherein the immunologically sculpted tumor expands in an uncontrolled manner in the immunocompetent host \citep{Dunn2002, Dunn2004}.
+It was suggested by increasing the presence of Tregs in terms of suppression of Th1 and cytotoxic T cells response by \acrfull{ctla4} \citep{Halvorsen2014}.
+Moreover, myelo-derived suppressor cells (MDSCs, CD34+) could also down-regulation of granzyme from T cells in \acrshort{hnscc} \citep{Si2019}.
+The antitumoral effect of adaptive immunity also help to the tumour evolution. It lets tumour cells to modify immunogenicity to avoid immune recognition, and to resist the cytotoxicity of T cells.
+The activated oncogenes can trigger 1) DNA-damage sensors, [such as ATM (ataxia-telangiectasia mutated) and ATR (ATM and Rad3 related)]; 2) checkpoint kinases, [such as CHK1 (checkpoint kinase 1 homologue) and CHK2]; 3) and the tumour-suppressor protein p53. 
+The transcription factor, p53, that is activated by many genotoxic insults and induces cellular apoptosis. The gene TP53, encoding p53, is frequently mutated or functionally inactivated in cancer cells.
+Through suppression of the DNA-damage response by above mechanisms, tumor cells might downregulation of NKG2D ligands (\acrshort{mica}, \acrshort{micb}) to avoid recognition by NKG2D-expressing NK cells, natural killer T (NKT) cells, $\gamma\delta$ T cells and some cytolytic CD8+ $\alpha\beta$ T cells \citep{Ljunggren2007}. They also express PD‐L1 and Fas ligand to suppress cytotoxic T cells \citep{Zitvogel2006}. Thus, the cell-cycle arrest, DNA repair or apoptosis (aka. DNA-damage response) of tumor cells will be inhibited.
+The activation of $\acrshort{tgf}\beta$ in terms of promoting epithelial-to-mesenchymal transition (EMT). 
+%IL-10
+% Activation of the DNA-damage response by cell-intrinsic stimuli (oncogene activation or reactive oxygen species, ROS) or therapy activates the ATM (ataxia-telangiectasia mutated)–CHK1 (checkpoint kinase 1 homologue) pathway. This pathway leads either to p53- or NKG2D- (ligand: MICA or MICB) dependent apoptosis of tumour cells.
+% NKG2D (Natural-killer group 2, member D). A lectin-type activating receptor that is encoded by the NK complex and is expressed at the surface of NK cells, NKT cells, γδ T cells and some cytolytic CD8+ αβ T cells. 
+% The ligands for NKG2D are MHC-class-I-polypeptide-related sequence A (MICA) and MICB in humans; and retinoic acid early transcript 1 (RAE1) and H60 in mice
+
+% 小巷弄防巷戰 (金門防線)
+Finally, tumor cells have downregulated homing receptors, and malformation of peripheral vacularity. It causes hypoxia and increased interstitial pressure which lead to a hostile microenvironment for against the infiltrating defense cells \citep{Ljunggren2007}.
+
+
+%{ references
+ICI, hallmarks of cancer
+%** Sharma, P. et al. Cancer Immunotherapy. in Holland‐Frei Cancer Medicine 1–23 (John Wiley & Sons, Inc., 2017). doi:doi:10.1002/9781119000822.hfcm068.
+
+%**1. Öhman, J. Potentially Malignant Disorders and Oral cancer -A study on Immunosurveillance. GUPEA (University of Gothenburg. Sahlgrenska Academy, 2015). doi:10.16880/sec.2015.58.01.107.
+https://gupea.ub.gu.se/handle/2077/37523 a dissertation of HNSCC
+%gupea_2077_37523_4.pdf
+
+There is 5 papers for this dissertation. :-)
+The concept of immunosurveillance originally proposed by Dunn et al. in 2004 is well in line with the findings in this thesis of PMOD and oral cancer.
+
+%** Cillo, A. R., Kürten, C. H. L., Tabib, T., Qi, Z., Onkar, S., Wang, T., … Vignali, D. A. A. (2020). Immune Landscape of Viral- and Carcinogen-Driven Head and Neck Cancer. Immunity, 52(1), 183-199.e9. https://doi.org/10.1016/j.immuni.2019.11.014
+HPV or chemicals (with Graphical Abstract)
+
+%%
+%% 
+Evasion of apoptosis contributes to the acquisition of initial oncogenesis, resistance to chemotherapy and to immune effectors
+The apoptotic program is carried out through two main pathways: the mitochondrial pathway, which involves mitochondrial outer-membrane permeabilization (MOMP)61; and the death-receptor pathway, which involves ligation of a plasma-membrane receptor, leading to the formation of a death-inducing signalling complex (DISC).
+
+% a long way to go becoming cancer
+Chronic inflammation is a risk factor in promoting carcinogenesis. The persistent inflammation in oral lichen planus (with reticular striations) was found that the influx of T helper, cytotoxic T cells, and B cells were increased in oral mucosa with moderate to severe dysplasia and oral squamous cell carcinoma compared to normal or mild dysplasia \citep{Gannot2002}. The infiltration of T cells and dendritic cells were also found in oral lichen planus \citep{Lorenzini2013}.
+The incidence of malignant transformation of oral lichen planus is approximately 0.5–1.5\% \citep{Bermejo-Fenoll2009}, while oral leukoplakia is about 10\%.
+
+%%%
+\begin{table}
+%\begin{sidewaystable}[hp]
+\centering
+\caption{ The top 10 genes overexpressed with poor prognosis in \acrshort{hnscc} (ranked by Bonferroni adjusted \textit{P} value) }
+\arrayrulecolor[rgb]{0.255,0.255,0.255}
+\resizebox{\linewidth}{!}{
+%\begin{tabular}{|l|l|l|l|l|l|l|l|c|}
+\begin{tabularx}{\textwidth}{|l|p{3.5cm}|l|l|l|l|l|l|c|} % *** capital X or p{2cm}
+% p{2cm}
+\hline
+\multicolumn{1}{|c|}{\multirow{2}{*}{Gene ID}} & \multicolumn{1}{c|}{\multirow{2}{*}{Gene Description}}     & \multicolumn{2}{c|}{Kaplan-Meier survival}                                                                                   & \multicolumn{2}{c|}{Univariate~}                                                        & \multicolumn{2}{c|}{Multivariate}                                                       & \multirow{2}{*}{Remark}                     \\ 
+\cline{3-8}
+\multicolumn{1}{|c|}{}                         & \multicolumn{1}{c|}{}                                      & \multicolumn{1}{c|}{\textit{P} value}               & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Adjusted \\\textit{P} value\end{tabular}} & \multicolumn{1}{c|}{HR*}                   & 95\% CI                                    & HR*                                        & 95\% CI                                    &                                             \\ 
+\hline
+DKK1                                           & dickkopf WNT signaling pathway inhibitor 1                 & \num{8.9e-8}                               & 0.001                                                                           & 2.266                                      & 1.666-3.082                                & 2.135                                      & 1.559-2.924                                &                                           \\ 
+\hline
+CAMK2N1                                        & calcium/calmodulin-dependent protein kinase II inhibitor 1 & \num{2.9e-7}                               & 0.002                                                                           & 2.101                                      & 1.572-2.809                                & 2.007                                      & 1.490-2.704                                & \checkmark                                          \\ 
+\hline
+STC2                                           & stanniocalcin 2                                            & \num{6.5e-7}                               & 0.004                                                                           & 2.147                                      & 1.578-2.921                                & 2.075                                      & 1.515-2.843                                &                                           \\ 
+\hline
+PGK1                                           & phosphoglycerate kinase 1                                  & \num{9.1e-7}                               & 0.006                                                                           & 2.127                                      & 1.563-2.895                                & 2.046                                      & 1.498-2.795                                & \checkmark                                          \\ 
+\hline
+SURF4                                          & surfeit 4                                                  & \num{9.6e-7}                               & 0.006                                                                           & 2.055                                      & 1.531-2.757                                & 2.089                                      & 1.543-2.829                                & \checkmark                                           \\ 
+\hline
+USP10                                          & ubiquitin specific peptidase 10                            & \num{1.7e-6}                               & 0.012                                                                           & 2.083                                      & 1.532-2.834                                & 2.119                                      & 1.551-2.895                                & \checkmark                                         \\ 
+\hline
+NDFIP1                                         & Nedd4 family interacting protein 1                         & \num{2.6e-6}                               & 0.017                                                                           & 2.031                                      & 1.502-2.746                                & 2.027                                      & 1.483-2.771                                & \checkmark                                           \\ 
+\hline
+FOXA2                                          & forkhead box A2                                            & \num{2.7e-6}                               & 0.018                                                                           & 1.976                                      & 1.479-2.640                                & 1.914                                      & 1.426-2.569                                & \checkmark                                          \\ 
+\hline
+STIP1                                          & stress-induced-phosphoprotein 1                            & \num{4.3e-6}                              & 0.029                                                                           & 1.958                                      & 1.463-2.621                                & 1.957                                      & 1.451-2.640                                &                                           \\ 
+\hline
+DKC1                                           & dyskeratosis congenita 1, dyskerin                         & \num{6.3e-6}                               & 0.042                                                                           & 2.046                                      & 1.490-2.808                                & 1.837                                      & 1.332-2.534                                &                                           \\ 
+\hline
+\multicolumn{1}{|l!{\color{black}\vrule}}{}    & \multicolumn{1}{l!{\color{black}\vrule}}{}                 & \multicolumn{1}{l!{\color{black}\vrule}}{} & \multicolumn{1}{l!{\color{black}\vrule}}{}                                      & \multicolumn{1}{l!{\color{black}\vrule}}{} & \multicolumn{1}{l!{\color{black}\vrule}}{} & \multicolumn{1}{l!{\color{black}\vrule}}{} & \multicolumn{1}{l!{\color{black}\vrule}}{} & \multicolumn{1}{l!{\color{black}\vrule}}{}  \\ 
+\arrayrulecolor{black}\hline
+\multicolumn{9}{|l!{\color{black}\vrule}}{\begin{tabular}[c]{@{}l@{}}Selection criteria:~~\\~Kaplan-Meier Bonferroni adjusted \textit{P} $< 0.05 $~\\~Cox's univariate and multivariate$ HR >= 1.5$ \end{tabular}}                                                                                                                                                                                                                                                              \\ 
+\hline
+\multicolumn{9}{|l!{\color{black}\vrule}}{* Cox's model: \textit{P} $< 0.001$ }                                                                                                                                                                                                                                                                                                                                                                                                  \\ 
+\hline
+\multicolumn{9}{|l!{\color{black}\vrule}}{Remark: \checkmark validated by GSE2837}                                                                                                                                                                                                                                                                                                                                                             \\
+\hline
+\end{tabularx}
+}
+\arrayrulecolor{black}
+\label{table:table1}
+
+%\end{sidewaystable}
+\end{table}
+
+
+%%%
+
+%\subsubsection{Table3/legend} or Table 2
+%Table3. The 10 candidate genes overexpressed with better prognosis in HNSCC (ranked by Bonferroni corrected Kaplan-Meier P-value).
+\begin{table}[hp]
+\centering
+\caption{The other top 10 genes overexpressed with better prognosis in \acrshort{hnscc} (ranked by Bonferroni corrected \textit{P} value) }
+\arrayrulecolor[rgb]{0.255,0.255,0.255}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{|l|l|l|l|l|l|l|l|c|} 
+\hline
+\multicolumn{1}{|c|}{\multirow{2}{*}{Gene ID}} & \multicolumn{1}{c|}{\multirow{2}{*}{Gene Description}} & \multicolumn{2}{l|}{Kaplan-Meier survival}                                                                                                                                                & \multicolumn{2}{c|}{Univariate~}                                                                        & \multicolumn{2}{c|}{Multivariate}                                                                       & \multicolumn{1}{l|}{\multirow{2}{*}{Remark}}  \\ 
+\cline{3-8}
+\multicolumn{1}{|c|}{}                         & \multicolumn{1}{c|}{}                                  & \multicolumn{1}{c!{\color{black}\vrule}}{\textit{P} value}                                  & \multicolumn{1}{c!{\color{black}\vrule}}{\begin{tabular}[c]{@{}c@{}}Adjusted\\~\textit{P} value\end{tabular}} & \multicolumn{1}{c!{\color{black}\vrule}}{HR*}   & \multicolumn{1}{c!{\color{black}\vrule}}{95\% CI}     & \multicolumn{1}{c!{\color{black}\vrule}}{HR*}   & \multicolumn{1}{c!{\color{black}\vrule}}{95\% CI}     & \multicolumn{1}{l|}{}                         \\ 
+\cline{1-2}\arrayrulecolor{black}\cline{3-8}\arrayrulecolor[rgb]{0.255,0.255,0.255}\cline{9-9}
+ZNF557                                         & zinc finger protein 557                                & \multicolumn{1}{l!{\color{black}\vrule}}{\textcolor[rgb]{0,0,0.471}{\num{8.6e-8}}} & \multicolumn{1}{l!{\color{black}\vrule}}{0.001}                                                      & \multicolumn{1}{l!{\color{black}\vrule}}{0.465} & \multicolumn{1}{l!{\color{black}\vrule}}{0.348-0.619} & \multicolumn{1}{l!{\color{black}\vrule}}{0.499} & \multicolumn{1}{l!{\color{black}\vrule}}{0.372-0.669} &                                              \\ 
+\cline{1-2}\arrayrulecolor{black}\cline{3-8}\arrayrulecolor[rgb]{0.255,0.255,0.255}\cline{9-9}
+ZNF266                                         & zinc finger protein 266                                & \textcolor[rgb]{0,0,0.471}{\num{2.2e-7}}                                           & 0.001                                                                                                & 0.474                                           & 0.355-0.632                                           & 0.453                                           & 0.338-0.607                                           &                                              \\ 
+\hline
+IL19                                           & interleukin 19                                         & \textcolor[rgb]{0,0,0.471}{}\num{3.7e-7}\textcolor[rgb]{0,0,0.471}{}               & 0.002                                                                                                & 0.472                                           & 0.351-0.635                                           & 0.459                                           & 0.340-0.619                                           & \checkmark                                            \\ 
+\hline
+MYO1H                                          & myosin 1H                                              & \textcolor[rgb]{0,0,0.471}{}\num{3.8e-7}\textcolor[rgb]{0,0,0.471}{}               & 0.003                                                                                                & 0.468                                           & 0.347-0.632                                           & 0.467                                           & 0.344-0.634                                           &                                              \\ 
+\hline
+FCGBP                                          & Fc fragment of IgG binding protein                     & \textcolor[rgb]{0,0,0.471}{}\num{1.2e-6}\textcolor[rgb]{0,0,0.471}{}               & 0.008                                                                                                & 0.484                                           & 0.359-0.653                                           & 0.496                                           & 0.366-0.674                                           &  \checkmark                                           \\ 
+\hline
+LOC148709                                      & LncRNA LOC148709                                       & \textcolor[rgb]{0,0,0.471}{\num{1.5e-6}}                                           & 0.010                                                                                                & 0.499                                           & 0.374-0.666                                           & 0.485                                           & 0.361-0.652                                           &                                              \\ 
+\hline
+EVPLL                                          & envoplakin-like protein                                & \textcolor[rgb]{0,0,0.471}{\num{2.0e-6}}                                           & 0.013                                                                                                & 0.490                                           & 0.363-0.661                                           & 0.494                                           & 0.364-0.672                                           &                                              \\ 
+\hline
+PNMA5                                          & paraneoplastic antigen like 5                          & \textcolor[rgb]{0,0,0.471}{\num{2.6e-6}}                                           & 0.017                                                                                                & 0.499                                           & 0.371-0.671                                           & 0.481                                           & 0.357-0.650                                           &                                              \\ 
+\hline
+KIAA1683                                       & new name as IQ Motif Containing N (IQCN)                           & \textcolor[rgb]{0,0,0.471}{\num{3.1e-6}}                                           & 0.020                                                                                                & 0.500                                           & 0.371-0.673                                           & 0.483                                           & 0.356-0.654                                           &   \checkmark                                           \\ 
+\hline
+NPB                                            & neuropeptide B                                         & \textcolor[rgb]{0,0,0.471}{\num{4.0e-6}}                                           & 0.027                                                                                                & 0.460                                           & 0.328-0.646                                           & 0.457                                           & 0.324-0.646                                           &      \checkmark                                        \\ 
+\hline
+                                               &                                                        &                                                                                    &                                                                                                      &                                                 &                                                       &                                                 &                                                       & \multicolumn{1}{l|}{}                         \\ 
+\hline
+\multicolumn{9}{|l|}{\begin{tabular}[c]{@{}l@{}}Selection criteria:~\\~Kaplan-Meier Bonferroni adjusted \textit{P} value \textless{} 0.05~\\~Cox's univariate and multivariate HR \textgreater{}= 1.5\\ * Cox's model: \textit{P} value \textless{} 0.001\\lncRNA: Long non-coding RNA\\Remark: \checkmark Validated by GSE2837 ~\end{tabular}}                                                                                                                                                                                                                 \\
+\hline
+\end{tabular}
+}
+\arrayrulecolor{black}
+\label{table:table3}
+\end{table}
+
+
