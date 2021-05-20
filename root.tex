@@ -153,6 +153,8 @@
 \newacronym{hnscc}{HNSCC}{head and neck squamous cell carcinoma}
 \newacronym{tcga}{TCGA}{the Cancer Genome Atlas}
 \newacronym{tcpa}{TCPA}{the Cancer Proteome Atlas}
+\newacronym{tcia}{TCIA}{the Cancer Imaging Archive}
+
 \newacronym{rna}{RNA}{ribonucleic acid}
 \newacronym{rnaseq}{RNA-Seq}{RNA sequencing}
 \newacronym{lncrna}{lncRNA}{long non-coding RNA}
@@ -418,8 +420,9 @@ Further validation will be conducted by using deep learning.
 % Conclusions: brief summary and potential implications
 \textbf{Conclusions:}
 %Those 11 validated biomarkers (DKK1, CAMK2N1, STC2, PGK1, SURF4, NDFIP1, STIP1, DKC1, ZNF557, ZNF266, and FCGBP), 
-The candidate biomarkers, clinical tumor size, and surgical margin status are independent prognosis factors in \acrshort{hnscc}.
-We suggest that expression data of \acrshort{rnaseq} with associated pathological images and holistic features will help to facilitate the biomarker discovery in terms of tumor-agnostic therapy.
+The candidate biomarkers, clinical tumor size, and surgical margin status are suggested prognosis factors in \acrshort{hnscc} through TCGA analysis.
+The transcriptomic representation of \acrfull{tcia} and TCGA could be applied to validate those candidates by independent TMU cohort (n=46, obtained at TMU Joint Biobank).
+We conclude that expression data of \acrshort{rnaseq} with associated pathological images and holistic features will help to facilitate the biomarker discovery in terms of tumor-agnostic therapy.
 % pvalueTex, equipped with an optimal cutoff finder, 
 
 %Survival analysis using the Cancer Genome Atlas (TCGA) dataset is a well-known method to discover gene expression-based prognostic biomarkers of head and neck squamous cell carcinoma (HNSCC). It is necessary to determine a cutoff point by patients' dichotomization for the continuous gene expression. Usually, an optimization algorithm for cutoff determination has been set at the median or quantiles of RNA sequencing value.
@@ -671,8 +674,8 @@ Primary prevention by minimizing exposure to known carcinogens is promising, but
 
 % chemotherapy => systemic therapy
 The treatment strategies of HNSCC are surgery alone, systemic therapy with concurrent radiation therapy (systemic therapy/RT), or surgery with adjuvant systemic therapy/RT (according to National Comprehensive Cancer Network, NCCN Clinical Practice Guidelines in HNSCC, Version 2.2020) \citep{Pfister2020a}. Despite the improvement in those interventions, the survival of HNSCC has improved only marginally over the past decade worldwide \citep{hpa2019}.
-The recurrent disease is still observed in ~50\% of all patients \citep{Forastiere2001,Warnakulasuriya2009}.
-By comparison with new systemic treatments seen in other solid tumours, the prognostic result of targeted therapy, ex. EGFR inhibitors, in HNSCC patients has remained relatively stationary in recent years\citep{Argiris2015a}.
+The recurrent disease is still observed in up to 50\% of all patients \citep{Forastiere2001,Warnakulasuriya2009}.
+By comparison with new systemic treatments seen in other solid tumours, the prognostic result of targeted therapy, ex. EGFR inhibitors, in HNSCC patients has remained relatively stationary since it's available\citep{Argiris2015a}.
 The critical advancement of immuno-oncology should benefit from emerging prognostic biomarkers, which guide the development of modern systemic therapy.
 % Pfister, D. G.
 
@@ -701,26 +704,24 @@ The critical advancement of immuno-oncology should benefit from emerging prognos
 
 
 
-\subsubsection{Surgical Oncology for \acrshort{hnscc}}
-Biomarkers guidance with molecular pathology for surgical margin security and strong confidence of post-operation diagnosis.
+\subsubsection{Surgical Margin Status for \acrshort{hnscc}}
 
-There is 52.2\% of cases having mutations in the adjacent normal tissues was also observed in \acrshort{hnscc} surgical specimen \citep{Singh2016}. It is believed to increase the risk of local recurrence.
+Biomarkers guidance with molecular pathology for surgical margin security give clinicians strong confidence of post-operation diagnosis.
+%
+There is 52.2\% of cases having mutations in the adjacent normal tissues was also observed in \acrshort{hnscc} surgical specimen \citep{Singh2016}. It is believed to increase the risk of local recurrence, especially noted in betel-nut chewers\citep{DPSlaughterHWSouthwick1953}\citep{Liao2014}.
 
 % revised surgical margin
-Moreover, The adverse pathological features are positive/close surgical margin ($<5 mm$), \acrfull{ene}, \acrfull{lvsi}, \acrfull{pni}, \acrfull{doi} ($>5 mm$), as well as metastatic \acrfull{lnd}\cite{Cheraghlou2018}, and \acrfull{wpoi5}, which was defined as tumor dispersion $>= 1 mm$ between tumor satellites or positive \acrshort{pni}/\acrshort{lvsi}\cite{Amin2017}.
-The features of \acrshort{doi}, \acrshort{lnd}, and tumor dispersion were not available on the \acrshort{tcga} dataset. The Brandwein-Gensler's risk model (lymphocytic host response, \acrshort{wpoi5}, and \acrshort{pni})\cite{Brandwein-Gensler2010}\cite{Sinha2018} was suggested to be routinely performed on pathological examination. In previous reports of \acrshort{hnscc}, the loco-regional failure will be high when the initial frozen section has a positive/close surgical margin, and even the final margin revision revealed negative\cite{Bulbul2019b}.
-According to Table \ref{table:table2} and Table \ref{table:table4} in our study, the positive surgical margin yielded a hazard ratio greater than 1.6 to influence on patient's \acrshort{os}.
-It was suggested by authors \cite{Scholl1986}\cite{Sutton2003}\cite{Shaw2004}\cite{Guillemaud2010a}\cite{Patel2010}\cite{Kuriakose2017}\cite{Shapiro2017}\cite{Saidak2018}\cite{Miguelanez-Medran2019}\cite{Saidak2019} that the reason of positive/close surgical margin is possibly due to tumor aggressiveness or dispersion (WPOI-5) instead of iatrogenic reason of surgery. The surgical margin status is suggested as an independent surrogate for tumor dispersion, and important in the \acrshort{hnscc} study. Thus, in the current study, we selected the common clinicopathological features, including gender, age, clinical T, clinical N, clinical M, surgical margin status, and tobacco exposure in the biomarker discovery for adjustment of confounders (details description at Materials and Methods section).
-
+Moreover, The adverse pathological features are positive/close surgical margin ($<5 mm$), \acrfull{ene}, \acrfull{lvsi}, \acrfull{pni}, \acrfull{doi} ($>5 mm$), as well as metastatic \acrfull{lnd}\citep{Cheraghlou2018}, and \acrfull{wpoi5}, which was defined as tumor dispersion $>= 1 mm$ between tumor satellites or positive \acrshort{pni}/\acrshort{lvsi}\citep{Amin2017}.
+The features of \acrshort{doi}, \acrshort{lnd}, and tumor dispersion were not available on the \acrshort{tcga} dataset. The Brandwein-Gensler's risk model (lymphocytic host response, \acrshort{wpoi5}, and \acrshort{pni})\citep{Brandwein-Gensler2010}\citep{Sinha2018} was suggested to be routinely performed on pathological examination. In previous reports of \acrshort{hnscc}, the loco-regional failure will be high when the initial frozen section has a positive/close surgical margin, and even the final margin revision revealed negative\citep{Clark2017a}\citep{Bulbul2019b}.  %revised margin
+It was suggested by authors \citep{Scholl1986}\citep{Sutton2003}\citep{Shaw2004}\citep{Guillemaud2010a}\citep{Patel2010}\citep{Kuriakose2017}\citep{Shapiro2017}\citep{Saidak2018}\citep{Miguelanez-Medran2019}\citep{Saidak2019} that the reason of positive/close surgical margin is possibly due to tumor aggressiveness or dispersion (WPOI-5) instead of iatrogenic reason of surgery. The surgical margin status is suggested as an independent surrogate for tumor dispersion, and important in the \acrshort{hnscc} study. Thus, in the current study, we selected the common clinicopathological features, including gender, age, clinical T, clinical N, clinical M, surgical margin status, and tobacco exposure in the biomarker discovery for adjustment of confounders.% (details description at Materials and Methods section).
+According to Table \ref{table:table2} and Table \ref{table:table4} in our preliminary data, the positive surgical margin yielded a hazard ratio greater than 1.6 to influence on patient's \acrshort{os}. The positive margin as an independent biomarker for the prognosis of \acrshort{hnscc} patients has also been suggested by authors\citep{SLAUGHTER1953}\citep{Tabor2001}\citep{Ha2003}\citep{Bilde2009}\citep{Reis2011}\citep{Chi2020}.
 %\subsection{Surgical Margin Issue}
-revised margin\cite{Clark2017a}
 %在許多已發表的 TCGA 分析的研究中，有些文章沒有辨明它，有的文章則認為對預後不重要(not significant)，
-to prove my hypothesis:
+%to prove my hypothesis:
 %但接下來我要用力證明：這將會造成 biomarker discovery 的 bias, 因為 survival or prognosis 會有非常大差別，所以在研究中要 only R0 案例」。
-=> not really
-it should include all R* status, and see margins positive as an independent biomarker for the prognosis of \acrshort{hnscc} patients \citep{SLAUGHTER1953} \citep{Ha2003} \citep{Bilde2009} \citep{Tabor2001} \citep{Reis2011} \citep{Chi2020}.
-
-****if deep learning of pathology could "see" P53 mutation on the surgical margin.
+%=> not really
+%it should include all R* status, and see margins positive as an independent biomarker for the prognosis of \acrshort{hnscc} patients \citep{SLAUGHTER1953} \citep{Ha2003} \citep{Bilde2009} \citep{Tabor2001} \citep{Reis2011} \citep{Chi2020}.
+Thus, we plan to investigate how deep learning of pathology could "see" P53 mutation or other molecular abnormalities around the surgical margin of specimen.
 %\paragraph{Prognosis}
 
 %\subsubsection{Radiation Oncology for \acrshort{hnscc}}
@@ -1415,8 +1416,14 @@ how machine learning could help us?
 why deep learning?
 
 \section{Conclusion}
+High-throughput RNA-sequencing (RNA-Seq) is a powerful tool to characterize and quantify transcriptomes. Even the cost of RNA-Seq is continuously dropping, 
+the budge of whole-genome transcriptomics study for survival analysis is still very high (USD350 to 500 per sample; 46 participants of HNSCC in TMU Joint Biobank, accessed on \today at http://ohr.tmu.edu.tw/front/jbb1/CaseNumber/pages.php?ID=dG11X29ociZDYXNlTnVtYmVy).
+% NCI HE2RNA
+Acquired the idea from the transcriptomic representation of TCGA (RNA-Seq) learned by NCI's HE2RNA project\citep{Schmauch2020},
+%TCIA for whole slide deep learning
+We could validate and find more biomarkers from holistic EHR and pathological images by the way of deep learning via R/Pytorch/Keras framework.
 
-We need validate and find more biomarkers from holistic EHR and pathological images by the way of deep learning.
+
 \clearpage
 
 
@@ -1432,8 +1439,9 @@ We need validate and find more biomarkers from holistic EHR and pathological ima
 
 Specific Aims %特定研究目標 (specific aims), 執行策略不能互相綁在一起, go paralleling, and equally balanced
 
-\1 Aim 1: Construct a Deep Learning Platform of TCIA Survival Analysis
-central issue 1 with preliminary data (key data); fallback approaches %先以概要式的背景介紹破題，點出研究目標的重要性，然後用邏輯之陳述將如何達成目標的策略和方法講清楚。請務必注意：每個研究目標基本上需具備其獨立性 (Independence)，但其重要性卻要在目標之間有所連結，且要能回應總體目標之研究顯著性
+\1 Aim 1: Construct a Deep Learning Platform of TCIA Survival Analysis\\
+%central issue 1 with preliminary data (key data); fallback approaches %先以概要式的背景介紹破題，點出研究目標的重要性，然後用邏輯之陳述將如何達成目標的策略和方法講清楚。請務必注意：每個研究目標基本上需具備其獨立性 (Independence)，但其重要性卻要在目標之間有所連結，且要能回應總體目標之研究顯著性
+Our preliminary data (biomarker candidates) could be served as the bridge between the prognosis of patients and their pathological images of specimen.
 We further plan to develop a deep-learning based data mining as well as validation platform. It might incorporate whole slide images of pathology from the Cancer Imaging Archive (TCIA) and Taipei Medical University (TMU) biobank.
 %RNA-Seq data of \acrfull{tcga} for survival analysis. 
 Graph convolutional neural network (GCNN) will be used for feature extraction from whole slide images.
@@ -1449,7 +1457,7 @@ Graph convolutional neural network (GCNN) will be used for feature extraction fr
 %save checkpoint, load then deepcopy()
 
 
-\1 Aim 2: Construct a Deep Learning Platform of EHR Survival Analysis
+\1 Aim 2: Construct a Deep Learning Platform of EHR Survival Analysis\\
 central issue 2 without preliminary data; fallback approaches % 需有充分的文獻分析和縝密的論述來補足，使得 “convincing power” 依然強而有力
 %*transfer learning from TCGA model
 %torchvision, NanoMets Models
@@ -1460,11 +1468,11 @@ Recurrent neural network (RNN) will deal with "holistic features" from electric 
 These patient's features should include physical, pathological, psychological data, and even more spiritual information investigated by physicians.
 
 
-\1 Aim 3: RNA-Seq Incorporated with Whole-slide Images models from TCIA and TMU
+\1 Aim 3: RNA-Seq Incorporated with Whole-slide Images models from TCIA and TMU\\
 central issue 3 without preliminary data; fallback approaches
 Whole-slide Images models are the surrogate of expression data of RNA-Seq
 
-\1 Aim 4: Biomarkers Discovery from RNA-Seq, Whole-slide Images, and EHR from TCGA and TMU biobank
+\1 Aim 4: Biomarkers Discovery from RNA-Seq, Whole-slide Images, and EHR from TCGA and TMU biobank\\
 central issue 4 without preliminary data; fallback approaches % 需有充分的文獻分析和縝密的論述來補足，使得 “convincing power” 依然強而有力
 %*transfer learning from TCGA model
 %torchvision, NanoMets Models
