@@ -1637,7 +1637,7 @@ central issue 4 without preliminary data; fallback approaches % 需有充分的�
 % https://texdoc.org/serve/smartdiagram/0
 %\begin{document}
 
-\begin{center}
+
 
 % A simpler example from the package documentation:
 %
@@ -1655,11 +1655,13 @@ central issue 4 without preliminary data; fallback approaches % 需有充分的�
 
 
 \begin{ganttchart}[
+    bar label node/.style={text width=5cm,align=right,font=\scriptsize\RaggedLeft,anchor=east},
+    x unit=0.6cm,
     y unit title=0.4cm,
     y unit chart=0.5cm,
     vgrid,
-    time slot format=isodate-yearmonth,
-    compress calendar,
+    time slot format=isodate-yearmonth, %compress calendar,
+    time slot unit=month,
     title/.append style={draw=none, fill=barblue},
     title label font=\sffamily\bfseries\color{white},
     title label node/.append style={below=-1.6ex},
@@ -1675,25 +1677,25 @@ central issue 4 without preliminary data; fallback approaches % 需有充分的�
     group peaks height=.2,
     bar incomplete/.append style={fill=green}
    ]{2020-10}{2022-06}
-   \gantttitlecalendar{year}\\
+   \gantttitlecalendar{year, month}\\ %=name
    \ganttbar[
     progress=100,
     bar progress label font=\small\color{barblue},
     bar progress label node/.append style={right=4pt},
     bar label font=\normalsize\color{barblue},
     name=pp
-   ]{Preliminary Project}{2020-10}{2021-04} \\
+   ]{Preliminary}{2021-04}{2021-04} \\
 \ganttset{progress label text={}, link/.style={black, -to}}
 \ganttgroup{Aim 1}{2021-07}{2021-12} \\
-\ganttbar[progress=4, name=T1A]{Task A}{2021-07}{2021-10} \\
-\ganttlinkedbar[progress=0]{Task B}{2021-10}{2021-12} \\
+\ganttbar[progress=4, name=T1A]{Solver Analysis $\&$ Formulation}{2021-07}{2021-10} \\
+\ganttlinkedbar[progress=0]{Development of source code}{2021-10}{2021-12} \\
 
 \ganttgroup{Aim 2}{2021-07}{2021-12} \\
-\ganttbar[progress=15, name=T2A]{Task A}{2021-07}{2021-10} \\
-\ganttlinkedbar[progress=0]{Task B}{2021-10}{2021-12} \\
+\ganttbar[progress=15, name=T2A]{Solver Analysis $\&$ Formulation}{2021-07}{2021-10} \\
+\ganttlinkedbar[progress=0]{Development of source code}{2021-10}{2021-12} \\
 
 \ganttgroup{Aim 3}{2021-09}{2022-06} \\
-  \ganttbar[progress=0]{Task A}{2021-09}{2022-06}
+  \ganttbar[progress=0]{Analysis of Experimental Data $\&$ Validation}{2021-09}{2022-06}
   \ganttset{link/.style={green}}
   \ganttlink[link mid=.4]{pp}{T1A}
   \ganttlink[link mid=.159]{pp}{T2A}
@@ -1704,32 +1706,6 @@ central issue 4 without preliminary data; fallback approaches % 需有充分的�
 
 
 
-%%%
-%\smartdiagramset{uniform sequence color=true}
-% sequence diagram; flow diagram:horizontal
-% 2021
-\smartdiagram[sequence diagram]{2021/July, Aug, Sep, Oct, Nov, Dec}
-
-\smartdiagramset{border color=none,
-   set color list={blue!50!cyan,green!60!lime,orange!50!red,red!80!black},
-   back arrow disabled=true}
-
-\smartdiagramset{module x sep=5}
-\smartdiagram[flow diagram:horizontal]{Aim1, Aim1}
-
-
-\smartdiagramset{border color=none,
-   set color list={blue!50!cyan,green!60!lime,orange!50!red,red!80!black},
-   back arrow disabled=true}
-\smartdiagramset{module x sep=5}
-\smartdiagram[flow diagram:horizontal]{Aim1, Aim2, Aim3}
-
-% 2022
-\smartdiagram[sequence diagram]{2022/Jan, Feb, March, April, May, June}
-
-\smartdiagramset{module x sep=15}
-\smartdiagram[flow diagram:horizontal]{Aim3, Aim4}
-\end{center}
 
 
 
@@ -1781,3 +1757,30 @@ The third page looks like this.
 
 \end{document}
 
+
+%%%
+%\smartdiagramset{uniform sequence color=true}
+% sequence diagram; flow diagram:horizontal
+% 2021
+\smartdiagram[sequence diagram]{2021/July, Aug, Sep, Oct, Nov, Dec}
+
+\smartdiagramset{border color=none,
+   set color list={blue!50!cyan,green!60!lime,orange!50!red,red!80!black},
+   back arrow disabled=true}
+
+\smartdiagramset{module x sep=5}
+\smartdiagram[flow diagram:horizontal]{Aim1, Aim1}
+
+
+\smartdiagramset{border color=none,
+   set color list={blue!50!cyan,green!60!lime,orange!50!red,red!80!black},
+   back arrow disabled=true}
+\smartdiagramset{module x sep=5}
+\smartdiagram[flow diagram:horizontal]{Aim1, Aim2, Aim3}
+
+% 2022
+\smartdiagram[sequence diagram]{2022/Jan, Feb, March, April, May, June}
+
+\smartdiagramset{module x sep=15}
+\smartdiagram[flow diagram:horizontal]{Aim3, Aim4}
+%\end{center}
