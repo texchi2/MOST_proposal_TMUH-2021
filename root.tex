@@ -135,6 +135,8 @@
 \newacronym{cnn}{CNN}{Convolutional Neural Network}
 \newacronym{gnn}{GNN}{Graph Neural Network}
 \newacronym{gcnn}{GCNN}{Graph Convolutional Neural Network}
+\newacronym{rnn}{RNN}{Recurrent Neural Network}
+\newacronym{ehr}{EHR}{Electric Healthcare Records}
 
 \newacronym{ihc}{IHC}{immunohistochemistry}
 \newacronym{fdr}{FDR}{false discovery rate}
@@ -376,9 +378,12 @@ The survival analysis could conclude the manifest of clinical and transcriptomic
 %Methods: how the study was performed and statistical tests used
 \textbf{Methods:}
 R script was used to develop a comprehensive workflow, named "pvalueTex", running on the Rstudio platform. It includes data retrieving and pre-processing, feature selection, cutoff mining engine, Kaplan-Meier survival analysis, Cox proportional hazard modeling to discover prognostic biomarkers.
-We further plan to develop a deep-learning based data mining as well as validation platform. It might incorporate the Cancer Imaging Archive (TCIA) whole slide images of pathology and RNA-Seq data for survival analysis.
+We further plan to develop a deep-learning based data mining as well as validation platform. It might incorporate whole slide images of pathology from the Cancer Imaging Archive (TCIA) and Taipei Medical University (TMU) biobank.
+%RNA-Seq data of \acrfull{tcga} for survival analysis. 
 Graph convolutional neural network (GCNN) will be used for feature extraction from whole slide images.
-Graph neural network (GNN) will be applied on construction of gene expression network.
+Recurrent neural network (RNN) will deal with "holistic features" from electric healthcare records (EHR) of Taipei Medical University Hospital (TMUH).
+These patient's features should include physical, pathological, psychological data, and even more spiritual information investigated by physicians.
+% construction of gene expression network.
 %GNN graph neural network for CNN convolutional neural network
 %The Cancer Imaging Archive (TCIA) whole slide by Deep learning (ResNet)
 % *** AI: deep learning, machine learning \citep{Huang2020}
@@ -437,6 +442,8 @@ Surgical Margin;
 Deep Learning;
 Graph Neural Network (GNN);
 Graph Convolutional Neural Network (GCNN);
+Recurrent Neural Network (RNN); 
+Electric Healthcare Records (EHR);
 Holistic Cancer Care;
 Therapeutic Relationship;
 Mindfulness Meditation
