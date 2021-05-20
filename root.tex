@@ -1656,9 +1656,9 @@ central issue 4 without preliminary data; fallback approaches % 需有充分的�
 
 \begin{ganttchart}[
     bar label node/.style={text width=5cm,align=right,font=\scriptsize\RaggedLeft,anchor=east},
-    x unit=0.6cm,
+    x unit=0.8cm,
     y unit title=0.4cm,
-    y unit chart=0.5cm,
+    y unit chart=0.6cm, %0.5
     vgrid,
     time slot format=isodate-yearmonth, %compress calendar,
     time slot unit=month,
@@ -1676,7 +1676,8 @@ central issue 4 without preliminary data; fallback approaches % 需有充分的�
     group height=.3,
     group peaks height=.2,
     bar incomplete/.append style={fill=green}
-   ]{2020-10}{2022-06}
+   ]{2021-04}{2022-06}
+   
    \gantttitlecalendar{year, month}\\ %=name
    \ganttbar[
     progress=100,
@@ -1684,8 +1685,10 @@ central issue 4 without preliminary data; fallback approaches % 需有充分的�
     bar progress label node/.append style={right=4pt},
     bar label font=\normalsize\color{barblue},
     name=pp
-   ]{Preliminary}{2021-04}{2021-04} \\
+   ]{Preliminary}{2021-04}{2021-06} \\ % name=pp
+   
 \ganttset{progress label text={}, link/.style={black, -to}}
+
 \ganttgroup{Aim 1}{2021-07}{2021-12} \\
 \ganttbar[progress=4, name=T1A]{Solver Analysis $\&$ Formulation}{2021-07}{2021-10} \\
 \ganttlinkedbar[progress=0]{Development of source code}{2021-10}{2021-12} \\
@@ -1696,6 +1699,10 @@ central issue 4 without preliminary data; fallback approaches % 需有充分的�
 
 \ganttgroup{Aim 3}{2021-09}{2022-06} \\
   \ganttbar[progress=0]{Analysis of Experimental Data $\&$ Validation}{2021-09}{2022-06}
+  \ganttnewline
+\ganttgroup{Aim 4}{2021-12}{2022-06} \\ %[group top shift =2] to avoid vertically overlap of bars
+  \ganttbar[progress=0]{Analysis of Experimental Data $\&$ Validation}{2021-12}{2022-06}
+  % , bar top shift =1.8
   \ganttset{link/.style={green}}
   \ganttlink[link mid=.4]{pp}{T1A}
   \ganttlink[link mid=.159]{pp}{T2A}
