@@ -1445,7 +1445,7 @@ https://github.com/texchi2/HE2RNA_code/blob/master/gdc_manifests/gdc_manifest.20
 GDC store pathology SVS image
 An SVS file is a digital slide image file created by an Aperio ScanScope slide scanner. 
 
-https://portal.gdc.cancer.gov/image-viewer?caseId=b843df7e-db06-4d29-b00d-6a93effd9191&filters=%7B%22op%22%3A%22and%22%2C%22content%22%3A%5B%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22cases.project.project_id%22%2C%22value%22%3A%5B%22TCGA-HNSC%22%5D%7D%7D%2C%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22files.experimental_strategy%22%2C%22value%22%3A%5B%22Tissue%20Slide%22%5D%7D%7D%5D%7D&selectedId=45fffd2f-e282-4198-8c49-0247507ebb8a
+%https://portal.gdc.cancer.gov/image-viewer?caseId=b843df7e-db06-4d29-b00d-6a93effd9191&filters=%7B%22op%22%3A%22and%22%2C%22content%22%3A%5B%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22cases.project.project_id%22%2C%22value%22%3A%5B%22TCGA-HNSC%22%5D%7D%7D%2C%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22files.experimental_strategy%22%2C%22value%22%3A%5B%22Tissue%20Slide%22%5D%7D%7D%5D%7D&selectedId=45fffd2f-e282-4198-8c49-0247507ebb8a
 
 
 
@@ -1478,9 +1478,15 @@ https://github.com/texchi2/HE2RNA_code/blob/master/transcriptome_data.py
 %save checkpoint, load then deepcopy()
 
 *** IL19 is one of our suggested candidate marker.
-TCPA modeling: Y (RNA-seq) ← X (slide represents gene expression)
-Apply model on TMUH HNSCC test cohort (with survival outcome):
-Y (survival) ← X (slide represents gene expression)
+%TCPA modeling: Y (RNA-seq) ← X (slide represents gene expression)
+$Y_{mrna} = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + ... + \beta_n X_n + \epsilon$\\[0.5cm]
+, while $X_1, X_2, ...X_n$ are the features extracted from whole slide images of pathology.
+%Gene expression is not an independent $X_{mrna}$. It could be correlated with other (for example)\\ $X_{body}, X_{stress}, X_{fear}, X_{meaningOfLife}, X_{inflammation}, X_{empathy}$ factors.\\[1cm]
+
+Apply model on validation cohort of TMU HNSCC (with survival outcome):
+%Y (survival) ← X (slide represents gene expression)
+$Y_survival = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + ... + \beta_n X_n + \epsilon$\\[0.5cm]
+, while $X_1, X_2, ...X_n$ are the features extracted from whole slide images of pathology.
 (as IL19 validation, to see is it still a biomarker)
 Please see Figure \ref{fig:HE2RNA}.
 
