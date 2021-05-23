@@ -412,7 +412,7 @@ According to the resulting tables with Bonferroni adjusted \textit{P} value unde
 
 
 %*** validated by \acrfull{hpa}.
-Further validation will be conducted by using deep learning.
+Further validation will be conducted by using deep learning platform.
 % are warranted 
 
 
@@ -702,30 +702,6 @@ The critical advancement of immuno-oncology should benefit from emerging prognos
 % from manuscript of TMSB4X 2017
 % https://docs.google.com/document/d/1j0GBllab9qr7JqB14z2KBCVGO0OkVXWQpcxCdJ3llVE/edit?usp=sharing)
 
-
-
-\subsubsection{Surgical Margin Status for \acrshort{hnscc}}
-
-Biomarkers guidance with molecular pathology for surgical margin security give clinicians strong confidence of post-operation diagnosis.
-%
-There is 52.2\% of cases having mutations in the adjacent normal tissues was also observed in \acrshort{hnscc} surgical specimen \citep{Singh2016}. It is believed to increase the risk of local recurrence, especially noted in betel-nut chewers\citep{DPSlaughterHWSouthwick1953}\citep{Liao2014}.
-
-% revised surgical margin
-Moreover, The adverse pathological features are positive/close surgical margin ($<5 mm$), \acrfull{ene}, \acrfull{lvsi}, \acrfull{pni}, \acrfull{doi} ($>5 mm$), as well as metastatic \acrfull{lnd}\citep{Cheraghlou2018}, and \acrfull{wpoi5}, which was defined as tumor dispersion $>= 1 mm$ between tumor satellites or positive \acrshort{pni}/\acrshort{lvsi}\citep{Amin2017}.
-The features of \acrshort{doi}, \acrshort{lnd}, and tumor dispersion were not available on the \acrshort{tcga} dataset. The Brandwein-Gensler's risk model (lymphocytic host response, \acrshort{wpoi5}, and \acrshort{pni})\citep{Brandwein-Gensler2010}\citep{Sinha2018} was suggested to be routinely performed on pathological examination. In previous reports of \acrshort{hnscc}, the loco-regional failure will be high when the initial frozen section has a positive/close surgical margin, and even the final margin revision revealed negative\citep{Clark2017a}\citep{Bulbul2019b}.  %revised margin
-It was suggested by authors \citep{Scholl1986}\citep{Sutton2003}\citep{Shaw2004}\citep{Guillemaud2010a}\citep{Patel2010}\citep{Kuriakose2017}\citep{Shapiro2017}\citep{Saidak2018}\citep{Miguelanez-Medran2019}\citep{Saidak2019} that the reason of positive/close surgical margin is possibly due to tumor aggressiveness or dispersion (WPOI-5) instead of iatrogenic reason of surgery. The surgical margin status is suggested as an independent surrogate for tumor dispersion, and important in the \acrshort{hnscc} study. Thus, in the current study, we selected the common clinicopathological features, including gender, age, clinical T, clinical N, clinical M, surgical margin status, and tobacco exposure in the biomarker discovery for adjustment of confounders.% (details description at Materials and Methods section).
-According to Table \ref{table:table2} and Table \ref{table:table4} in our preliminary data, the positive surgical margin yielded a hazard ratio greater than 1.6 to influence on patient's \acrshort{os}. The positive margin as an independent biomarker for the prognosis of \acrshort{hnscc} patients has also been suggested by authors\citep{SLAUGHTER1953}\citep{Tabor2001}\citep{Ha2003}\citep{Bilde2009}\citep{Reis2011}\citep{Chi2020}.
-%\subsection{Surgical Margin Issue}
-%在許多已發表的 TCGA 分析的研究中，有些文章沒有辨明它，有的文章則認為對預後不重要(not significant)，
-%to prove my hypothesis:
-%但接下來我要用力證明：這將會造成 biomarker discovery 的 bias, 因為 survival or prognosis 會有非常大差別，所以在研究中要 only R0 案例」。
-%=> not really
-%it should include all R* status, and see margins positive as an independent biomarker for the prognosis of \acrshort{hnscc} patients \citep{SLAUGHTER1953} \citep{Ha2003} \citep{Bilde2009} \citep{Tabor2001} \citep{Reis2011} \citep{Chi2020}.
-Thus, we plan to investigate how deep learning of pathology could "see" TP53 gene mutation or other molecular abnormalities around the surgical margin of specimen.
-%\paragraph{Prognosis}
-
-%\subsubsection{Radiation Oncology for \acrshort{hnscc}}
-%\paragraph{Prognosis}
 
 
 
@@ -1441,7 +1417,7 @@ AI methods can also be used to identify specific gene mutations from tumor patho
 
 \section{Conclusion}
 High-throughput RNA-sequencing (RNA-Seq) is a powerful tool to characterize and quantify transcriptomes. Even the cost of RNA-Seq is continuously dropping, 
-the budge of whole-genome transcriptomics study for survival analysis is still very high (USD350 to 500 per sample; 46 participants of HNSCC in TMU Joint Biobank, accessed on \today at http://ohr.tmu.edu.tw/front/jbb1/CaseNumber/pages.php?\\ID=dG11X29ociZDYXNlTnVtYmVy).
+the budget of whole-genome transcriptomics study for survival analysis is still very high (USD350 to 500 per sample; 46 participants of HNSCC in TMU Joint Biobank, accessed on \today at http://ohr.tmu.edu.tw/front/jbb1/CaseNumber/pages.php?\\ID=dG11X29ociZDYXNlTnVtYmVy).
 % NCI HE2RNA
 Acquired the idea from the transcriptomic representation of TCGA (RNA-Seq) learned by NCI's HE2RNA project\citep{Schmauch2020},
 %TCIA for whole slide deep learning
@@ -1501,27 +1477,6 @@ https://github.com/texchi2/HE2RNA_code/blob/master/transcriptome_data.py
 %torchvision, NanoMets Models
 %save checkpoint, load then deepcopy()
 
-
-\1 Aim 2: Construct a Deep Learning Platform of EHR Survival Analysis\\
-central issue 2 without preliminary data; fallback approaches % 需有充分的文獻分析和縝密的論述來補足，使得 “convincing power” 依然強而有力
-%*transfer learning from TCGA model
-%torchvision, NanoMets Models
-%save checkpoint, load then deepcopy()
-Deep learning can convert EHR to the Fast Healthcare Interoperability Resources (FHIR) format\citep{Rajkomar2018}\citep{HealthLevelSeven2019} for handling free-text notes by physicians.
-
-Recurrent neural network (RNN) will deal with "holistic features" from electric healthcare records (EHR) of Taipei Medical University Hospital (TMUH).
-These patient's features should include physical, pathological, psychological data, and even more spiritual information investigated by physicians.
-
-
-\1 Aim 3: RNA-Seq Incorporated with Whole-slide Images models from TCIA and TMU\\
-central issue 3 without preliminary data; fallback approaches
-Whole-slide Images models are the surrogate of expression data of RNA-Seq
-
-%\subsubsection{TCIA validation by deep learning}
-https://www.cancerimagingarchive.net/
-from CPTAC and TCGA images
-poster https://wiki.cancerimagingarchive.net/download/attachments/1966514/TCGA_TCIA_Poster_111511_HHFa_WIDE.pptx?version=1&modificationDate=1323207330686&api=v2
-
 *** IL19 is one of our suggested candidate marker.
 TCPA modeling: Y (RNA-seq) ← X (slide represents gene expression)
 Apply model on TMUH HNSCC test cohort (with survival outcome):
@@ -1539,11 +1494,40 @@ Please see Figure \ref{fig:HE2RNA}.
 \end{figure}
 
 
-\1 Aim 4: Biomarkers Discovery from RNA-Seq, Whole-slide Images, and EHR from TCGA and TMU biobank\\
-central issue 4 without preliminary data; fallback approaches % 需有充分的文獻分析和縝密的論述來補足，使得 “convincing power” 依然強而有力
+\1 Aim 2: Construct a Deep Learning Platform of EHR Survival Analysis\\
+central issue 2 without preliminary data; fallback approaches % 需有充分的文獻分析和縝密的論述來補足，使得 “convincing power” 依然強而有力
 %*transfer learning from TCGA model
 %torchvision, NanoMets Models
 %save checkpoint, load then deepcopy()
+Deep learning can convert EHR to the Fast Healthcare Interoperability Resources (FHIR) format\citep{Rajkomar2018}\citep{HealthLevelSeven2019} for handling free-text notes by physicians.
+
+Recurrent neural network (RNN) will deal with "holistic features" from electric healthcare records (EHR) of Taipei Medical University Hospital (TMUH).
+These patient's features should include physical, pathological, psychological data, and even more spiritual information investigated by physicians.
+
+
+
+%子計畫 升格為主計畫 EHR of TMU Joint Biobank
+%\1 Aim 3: Biomarkers validation cohort for 10 candidates from pvalueTex project
+\1 Aim 3: Biomarkers Discovery from RNA-Seq, Whole-slide Images, and EHR from TMU cohort\\
+%\1 Aim 3: RNA-Seq Incorporated with Whole-slide Images models from TCIA and TMU\\
+central issue 3 without preliminary data; fallback approaches
+Whole-slide Images models are the surrogate of expression data of RNA-Seq
+
+The transcriptomic representation of \acrfull{tcia} and TCGA could be applied to validate those candidates by independent TMU cohort (n=46, obtained at TMU Joint Biobank).
+%需有充分的文獻分析和縝密的論述來補足，使得 “convincing power” 依然強而有力
+%*transfer learning from TCGA model
+%torchvision, NanoMets Models
+%save checkpoint, load then deepcopy()
+
+
+%\subsubsection{TCIA validation by deep learning}
+https://www.cancerimagingarchive.net/
+from CPTAC and TCGA images
+poster https://wiki.cancerimagingarchive.net/download/attachments/1966514/TCGA_TCIA_Poster_111511_HHFa_WIDE.pptx?version=1&modificationDate=1323207330686&api=v2
+
+Biomarkers validation cohort for 10 candidates from pvalueTex project
+
+
 \end{outline}
 
 
