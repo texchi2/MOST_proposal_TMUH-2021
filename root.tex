@@ -1054,81 +1054,6 @@ The possible molecular mechanisms could be also related with the mind-brain-body
 %Additional work has shed light on the potential molecular mechanisms by which early adversity becomes "biologically embedded" in altered physiology across body systems.\citep{Berens2017}
 %%%%%
 
-%% TCGA new holistic features %%%%%
-Our current \acrshort{hnscc} study summarizes that six candidate biomarkers, clinical T stage, and surgical margin are independent prognosis factors.
-The prognosis model with coefficients is established from \acrshort{tcga} \acrshort{hnscc} cohort. The important input $X_1...X_n$ should be patients' features: age, specific six gene expressions, clinical T stage, and surgical margin so far.
-When we consider the survival prediction model in holistic manner,
-ground truth Y (e.x. patient's survival):\\[0.5cm]
-%Y$:\\[0.3cm]
-$Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + ... + \beta_n X_n + \epsilon$\\[0.5cm]
-Gene expression is not an independent $X_{mrna}$. It could be correlated with other (for example)\\ $X_{body}, X_{stress}, X_{fear}, X_{meaningOfLife}, X_{inflammation}, X_{empathy}$ factors.\\
-There is much work to be done in investigating the functional network more fully\citep{Rogers1959}.
-%We wish the TCGA does collect more holistic features from their participants in the future.
-%依舊是以管窺天
-% https://link.springer.com/referenceworkentry/10.1007%2F978-1-4419-1428-6_575
-%癌症與身心靈的重要關係：中醫、citation? emotional centered approach
-We suggest TCGA should cover more holistic features:
-cortisol is one of the most common objective outcomes studied in psychoneuroimmunological (PNI) factor, interleukin, cytokines, lymphocytes (CD4+, CD8+), CD56+, vitals signs, telomere length, telomere activity, and heart rate variability (HRV).
-The standardized, psychosocial (subjective) measures include depression, stress, quality of life, anxiety, fatigue, mindfulness, mood, and specific spiritual growth (i.e., the meaning of life)\citep{Hsiao2012}.
-%冤親債主的意念 unknown X factors 回到我們的文章
-Since psychological benefit (reduction of stress, fatigue, sleep disturbance, and depressive symptoms) also optimizes immune function (higher natural killer cell activity, higher \acrshort{ifng}, lower TNF-alpha, lower IL-6) in terms of better survival of cancer patients.
-
-% holistic EHR
-Moreover, we encourage physicians to write their electric healthcare record (EHR) in a "holistic way".
-% Deep Patient:  
-Deep learning can convert EHR to the Fast Healthcare Interoperability Resources (FHIR) format\citep{Rajkomar2018}\citep{HealthLevelSeven2019} for handling free-text notes by physicians.
-Deep learning can also derive patient representations that offer improved clinical predictions\citep{Miotto2016}.
-%=> Level 4 Record-keeping and Data Exchange for the healthcare process (clinical data) %Under HL7, RESTful
-%Allergy, Problem,
-%Procedure,
-%CarePlan/Goal,
-%ServiceRequest,
-%Family History,
-%Risk Assessment (APGAR, Glasgow coma scale)
-%condition: physical, mental
-%{observations: 
-%vital signs, 
-%body temperature, body weight and body height, 
-%x-ray, 
-%laboratory data, 
-%pulse oximetry, 
-%ECG, EEG, EMG, 
-%clinical findings (symptom and sign), 
-%tobacco exposure, family support, cognitive status and pregnancy status.
-%death assertion
-%HIV, HBV, HCV status
-%}
-%https://mos2718.github.io/FHIRspec/Index.html
-%https://www.hl7.org/fhir/patient.html
-%https://mos2718.github.io/FHIRspec/Spec/Patient/EHR_Patient.docx
-Once the holistic feature is available, a graph convolutional neural network (GCNN) is mandatory for further survival analysis\citep{Ching2018a}.
-
-In Taipei Medical University Hospital, holistic-enabled EHR has been designed as the holistic dental chart for our outpatient with psycho-social-spiritual evaluation\citep{Ling-ChengMong2021}:\\
-1. Emotional: stable/depression/ anxiety/ agitated/ perplexed\\
-2. Interaction: expression disorder/ confusion/ hard to make decision/ uncooperative to dental treatment\\
-3. Social: (disturbing living/ disturbing working/ disturbing other life aspect)\\
-4. Function loss(subjectively): mastication/ pronunciation/ life quality/ state of mind\\
-5. Self-expectation: lack of confidence/ low self-esteem/ social-withdrawal\\
-6. Impact to life: financial problem/ family problem\\
-7. Medical relationship: bad experience of dental treatment/ loss confidence to dentist/ anxious to treatment/ side-effects/ litigation experience\\[0.1cm]
-
-%In personal history section of admission note for inpatient:\\
-%<Habits>\\
-%-Tobacco: \underline{ }\underline{ } pack/day for \underline{ }\underline{ } years\\
-%-Alcohol drinking: Occasionally\\
-%-Betel nuts: \underline{ }\underline{ } nuts/day for \underline{ }\underline{ } years\\
-%<Social/Economic Evaluation>\\
-%-Living condition: Living with family\\
-%-Family support: Well\\
-%-Main caregiver: Spouse\\
-%-Financial support: Sufficient\\
-%<Psychological Evaluation>\\
-%Stable but worry about this oral lesion\\
-%Suspected to be abuse or neglected victim: negative\\
-%<Spiritual Assessment>\\
-%Religion: Nil\\
-%Diagnosed with life-threatening diseases or terminal stage of chronic diseases or cancers? No
-
 
 \section{Preliminary Results}
 In our previous transtriptomics study\citep{Chi2020}, %\citep{Tai2007},
@@ -1485,7 +1410,7 @@ While $X_1, X_2, ...X_n$ are the features extracted from whole slide images of p
 
 Apply model on validation cohort of TMU HNSCC (with survival outcome):
 %Y (survival) ← X (slide represents gene expression)
-$Y_survival = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + ... + \beta_n X_n + \epsilon$\\[0.5cm]
+$Y_{survival} = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + ... + \beta_n X_n + \epsilon$\\[0.5cm]
 While $X_1, X_2, ...X_n$ are the features extracted from whole slide images of pathology.
 (as IL19 validation, to see is it still a biomarker)
 Please see Figure \ref{fig:HE2RNA}.
@@ -1510,6 +1435,81 @@ Deep learning can convert EHR to the Fast Healthcare Interoperability Resources 
 Recurrent neural network (RNN) will deal with "holistic features" from electric healthcare records (EHR) of Taipei Medical University Hospital (TMUH).
 These patient's features should include physical, pathological, psychological data, and even more spiritual information investigated by physicians.
 
+
+%% TCGA new holistic features %%%%%
+Our current \acrshort{hnscc} study summarizes that six candidate biomarkers, clinical T stage, and surgical margin are independent prognosis factors.
+The prognosis model with coefficients is established from \acrshort{tcga} \acrshort{hnscc} cohort. The important input $X_1...X_n$ should be patients' features: age, specific six gene expressions, clinical T stage, and surgical margin so far.
+When we consider the survival prediction model in holistic manner,
+ground truth Y (e.x. patient's survival):\\[0.5cm]
+%Y$:\\[0.3cm]
+$Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + ... + \beta_n X_n + \epsilon$\\[0.5cm]
+Gene expression is not an independent $X_{mrna}$. It could be correlated with other (for example)\\ $X_{body}, X_{stress}, X_{fear}, X_{meaningOfLife}, X_{inflammation}, X_{empathy}$ factors.\\
+There is much work to be done in investigating the functional network more fully\citep{Rogers1959}.
+%We wish the TCGA does collect more holistic features from their participants in the future.
+%依舊是以管窺天
+% https://link.springer.com/referenceworkentry/10.1007%2F978-1-4419-1428-6_575
+%癌症與身心靈的重要關係：中醫、citation? emotional centered approach
+We suggest TCGA should cover more holistic features:
+cortisol is one of the most common objective outcomes studied in psychoneuroimmunological (PNI) factor, interleukin, cytokines, lymphocytes (CD4+, CD8+), CD56+, vitals signs, telomere length, telomere activity, and heart rate variability (HRV).
+The standardized, psychosocial (subjective) measures include depression, stress, quality of life, anxiety, fatigue, mindfulness, mood, and specific spiritual growth (i.e., the meaning of life)\citep{Hsiao2012}.
+%冤親債主的意念 unknown X factors 回到我們的文章
+Since psychological benefit (reduction of stress, fatigue, sleep disturbance, and depressive symptoms) also optimizes immune function (higher natural killer cell activity, higher \acrshort{ifng}, lower TNF-alpha, lower IL-6) in terms of better survival of cancer patients.
+
+% holistic EHR
+Moreover, we encourage physicians to write their electric healthcare record (EHR) in a "holistic way".
+% Deep Patient:  
+Deep learning can convert EHR to the Fast Healthcare Interoperability Resources (FHIR) format\citep{Rajkomar2018}\citep{HealthLevelSeven2019} for handling free-text notes by physicians.
+Deep learning can also derive patient representations that offer improved clinical predictions\citep{Miotto2016}.
+%=> Level 4 Record-keeping and Data Exchange for the healthcare process (clinical data) %Under HL7, RESTful
+%Allergy, Problem,
+%Procedure,
+%CarePlan/Goal,
+%ServiceRequest,
+%Family History,
+%Risk Assessment (APGAR, Glasgow coma scale)
+%condition: physical, mental
+%{observations: 
+%vital signs, 
+%body temperature, body weight and body height, 
+%x-ray, 
+%laboratory data, 
+%pulse oximetry, 
+%ECG, EEG, EMG, 
+%clinical findings (symptom and sign), 
+%tobacco exposure, family support, cognitive status and pregnancy status.
+%death assertion
+%HIV, HBV, HCV status
+%}
+%https://mos2718.github.io/FHIRspec/Index.html
+%https://www.hl7.org/fhir/patient.html
+%https://mos2718.github.io/FHIRspec/Spec/Patient/EHR_Patient.docx
+Once the holistic feature is available, a graph convolutional neural network (GCNN) is mandatory for further survival analysis\citep{Ching2018a}.
+
+In Taipei Medical University Hospital, holistic-enabled EHR has been designed as the holistic dental chart for our outpatient with psycho-social-spiritual evaluation\citep{Ling-ChengMong2021}:\\
+1. Emotional: stable/depression/ anxiety/ agitated/ perplexed\\
+2. Interaction: expression disorder/ confusion/ hard to make decision/ uncooperative to dental treatment\\
+3. Social: (disturbing living/ disturbing working/ disturbing other life aspect)\\
+4. Function loss(subjectively): mastication/ pronunciation/ life quality/ state of mind\\
+5. Self-expectation: lack of confidence/ low self-esteem/ social-withdrawal\\
+6. Impact to life: financial problem/ family problem\\
+7. Medical relationship: bad experience of dental treatment/ loss confidence to dentist/ anxious to treatment/ side-effects/ litigation experience\\[0.1cm]
+
+%In personal history section of admission note for inpatient:\\
+%<Habits>\\
+%-Tobacco: \underline{ }\underline{ } pack/day for \underline{ }\underline{ } years\\
+%-Alcohol drinking: Occasionally\\
+%-Betel nuts: \underline{ }\underline{ } nuts/day for \underline{ }\underline{ } years\\
+%<Social/Economic Evaluation>\\
+%-Living condition: Living with family\\
+%-Family support: Well\\
+%-Main caregiver: Spouse\\
+%-Financial support: Sufficient\\
+%<Psychological Evaluation>\\
+%Stable but worry about this oral lesion\\
+%Suspected to be abuse or neglected victim: negative\\
+%<Spiritual Assessment>\\
+%Religion: Nil\\
+%Diagnosed with life-threatening diseases or terminal stage of chronic diseases or cancers? No
 
 
 %子計畫 升格為主計畫 EHR of TMU Joint Biobank
@@ -1669,7 +1669,9 @@ The third page looks like this.
  \clearpage
 \renewcommand\bibsection{\section*{REFERENCES}}
 \setlength{\bibsep}{2pt}
-\bibliography{IEEEabrv, pvalueTex, TMSB4X, TCGA_margin_cutoff, SLC2A4_metabolism.bib, Holistic, Deep_Learning-Radiomics, Deep_Learning}
+%\bibliography{IEEEabrv, pvalueTex, TMSB4X, TCGA_margin_cutoff, SLC2A4_metabolism.bib, Holistic, Deep_Learning-Radiomics, Deep_Learning}
+% all merged at most_merged, repeated entry removed
+\bibliography{most_merged}
 
 \end{document}
 
