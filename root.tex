@@ -44,7 +44,11 @@
 \definecolor{groupblue}{RGB}{51,102,254}
 \definecolor{linkred}{RGB}{165,0,33}
 
+\usepackage{newfloat} % for caption of smartdiagram
+\DeclareFloatingEnvironment[fileext=diag,placement={!ht},name=Figure ]{diag} % diag
+
 \usepackage{smartdiagram} %flowchart
+\usesmartdiagramlibrary{additions} 
 \usepackage{tikz}   % for DAG plot by  tikzpicture
 \usetikzlibrary{arrows}
 \input{arrowsnew}
@@ -492,10 +496,10 @@ Mindfulness Meditation
 
 % *** 講一個故事，先告訴大家領域的重要性和重大發現，然後再告訴大家什麼重要的問題尚待解決，而我所提的研究方案能提供什麼樣的解答，這就是 "rationale"
 \begin{outline}
-\1 Big picture.
-\1 Specific and important problems.
-\2 How much has been done and how much hasn’t?
-\2 How am I able to contribute solving the important and unsolved questions?
+%\1 Big picture.
+%\1 Specific and important problems.
+%\2 How much has been done and how much hasn’t?
+%\2 How am I able to contribute solving the important and unsolved questions?
 \end{outline}
 % * 研究背景的介紹需具備邏輯連貫性，且要與研究主軸相關聯。最佳的寫作方式是利用背景介紹點出尚未解決之問題，同時引出研究之重要議題。
 % *長期目標願景 (long-term goal) 說清楚，包含哪些是領域當中重要但未解決的議題，以及個人的研究主題和此有何關聯
@@ -597,7 +601,7 @@ Primary prevention by minimizing exposure to known carcinogens is promising, but
 %\frametitle{Directed acyclic graphs for %\acrshort{hnscc}}
 \begin{figure}
 \centering
-\begin{tikzpicture}[scale=4, every node/.style={scale=1.3}] %, transform shape]
+\begin{tikzpicture}[scale=3.5, every node/.style={scale=1.3}] %, transform shape]
 \node (v0) at (-1.49,1.64) {Age/Gender};
 \node (v1) at (0.705,1.42) {Alcohol/Betel/Cigarette};
 \node (v2) at (-1.18,-1.38) {Healthy Food/Exercise};
@@ -613,8 +617,13 @@ Primary prevention by minimizing exposure to known carcinogens is promising, but
 \draw [-latexnew, arrowhead=1cm, line width=0.4cm, ultra thick, green] (v2) edge (v4);
 \draw [-latexnew, arrowhead=1cm, line width=4pt, ultra thick, red] (v3) edge (v4);
 \end{tikzpicture}
-\caption{\label{fig:DAG_etiology} HNSCC will be caused by ABC or viruses.}
 
+\bcaption{HNSCC will be caused by carcinogen or other factors.}
+{
+From the intrinsic factors (such as age and gender), the accumulated genetic alteration will be part of etiology of cancer. Carcinogen from alcohol, betel nut and/or cigarette will definitely induce \acrshort{hnscc} by time passes. People usually learn "risky" or "healthy" behaviors by many reasons, which modify their possibility to get cancer.\\
+(\textcolor{red}{red line}: increasing the chance of getting HNSCC; \textcolor{green}{green line} will reduce it; black dot: indicate unknown reasons for taking those habits)
+}
+\label{fig:DAG_etiology}
 \end{figure}
 
 
@@ -1074,7 +1083,7 @@ We made a volcano plot for 9416 genes by Kaplan-Meier \textit{P} value (less tha
 %\subsubsection*{GSE2837} % non-TCGA
 % from Anwser2-2
 %by GEO GSE2837 HNSCC dataset (PrognoScan)
-After the discovery by our workflow, we validated the those 20 genes in the other independent \acrshort{hnscc} cohort (GSE2837).
+We validated the those 20 genes in the other independent \acrshort{hnscc} cohort (GSE2837).
 The survival significance (Kaplan-Meier \textit{P} value) is in the following probes among 10 genes:\\
 1) poor prognosis: CAMK2N1 (0.048214), PGK1 (0.009978), SURF4 (0.023127), USP10 (0.017768), NDFIP1 (0.022758), FOXA2 (0.001587);\\ % FOXA2 (0.038125)
 2) better prognosis: IL19 (0.049731), FCGBP (0.005658), KIAA1683 (IQCN, 0.005886), NPB (0.014177);\\
@@ -1375,6 +1384,96 @@ An SVS file is a digital slide image file created by an Aperio ScanScope slide s
 
 
 Specific Aims %特定研究目標 (specific aims), 執行策略不能互相綁在一起, go paralleling, and equally balanced
+\1 Aim 1: Construct a Deep Learning Platform of TCIA Survival Analysis\\
+\1 Aim 2: Construct a Deep Learning Platform of EHR Survival Analysis\\
+\1 Aim 3: Biomarkers Discovery from RNA-Seq, Whole-slide Images, and EHR from TMU cohort\\
+
+
+\subsection{\cntext{執行進度}} % Flow Chart => Gantt chart
+% A flowchart of a TeX workflow
+% Author: Stefan Kottwitz
+% https://www.packtpub.com/hardware-and-creative/latex-cookbook
+%https://www.overleaf.com/project/60a23af9c83411b0f9067470
+% https://texdoc.org/serve/smartdiagram/0
+%\begin{document}
+
+
+
+% A simpler example from the package documentation:
+%
+%\begin{ganttchart}{1}{12}
+%  \gantttitle{2021}{12} \\
+%  \gantttitlelist{1,...,12}{1} \\
+%  \ganttgroup{Group 1}{1}{7} \\
+%  \ganttbar{Task 1}{1}{2} \\
+%  \ganttlinkedbar{Task 2}{3}{7} \ganttnewline
+%  \ganttmilestone{Milestone}{7} \ganttnewline
+%  \ganttbar{Final Task}{8}{12}
+%  \ganttlink{elem2}{elem3}
+%  \ganttlink{elem3}{elem4}
+%\end{ganttchart}
+
+
+\begin{ganttchart}[
+    bar label node/.style={text width=5cm,align=right,font=\scriptsize\RaggedLeft,anchor=east},
+    x unit=0.8cm,
+    y unit title=0.4cm,
+    y unit chart=0.6cm, %0.5
+    vgrid,
+    time slot format=isodate-yearmonth, %compress calendar,
+    time slot unit=month,
+    title/.append style={draw=none, fill=barblue},
+    title label font=\sffamily\bfseries\color{white},
+    title label node/.append style={below=-1.6ex},
+    title left shift=.05,
+    title right shift=-.05,
+    title height=1,
+    bar/.append style={draw=none, fill=groupblue},
+    bar height=.6,
+    bar label font=\normalsize\color{black!50},
+    group right shift=0,
+    group top shift=.6,
+    group height=.3,
+    group peaks height=.2,
+    bar incomplete/.append style={fill=green}
+   ]{2021-04}{2022-06}
+   
+   \gantttitlecalendar{year, month}\\ %=name
+   \ganttbar[
+    progress=100,
+    bar progress label font=\small\color{barblue},
+    bar progress label node/.append style={right=4pt},
+    bar label font=\normalsize\color{barblue},
+    name=pp
+   ]{Preliminary}{2021-04}{2021-06} \\ % name=pp
+   
+\ganttset{progress label text={}, link/.style={black, -to}}
+
+\ganttgroup{Aim 1}{2021-07}{2021-12} \\
+\ganttbar[progress=4, name=T1A]{Solver Analysis $\&$ Formulation}{2021-07}{2021-10} \\
+\ganttlinkedbar[progress=0]{Development of source code}{2021-10}{2021-12} \\
+
+\ganttgroup{Aim 2}{2021-07}{2021-12} \\
+\ganttbar[progress=15, name=T2A]{Solver Analysis $\&$ Formulation}{2021-07}{2021-10} \\
+\ganttlinkedbar[progress=0]{Development of source code}{2021-10}{2021-12} \\
+
+\ganttgroup{Aim 3}{2021-09}{2022-06} \\
+  \ganttbar[progress=0]{Analysis of Experimental Data $\&$ Validation}{2021-09}{2022-06}
+  \ganttnewline
+%\ganttgroup{Aim 4}{2021-12}{2022-06} \\ %[group top shift =2] to avoid vertically overlap of bars
+%  \ganttbar[progress=0]{Analysis of Experimental Data $\&$ Validation}{2021-12}{2022-06}
+  % , bar top shift =1.8
+  \ganttset{link/.style={green}}
+  \ganttlink[link mid=.4]{pp}{T1A}
+  \ganttlink[link mid=.159]{pp}{T2A}
+\end{ganttchart}
+
+
+\clearpage
+
+\subsection{\cntext{計畫主體內容}} 
+[proposal main body] %(計畫的主體內容)” 解釋每個 aim 要怎麼做，著重策略之邏輯性鋪陳，盡量使論述具有說服力。非新創一個方法或技術平台，不須要詳細交代步驟
+
 
 \1 Aim 1: Construct a Deep Learning Platform of TCIA Survival Analysis\\
 %central issue 1 with preliminary data (key data); fallback approaches %先以概要式的背景介紹破題，點出研究目標的重要性，然後用邏輯之陳述將如何達成目標的策略和方法講清楚。請務必注意：每個研究目標基本上需具備其獨立性 (Independence)，但其重要性卻要在目標之間有所連結，且要能回應總體目標之研究顯著性
@@ -1416,14 +1515,74 @@ While $X_1, X_2, ...X_n$ are the features extracted from whole slide images of p
 Please see Figure \ref{fig:HE2RNA}.
 
 %\subsubsection{Figure HE2RNA}
+%\smartdiagramset{uniform sequence color=true}
+% sequence diagram; flow diagram:horizontal
+% 2021
+
 \begin{figure}[hp]
 \centering
-\includegraphics[width=14cm]{Figure_HE2RNA.pdf}
-\bcaption{\acrshort{hnscc} Cox's hazard ratio and \textit{P} value plot.}
-{(a) Univariate HR versus uncorrected \textit{P} value; (b) Multivariate HR versus uncorrected \textit{P} value; (c) Univariate HR versus Bonferroni corrected \textit{P} value; and (d) Multivariate HR versus Bonferroni corrected \textit{P} value.}
+%\setcounter{figure}{0}
+%\setcounter{diagram}{4}
+%\newcounter{diag} % as zero
+\setcounter{diag}{\value{figure}} % for floating environment
+
+%\begin{center}
+%\smartdiagram[sequence diagram]{2021/July, Aug, Sep, Oct, Nov, Dec}
+\vspace*{30mm}
+\smartdiagramset{
+    module x sep=5cm,
+%    module minimum width=3cm,
+    text width=3cm,
+    back arrow disabled=true,
+    border color=none,
+    arrow tip=to,
+    additions={
+additional item bottom color=orange!60!yellow,
+   additional item border color=gray,
+   additional item shadow=drop shadow,
+   additional item offset=1cm,
+   additional arrow line width=2pt,
+   additional arrow tip=to,
+   additional arrow color=orange!60!yellow,
+    }%,
+   %set color list={blue!50!cyan,green!60!lime,orange!50!red,red!80!black},
+}
+
+%\smartdiagramset{module x sep=5}
+%\smartdiagram[flow diagram:horizontal]{TMU cohort (WSI/EHR), HE2RNA, RNA-Seq}
+\smartdiagramadd[flow diagram:horizontal]{
+ TMU cohort (WSI/EHR), HE2RNA, RNA-Seq (Representation)
+}{
+    above of module2/Model (transfer from TCIA),
+    below of module3/Survival Analysis 
+} % addition x2
+\smartdiagramconnect{to-}{module2/additional-module1}
+\smartdiagramconnect{-to}{module3/additional-module2}
+\vspace*{30mm}
+%\smartdiagramset{border color=none, set color list={blue!50!cyan,green!60!lime,orange!50!red,red!80!black}, back arrow disabled=true}
+
+%\smartdiagramset{module x sep=5}
+%\smartdiagram[flow diagram:horizontal]{Aim1, Aim2, Aim3}
+
+
+%\includegraphics[width=14cm]{Figure_HE2RNA.pdf}
+%\bcaption{}{} %\captionof{diag} for floating "diag"
+\bcaption{Workflow of RNA-Seq representation of TMU cohort}
+%\acrshort{hnscc} Cox's hazard ratio and \textit{P} value plot.
+{The deep learning model of HE2RNA, which was trained under TCGA/TCIA \acrshort{hnscc} cohort, could be applied for RNA-Seq prediction for TMU cohort. The representation will be used for subsequent survival analysis.\\
+(
+TCGA: \acrlong{tcga};
+TCIA: \acrlong{tcia};
+WSI: whole slide images of pathology
+EHR: \acrlong{ehr}
+RNA-Seq: \acrlong{rnaseq}
+)
+} %uncorrected \textit{P} value.}
 \label{fig:HE2RNA}
 \end{figure}
+%\end{center}
 
+\clearpage
 
 \1 Aim 2: Construct a Deep Learning Platform of EHR Survival Analysis\\
 central issue 2 without preliminary data; fallback approaches % 需有充分的文獻分析和縝密的論述來補足，使得 “convincing power” 依然強而有力
@@ -1538,84 +1697,6 @@ Biomarkers validation cohort for 10 candidates from pvalueTex project
 \end{outline}
 
 
-\subsection{\cntext{執行進度}} % Flow Chart => Gantt chart
-% A flowchart of a TeX workflow
-% Author: Stefan Kottwitz
-% https://www.packtpub.com/hardware-and-creative/latex-cookbook
-%https://www.overleaf.com/project/60a23af9c83411b0f9067470
-% https://texdoc.org/serve/smartdiagram/0
-%\begin{document}
-
-
-
-% A simpler example from the package documentation:
-%
-%\begin{ganttchart}{1}{12}
-%  \gantttitle{2021}{12} \\
-%  \gantttitlelist{1,...,12}{1} \\
-%  \ganttgroup{Group 1}{1}{7} \\
-%  \ganttbar{Task 1}{1}{2} \\
-%  \ganttlinkedbar{Task 2}{3}{7} \ganttnewline
-%  \ganttmilestone{Milestone}{7} \ganttnewline
-%  \ganttbar{Final Task}{8}{12}
-%  \ganttlink{elem2}{elem3}
-%  \ganttlink{elem3}{elem4}
-%\end{ganttchart}
-
-
-\begin{ganttchart}[
-    bar label node/.style={text width=5cm,align=right,font=\scriptsize\RaggedLeft,anchor=east},
-    x unit=0.8cm,
-    y unit title=0.4cm,
-    y unit chart=0.6cm, %0.5
-    vgrid,
-    time slot format=isodate-yearmonth, %compress calendar,
-    time slot unit=month,
-    title/.append style={draw=none, fill=barblue},
-    title label font=\sffamily\bfseries\color{white},
-    title label node/.append style={below=-1.6ex},
-    title left shift=.05,
-    title right shift=-.05,
-    title height=1,
-    bar/.append style={draw=none, fill=groupblue},
-    bar height=.6,
-    bar label font=\normalsize\color{black!50},
-    group right shift=0,
-    group top shift=.6,
-    group height=.3,
-    group peaks height=.2,
-    bar incomplete/.append style={fill=green}
-   ]{2021-04}{2022-06}
-   
-   \gantttitlecalendar{year, month}\\ %=name
-   \ganttbar[
-    progress=100,
-    bar progress label font=\small\color{barblue},
-    bar progress label node/.append style={right=4pt},
-    bar label font=\normalsize\color{barblue},
-    name=pp
-   ]{Preliminary}{2021-04}{2021-06} \\ % name=pp
-   
-\ganttset{progress label text={}, link/.style={black, -to}}
-
-\ganttgroup{Aim 1}{2021-07}{2021-12} \\
-\ganttbar[progress=4, name=T1A]{Solver Analysis $\&$ Formulation}{2021-07}{2021-10} \\
-\ganttlinkedbar[progress=0]{Development of source code}{2021-10}{2021-12} \\
-
-\ganttgroup{Aim 2}{2021-07}{2021-12} \\
-\ganttbar[progress=15, name=T2A]{Solver Analysis $\&$ Formulation}{2021-07}{2021-10} \\
-\ganttlinkedbar[progress=0]{Development of source code}{2021-10}{2021-12} \\
-
-\ganttgroup{Aim 3}{2021-09}{2022-06} \\
-  \ganttbar[progress=0]{Analysis of Experimental Data $\&$ Validation}{2021-09}{2022-06}
-  \ganttnewline
-\ganttgroup{Aim 4}{2021-12}{2022-06} \\ %[group top shift =2] to avoid vertically overlap of bars
-  \ganttbar[progress=0]{Analysis of Experimental Data $\&$ Validation}{2021-12}{2022-06}
-  % , bar top shift =1.8
-  \ganttset{link/.style={green}}
-  \ganttlink[link mid=.4]{pp}{T1A}
-  \ganttlink[link mid=.159]{pp}{T2A}
-\end{ganttchart}
 
 
 
@@ -1624,9 +1705,6 @@ Biomarkers validation cohort for 10 candidates from pvalueTex project
 
 
 
-
-
-proposal main body %(計畫的主體內容)” 解釋每個 aim 要怎麼做，著重策略之邏輯性鋪陳，盡量使論述具有說服力。非新創一個方法或技術平台，不須要詳細交代步驟
 
 
 
