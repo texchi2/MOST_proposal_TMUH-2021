@@ -1435,14 +1435,14 @@ We could validate and find more biomarkers from holistic EHR and pathological im
 % ***執行的策略
 % 科技部鼓勵研究主題的系統性，也鼓勵具研究能力者從事較大型但 可能是較困難的長期研究。在建立研究架構的同時，要審慎考慮如何適當分配 每一年的執行進度。例如，容易有具體成果的部分可能要先放在前面作為基 礎，較困難的部分便可以逐年按部就班地進行調查分析。
 \begin{outline}
-HNSCC SVS (Aperio slides)
-https://github.com/texchi2/HE2RNA_code/blob/master/gdc_manifests/gdc_manifest.2018-06-26_diagnostic_TCGA-HNSC.txt
+HNSCC SVS (Aperio slides) is available at https://github.com/texchi2/HE2RNA\_code/blob/master/gdc\_manifests\\
+/gdc\_manifest.2018-06-26\_diagnostic\_TCGA-HNSC.txt
 
 
 %https://wiki.cancerimagingarchive.net/display/Public/TCGA-HNSC
 %https://cancer.digitalslidearchive.org/#!/CDSA/hnsc/TCGA-BA-4076/TCGA-BA-4076-01A-01-BS1?slide=TCGA-BA-4076-01A-01-BS1.4aef481c-f634-4ffc-9fb3-609f59a8caf9.svs
 
-GDC store pathology SVS image
+GDC store pathology SVS image.
 An SVS file is a digital slide image file created by an Aperio ScanScope slide scanner. 
 
 %https://portal.gdc.cancer.gov/image-viewer?caseId=b843df7e-db06-4d29-b00d-6a93effd9191&filters=%7B%22op%22%3A%22and%22%2C%22content%22%3A%5B%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22cases.project.project_id%22%2C%22value%22%3A%5B%22TCGA-HNSC%22%5D%7D%7D%2C%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22files.experimental_strategy%22%2C%22value%22%3A%5B%22Tissue%20Slide%22%5D%7D%7D%5D%7D&selectedId=45fffd2f-e282-4198-8c49-0247507ebb8a
@@ -1461,11 +1461,11 @@ an independent dataset of ??? slides from 46 patients with HNSCC from Joint Biob
 Graph convolutional neural network (GCNN) will be used for feature extraction from whole slide images.
 
 % HE2RNA
-github: https://github.com/owkin/HE2RNA_code
-trying in https://colab.research.google.com/drive/1byj2IxxHayVT62GSlkpofSKsd4dr7niS#scrollTo=j-NgvaUbVdBh
+%*** github: https://github.com/owkin/HE2RNA_code
+% trying in https://colab.research.google.com/drive/1byj2IxxHayVT62GSlkpofSKsd4dr7niS#scrollTo=j-NgvaUbVdBh
 
-RNA-Seq:  we already save a file containing transcriptomes matched to whole-slide images, available at
-https://github.com/texchi2/HE2RNA_code/blob/master/transcriptome_data.py
+RNA-Seq: we already save a file containing transcriptomes matched to whole-slide images, available at
+https://github.com/texchi2/HE2RNA\_code/blob/master/transcriptome\_data.py
 
 % construction of gene expression network.
 %GNN graph neural network for CNN convolutional neural network
@@ -1480,13 +1480,13 @@ https://github.com/texchi2/HE2RNA_code/blob/master/transcriptome_data.py
 *** IL19 is one of our suggested candidate marker.
 %TCPA modeling: Y (RNA-seq) ← X (slide represents gene expression)
 $Y_{mrna} = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + ... + \beta_n X_n + \epsilon$\\[0.5cm]
-, while $X_1, X_2, ...X_n$ are the features extracted from whole slide images of pathology.
+While $X_1, X_2, ...X_n$ are the features extracted from whole slide images of pathology.
 %Gene expression is not an independent $X_{mrna}$. It could be correlated with other (for example)\\ $X_{body}, X_{stress}, X_{fear}, X_{meaningOfLife}, X_{inflammation}, X_{empathy}$ factors.\\[1cm]
 
 Apply model on validation cohort of TMU HNSCC (with survival outcome):
 %Y (survival) ← X (slide represents gene expression)
 $Y_survival = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + ... + \beta_n X_n + \epsilon$\\[0.5cm]
-, while $X_1, X_2, ...X_n$ are the features extracted from whole slide images of pathology.
+While $X_1, X_2, ...X_n$ are the features extracted from whole slide images of pathology.
 (as IL19 validation, to see is it still a biomarker)
 Please see Figure \ref{fig:HE2RNA}.
 
@@ -1494,8 +1494,8 @@ Please see Figure \ref{fig:HE2RNA}.
 \begin{figure}[hp]
 \centering
 \includegraphics[width=14cm]{Figure_HE2RNA.pdf}
-%\bcaption{\acrshort{hnscc} Cox's hazard ratio and \textit{P} value plot.}
-%{(a) Univariate HR versus uncorrected \textit{P} value; (b) Multivariate HR versus uncorrected \textit{P} value; (c) Univariate HR versus Bonferroni corrected \textit{P} value; and (d) Multivariate HR versus Bonferroni corrected \textit{P} value.}
+\bcaption{\acrshort{hnscc} Cox's hazard ratio and \textit{P} value plot.}
+{(a) Univariate HR versus uncorrected \textit{P} value; (b) Multivariate HR versus uncorrected \textit{P} value; (c) Univariate HR versus Bonferroni corrected \textit{P} value; and (d) Multivariate HR versus Bonferroni corrected \textit{P} value.}
 \label{fig:HE2RNA}
 \end{figure}
 
@@ -1529,7 +1529,8 @@ The transcriptomic representation of \acrfull{tcia} and TCGA could be applied to
 %\subsubsection{TCIA validation by deep learning}
 https://www.cancerimagingarchive.net/
 from CPTAC and TCGA images
-poster https://wiki.cancerimagingarchive.net/download/attachments/1966514/TCGA_TCIA_Poster_111511_HHFa_WIDE.pptx?version=1&modificationDate=1323207330686&api=v2
+%poster 
+%https://wiki.cancerimagingarchive.net/download/attachments/1966514/TCGA_TCIA_Poster_111511_HHFa_WIDE.pptx?version=1&modificationDate=1323207330686&api=v2
 
 Biomarkers validation cohort for 10 candidates from pvalueTex project
 
