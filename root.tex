@@ -1321,43 +1321,51 @@ Thus, the prognosis model with coefficients is established from \acrshort{tcga} 
 \clearpage
 
 \section{Deep Learning in Bioinformatics}
-% OFA:   The Cancer Imaging Archive (TCIA) whole slide by Deep learning (ResNet)
+
+%why deep learning?
+According to the recommendation of \acrfull{nci} (accessed at https://www.cancer.gov/\\research/areas/diagnosis/artificial-intelligence), 
+\begin{outline}
+\1 Artificial Intelligence (AI) is helpful to create opportunities in cancer research
+\1 Image-based phenotype of cancer could be correlated with their underlying genomics data by deep learning methods
+%Deep learning could predict commonly mutated genes and mRNA expression from the images
+%\1 Aiding the genomics characterization of tumors by AI is crucial
+\end{outline}
+
+%== NCI deep learning could predict commonly mutated genes from the images:
+Deep learning can be used to identify specific gene mutations and mRNA expression from tumor pathology images instead of using traditional genomic sequencing. 
+For instance, NCI-funded researchers\citep{Coudray2018} at New York University used deep learning to analyze pathology images of lung tumors obtained from \acrfull{tcia}.
+% Michael Snyder, Ph.D., chair of genetics at Stanford University, sees AI as the future of diagnosis. “I think we need to shift to using machine learning rather than rely on pathologists alone to do all the work,” he said. “Algorithms won’t replace pathologists, but they will assist them in making classifications. They will reduce the errors that pathologists would otherwise make.”
+%The code developed for the project is available for other researchers to use for other diagnostic applications. The NYU team has already started applying the code to learn to diagnose kidney, breast, and other cancers.
+The \acrshort{tcia} archives pathology images of tumor specimens available as a quality control measure for researchers studying the genetic sequence data collected in the \acrshort{tcga} project.
+Coudray and his colleagues found that the deep learning method could accurately distinguish between lung adenocarcinoma and lung squamous cell carcinoma from the images\citep{Coudray2018}.
 %how machine learning could help us?
+% OFA:   The Cancer Imaging Archive (TCIA) whole slide by Deep learning (ResNet)
 %https://www.deeplearningbook.org/
 %https://www.biorxiv.org/content/10.1101/2020.03.10.985887v1.full
 %https://github.com/Serian1992/ImgBio.
 %https://www.cancer.gov/research/areas/diagnosis/artificial-intelligence
-Since deep learning algorithm could potentially extract molecular features from pathology images, 
-image-based phenotypes of cancer could be correlated with their underlying genomics data.
-A HE2RNA model, developed by Schmauch and their colleague\citep{Schmauch2020},  could predict RNA-Seq profiles from whole-slide images of \acrfull{tcia}. It has been validated by CD3- and CD20-\acrshort{ihc} staining. 
+Since a deep learning algorithm could potentially extract molecular phenotype from pathology images, 
+mRNA expression could also be predicted from the images.
+A HE2RNA model, developed by Schmauch and his colleagues\citep{Schmauch2020},  could predict RNA-Seq profiles from whole-slide images of \acrshort{tcia}. 
+It has been validated by CD3- and CD20-\acrshort{ihc} staining. 
 The transcriptomic representation learned by HE2RNA can also be transferred on other datasets.
 %MKI67 is a well-known marker of cell proliferation, expressed both by tumor and adjacent normal cells, clinically determined by MIB1 or Ki67 IHC staining of whole-slide images. 
 %  its surrounding cancerous area 
 %Its overexpression around "surgical margin?" has been found to correlate with tumor growth, histological grade, and tumor recurrence.
 % A high expression level of MKI67 is correlated with the most advanced stages of liver cancer.
-%the ability of HE2RNA to focus specifically on cancer-related molecular information\citep{Schmauch2020}.
-
-%why deep learning?
-% NCI's recommendation:
-Aiding the Genomics Characterization of Tumors: 
-deep learning could predict commonly mutated genes and mRNA expression from the images
-*** A deep learning model to predict RNA-Seq expression of tumours from whole slide images\cite{Schmauch2020}.
-A HE2RNA model should be trained to systematically predict RNA-Seq profiles from whole-slide images\cite{Schmauch2020}.
-Preprocessing of whole-slide images. The application of deep-learning algo- rithms to histological data is a challenging problem, particularly due to the high dimensionality of the data (up to 100,000 × 100,000 pixels for a single whole-slide image) and the small size of available datasets. We divided the whole-slide images into squares of 112 × 112 $\mu$m (224 × 224 pixels) called “tiles”, and used the Otsu algorithm62 (as implemented in python package skimage) to select only those containing tissue, excluding the white background. We sampled a maximum of 8000 such tiles from each slide. We then extracted 2048 features from those tiles with a 50-layer ResNet63 pretrained on the ImageNet dataset64 (using the Keras implementation), such that a slide could be represented as a 8000 × 2048 matrix.
-For the first phase of this work (transcriptome prediction), we accelerated the training of our models through a simple preprocessing step inspired by simple linear iterative clustering (SLIC)65: we used the k-means algorithm (as implemented in python package libkmcuda) to create 100 clusters (supertiles) of tiles on the basis of tile location on the slide, and we averaged the features of the tiles within each cluster. The use of these supertiles reduces the dimensions of a slide to 100 × 2048. The model was first trained on this reduced dataset, with all the TCGA data. Then, for specific organs, fine-tuning was achieved with full-scale data from the organs concerned only.
 
 
-== NCI deep learning could predict commonly mutated genes from the images:
-AI methods can also be used to identify specific gene mutations from tumor pathology images instead of using traditional genomic sequencing. For instance, NCI-funded researchers at New York University used deep learning (DL) to analyze pathology images of lung tumors obtained from The Cancer Genome Atlas. Not only could the DL method accurately distinguish between two of the most common lung cancer subtypes, adenocarcinoma and squamous cell carcinoma, it could predict commonly mutated genes from the images.
+
+
 
 
 \section{Conclusion}
 High-throughput RNA-sequencing (RNA-Seq) is a powerful tool to characterize and quantify transcriptomes. Even the cost of RNA-Seq is continuously dropping, 
 the budget of whole-genome transcriptomics study for survival analysis is still very high (USD350 to 500 per sample; 46 participants of HNSCC in TMU Joint Biobank, accessed on \today at http://ohr.tmu.edu.tw/front/jbb1/CaseNumber/pages.php?\\ID=dG11X29ociZDYXNlTnVtYmVy).
 % NCI HE2RNA
-Acquired the idea from the transcriptomic representation of TCGA (RNA-Seq) learned by NCI's HE2RNA project\citep{Schmauch2020},
+By using the transcriptomic representation of RNA-Seq learned by NCI's HE2RNA project\citep{Schmauch2020},
 %TCIA for whole slide deep learning
-We could validate and find more biomarkers from holistic EHR and pathological images by the way of deep learning via R/Pytorch/Keras framework.
+we could validate and find more biomarkers from holistic \acrshort{ehr} and pathology images by the way of deep learning under R/Pytorch/Keras framework.
 
 
 \clearpage
@@ -1371,22 +1379,11 @@ We could validate and find more biomarkers from holistic EHR and pathological im
 % ***執行的策略
 % 科技部鼓勵研究主題的系統性，也鼓勵具研究能力者從事較大型但 可能是較困難的長期研究。在建立研究架構的同時，要審慎考慮如何適當分配 每一年的執行進度。例如，容易有具體成果的部分可能要先放在前面作為基 礎，較困難的部分便可以逐年按部就班地進行調查分析。
 \begin{outline}
-HNSCC SVS (Aperio slides) is available at https://github.com/texchi2/HE2RNA\_code/blob/master/gdc\_manifests\\
-/gdc\_manifest.2018-06-26\_diagnostic\_TCGA-HNSC.txt
-
-
-%https://wiki.cancerimagingarchive.net/display/Public/TCGA-HNSC
-%https://cancer.digitalslidearchive.org/#!/CDSA/hnsc/TCGA-BA-4076/TCGA-BA-4076-01A-01-BS1?slide=TCGA-BA-4076-01A-01-BS1.4aef481c-f634-4ffc-9fb3-609f59a8caf9.svs
-
-GDC store pathology SVS image.
-An SVS file is a digital slide image file created by an Aperio ScanScope slide scanner. 
-
-%https://portal.gdc.cancer.gov/image-viewer?caseId=b843df7e-db06-4d29-b00d-6a93effd9191&filters=%7B%22op%22%3A%22and%22%2C%22content%22%3A%5B%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22cases.project.project_id%22%2C%22value%22%3A%5B%22TCGA-HNSC%22%5D%7D%7D%2C%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22files.experimental_strategy%22%2C%22value%22%3A%5B%22Tissue%20Slide%22%5D%7D%7D%5D%7D&selectedId=45fffd2f-e282-4198-8c49-0247507ebb8a
 
 
 
 Specific Aims %特定研究目標 (specific aims), 執行策略不能互相綁在一起, go paralleling, and equally balanced
-\1 Aim 1: Construct a Deep Learning Platform of TCIA Survival Analysis\\
+\1 Aim 1: Construct a Deep Learning Platform of TCGA/TCIA Survival Analysis\\
 \1 Aim 2: Construct a Deep Learning Platform of EHR Survival Analysis\\
 \1 Aim 3: Biomarkers Discovery from RNA-Seq, Whole-slide Images, and EHR from TMU cohort\\
 
@@ -1474,26 +1471,50 @@ Specific Aims %特定研究目標 (specific aims), 執行策略不能互相綁�
 \clearpage
 
 \subsection{\cntext{計畫主體內容}} 
-[proposal main body] %(計畫的主體內容)” 解釋每個 aim 要怎麼做，著重策略之邏輯性鋪陳，盡量使論述具有說服力。非新創一個方法或技術平台，不須要詳細交代步驟
+%[proposal main body] %(計畫的主體內容)” 解釋每個 aim 要怎麼做，著重策略之邏輯性鋪陳，盡量使論述具有說服力。
+%新創一個方法或技術平台，須要詳細交代步驟
 
 
-\1 Aim 1: Construct a Deep Learning Platform of TCIA Survival Analysis\\
+\1 Aim 1: Construct a Deep Learning Platform of TCGA/TCIA Survival Analysis\\
 %central issue 1 with preliminary data (key data); fallback approaches %先以概要式的背景介紹破題，點出研究目標的重要性，然後用邏輯之陳述將如何達成目標的策略和方法講清楚。請務必注意：每個研究目標基本上需具備其獨立性 (Independence)，但其重要性卻要在目標之間有所連結，且要能回應總體目標之研究顯著性
 Our preliminary data (biomarker candidates) could be served as the bridge between the prognosis of patients and their pathological images of specimen.
-We further plan to develop a deep-learning based data mining as well as validation platform. It might incorporate whole slide images of pathology from the Cancer Imaging Archive (TCIA) and 
-an independent dataset of ??? slides from 46 patients with HNSCC from Joint Biobank of Taipei Medical University (TMU dataset).
+We will develop a deep-learning-based data mining as well as a validation platform. It might incorporate whole slide images of pathology of \acrshort{hnscc} from the Cancer Imaging Archive (TCIA) and from Joint Biobank of Taipei Medical University (TMU dataset).
+There is 98 slides from 46 patients with HNSCC in TMU dataset.
 %  an independent dataset of 369 slides from 194 patients with LIHC43 from hospital Henri Mondor (Mondor dataset)
 %RNA-Seq data of \acrfull{tcga} for survival analysis. 
-Graph convolutional neural network (GCNN) will be used for feature extraction from whole slide images.
 
+%https://wiki.cancerimagingarchive.net/display/Public/TCGA-HNSC
+%https://cancer.digitalslidearchive.org/#!/CDSA/hnsc/TCGA-BA-4076/TCGA-BA-4076-01A-01-BS1?slide=TCGA-BA-4076-01A-01-BS1.4aef481c-f634-4ffc-9fb3-609f59a8caf9.svs
+
+NCI's GDC stores pathology SVS image.
+An SVS file is a digital slide image file created by an Aperio ScanScope slide scanner.
+The HNSCC images is available at https://github.com/texchi2/HE2RNA\_code/\\blob/master/gdc\_manifests/gdc\_manifest.2018-06-26\_diagnostic\_TCGA-HNSC.txt.
+%https://portal.gdc.cancer.gov/image-viewer?caseId=b843df7e-db06-4d29-b00d-6a93effd9191&filters=%7B%22op%22%3A%22and%22%2C%22content%22%3A%5B%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22cases.project.project_id%22%2C%22value%22%3A%5B%22TCGA-HNSC%22%5D%7D%7D%2C%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22files.experimental_strategy%22%2C%22value%22%3A%5B%22Tissue%20Slide%22%5D%7D%7D%5D%7D&selectedId=45fffd2f-e282-4198-8c49-0247507ebb8a
 % HE2RNA
 %*** github: https://github.com/owkin/HE2RNA_code
-% trying in https://colab.research.google.com/drive/1byj2IxxHayVT62GSlkpofSKsd4dr7niS#scrollTo=j-NgvaUbVdBh
 
-RNA-Seq: we already save a file containing transcriptomes matched to whole-slide images, available at
-https://github.com/texchi2/HE2RNA\_code/blob/master/transcriptome\_data.py
+%the ability of HE2RNA to focus specifically on cancer-related molecular information\citep{Schmauch2020}.
+% detailed introduction
+%*** A deep learning model to predict RNA-Seq expression of tumours from whole slide images\cite{Schmauch2020}.
+%A HE2RNA model should be trained to systematically predict RNA-Seq profiles from whole-slide images\cite{Schmauch2020}.
+% . The application of deep-learning algo- rithms to histological
+The whole-slide images of pathology data has the high dimensionality (up to 100,000 × 100,000 pixels for a single image).
+%The small size of available datasets. => small case number
+HE2RNA workflow could divide the whole-slide images into squares of 112 × 112 $\mu$m (224 × 224 pixels) called "tiles", and use the Otsu algorithm\citep{Otsu1979} (as implemented in python package scikit-image, available at https://scikit-image.org/docs/dev/api/skimage.html) to select only those containing tissue, excluding the white background. 
+A maximum of 8000 such tiles from each slide are sampled then extracted 2048 features with a 50-layer ResNet model\citep{He2016a}  pretrained on the ImageNet dataset (available at https://www.image-net.org/challenges/LSVRC/\\index.php).
+The ResNet and HE2RNA model are developed by using the TensorFlow/Keras implementation with a architecture of \acrfull{cnn}.
+%Graph convolutional neural network (GCNN).
+The AI-driven computer program analyzes tissue by creating a map of thousands of tiles.
+A pathology slide could be represented as a 8000 × 2048 matrix.
+%For the first phase of this work (transcriptome prediction), we accelerated the training of our models through a simple preprocessing step inspired by simple linear iterative clustering (SLIC)65: 
+We use the k-means algorithm (as implemented in python package libkmcuda) to create 100 clusters (supertiles) of tiles on the basis of tile location on the slide, and we average the features of the tiles within each cluster. The use of these supertiles could reduce the dimensions of a slide to 100 × 2048. % training supertiles
+Transcriptome prediction model will be first trained on this reduced dataset, with all the TCGA data. Then, fine-tuning of "hyperparameters" will be achieved with full-scale data from \acrshort{hnscc} dataset by Bayesian optimization technique (Sequential Model-Based Optimization algorithms, SMBO)\citep{Hutter2011}.\\[0.5cm]
 
-% construction of gene expression network.
+%Graph convolutional neural network (GCNN) will be used for feature extraction from whole slide images.
+
+%%%%%
+
+% x construction of gene expression network.
 %GNN graph neural network for CNN convolutional neural network
 %The Cancer Imaging Archive (TCIA) whole slide by Deep learning (ResNet)
 % *** AI: deep learning, machine learning \citep{Huang2020}
@@ -1502,19 +1523,27 @@ https://github.com/texchi2/HE2RNA\_code/blob/master/transcriptome\_data.py
 %*transfer learning from TCGA model
 %torchvision, NanoMets Models
 %save checkpoint, load then deepcopy()
+% trying in https://colab.research.google.com/drive/1byj2IxxHayVT62GSlkpofSKsd4dr7niS#scrollTo=j-NgvaUbVdBh
 
-*** IL19 is one of our suggested candidate marker.
-%TCPA modeling: Y (RNA-seq) ← X (slide represents gene expression)
-$Y_{mrna} = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + ... + \beta_n X_n + \epsilon$\\[0.5cm]
-While $X_1, X_2, ...X_n$ are the features extracted from whole slide images of pathology.
+% *** HE2RNA has a file containing transcriptomes (RNA-Seq) matched to whole-slide images (available at
+%https://github.com/texchi2/HE2RNA\_code/blob/master/transcriptome\_data.py).
+
+
+TCGA/TCPA modeling (with RNA-Seq data):\\
+%Y (RNA-seq) ← X (slide represents gene expression)
+$Y_{mrna} = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + ... + \beta_n X_n + \epsilon$\\[0.3cm]
+While 
+$Y_{mrna}$ is known RNA-Seq data, and
+$X_1, X_2, ...X_n$ are the features extracted by HE2RNA model from whole slide images of pathology.\\[0.5cm]
 %Gene expression is not an independent $X_{mrna}$. It could be correlated with other (for example)\\ $X_{body}, X_{stress}, X_{fear}, X_{meaningOfLife}, X_{inflammation}, X_{empathy}$ factors.\\[1cm]
 
-Apply model on validation cohort of TMU HNSCC (with survival outcome):
+We transfer HE2RNA model on TMU HNSCC dataset to predict RNA-Seq representation:\\
 %Y (survival) ← X (slide represents gene expression)
-$Y_{survival} = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + ... + \beta_n X_n + \epsilon$\\[0.5cm]
-While $X_1, X_2, ...X_n$ are the features extracted from whole slide images of pathology.
-(as IL19 validation, to see is it still a biomarker)
-Please see Figure \ref{fig:HE2RNA}.
+$\hat{Y}_{mrna} = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + ... + \beta_n X_n + \epsilon$\\[0.3cm]
+While $hat{Y}_{mrna}$ is predicted RNA-Seq data, and
+$X_1, X_2, ...X_n$ are the features extracted from whole slide images of pathology.\\
+IL19 is one of our suggested candidate marker (through TCGA survival analysis).
+We want to validate that IL19 still has survival impact on TMU \acrshort{hnscc} dataset (please see Figure \ref{fig:HE2RNA}).
 
 %\subsubsection{Figure HE2RNA}
 %\smartdiagramset{uniform sequence color=true}
@@ -1553,7 +1582,7 @@ additional item bottom color=orange!60!yellow,
 %\smartdiagramset{module x sep=5}
 %\smartdiagram[flow diagram:horizontal]{TMU cohort (WSI/EHR), HE2RNA, RNA-Seq}
 \smartdiagramadd[flow diagram:horizontal]{
- TMU cohort (WSI/EHR), HE2RNA, RNA-Seq (Representation)
+ TMU dataset (WSI/EHR), HE2RNA, RNA-Seq (Representation)
 }{
     above of module2/Model (transfer from TCIA),
     below of module3/Survival Analysis 
@@ -1569,9 +1598,9 @@ additional item bottom color=orange!60!yellow,
 
 %\includegraphics[width=14cm]{Figure_HE2RNA.pdf}
 %\bcaption{}{} %\captionof{diag} for floating "diag"
-\bcaption{Workflow of RNA-Seq representation of TMU cohort}
+\bcaption{Workflow of RNA-Seq representation of TMU dataset}
 %\acrshort{hnscc} Cox's hazard ratio and \textit{P} value plot.
-{The deep learning model of HE2RNA, which was trained under TCGA/TCIA \acrshort{hnscc} cohort, could be applied for RNA-Seq prediction for TMU cohort. The representation will be used for subsequent survival analysis.\\
+{The deep learning model of HE2RNA, which was trained under TCGA/TCIA \acrshort{hnscc} dataset, could be applied for RNA-Seq prediction of TMU dataset. The representation will be used for subsequent survival analysis.\\
 (
 TCGA: \acrlong{tcga};
 TCIA: \acrlong{tcia};
@@ -1586,6 +1615,8 @@ RNA-Seq: \acrlong{rnaseq}
 
 \clearpage
 
+
+%%%%
 \1 Aim 2: Construct a Deep Learning Platform of EHR Survival Analysis\\
 central issue 2 without preliminary data; fallback approaches % 需有充分的文獻分析和縝密的論述來補足，使得 “convincing power” 依然強而有力
 %*transfer learning from TCGA model
