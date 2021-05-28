@@ -344,8 +344,10 @@
 
 \clearpage
 % \cntext{TMU 口腔醫學院 2021 project}
-% The real title page %%%%%%%%%%%%%%%%%%%%%%%%%% title
-\title{\Large \vspace{-2.5cm} Holistic Deep Learning for Biomarker Discovery in Head and Neck Squamous Cell Carcinoma}
+% The real title page
+%%%%%%%%%%%%%%%%%%%%%%%%%% title
+\title{\Large \vspace{-2.5cm} \titlecap{Deep learning for whole-slide images and holistic} Electric Healthcare Records in Head and Neck Squamous Cell Carcinoma}
+% or Deep learning for whole slide image and holistic EHR
 %\author{Li-Hsing Chi}
 %\date{May 2021}
 
@@ -1385,7 +1387,7 @@ we could validate and find more biomarkers from holistic \acrshort{ehr} and path
 Specific Aims %特定研究目標 (specific aims), 執行策略不能互相綁在一起, go paralleling, and equally balanced
 \1 Aim 1: Construct a Deep Learning Platform of TCGA/TCIA and TMU dataset\\
 %Survival Analysis\\
-\1 Aim 2: Construct a Deep Learning Platform of EHR Survival Analysis\\
+\1 Aim 2: Construct a Deep Learning Platform of Survival Analysis with EHR\\
 \1 Aim 3: Biomarkers Discovery from RNA-Seq, Whole-slide Images, and EHR from TMU dataset\\
 
 \end{outline}
@@ -1477,7 +1479,7 @@ Specific Aims %特定研究目標 (specific aims), 執行策略不能互相綁�
 %新創一個方法或技術平台，須要詳細交代步驟
 
 %\begin{outline}
-\subsubsection{Aim 1:} Construct a Deep Learning Platform of TCGA/TCIA and TMU dataset\\
+\subsubsection{Aim 1:} Construct a Deep Learning Platform of TCGA/TCIA and TMU dataset\\[0.5cm]
 %\end{outline}
 %central issue 1 with preliminary data (key data); fallback approaches %先以概要式的背景介紹破題，點出研究目標的重要性，然後用邏輯之陳述將如何達成目標的策略和方法講清楚。請務必注意：每個研究目標基本上需具備其獨立性 (Independence)，但其重要性卻要在目標之間有所連結，且要能回應總體目標之研究顯著性
 Our preliminary data (biomarker candidates) could be served as the bridge between the prognosis of patients and their pathological images of specimen.
@@ -1540,6 +1542,9 @@ $Y_{mrna}$ is known RNA-Seq data, and
 $X_1, X_2, ...X_n$ are the features extracted by HE2RNA model from TCIA whole-slide images of pathology.\\[0.5cm]
 %Gene expression is not an independent $X_{mrna}$. It could be correlated with other (for example)\\ $X_{body}, X_{stress}, X_{fear}, X_{meaningOfLife}, X_{inflammation}, X_{empathy}$ factors.\\[1cm]
 
+%*transfer learning from TCGA model
+%torchvision, NanoMets Models
+%save checkpoint, load then deepcopy()
 We transfer HE2RNA model on TMU HNSCC dataset to predict RNA-Seq representation:\\[0.2cm]
 %Y (survival) ← X (slide represents gene expression)
 $\hat{Y}_{mrna} = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + ... + \beta_n X_n + \epsilon$\\[0.3cm]
@@ -1553,6 +1558,7 @@ We want to validate that IL19 still has survival impact on TMU \acrshort{hnscc} 
 % sequence diagram; flow diagram:horizontal
 % 2021
 
+% Figure 5 HE2RNA workflow
 \begin{figure}[hp]
 \centering
 %\setcounter{figure}{0}
@@ -1621,16 +1627,10 @@ RNA-Seq: \acrlong{rnaseq}
 
 %%%%
 %\begin{outline}
-\subsubsection{Aim 2:} Construct a Deep Learning Platform of EHR Survival Analysis\\
+\subsubsection{Aim 2:} Construct a Deep Learning Platform of Survival Analysis with EHR\\[0.5cm]
 %\end{outline}
 %central issue 2 with preliminary data (Cox model); fallback approaches % 需有充分的文獻分析和縝密的論述來補足，使得 “convincing power” 依然強而有力
-%*transfer learning from TCGA model
-%torchvision, NanoMets Models
-%save checkpoint, load then deepcopy()
-Deep learning can convert \acrfull{ehr} to the Fast Healthcare Interoperability Resources (FHIR) format\citep{Rajkomar2018}\citep{HealthLevelSeven2019} for handling free-text notes by physicians.
-% RNN recurrent neural network
-\acrfull{rnn} will deal with "holistic features" from \acrshort{ehr} of Taipei Medical University Hospital (TMUH).
-These patient's features should include physical, pathological, psychological data, and even more spiritual information investigated by physicians.
+
 
 
 %% TCGA new holistic features %%%%%
@@ -1641,9 +1641,9 @@ When we consider the survival prediction model in a holistic manner,
 ground truth Y (e.x. patient's survival):\\[0.5cm]
 %Y$:\\[0.3cm]
 $Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + ... + \beta_n X_n + \epsilon$\\[0.3cm]
-Gene expression is not an independent $X_{mrna}$. It could be correlated with other (for example):\\[0.3cm]
-$X_{body}, X_{stress}, X_{fear}, X_{meaningOfLife}, X_{inflammation}, X_{empathy}$ factors.\\[0.3cm]
-There is much work to be done in investigating the functional mind-body network more fully\citep{Rogers1959}.\\
+Actually, gene expression is not an independent $X_{mrna}$. It could be influenced with other factors (for example):\\[0.3cm]
+$X_{body}, X_{stress}, X_{fear}, X_{meaningOfLife}, X_{inflammation}, X_{empathy}$\\[0.3cm]
+That is because there is much work to be done in investigating the functional mind-body network\citep{Rogers1959}.
 %We wish the TCGA does collect more holistic features from their participants in the future.
 %依舊是以管窺天
 % https://link.springer.com/referenceworkentry/10.1007%2F978-1-4419-1428-6_575
@@ -1685,7 +1685,8 @@ Deep learning can also derive patient representations that offer improved clinic
 Once the holistic feature is available, a graph convolutional neural network (GCNN) is mandatory for further survival analysis\citep{Ching2018a}.
 
 In Taipei Medical University Hospital, holistic-enabled EHR has been designed in the daily-work for charting our outpatients with psycho-social-spiritual evaluation\citep{Ling-ChengMong2021}:\\
-\begin{ouline}
+
+\begin{outline}
 
 \1 Emotional: stable/depression/ anxiety/ agitated/ perplexed\\
 \1 Interaction: expression disorder/ confusion/ hard to make decision/ uncooperative to dental treatment\\
@@ -1695,7 +1696,7 @@ In Taipei Medical University Hospital, holistic-enabled EHR has been designed in
 \1 Impact to life: financial problem/ family problem\\
 \1 Medical relationship: bad experience of dental treatment/ loss confidence to dentist/ anxious to treatment/ side-effects/ litigation experience\\[0.1cm]
 
-\end{ouline}
+\end{outline}
 %In personal history section of admission note for inpatient:\\
 %<Habits>\\
 %-Tobacco: \underline{ }\underline{ } pack/day for \underline{ }\underline{ } years\\
@@ -1718,15 +1719,25 @@ In Taipei Medical University Hospital, holistic-enabled EHR has been designed in
 %\1 Aim 3: Biomarkers validation cohort for 10 candidates from pvalueTex project
 
 
-\begin{outline}
-\subsubsection{Aim 3:} Biomarkers Discovery from RNA-Seq, Whole-slide Images, and EHR from TMU dataset\\
-%\end{outline}
+Deep learning can convert \acrfull{ehr} to the Fast Healthcare Interoperability Resources (FHIR) format\citep{Rajkomar2018}\citep{HealthLevelSeven2019} for handling free-text notes by physicians.
+% RNN recurrent neural network
+\acrfull{rnn} will deal with "holistic features" from \acrshort{ehr} of TMUH.
+These patient's features should include physical, pathological, psychological data, and even more spiritual information investigated by physicians.
+
+
+
+\subsubsection{Aim 3:} Biomarkers Discovery from RNA-Seq, Whole-slide Images, and EHR from TMU dataset\\[0.5cm]
+
 %\1 Aim 3: RNA-Seq Incorporated with Whole-slide Images models from TCIA and TMU\\
 %central issue 3 without preliminary data; fallback approaches
+
+%\begin{outline}
 Whole-slide images are the surrogate of expression data of RNA-Seq.
 From the result of Aim 1, the transcriptomic representation of TMU dataset (n=46, obtained at TMU Joint Biobank) could be applied to validate those candidates discovered by our previous study.
 % Biomarkers validation cohort for 10 candidates from pvalueTex project
-Moreover, the result from Aim 2 (features extraction holistic \acrshort{ehr} at TMUH) will be used for survival analysis.
+Moreover, the result of Aim 2 (features extracted from holistic \acrshort{ehr} of TMUH) will be used for survival analysis (see Figure \ref{fig:HE2RNA}.
+% modifying % Figure 5 HE2RNA workflow
+
 %需有充分的文獻分析和縝密的論述來補足，使得 “convincing power” 依然強而有力
 %*transfer learning from TCGA model
 %torchvision, NanoMets Models
@@ -1741,7 +1752,7 @@ Moreover, the result from Aim 2 (features extraction holistic \acrshort{ehr} at 
 
 
 
-\end{outline}
+%\end{outline}
 
 
 
@@ -1751,7 +1762,7 @@ Moreover, the result from Aim 2 (features extraction holistic \acrshort{ehr} at 
 
 
 
-
+\clearpage
 
 
 
