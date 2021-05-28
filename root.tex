@@ -392,14 +392,14 @@ The survival analysis could conclude the manifest of clinical, pathological, and
 %Methods: how the study was performed and statistical tests used
 \textbf{Methods:}
 R script was used to develop a comprehensive workflow, named "pvalueTex", running on the Rstudio platform. It includes data retrieving and pre-processing, feature selection, cutoff mining engine, Kaplan-Meier survival analysis, Cox proportional hazard modeling to discover prognostic biomarkers.
-We further plan to develop a deep-learning based data mining as well as validation platform. It might incorporate whole slide images of pathology from the Cancer Imaging Archive (TCIA) and Taipei Medical University (TMU) biobank.
+We further plan to develop a deep-learning based data mining as well as validation platform. It might incorporate whole-slide images of pathology from the Cancer Imaging Archive (TCIA) and Taipei Medical University (TMU) biobank.
 %RNA-Seq data of \acrfull{tcga} for survival analysis. 
-Graph convolutional neural network (GCNN) will be used for feature extraction from whole slide images.
+Graph convolutional neural network (GCNN) will be used for feature extraction from whole-slide images.
 Recurrent neural network (RNN) will deal with "holistic features" from electric healthcare records (EHR) of Taipei Medical University Hospital (TMUH).
 These patient's features should include physical, pathological, psychological data, and even more spiritual information investigated by physicians.
 % construction of gene expression network.
 %GNN graph neural network for CNN convolutional neural network
-%The Cancer Imaging Archive (TCIA) whole slide by Deep learning (ResNet)
+%The Cancer Imaging Archive (TCIA) whole-slide by Deep learning (ResNet)
 % *** AI: deep learning, machine learning \citep{Huang2020}
 %plot http://iltabiai.github.io/tips/latex/2015/09/15/latex-tikzdevice-r.html
 %***Deep learning-based cancer survival prognosis from RNA-Seq data: approaches and evaluations
@@ -495,12 +495,12 @@ Mindfulness Meditation
 %請詳述本研究計畫之背景、目的 具體目標 (Specific Aims)、重要性及國內外有關本計畫之研究情況、重要參考文獻之評述等。
 
 % *** 講一個故事，先告訴大家領域的重要性和重大發現，然後再告訴大家什麼重要的問題尚待解決，而我所提的研究方案能提供什麼樣的解答，這就是 "rationale"
-\begin{outline}
+%\begin{outline}
 %\1 Big picture.
 %\1 Specific and important problems.
 %\2 How much has been done and how much hasn’t?
 %\2 How am I able to contribute solving the important and unsolved questions?
-\end{outline}
+%\end{outline}
 % * 研究背景的介紹需具備邏輯連貫性，且要與研究主軸相關聯。最佳的寫作方式是利用背景介紹點出尚未解決之問題，同時引出研究之重要議題。
 % *長期目標願景 (long-term goal) 說清楚，包含哪些是領域當中重要但未解決的議題，以及個人的研究主題和此有何關聯
 % then 將個人的研究主題和其它重要的主題連結 (to attract your reviewers)
@@ -1339,7 +1339,7 @@ For instance, NCI-funded researchers\citep{Coudray2018} at New York University u
 The \acrshort{tcia} archives pathology images of tumor specimens available as a quality control measure for researchers studying the genetic sequence data collected in the \acrshort{tcga} project.
 Coudray and his colleagues found that the deep learning method could accurately distinguish between lung adenocarcinoma and lung squamous cell carcinoma from the images\citep{Coudray2018}.
 %how machine learning could help us?
-% OFA:   The Cancer Imaging Archive (TCIA) whole slide by Deep learning (ResNet)
+% OFA:   The Cancer Imaging Archive (TCIA) whole-slide by Deep learning (ResNet)
 %https://www.deeplearningbook.org/
 %https://www.biorxiv.org/content/10.1101/2020.03.10.985887v1.full
 %https://github.com/Serian1992/ImgBio.
@@ -1364,7 +1364,7 @@ High-throughput RNA-sequencing (RNA-Seq) is a powerful tool to characterize and 
 the budget of whole-genome transcriptomics study for survival analysis is still very high (USD350 to 500 per sample; 46 participants of HNSCC in TMU Joint Biobank, accessed on \today at http://ohr.tmu.edu.tw/front/jbb1/CaseNumber/pages.php?\\ID=dG11X29ociZDYXNlTnVtYmVy).
 % NCI HE2RNA
 By using the transcriptomic representation of RNA-Seq learned by NCI's HE2RNA project\citep{Schmauch2020},
-%TCIA for whole slide deep learning
+%TCIA for whole-slide deep learning
 we could validate and find more biomarkers from holistic \acrshort{ehr} and pathology images by the way of deep learning under R/Pytorch/Keras framework.
 
 
@@ -1378,15 +1378,17 @@ we could validate and find more biomarkers from holistic \acrshort{ehr} and path
 %1.本計畫採用之研究方法與原因。2.預計可能遭遇之困難及解決途徑 fallback approaches
 % ***執行的策略
 % 科技部鼓勵研究主題的系統性，也鼓勵具研究能力者從事較大型但 可能是較困難的長期研究。在建立研究架構的同時，要審慎考慮如何適當分配 每一年的執行進度。例如，容易有具體成果的部分可能要先放在前面作為基 礎，較困難的部分便可以逐年按部就班地進行調查分析。
+
+
 \begin{outline}
 
-
-
 Specific Aims %特定研究目標 (specific aims), 執行策略不能互相綁在一起, go paralleling, and equally balanced
-\1 Aim 1: Construct a Deep Learning Platform of TCGA/TCIA Survival Analysis\\
+\1 Aim 1: Construct a Deep Learning Platform of TCGA/TCIA and TMU dataset\\
+%Survival Analysis\\
 \1 Aim 2: Construct a Deep Learning Platform of EHR Survival Analysis\\
-\1 Aim 3: Biomarkers Discovery from RNA-Seq, Whole-slide Images, and EHR from TMU cohort\\
+\1 Aim 3: Biomarkers Discovery from RNA-Seq, Whole-slide Images, and EHR from TMU dataset\\
 
+\end{outline}
 
 \subsection{\cntext{執行進度}} % Flow Chart => Gantt chart
 % A flowchart of a TeX workflow
@@ -1474,11 +1476,12 @@ Specific Aims %特定研究目標 (specific aims), 執行策略不能互相綁�
 %[proposal main body] %(計畫的主體內容)” 解釋每個 aim 要怎麼做，著重策略之邏輯性鋪陳，盡量使論述具有說服力。
 %新創一個方法或技術平台，須要詳細交代步驟
 
-
-\1 Aim 1: Construct a Deep Learning Platform of TCGA/TCIA Survival Analysis\\
+%\begin{outline}
+\subsubsection{Aim 1:} Construct a Deep Learning Platform of TCGA/TCIA and TMU dataset\\
+%\end{outline}
 %central issue 1 with preliminary data (key data); fallback approaches %先以概要式的背景介紹破題，點出研究目標的重要性，然後用邏輯之陳述將如何達成目標的策略和方法講清楚。請務必注意：每個研究目標基本上需具備其獨立性 (Independence)，但其重要性卻要在目標之間有所連結，且要能回應總體目標之研究顯著性
 Our preliminary data (biomarker candidates) could be served as the bridge between the prognosis of patients and their pathological images of specimen.
-We will develop a deep-learning-based data mining as well as a validation platform. It might incorporate whole slide images of pathology of \acrshort{hnscc} from the Cancer Imaging Archive (TCIA) and from Joint Biobank of Taipei Medical University (TMU dataset).
+We will develop a deep-learning-based data mining as well as a validation platform. It might incorporate whole-slide images of pathology of \acrshort{hnscc} from the Cancer Imaging Archive (TCIA) and from Joint Biobank of Taipei Medical University (TMU dataset).
 There is 98 slides from 46 patients with HNSCC in TMU dataset.
 %  an independent dataset of 369 slides from 194 patients with LIHC43 from hospital Henri Mondor (Mondor dataset)
 %RNA-Seq data of \acrfull{tcga} for survival analysis. 
@@ -1495,7 +1498,7 @@ The HNSCC images is available at https://github.com/texchi2/HE2RNA\_code/\\blob/
 
 %the ability of HE2RNA to focus specifically on cancer-related molecular information\citep{Schmauch2020}.
 % detailed introduction
-%*** A deep learning model to predict RNA-Seq expression of tumours from whole slide images\cite{Schmauch2020}.
+%*** A deep learning model to predict RNA-Seq expression of tumours from whole-slide images\cite{Schmauch2020}.
 %A HE2RNA model should be trained to systematically predict RNA-Seq profiles from whole-slide images\cite{Schmauch2020}.
 % . The application of deep-learning algo- rithms to histological
 The whole-slide images of pathology data has the high dimensionality (up to 100,000 × 100,000 pixels for a single image).
@@ -1510,13 +1513,13 @@ A pathology slide could be represented as a 8000 × 2048 matrix.
 We use the k-means algorithm (as implemented in python package libkmcuda) to create 100 clusters (supertiles) of tiles on the basis of tile location on the slide, and we average the features of the tiles within each cluster. The use of these supertiles could reduce the dimensions of a slide to 100 × 2048. % training supertiles
 Transcriptome prediction model will be first trained on this reduced dataset, with all the TCGA data. Then, fine-tuning of "hyperparameters" will be achieved with full-scale data from \acrshort{hnscc} dataset by Bayesian optimization technique (Sequential Model-Based Optimization algorithms, SMBO)\citep{Hutter2011}.\\[0.5cm]
 
-%Graph convolutional neural network (GCNN) will be used for feature extraction from whole slide images.
+%Graph convolutional neural network (GCNN) will be used for feature extraction from whole-slide images.
 
 %%%%%
 
 % x construction of gene expression network.
 %GNN graph neural network for CNN convolutional neural network
-%The Cancer Imaging Archive (TCIA) whole slide by Deep learning (ResNet)
+%The Cancer Imaging Archive (TCIA) whole-slide by Deep learning (ResNet)
 % *** AI: deep learning, machine learning \citep{Huang2020}
 %plot http://iltabiai.github.io/tips/latex/2015/09/15/latex-tikzdevice-r.html
 %***Deep learning-based cancer survival prognosis from RNA-Seq data: approaches and evaluations
@@ -1529,19 +1532,19 @@ Transcriptome prediction model will be first trained on this reduced dataset, wi
 %https://github.com/texchi2/HE2RNA\_code/blob/master/transcriptome\_data.py).
 
 
-TCGA/TCPA modeling (with RNA-Seq data):\\
+TCGA/TCIA modeling (with RNA-Seq data):\\[0.2cm]
 %Y (RNA-seq) ← X (slide represents gene expression)
 $Y_{mrna} = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + ... + \beta_n X_n + \epsilon$\\[0.3cm]
 While 
 $Y_{mrna}$ is known RNA-Seq data, and
-$X_1, X_2, ...X_n$ are the features extracted by HE2RNA model from whole slide images of pathology.\\[0.5cm]
+$X_1, X_2, ...X_n$ are the features extracted by HE2RNA model from TCIA whole-slide images of pathology.\\[0.5cm]
 %Gene expression is not an independent $X_{mrna}$. It could be correlated with other (for example)\\ $X_{body}, X_{stress}, X_{fear}, X_{meaningOfLife}, X_{inflammation}, X_{empathy}$ factors.\\[1cm]
 
-We transfer HE2RNA model on TMU HNSCC dataset to predict RNA-Seq representation:\\
+We transfer HE2RNA model on TMU HNSCC dataset to predict RNA-Seq representation:\\[0.2cm]
 %Y (survival) ← X (slide represents gene expression)
 $\hat{Y}_{mrna} = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + ... + \beta_n X_n + \epsilon$\\[0.3cm]
-While $hat{Y}_{mrna}$ is predicted RNA-Seq data, and
-$X_1, X_2, ...X_n$ are the features extracted from whole slide images of pathology.\\
+While $\hat{Y}_{mrna}$ is predicted RNA-Seq data, and
+$X_1, X_2, ...X_n$ are the features extracted from TMU whole-slide images of pathology.\\
 IL19 is one of our suggested candidate marker (through TCGA survival analysis).
 We want to validate that IL19 still has survival impact on TMU \acrshort{hnscc} dataset (please see Figure \ref{fig:HE2RNA}).
 
@@ -1604,7 +1607,7 @@ additional item bottom color=orange!60!yellow,
 (
 TCGA: \acrlong{tcga};
 TCIA: \acrlong{tcia};
-WSI: whole slide images of pathology
+WSI: whole-slide images of pathology
 EHR: \acrlong{ehr}
 RNA-Seq: \acrlong{rnaseq}
 )
@@ -1617,40 +1620,44 @@ RNA-Seq: \acrlong{rnaseq}
 
 
 %%%%
-\1 Aim 2: Construct a Deep Learning Platform of EHR Survival Analysis\\
-central issue 2 without preliminary data; fallback approaches % 需有充分的文獻分析和縝密的論述來補足，使得 “convincing power” 依然強而有力
+%\begin{outline}
+\subsubsection{Aim 2:} Construct a Deep Learning Platform of EHR Survival Analysis\\
+%\end{outline}
+%central issue 2 with preliminary data (Cox model); fallback approaches % 需有充分的文獻分析和縝密的論述來補足，使得 “convincing power” 依然強而有力
 %*transfer learning from TCGA model
 %torchvision, NanoMets Models
 %save checkpoint, load then deepcopy()
-Deep learning can convert EHR to the Fast Healthcare Interoperability Resources (FHIR) format\citep{Rajkomar2018}\citep{HealthLevelSeven2019} for handling free-text notes by physicians.
-
-Recurrent neural network (RNN) will deal with "holistic features" from electric healthcare records (EHR) of Taipei Medical University Hospital (TMUH).
+Deep learning can convert \acrfull{ehr} to the Fast Healthcare Interoperability Resources (FHIR) format\citep{Rajkomar2018}\citep{HealthLevelSeven2019} for handling free-text notes by physicians.
+% RNN recurrent neural network
+\acrfull{rnn} will deal with "holistic features" from \acrshort{ehr} of Taipei Medical University Hospital (TMUH).
 These patient's features should include physical, pathological, psychological data, and even more spiritual information investigated by physicians.
 
 
 %% TCGA new holistic features %%%%%
-Our current \acrshort{hnscc} study summarizes that six candidate biomarkers, clinical T stage, and surgical margin are independent prognosis factors.
-The prognosis model with coefficients is established from \acrshort{tcga} \acrshort{hnscc} cohort. The important input $X_1...X_n$ should be patients' features: age, specific six gene expressions, clinical T stage, and surgical margin so far.
-When we consider the survival prediction model in holistic manner,
+%Our previous \acrshort{hnscc} study\cite{Chi2020} 
+Our preliminary research data summarizes that 20 candidate biomarkers, clinical T stage, and surgical margin are independent prognosis factors.
+The prognosis model with coefficients is established from \acrshort{tcga} \acrshort{hnscc} cohort. The important input $X_1...X_n$ should be patients' features: age, candidate gene expressions, clinical T stage, and surgical margin so far.
+When we consider the survival prediction model in a holistic manner,
 ground truth Y (e.x. patient's survival):\\[0.5cm]
 %Y$:\\[0.3cm]
-$Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + ... + \beta_n X_n + \epsilon$\\[0.5cm]
-Gene expression is not an independent $X_{mrna}$. It could be correlated with other (for example)\\ $X_{body}, X_{stress}, X_{fear}, X_{meaningOfLife}, X_{inflammation}, X_{empathy}$ factors.\\
-There is much work to be done in investigating the functional network more fully\citep{Rogers1959}.
+$Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + ... + \beta_n X_n + \epsilon$\\[0.3cm]
+Gene expression is not an independent $X_{mrna}$. It could be correlated with other (for example):\\[0.3cm]
+$X_{body}, X_{stress}, X_{fear}, X_{meaningOfLife}, X_{inflammation}, X_{empathy}$ factors.\\[0.3cm]
+There is much work to be done in investigating the functional mind-body network more fully\citep{Rogers1959}.\\
 %We wish the TCGA does collect more holistic features from their participants in the future.
 %依舊是以管窺天
 % https://link.springer.com/referenceworkentry/10.1007%2F978-1-4419-1428-6_575
 %癌症與身心靈的重要關係：中醫、citation? emotional centered approach
 We suggest TCGA should cover more holistic features:
-cortisol is one of the most common objective outcomes studied in psychoneuroimmunological (PNI) factor, interleukin, cytokines, lymphocytes (CD4+, CD8+), CD56+, vitals signs, telomere length, telomere activity, and heart rate variability (HRV).
-The standardized, psychosocial (subjective) measures include depression, stress, quality of life, anxiety, fatigue, mindfulness, mood, and specific spiritual growth (i.e., the meaning of life)\citep{Hsiao2012}.
+The cortisol is one of the most common objective outcomes studied in psychoneuroimmunological (PNI) factor. Interleukin, cytokines, lymphocytes (CD4+, CD8+), CD56+, vitals signs, telomere length, telomere activity, and heart rate variability (HRV) are others.
+The subjective psychosocial measures should include depression, stress, quality of life, anxiety, fatigue, mindfulness, mood, and specific spiritual growth (i.e., the meaning of life)\citep{Hsiao2012}.
 %冤親債主的意念 unknown X factors 回到我們的文章
-Since psychological benefit (reduction of stress, fatigue, sleep disturbance, and depressive symptoms) also optimizes immune function (higher natural killer cell activity, higher \acrshort{ifng}, lower TNF-alpha, lower IL-6) in terms of better survival of cancer patients.
+Since psychological benefit (reduction of stress, fatigue, sleep disturbance, and depressive symptoms) also optimizes immune function (higher natural killer cell activity, higher \acrshort{ifng}, lower TNF-alpha, lower IL-6) in terms of better survival of patients from cancer.
 
 % holistic EHR
-Moreover, we encourage physicians to write their electric healthcare record (EHR) in a "holistic way".
+Moreover, we encourage physicians to write their \acrshort{ehr} in a "holistic way".
 % Deep Patient:  
-Deep learning can convert EHR to the Fast Healthcare Interoperability Resources (FHIR) format\citep{Rajkomar2018}\citep{HealthLevelSeven2019} for handling free-text notes by physicians.
+Thus, deep learning can convert EHR to the Fast Healthcare Interoperability Resources (FHIR) format\citep{Rajkomar2018}\citep{HealthLevelSeven2019} for handling free-text notes by physicians.
 Deep learning can also derive patient representations that offer improved clinical predictions\citep{Miotto2016}.
 %=> Level 4 Record-keeping and Data Exchange for the healthcare process (clinical data) %Under HL7, RESTful
 %Allergy, Problem,
@@ -1677,15 +1684,18 @@ Deep learning can also derive patient representations that offer improved clinic
 %https://mos2718.github.io/FHIRspec/Spec/Patient/EHR_Patient.docx
 Once the holistic feature is available, a graph convolutional neural network (GCNN) is mandatory for further survival analysis\citep{Ching2018a}.
 
-In Taipei Medical University Hospital, holistic-enabled EHR has been designed as the holistic dental chart for our outpatient with psycho-social-spiritual evaluation\citep{Ling-ChengMong2021}:\\
-1. Emotional: stable/depression/ anxiety/ agitated/ perplexed\\
-2. Interaction: expression disorder/ confusion/ hard to make decision/ uncooperative to dental treatment\\
-3. Social: (disturbing living/ disturbing working/ disturbing other life aspect)\\
-4. Function loss(subjectively): mastication/ pronunciation/ life quality/ state of mind\\
-5. Self-expectation: lack of confidence/ low self-esteem/ social-withdrawal\\
-6. Impact to life: financial problem/ family problem\\
-7. Medical relationship: bad experience of dental treatment/ loss confidence to dentist/ anxious to treatment/ side-effects/ litigation experience\\[0.1cm]
+In Taipei Medical University Hospital, holistic-enabled EHR has been designed in the daily-work for charting our outpatients with psycho-social-spiritual evaluation\citep{Ling-ChengMong2021}:\\
+\begin{ouline}
 
+\1 Emotional: stable/depression/ anxiety/ agitated/ perplexed\\
+\1 Interaction: expression disorder/ confusion/ hard to make decision/ uncooperative to dental treatment\\
+\1 Social: (disturbing living/ disturbing working/ disturbing other life aspect)\\
+\1 Function loss(subjectively): mastication/ pronunciation/ life quality/ state of mind\\
+\1 Self-expectation: lack of confidence/ low self-esteem/ social-withdrawal\\
+\1 Impact to life: financial problem/ family problem\\
+\1 Medical relationship: bad experience of dental treatment/ loss confidence to dentist/ anxious to treatment/ side-effects/ litigation experience\\[0.1cm]
+
+\end{ouline}
 %In personal history section of admission note for inpatient:\\
 %<Habits>\\
 %-Tobacco: \underline{ }\underline{ } pack/day for \underline{ }\underline{ } years\\
@@ -1706,12 +1716,17 @@ In Taipei Medical University Hospital, holistic-enabled EHR has been designed as
 
 %子計畫 升格為主計畫 EHR of TMU Joint Biobank
 %\1 Aim 3: Biomarkers validation cohort for 10 candidates from pvalueTex project
-\1 Aim 3: Biomarkers Discovery from RNA-Seq, Whole-slide Images, and EHR from TMU cohort\\
-%\1 Aim 3: RNA-Seq Incorporated with Whole-slide Images models from TCIA and TMU\\
-central issue 3 without preliminary data; fallback approaches
-Whole-slide Images models are the surrogate of expression data of RNA-Seq
 
-The transcriptomic representation of \acrfull{tcia} and TCGA could be applied to validate those candidates by independent TMU cohort (n=46, obtained at TMU Joint Biobank).
+
+\begin{outline}
+\subsubsection{Aim 3:} Biomarkers Discovery from RNA-Seq, Whole-slide Images, and EHR from TMU dataset\\
+%\end{outline}
+%\1 Aim 3: RNA-Seq Incorporated with Whole-slide Images models from TCIA and TMU\\
+%central issue 3 without preliminary data; fallback approaches
+Whole-slide images are the surrogate of expression data of RNA-Seq.
+From the result of Aim 1, the transcriptomic representation of TMU dataset (n=46, obtained at TMU Joint Biobank) could be applied to validate those candidates discovered by our previous study.
+% Biomarkers validation cohort for 10 candidates from pvalueTex project
+Moreover, the result from Aim 2 (features extraction holistic \acrshort{ehr} at TMUH) will be used for survival analysis.
 %需有充分的文獻分析和縝密的論述來補足，使得 “convincing power” 依然強而有力
 %*transfer learning from TCGA model
 %torchvision, NanoMets Models
@@ -1719,12 +1734,11 @@ The transcriptomic representation of \acrfull{tcia} and TCGA could be applied to
 
 
 %\subsubsection{TCIA validation by deep learning}
-https://www.cancerimagingarchive.net/
-from CPTAC and TCGA images
+%https://www.cancerimagingarchive.net/
+%from CPTAC and TCGA images
 %poster 
 %https://wiki.cancerimagingarchive.net/download/attachments/1966514/TCGA_TCIA_Poster_111511_HHFa_WIDE.pptx?version=1&modificationDate=1323207330686&api=v2
 
-Biomarkers validation cohort for 10 candidates from pvalueTex project
 
 
 \end{outline}
