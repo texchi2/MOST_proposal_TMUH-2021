@@ -1485,7 +1485,10 @@ Specific Aims %特定研究目標 (specific aims), 執行策略不能互相綁�
 Our preliminary data (biomarker candidates) could be served as the bridge between the prognosis of patients and their pathological images of specimen.
 We will develop a deep-learning-based data mining as well as a validation platform. It might incorporate whole-slide images of pathology of \acrshort{hnscc} from the Cancer Imaging Archive (TCIA) and from Joint Biobank of Taipei Medical University (TMU dataset).
 There is 98 slides from 46 patients with HNSCC in TMU dataset.
-***TMU Joint IRB approval
+
+Ethics Statement\\
+***TMU Joint IRB approval\\
+Data analysis was waived review and consent by the TMU Joint Institutional Review Board (IRB), as all data was being analyzed retrospectively, after de- identification. All experimental protocols were approved under the IRB protocol No. Version1.0/20210531 with TMU Joint Institutional Review Board, and all experiments were carried out in accordance with approved guidelines.
 %  an independent dataset of 369 slides from 194 patients with LIHC43 from hospital Henri Mondor (Mondor dataset)
 %RNA-Seq data of \acrfull{tcga} for survival analysis. 
 
@@ -1494,7 +1497,15 @@ There is 98 slides from 46 patients with HNSCC in TMU dataset.
 
 NCI's GDC stores pathology SVS image.
 An SVS file is a digital slide image file created by an Aperio ScanScope slide scanner.
-The HNSCC images is available at https://github.com/texchi2/HE2RNA\_code/\\blob/master/gdc\_manifests/gdc\_manifest.2018-06-26\_diagnostic\_TCGA-HNSC.txt.
+The TCGA's HNSCC images is available at https://github.com/texchi2/HE2RNA\_code/\\blob/master/gdc\_manifests/gdc\_manifest.2018-06-26\_diagnostic\_TCGA-HNSC.txt.
+
+
+In the TMU cohort, the patient ages ranged from 25 to 81 (average age 58 \± 10). Patient specific information pertaining to race, tumor grade, and outcome were not explicitly recorded for this study.
+Slide Digitization and Pathologists Ground Truth for TMU dataset:
+H\&E stained histopathology slides were digitized via a whole-slide scanner at 40x magnification for this study. An Aperio Scanscope CS scanner was used to digitize cases from the TMU cohort. 
+%The Ventana iCoreo scanner was used for scanning the UHCMC/CWRU and NC data cohorts. 
+40x magnification corresponds to Aperio’s slides at 0.25 μm/pixel resolution.
+%and to Ventana’s slides at 0.23 μm/pixel.
 %https://portal.gdc.cancer.gov/image-viewer?caseId=b843df7e-db06-4d29-b00d-6a93effd9191&filters=%7B%22op%22%3A%22and%22%2C%22content%22%3A%5B%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22cases.project.project_id%22%2C%22value%22%3A%5B%22TCGA-HNSC%22%5D%7D%7D%2C%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22files.experimental_strategy%22%2C%22value%22%3A%5B%22Tissue%20Slide%22%5D%7D%7D%5D%7D&selectedId=45fffd2f-e282-4198-8c49-0247507ebb8a
 % HE2RNA
 %*** github: https://github.com/owkin/HE2RNA_code
@@ -1812,7 +1823,7 @@ The third page looks like this.
 \3 \cntext{受試者禮品、營養品及交通費}
 \3 \cntext{國內或國際性學會之年費或入會費}
 \3 \cntext{論文發表費(本部補助研究計畫之研究成果發表於國內外著名之學術期刊所需之相關費用)}
-\3 \cntext{研究計畫相關實驗進行之審查費(如人體試驗委員會等審查費)}
+\3 \cntext{研究計畫人體試驗委員會審查費: 10,000元，修正案: 1,000元，結案: 1,000元。小計: 12,000。)}
 \3 \cntext{翻譯及潤稿費}
 \3 \cntext{會議餐費(因研究計畫需要召開會議而逾用餐時間所提供之餐點)}
 \3 \cntext{田野調查之茶點費}
