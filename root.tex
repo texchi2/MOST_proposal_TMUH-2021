@@ -1,4 +1,7 @@
 % !TEX encoding = UTF-8 Unicode
+% MOST latex template
+% https://www.math.sinica.edu.tw/www/tex/default.jsp
+% Ipe drawing: the extensible drawing editor Ipe; or Inkscape https://ipe.otfried.org/manual/manual.html
 \documentclass[12pt, a4paper]{article}
 
 \usepackage{xcolor}
@@ -348,6 +351,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%% title
 \title{\Large \vspace{-2.5cm} \titlecap{Deep learning for whole-slide images and holistic} Electric Healthcare Records in Head and Neck Squamous Cell Carcinoma}
 % or Deep learning for whole slide image and holistic EHR
+% Deep Learning for Whole-slide Images and Electric Healthcare Records in Head and Neck Squamous Cell Carcinoma
 %\author{Li-Hsing Chi}
 %\date{May 2021}
 
@@ -396,7 +400,7 @@ The survival analysis could conclude the manifest of clinical, pathological, and
 R script was used to develop a comprehensive workflow, named "pvalueTex", running on the Rstudio platform. It includes data retrieving and pre-processing, feature selection, cutoff mining engine, Kaplan-Meier survival analysis, Cox proportional hazard modeling to discover prognostic biomarkers.
 We further plan to develop a deep-learning based data mining as well as validation platform. It might incorporate whole-slide images of pathology from the Cancer Imaging Archive (TCIA) and Taipei Medical University (TMU) biobank.
 %RNA-Seq data of \acrfull{tcga} for survival analysis. 
-Graph convolutional neural network (GCNN) will be used for feature extraction from whole-slide images.
+Convolutional neural network (CNN) will be used for feature extraction from whole-slide images.
 Recurrent neural network (RNN) will deal with "holistic features" from electric healthcare records (EHR) of Taipei Medical University Hospital (TMUH).
 These patient's features should include physical, pathological, psychological data, and even more spiritual information investigated by physicians.
 % construction of gene expression network.
@@ -466,7 +470,7 @@ Therapeutic Relationship;
 Mindfulness Meditation
 %}
 
-\cntext{中文摘要。}
+\cntext{中文摘要: 申請 TMJ Joint Biobank 的 46名口腔癌個案，H\&E 病理切片數位掃描檔、醫院電子病歷，以AI 人工智慧演算法來做存活分析}
 
 \end{abstract}
 
@@ -1457,7 +1461,7 @@ Specific Aims %特定研究目標 (specific aims), 執行策略不能互相綁�
 \ganttlinkedbar[progress=0]{Development of source code}{2021-10}{2021-12} \\
 
 \ganttgroup{Aim 2}{2021-07}{2021-12} \\
-\ganttbar[progress=15, name=T2A]{Solver Analysis $\&$ Formulation}{2021-07}{2021-10} \\
+\ganttbar[progress=15, name=T2A]{\cntext{因Covid-19，臨床研究資料庫獨立作業區2021.05.19暫停服務} $\&$ Formulation}{2021-07}{2021-10} \\
 \ganttlinkedbar[progress=0]{Development of source code}{2021-10}{2021-12} \\
 
 \ganttgroup{Aim 3}{2021-09}{2022-06} \\
@@ -1484,28 +1488,34 @@ Specific Aims %特定研究目標 (specific aims), 執行策略不能互相綁�
 %central issue 1 with preliminary data (key data); fallback approaches %先以概要式的背景介紹破題，點出研究目標的重要性，然後用邏輯之陳述將如何達成目標的策略和方法講清楚。請務必注意：每個研究目標基本上需具備其獨立性 (Independence)，但其重要性卻要在目標之間有所連結，且要能回應總體目標之研究顯著性
 Our preliminary data (biomarker candidates) could be served as the bridge between the prognosis of patients and their pathological images of specimen.
 We will develop a deep-learning-based data mining as well as a validation platform. It might incorporate whole-slide images of pathology of \acrshort{hnscc} from the Cancer Imaging Archive (TCIA) and from Joint Biobank of Taipei Medical University (TMU dataset).
-There is 98 slides from 46 patients with HNSCC in TMU dataset.
 
-Ethics Statement\\
-***TMU Joint IRB approval\\
-Data analysis was waived review and consent by the TMU Joint Institutional Review Board (IRB), as all data was being analyzed retrospectively, after de- identification. All experimental protocols were approved under the IRB protocol No. Version1.0/20210531 with TMU Joint Institutional Review Board, and all experiments were carried out in accordance with approved guidelines.
+%Ethics Statement\\
+%***TMU Joint IRB approval\\
+Data analysis will be waived review and consent by the TMU Joint Institutional Review Board (IRB), as all data will being analyzed retrospectively, after de-identification. All experimental protocols will be applied for approval under the IRB protocol %(No. Version1.0/20210531)
+with TMU Joint Institutional Review Board, and all experiments will be carried out in accordance with approved guidelines.
+%In the TMU cohort, the patient ages ranged from 25 to 81 (average age 58 \± 10). Patient specific information pertaining to race, tumor grade, and outcome were not explicitly recorded for this study.
+
 %  an independent dataset of 369 slides from 194 patients with LIHC43 from hospital Henri Mondor (Mondor dataset)
 %RNA-Seq data of \acrfull{tcga} for survival analysis. 
+
+
+There is 98 slides from 46 patients with HNSCC in TMU dataset.
+%Slide Digitization and Pathologists Ground Truth for TMU dataset:
+H\&E stained histopathology slides will be digitized via a whole-slide scanner at 40x magnification for this study. An Aperio Scanscope CS2 scanner will be used to digitize cases, from the TMU cohort,
+%The Ventana iCoreo scanner was used for scanning the UHCMC/CWRU and NC data cohorts. 
+under 40x magnification corresponds 
+to Aperio's slides at 0.25 $\mu$
+m/pixel resolution.
+%and to Ventana’s slides at 0.23 μm/pixel.
 
 %https://wiki.cancerimagingarchive.net/display/Public/TCGA-HNSC
 %https://cancer.digitalslidearchive.org/#!/CDSA/hnsc/TCGA-BA-4076/TCGA-BA-4076-01A-01-BS1?slide=TCGA-BA-4076-01A-01-BS1.4aef481c-f634-4ffc-9fb3-609f59a8caf9.svs
 
-NCI's GDC stores pathology SVS image.
+NCI's \acrfull{gdc} stores pathology SVS image.
 An SVS file is a digital slide image file created by an Aperio ScanScope slide scanner.
-The TCGA's HNSCC images is available at https://github.com/texchi2/HE2RNA\_code/\\blob/master/gdc\_manifests/gdc\_manifest.2018-06-26\_diagnostic\_TCGA-HNSC.txt.
+The TCGA's HNSCC images is available at https://github.com/texchi2/HE2RNA\_code/blob/master/gdc\_manifests/gdc\_manifest.2018-06-26\_diagnostic\\\_TCGA-HNSC.txt.
 
 
-In the TMU cohort, the patient ages ranged from 25 to 81 (average age 58 \± 10). Patient specific information pertaining to race, tumor grade, and outcome were not explicitly recorded for this study.
-Slide Digitization and Pathologists Ground Truth for TMU dataset:
-H\&E stained histopathology slides were digitized via a whole-slide scanner at 40x magnification for this study. An Aperio Scanscope CS scanner was used to digitize cases from the TMU cohort. 
-%The Ventana iCoreo scanner was used for scanning the UHCMC/CWRU and NC data cohorts. 
-40x magnification corresponds to Aperio’s slides at 0.25 μm/pixel resolution.
-%and to Ventana’s slides at 0.23 μm/pixel.
 %https://portal.gdc.cancer.gov/image-viewer?caseId=b843df7e-db06-4d29-b00d-6a93effd9191&filters=%7B%22op%22%3A%22and%22%2C%22content%22%3A%5B%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22cases.project.project_id%22%2C%22value%22%3A%5B%22TCGA-HNSC%22%5D%7D%7D%2C%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22files.experimental_strategy%22%2C%22value%22%3A%5B%22Tissue%20Slide%22%5D%7D%7D%5D%7D&selectedId=45fffd2f-e282-4198-8c49-0247507ebb8a
 % HE2RNA
 %*** github: https://github.com/owkin/HE2RNA_code
@@ -1518,14 +1528,15 @@ H\&E stained histopathology slides were digitized via a whole-slide scanner at 4
 The whole-slide images of pathology data has the high dimensionality (up to 100,000 × 100,000 pixels for a single image).
 %The small size of available datasets. => small case number
 HE2RNA workflow could divide the whole-slide images into squares of 112 × 112 $\mu$m (224 × 224 pixels) called "tiles", and use the Otsu algorithm\citep{Otsu1979} (as implemented in python package scikit-image, available at https://scikit-image.org/docs/dev/api/skimage.html) to select only those containing tissue, excluding the white background. 
-A maximum of 8000 such tiles from each slide are sampled then extracted 2048 features with a 50-layer ResNet model\citep{He2016a}  pretrained on the ImageNet dataset (available at https://www.image-net.org/challenges/LSVRC/\\index.php).
+A maximum of 8000 such tiles from each slide are sampled then extracted 2048 features with a 50-layer ResNet model\citep{He2016a}  pretrained on the ImageNet dataset (available at https://www.image-net.org/challenges/LSVRC/index.php).
 The ResNet and HE2RNA model are developed by using the TensorFlow/Keras implementation with a architecture of \acrfull{cnn}.
 %Graph convolutional neural network (GCNN).
 The AI-driven computer program analyzes tissue by creating a map of thousands of tiles.
 A pathology slide could be represented as a 8000 × 2048 matrix.
 %For the first phase of this work (transcriptome prediction), we accelerated the training of our models through a simple preprocessing step inspired by simple linear iterative clustering (SLIC)65: 
 We use the k-means algorithm (as implemented in python package libkmcuda) to create 100 clusters (supertiles) of tiles on the basis of tile location on the slide, and we average the features of the tiles within each cluster. The use of these supertiles could reduce the dimensions of a slide to 100 × 2048. % training supertiles
-Transcriptome prediction model will be first trained on this reduced dataset, with all the TCGA data. Then, fine-tuning of "hyperparameters" will be achieved with full-scale data from \acrshort{hnscc} dataset by Bayesian optimization technique (Sequential Model-Based Optimization algorithms, SMBO)\citep{Hutter2011}.\\[0.5cm]
+Transcriptome prediction model will be first trained on this reduced dataset, with all the TCGA data. Then, fine-tuning of "hyperparameters" will be achieved with full-scale data from \acrshort{hnscc} dataset by Bayesian optimization technique (Sequential Model-Based Optimization algorithms, SMBO)\citep{Hutter2011}.
+The similar procedure of image process will be applied on TMU dataset.\\[0.5cm]
 
 %Graph convolutional neural network (GCNN) will be used for feature extraction from whole-slide images.
 
@@ -1733,8 +1744,17 @@ In Taipei Medical University Hospital, holistic-enabled EHR has been designed in
 
 Deep learning can convert \acrfull{ehr} to the Fast Healthcare Interoperability Resources (FHIR) format\citep{Rajkomar2018}\citep{HealthLevelSeven2019} for handling free-text notes by physicians.
 % RNN recurrent neural network
-\acrfull{rnn} will deal with "holistic features" from \acrshort{ehr} of TMUH.
+\acrfull{rnn} will deal with "holistic features" of \acrshort{ehr} obtained from Taipei Medical University Clinical Research Database (TMUCRD).
+% https://ods.tmu.edu.tw/portal_c3_cnt.php?owner_num=c3_69585&button_num=c3&folder_id=3714
 These patient's features should include physical, pathological, psychological data, and even more spiritual information investigated by physicians.
+The "SUB\_DESC", coded by the coding book (data schema) of TMUCRD, should store psychological and spiritual information in EHR.
+% 攜入(linked my data) with 特定對象識別代碼(如身分證字號、病歷號碼)
+% => biobank 代為 linking (收費?)
+%申請資料欄位 *
+%臨床資料: 常用欄位清單請見
+% Coding book: https://ods.tmu.edu.tw/portal_a1.php?owner_num=a1_69914&button_num=a1；例如申請癌症登記、化療、腫瘤型態、病理報告、新生兒、母親、心臟超音波報告或非常用清單等欄位，請選自選欄位；若無，則選常用欄位。
+% 自選欄位包含下列欄位，基於去識別化考量，僅限攜出(report to go)或攜入(linked my data)之服務模式(如下圖)。
+%OPD_BASIC / SUB_DESC, SUB_DESC2, OBJ_DESC, OBJ_DESC2, PLAN_DESC, PLAN_DESC2, PATT_REPORT, CR_TCASE / NOTE
 
 
 
@@ -1747,8 +1767,9 @@ These patient's features should include physical, pathological, psychological da
 Whole-slide images are the surrogate of expression data of RNA-Seq.
 From the result of Aim 1, the transcriptomic representation of TMU dataset (n=46, obtained at TMU Joint Biobank) could be applied to validate those candidates discovered by our previous study.
 % Biomarkers validation cohort for 10 candidates from pvalueTex project
-Moreover, the result of Aim 2 (features extracted from holistic \acrshort{ehr} of TMUH) will be used for survival analysis (see Figure \ref{fig:HE2RNA}.
+Moreover, the result of Aim 2 (features extracted from holistic \acrshort{ehr} of TMUH) will be used for survival analysis (see Figure \ref{fig:HE2RNA} by conventional Cox proportional hazard regression and \acrshort{gcnn} (see Figure \ref{fig:GCNN}). % try Ipe; or Inkscape
 % modifying % Figure 5 HE2RNA workflow
+
 
 %需有充分的文獻分析和縝密的論述來補足，使得 “convincing power” 依然強而有力
 %*transfer learning from TCGA model
@@ -1762,8 +1783,19 @@ Moreover, the result of Aim 2 (features extracted from holistic \acrshort{ehr} o
 %poster 
 %https://wiki.cancerimagingarchive.net/download/attachments/1966514/TCGA_TCIA_Poster_111511_HHFa_WIDE.pptx?version=1&modificationDate=1323207330686&api=v2
 
+The Cox proportional hazards regression is the widely accepted approach for modeling survival while accounting for confounding factors\cite{Magen2019}. Univariate and multivariate Cox proportional regression model\cite{Andersen1982}, using the "coxph" function in R package "survival", will be applied to calculate hazard ratio, \acrfull{ci95} and its significance, and to estimate the independent contributions of each clinicopathological features to the overall survival.
+Results are considered statistically significant when a two-sided \textit{P} value $<$ 0.05, or a lower threshold if indicated.
+The \acrfull{fdr} ($< 0.05$) could be used to pick up the optimal \textit{P} value to ensure the control for type I error of multiple survival test during the survival analysis.
+%There were also multiple correlated tests of null hypotheses in the Kaplan-Meier family during our global scanning of protein-coding genes. The stringent Bonferroni correction could result in an adjusted \textit{P} value to ensure the control for type I error. 
+
+%Cox regression tables, were exported to ".xlsx" and ".Rda" files (by R package "r2excel") for subsequent biomarker selection.
 
 
+
+The candidate biomarkers, clinical tumor size, surgical margin status and some holistic features will be suggested as prognosis factors in \acrshort{hnscc} through analysis of TCGA and TMU datasets.
+%The transcriptomic representation of \acrfull{tcia} and TCGA could be applied to validate those candidates by independent TMU cohort.
+
+%We will find that \acrshort{rnaseq} (or \acrshort{rnaseq} representation with associated pathological images) and holistic features will help to facilitate the biomarker discovery in \acrshort{hnscc}.
 %\end{outline}
 
 
@@ -1788,19 +1820,34 @@ Moreover, the result of Aim 2 (features extracted from holistic \acrshort{ehr} o
 
 \section{\cntext{(三)預期完成之工作項目、成果及績效}}
 %1.預期完成之工作項目
-Validation of candidate biomarkers of HNSCC by TMU Biobank.
-%2.對於學術研究、國家發展及其他應用方面預期之貢獻
-for further drug development of systemic therapy of HNSCC (personalized medicine ) or \cntext{精準醫療}
-%3.對於參與之工作人員，預期可獲之訓練
-to improve the PyTorch and C ++ programming skill
-%4.預期完成之研究成果及績效(如期刊論文、研討會論文、專書、技術報告、專利或技術移轉等質與量之預期績效)。請詳述其必要性以及預期成果等。
-We will write Ph.D. dissertation as well manuscript for SCI publication.
+\begin{outline}
 
+
+\1 Validation of candidate biomarkers of HNSCC by TCGA and TMU datasets.
+%2.對於學術研究、國家發展及其他應用方面預期之貢獻
+It will be submitted for further drug development of systemic therapy of HNSCC as personalized medicine.
+%) or \cntext{精準醫療}
+%3.對於參與之工作人員，預期可獲之訓練
+\1 We will improve our programming skill of R, PyTorch(Python) and C ++.
+%4.預期完成之研究成果及績效(如期刊論文、研討會論文、專書、技術報告、專利或技術移轉等質與量之預期績效)。請詳述其必要性以及預期成果等。
+\1 We will finish Dr Chi's Ph.D. dissertation as well as manuscript for SCI publication.
+
+% 致謝詞 acknowledgments in US
+% acknowledgements in British
+\1 Acknowledgments: We thank the staff of the Clinical Data Center, Office of Data Science, Taipei Medical University, Taiwan, for statistical consultation, analysis/interpretation of data, and technical support.
+The results shown here are in whole based upon data generated by the \acrshort{tcga} Research Network: https://www.cancer.gov/tcga.
+The tables were generated by latex code with the help from https://github.com/JDMCreator/LaTeXTableEditor (accessed at https://www.latex-tables.com/v1/\\index.html).
+We sincerely want to express our thanks to the \acrshort{hnscc} patients who donated their data to TMU Joint Biobank.
+% *** URL Accessed 20 May 2013.
+
+
+
+\end{outline}
 \clearpage
 
-\section{\cntext{計畫經費之編列}}
+\section*{\cntext{(四)計畫經費之編列}}
 % 核定的經費不會高於所 要求的預算，如經費不足對日後計畫執行也是障礙，因此每項經費的使用最好 想清楚，說明白，比如設備費，逐年需購買哪些圖書?何以需購買電腦、筆 電，尤其國立大學設備資源較充裕，平均四年即更新汰舊電腦，編列時還經常 可見便宜行事的情況，複製經費編列，以致於每年都購買電腦或印表機，顯見 並不適合。參與國際會議及移地研究，停留天數及其必要性都需填寫，說明越 清楚，通過的機會就越高。此外，編列項目越詳細越好，免得日後有需要時， 因計畫書未列，校方不准核銷，而影響計畫的進行。
-The third page looks like this. 
+ 
 %主要研究人力，主持人每周平均投入工作時數比例，請「合理」。(100% 就是不合理喔!!請注意。一般而言，20-40%或 50%是比較合理)
 \begin{outline}
 
@@ -1809,44 +1856,74 @@ The third page looks like this.
 % https://research.nchu.edu.tw/upfile/editor/files/科技部補助專題研究計畫耗材物品圖書及雜項費用及研究設備費支出用途範例.pdf
 
 \1 \cntext{業務費}
-\2 \cntext{研究人事費：}
+%\2 \cntext{研究人事費：34,000 per month}
 %含研究助理費及臨時工資等，以科技部補助專題研究計畫助理人員工作酬金支給標準為核定依據: Ph.D. candidate 34,000 per month (2,000 x 17 units)
 
-\2 \cntext{研究主持費：}
+%\2 \cntext{研究主持費：}
 % 近五年內研究績效優異者，得編列研究主持費，經計畫審查小組審核通過後，每人至多核給每月新台幣一萬元 。計畫主持人或共同主持人於研究計畫執行期間僅得由此補助 辦法支領一份研究主持費。於研究計畫執行期間，因離職、轉 任或無法執行該計畫時，即停止核發研究主持費。
 \2 \cntext{耗材費：} %消耗性器材與藥品費、問卷 調查費 及其它事務性費用(如電腦耗材費、郵電費、印刷影印費、資料檢索費、國內差旅費、論文發表費) 在核定 經費限額內核實列支
-\3 \cntext{電腦使用費(使用電腦所需費用，如以執行機構出具之收據報銷，應檢附計算標 準、實際使用時數及耗材支用情形等支出 數據資料)}
-\3 \cntext{資料檢索費(使用傳輸網路所供應新穎數據或索取各交換系統資料庫中之資料所需費用)}
-\3 \cntext{網路使用費}
-\3 \cntext{資料庫使用費}
-\3 \cntext{問卷調查費(實地調查訪問及搜集各種資料所需費用)} 
-\3 \cntext{受試者禮品、營養品及交通費}
-\3 \cntext{國內或國際性學會之年費或入會費}
-\3 \cntext{論文發表費(本部補助研究計畫之研究成果發表於國內外著名之學術期刊所需之相關費用)}
-\3 \cntext{研究計畫人體試驗委員會審查費: 10,000元，修正案: 1,000元，結案: 1,000元。小計: 12,000。)}
-\3 \cntext{翻譯及潤稿費}
-\3 \cntext{會議餐費(因研究計畫需要召開會議而逾用餐時間所提供之餐點)}
-\3 \cntext{田野調查之茶點費}
-\3 \cntext{計畫相關之教育訓練費}
-\3 \cntext{研究計畫所需的圖書(購置之圖書是否列入財產，由執行機構依「圖書館法」及「財物標準分類」有關財產與非財產之規定辦理)}
-\3 \cntext{有關網站建置、程式設計和拍攝影片、實作等相關費用}
-\3 \cntext{物品(非屬研究設備者)} 
-\3 \cntext{印刷與影印費}
-\3 \cntext{文具}
-\3 \cntext{紙張}
-\3 \cntext{郵電費}
+\3 \cntext{研究計畫人體試驗委員會審查費: 10,000元，修正案: 1,000元，結案: 1,000元。小計: 12,000元。)}
+\3 \cntext{生物資料庫使用費: 切片費 5片330元，H\&E stain 每片40元，臨床病歷每名 1,400元。46名案例小計: 69,540元。}
+\3 \cntext{臺北醫學大學數據處研究資料庫檢索費: 目前免費}
+% 攜入(linked my data) IRB applying 勾選門診病歷 EHR
+%(使用傳輸網路所供應新穎數據或索取各交換系統資料庫中之資料所需費用)}
+\3 \cntext{儀器使用費: Aperio ScanScope 數位病理切片掃描處理費: 300元/小時，約須10小時，小計3,000元} 
+% AT2 Scanner WSI
+% free at 中央研究院國家基因體醫學研究中心 GRC 5L09B, Aperio AT2 400片自動掃描
+% QuPath; 20x15 mm for 3Gb storage of HDD
+% TMUH pathology: aetherAI 雲象科技
+% 張資昊 Tzu-Hao Chang 醫學資訊研究所 副教授 (兼任core manager) kevinchang@tmu.edu.tw
+%\3 \cntext{資料庫使用費}
+\3 \cntext{程式設計與雲端運算: 國網中心高速電腦GPU人工智慧訓練與儲存費用 cm.4xsuper for PyTorch NTD689/小時，小計13,780元} % 容器運算服務 (Container Compute Service, CCS) 記憶體優化容器：可負擔記憶體內部處理大型資料集之工作負載，加強效能，專為 TWCC 三種容器工作環境設計：
+%PyTorch： GPU 加速的張量運算框架，並以 Python 為前端語言。使用常見的Python 函式庫(如 NumPy、SciPy 和 Cython )便能輕鬆地擴展多項功能。 https://man.twcc.ai/@twccdocs/SJWlN3YDr?type=view 有關網站建置、程式設計和拍攝影片、實作等相關費用 https://man.twcc.ai/@twccdocs/SJWlN3YDr?type=view
+%https://www.twcc.ai 臺灣杉二號
+%\3 \cntext{問卷調查費(實地調查訪問及搜集各種資料所需費用)} 
+%\3 \cntext{受試者禮品、營養品及交通費}
+%\3 \cntext{國內或國際性學會之年費或入會費}
+\3 \cntext{論文發表費: 56,000元 (APC for SCI journal)}
+%(本部補助研究計畫之研究成果發表於國內外著名之學術期刊所需之相關費用)}
+
+% http://ohr.tmu.edu.tw/front/jbb1/Charges/news.php?ID=dG11X29ociZDaGFyZ2Vz&Sn=738; 家佑可以打折
+% 校內預算或計畫經費轉帳：不需請購，直接請款，統編為03724606-B，並將繳費單連同初審通過之《會一單》送回聯合人體生物資料庫結案。
+% Unstained paraffin section 切片費 5片/piece 330
+% H\&E stain 片/piece 40
+% Data process and consult fee 基本規格 1,200
+% => https://ods.tmu.edu.tw/portal_c3_cnt.php?owner_num=c3_69585&button_num=c3&folder_id=4165 Taipei Medical University Clinical Research Database (TMUCRD)
+% It collects various electronic medical records (\acrshort{ehr}) data of TMUH, including structured data (such as patient's basic information, medical information, laboratory reports, diagnosis results, treatment procedures, surgery and medication status) and unstructured data (such as physicians records, pathology reports, medical imaging reports).
+%\3 \cntext{電腦使用費: }
+% (使用電腦所需費用，如以執行機構出具之收據報銷，應檢附計算標 準、實際使用時數及耗材支用情形等支出 數據資料)
+%\3 \cntext{翻譯及潤稿費}
+%\3 \cntext{會議餐費(因研究計畫需要召開會議而逾用餐時間所提供之餐點)}
+%\3 \cntext{田野調查之茶點費}
+%\3 \cntext{計畫相關之教育訓練費}
+%\3 \cntext{研究計畫所需的圖書(購置之圖書是否列入財產，由執行機構依「圖書館法」及「財物標準分類」有關財產與非財產之規定辦理)}
+
+%\3 \cntext{物品(非屬研究設備者)} 
+%\3 \cntext{印刷與影印費}
+%\3 \cntext{文具}
+%\3 \cntext{紙張}
+%\3 \cntext{郵電費}
 
 
 \1 \cntext{研究設備費:} 
-\cntext{資訊硬體設備 1 to 2 萬元} %在核定 經費限額內核實列支
+\2 \cntext{資訊硬體設備 Mac Mini M1 37,100元}
+% Apple 教育優惠 Mac Mini M1
+% Apple M1 晶片配備 8 核心 CPU、8 核心 GPU
+% 16 核心神經網路引擎
+%16GB 統一記憶體
+%1TB SSD 儲存裝置
+
+%在核定 經費限額內核實列支
 % 凡執行研究計畫所需單價在新台幣一萬元以上且使 用年限在二年以上之各項儀器、機械及資訊設備(含各項電腦設 施、網路系統、周邊設備、套裝軟體、程式設計費)等之購置、 裝置費用及圖書館典藏等，本項設備之採購，以與研究計畫直接 有關者為限，研究設備費補助金額不得超過總補助經費20%
-\1 \cntext{管理費:} % 5% 為執行機 構配合執行研究 計畫所需之費 用，由執行機構統 籌支用
+%\1 \cntext{管理費:} % 5% 為執行機 構配合執行研究 計畫所需之費 用，由執行機構統 籌支用
+
+\1 \cntext{總計: 191,420元}
 \end{outline}
 
 
 %\section{\cntext{對社會的貢獻}}
 
-\section{\cntext{過去研究之表現}}
+\section*{\cntext{過去研究之表現}}
 % 申請人過去五年著作及五年以上且深具影響之著作，最好詳細? 精簡
 % * 系統的關聯性 for one researcher
 %而有條理地說明自己近五年來研究的系統性、延續性以及對學界的貢獻，如果 能列出每篇論文被引用的次數，或哪些重要期刊論文曾引用，可以更凸顯自己 的優勢，爭取更有利的評分。個人學術表現既如此重要，因此每一次的申請都 應記得更新個人資料 C302 表，確認與完成登錄著作目錄之作業，產生近 5 年著 作目錄表
