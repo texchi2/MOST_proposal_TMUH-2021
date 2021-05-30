@@ -823,7 +823,7 @@ Holistic care has been defined that care and sees the person as a whole with psy
 %(1. World Health Organization. WHO global strategy on people-centred and integrated health services: interim report. https://apps.who.int/iris/handle/10665/155002 (2015).)
 
 
-%*** make Figure 5 holistic: Figure_5_holisticCare.pdf
+% make Figure 5 holistic: Figure_5_holisticCare.pdf
 \begin{figure}[hp]
 \centering
 \includegraphics[width=14cm]{Figure_5_holisticCare.pdf}
@@ -1609,7 +1609,7 @@ We want to validate that IL19 still has survival impact on TMU \acrshort{hnscc} 
 
 %\begin{center}
 %\smartdiagram[sequence diagram]{2021/July, Aug, Sep, Oct, Nov, Dec}
-\vspace*{30mm}
+\vspace*{40mm}
 \smartdiagramset{
     module x sep=5cm,
 %    module minimum width=3cm,
@@ -1632,13 +1632,23 @@ additional item bottom color=orange!60!yellow,
 %\smartdiagramset{module x sep=5}
 %\smartdiagram[flow diagram:horizontal]{TMU cohort (WSI/EHR), HE2RNA, RNA-Seq}
 \smartdiagramadd[flow diagram:horizontal]{
- TMU dataset (WSI/EHR), HE2RNA, RNA-Seq (Representation)
+ TMU dataset (WSI), HE2RNA, RNA-Seq (Representation)
 }{
     above of module2/Model (transfer from TCIA),
-    below of module3/Survival Analysis 
+    below of module3/%Survival Analysis 
 } % addition x2
 \smartdiagramconnect{to-}{module2/additional-module1}
 \smartdiagramconnect{-to}{module3/additional-module2}
+
+\vspace*{10mm}
+\smartdiagramadd[flow diagram:horizontal]{
+ TMU dataset (EHR), \acrshort{rnn}, Survival Analysis
+}{}%{
+%    above of module2/Model (transfer from TCIA),
+%    below of module3/Survival Analysis 
+%} % addition x2
+%\smartdiagramconnect{to-}{module2/additional-module1}
+%\smartdiagramconnect{-to}{module3/additional-module2}
 \vspace*{30mm}
 %\smartdiagramset{border color=none, set color list={blue!50!cyan,green!60!lime,orange!50!red,red!80!black}, back arrow disabled=true}
 
@@ -1650,13 +1660,15 @@ additional item bottom color=orange!60!yellow,
 %\bcaption{}{} %\captionof{diag} for floating "diag"
 \bcaption{Workflow of RNA-Seq representation of TMU dataset}
 %\acrshort{hnscc} Cox's hazard ratio and \textit{P} value plot.
-{The deep learning model of HE2RNA, which was trained under TCGA/TCIA \acrshort{hnscc} dataset, could be applied for RNA-Seq prediction of TMU dataset. The representation will be used for subsequent survival analysis.\\
+{The deep learning model of HE2RNA, which was trained under TCGA/TCIA \acrshort{hnscc} dataset, could be applied for RNA-Seq prediction of TMU dataset. The representation will be used for subsequent survival analysis.
+The EHR of TMU dataset could also be used for subsequent survival analysis.\\
 (
 TCGA: \acrlong{tcga};
 TCIA: \acrlong{tcia};
-WSI: whole-slide images of pathology
-EHR: \acrlong{ehr}
-RNA-Seq: \acrlong{rnaseq}
+WSI: whole-slide images of pathology; 
+EHR: \acrlong{ehr}; 
+RNA-Seq: \acrlong{rnaseq}; 
+\acrshort{rnn}: \acrlong{rnn}
 )
 } %uncorrected \textit{P} value.}
 \label{fig:HE2RNA}
@@ -1785,8 +1797,19 @@ The "SUB\_DESC", coded by the coding book (data schema) of TMUCRD, should store 
 Whole-slide images are the surrogate of expression data of RNA-Seq.
 From the result of Aim 1, the transcriptomic representation of TMU dataset (n=46, obtained at TMU Joint Biobank) could be applied to validate those candidates discovered by our previous study.
 % Biomarkers validation cohort for 10 candidates from pvalueTex project
-Moreover, the result of Aim 2 (features extracted from holistic \acrshort{ehr} of TMUH) will be used for survival analysis (see Figure \ref{fig:HE2RNA} by conventional Cox proportional hazard regression and \acrshort{gcnn} (see Figure \ref{fig:GCNN}). % try Ipe; or Inkscape
-% modifying % Figure 5 HE2RNA workflow
+Moreover, the result of Aim 2 (features extracted from holistic \acrshort{ehr} of TMUH) will be used for survival analysis (see Figure \ref{fig:HE2RNA}) by conventional Cox proportional hazard regression and \acrshort{gcnn} (see Figure \ref{fig:GCNN}). % try Ipe; or Inkscape
+% modifying % Figure 5 HE2RNA workflow: EHR -> survival analysis
+
+
+
+% make Figure 6
+\begin{figure}[hp]
+\centering
+\includegraphics[width=14cm]{GCNN_survival.pdf}
+\bcaption{Overview of the proposed \acrshort{gcnn} for survival analysis}
+{\\We suggest that the TMU dataset should collect "holistic features" in electric healthcare records (EHR), which include physical, pathological, psychological data, and spiritual information. Combined with RNA-Seq representation, whole-slide-images pathology and holistic EHR, the \acrfull{gcnn} should extract high-dimensional information for \acrshort{hnscc} survival prediction.}
+\label{fig:GCNN}
+\end{figure}
 
 
 %需有充分的文獻分析和縝密的論述來補足，使得 “convincing power” 依然強而有力
