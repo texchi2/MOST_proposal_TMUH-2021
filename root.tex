@@ -467,10 +467,28 @@ Recurrent Neural Network (RNN);
 Electric Healthcare Records (EHR);
 Holistic Cancer Care;
 Therapeutic Relationship;
-Mindfulness Meditation
+Mindfulness Meditation\\[1cm]
 %}
 
-\cntext{中文摘要: 申請 TMJ Joint Biobank 的 46名口腔癌個案，H\&E 病理切片數位掃描檔、醫院電子病歷，以AI 人工智慧演算法來做存活分析}
+\cntext{中文摘要:}
+
+\begin{CJK*}{UTF8}{bkai}
+頭頸部鱗狀細胞癌數位病理影像與全人照護電子病歷的深度學習\\[0.3cm]
+
+頭頸部鱗狀細胞癌 (\acrfull{hnscc}) 在全世界都是重要的健康問題。手術、放射治療和全身性治療(化療、免疫)仍然是這些患者的標準治療方式。要如何有突破性的發展，取決於發掘有效的預後生物標記，以分群來制定精準治療計劃。
+利用\acrfull{tcga}資料庫的生存分析，是找尋頭頸部鱗狀細胞癌生物標記最常用的方法。
+我們已使用R語言開發命名為"pvalueTex"的程式(可在Rstudio server 平台執行)，功能包括數據檢索、資料處理、特徵選擇、資料挖礦引擎、Kaplan-Meier 存活分析、Cox比例風險模型，以用來系統性大規模搜尋預後生物標記。
+我們接下來計劃開發深度學習(Deep Learning)數據挖掘和驗證平台。使用癌症數位病理影像(\acrfull{tcia}, 已與TCGA串連)，及臺北醫學大學(TMU) 生物資料庫的46名口腔癌個案，在取得H\&E病理切片數位掃描檔後，配合臺北醫學大學附屬醫院電子病歷，以AI人工智慧演算法，來做存活分析。
+%它包含來自癌症影像檔案 (TCIA) 和臺北醫學大學 (TMU) 生物資料庫的病理學全幻燈片圖像。
+%\acrfull{tcga} 的 %RNA-Seq 數據用於生存分析。
+深度學習的卷積神經網絡(\acrfull{cnn})可由數位病理影像中提取特徵。
+而循環神經網絡(\acrfull{rnn})將處理電子病歷的"全人照護特徵"。
+這些患者的特徵應該包括身體、病理、心理狀態，社會關係，甚至全人照顧醫師所紀錄的靈性紀錄。\\
+結論：
+%那些 11 個經過驗證的生物標誌物（DKK1、CAMK2N1、STC2、PGK1、SURF4、NDFIP1、STIP1、DKC1、ZNF557、ZNF266 和 FCGBP），
+通過TCGA分析，候選生物標記、臨床腫瘤大小和手術切緣狀態都會是頭頸部鱗狀細胞癌患者的重要預後因素。
+而進一步分析\acrshort{tcia}和TMU的癌細胞基因表現量、數位病理影像和全人照護特徵，將有助於驗證候選基因對預後的影響，以發展未來頭頸部鱗狀細胞癌的精準治療。
+\end{CJK*}
 
 \end{abstract}
 
@@ -1826,6 +1844,8 @@ The candidate biomarkers, clinical tumor size, surgical margin status and some h
 \1 Validation of candidate biomarkers of HNSCC by TCGA and TMU datasets.
 %2.對於學術研究、國家發展及其他應用方面預期之貢獻
 It will be submitted for further drug development of systemic therapy of HNSCC as personalized medicine.
+% 分析\acrshort{tcia}和TMU的癌細胞基因表現量、數位病理影像和全人照護特徵，將有助於驗證候選基因對預後的影響，以發展未來頭頸部鱗狀細胞癌的精準治療計劃。
+
 %) or \cntext{精準醫療}
 %3.對於參與之工作人員，預期可獲之訓練
 \1 We will improve our programming skill of R, PyTorch(Python) and C ++.
