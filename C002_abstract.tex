@@ -1,0 +1,497 @@
+% !TEX encoding = UTF-8 Unicode
+% MOST latex template
+% https://www.math.sinica.edu.tw/www/tex/default.jsp
+% Ipe drawing: the extensible drawing editor Ipe; or Inkscape https://ipe.otfried.org/manual/manual.html
+\documentclass[12pt, a4paper]{article}
+
+\usepackage{xcolor}
+\definecolor{asparagus}{rgb}{0.53, 0.66, 0.42}
+
+\newenvironment{MyColorPar}[1]{% for RED marked of revision
+    \leavevmode\color{#1}\ignorespaces%
+}{%
+}%
+
+\usepackage{titlecaps}
+\Addlcwords{are or etc is of the}
+
+%\usepackage{url}
+
+\usepackage{array}
+\usepackage{ragged2e}
+\usepackage{rotating}
+\usepackage{tabularx} % wide table
+\usepackage{makecell}
+% \usepackage{array}
+\usepackage{colortbl} % \arrayrulecolor
+\usepackage{multirow} % \multirow
+\usepackage{hhline}
+\usepackage{siunitx} % for  1e-10 scientific notation
+%\usepackage{caption}
+%\usepackage{subcaption}
+\usepackage{booktabs, multirow} % for borders and merged ranges
+\usepackage{soul}% for underlines
+%\usepackage[table]{xcolor} % for cell colors
+\usepackage{changepage,threeparttable} 
+%%%
+
+
+
+\usepackage[bf]{caption}
+\newcommand{\bcaption}[2]{\caption{\textbf{#1} #2}}
+
+\usepackage{outlines}
+
+\usepackage{pgfgantt} % for Gantt chart/flow chart
+\definecolor{barblue}{RGB}{153,204,254}
+\definecolor{groupblue}{RGB}{51,102,254}
+\definecolor{linkred}{RGB}{165,0,33}
+
+\usepackage{newfloat} % for caption of smartdiagram
+\DeclareFloatingEnvironment[fileext=diag,placement={!ht},name=Figure ]{diag} % diag
+
+\usepackage{smartdiagram} %flowchart
+\usesmartdiagramlibrary{additions} 
+\usepackage{tikz}   % for DAG plot by  tikzpicture
+\usetikzlibrary{arrows}
+\input{arrowsnew}
+
+\usepackage{times}
+\usepackage{geometry}                % See geometry.pdf to learn the layout options. There are lots.
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{epstopdf}
+\usepackage{wrapfig}
+\usepackage{natbib}
+\bibpunct{(}{)}{;}{a}{}{,} % to follow the A&A style
+\usepackage[pdftex, plainpages=false, colorlinks=true, linkcolor=blue, citecolor=blue, bookmarks=false]{hyperref}
+\usepackage{setspace}
+\usepackage{multicol}
+\usepackage{sectsty}
+\usepackage{url}
+\usepackage{lipsum}
+\usepackage[tiny,compact]{titlesec}
+\usepackage{fancyhdr}
+\usepackage[font=footnotesize,labelfont=bf]{caption}
+\usepackage{verbatim}
+\usepackage[super]{nth}
+\usepackage{lastpage}
+
+% ---- Chinese characters --------------------------------------------------------
+\usepackage{CJKutf8}
+\newcommand{\cntext}[1]{\begin{CJK*}{UTF8}{bkai}#1\end{CJK*}}
+%----------------------------------------------------------------------------------------
+% --- Page Style ----
+
+%\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\setlength{\paperheight}{29.7cm}
+\setlength{\paperwidth}{21cm}
+\addtolength{\voffset}{-1in}
+\addtolength{\hoffset}{-1in}
+\setlength{\topmargin}{1in}
+\setlength{\oddsidemargin}{1.5cm}
+\setlength{\evensidemargin}{1.5cm}
+\setlength{\textwidth}{18cm}
+\setlength{\textheight}{23.5cm}
+\setlength{\footskip}{32pt}
+\setlength{\marginparsep}{0.5cm}
+\setlength{\marginparwidth}{1.5cm}
+\setlength{\headheight}{0pt}
+\setlength{\headsep}{1cm}
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{.1cm}
+
+%--- Fancy look --------------------------------------------------------------------------------------------
+\pagestyle{fancy} % for header and footer
+\fancyhf{} % clears the header and footer,
+\lhead{\fancyplain{}{\doctitle}}
+\rhead{\fancyplain{}{PI: Li-Hsing Chi}} % *** Fill your name here ***
+\cfoot{\fancyplain{}{\cntext{共} \pageref*{LastPage} \cntext{頁}~~~~\cntext{第} \thepage \cntext{頁}}}
+\lfoot{\underline{\cntext{表} C002}}
+
+% --- define the title page 
+
+\fancypagestyle{titlepage}{
+\renewcommand{\headrulewidth}{0pt}
+\rhead{}
+\lhead{}
+%\rfoot{}
+%\lfoot{}
+\cfoot{\fancyplain{}{\cntext{共} \pageref*{LastPage} \cntext{頁}~~~~\cntext{第} \thepage \cntext{頁}}}
+\lfoot{\underline{\cntext{表} C002}}
+}
+
+%----------------------------------------------------------------------------------------------------------------
+\bibliographystyle{apj} % it needs \citep{}
+
+% --- additional stuff --------------------------------------------------------------------------------------
+\newcommand{\todo}[1]{{\color{red}$\blacksquare$~\textsf{[TODO: #1]}}}
+\newcommand{\doctitle}{Deep Learning in HNSCC} % *** Project Short Title ***
+
+
+% --------------------------------------------------------------------------------
+%%% for abbreviations, or acronyms
+\usepackage[automake, acronym, nopostdot]{glossaries} 
+\usepackage{glossary-inline}
+%\setacronymstyle{long-short}
+%\renewcommand*{\glossarysection}[2][]{} 
+%\renewcommand*{\glossarysection}[2][]{\textbf{#1}: }
+% for abbreviations environment
+%\newcommand{\abbrlabel}[1]{\makebox[3cm][l]{\textbf{#1}\ \dotfill}}
+\newenvironment{abbreviation}%{\begin{list}{}{\renewcommand{\makelabel}{\abbrlabel}}}{\end{list}}
+% \newenvironment{<name>}[<number>][<default>]
+
+
+\makeglossaries %https://tex.stackexchange.com/questions/110095/list-of-acronyms-is-not-displayed
+
+\newacronym{cnn}{CNN}{Convolutional Neural Network}
+\newacronym{gnn}{GNN}{Graph Neural Network}
+\newacronym{gcnn}{GCNN}{Graph Convolutional Neural Network}
+\newacronym{rnn}{RNN}{Recurrent Neural Network}
+\newacronym{ehr}{EHR}{Electric Healthcare Records}
+
+\newacronym{ihc}{IHC}{immunohistochemistry}
+\newacronym{fdr}{FDR}{false discovery rate}
+
+\newacronym{hpa}{HPA}{the Human Protein Atlas}
+
+\newacronym{hnscc}{HNSCC}{head and neck squamous cell carcinoma}
+\newacronym{tcga}{TCGA}{the Cancer Genome Atlas}
+\newacronym{tcpa}{TCPA}{the Cancer Proteome Atlas}
+\newacronym{tcia}{TCIA}{the Cancer Imaging Archive}
+
+\newacronym{rna}{RNA}{ribonucleic acid}
+\newacronym{rnaseq}{RNA-Seq}{RNA sequencing}
+\newacronym{lncrna}{lncRNA}{long non-coding RNA}
+%\newacronym{km}{KM}{Kaplan-Meier}
+\newacronym{rppa}{RPPAs}{reverse-phase protein arrays}
+\newacronym{rpma}{RPMA}{reverse-phase protein lysate microarray}
+
+
+
+\newacronym{go}{GO}{Gene Ontology}
+\newacronym{ipi}{IPI}{international protein index database}
+
+\newacronym{mmp}{MMP}{matrix metalloproteinase}
+ %DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, and DKC1
+ %ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, KIAA1683, and NPB
+
+\newacronym{DKK1}{DKK1}{dickkopf WNT signaling pathway inhibitor 1} 
+\newacronym{CAMK2N1}{CAMK2N1}{calcium/calmodulin dependent protein kinase II inhibitor 1} 
+\newacronym{STC2}{STC2}{stanniocalcin 2} 
+\newacronym{PGK1}{PGK1}{phosphoglycerate kinase 1} 
+\newacronym{SURF4}{SURF4}{surfeit 4} 
+\newacronym{USP10}{USP10}{ubiquitin specific peptidase 10} 
+\newacronym{NEDD4}{NEDD4}{neural precursor cell expressed, developmentally down-regulated 4}
+\newacronym{NDFIP1}{NDFIP1}{NEDD4 family interacting protein 1} 
+\newacronym{FOXA2}{FOXA2}{forkhead box A2} 
+\newacronym{STIP1}{STIP1}{stress-induced-phosphoprotein 1} 
+\newacronym{DKC1}{DKC1}{dyskeratosis congenita 1, dyskerin} 
+
+\newacronym{ZNF557}{ZNF557}{zinc finger protein 557} 
+\newacronym{ZNF266}{ZNF266}{zinc finger protein 266} 
+\newacronym{IL19}{IL19}{interleukin 19} 
+\newacronym{MYO1H}{MYO1H}{myosin 1H} 
+\newacronym{FCGBP}{FCGBP}{Fc fragment of IgG binding protein} 
+\newacronym{LOC148709}{LOC148709}{LncRNA LOC148709} 
+\newacronym{EVPLL}{EVPLL}{envoplakin-like protein} 
+\newacronym{PNMA5}{PNMA5}{paraneoplastic antigen like 5} 
+%\newacronym{KIAA1683}{KIAA1683}{IQCN, IQ Motif Containing N} 
+\newacronym{IQCN}{IQCN}{IQ motif containing N} % previous name KIAA1683
+% "IQ" refers to the first two amino acids of the motif: isoleucine (commonly) and glutamine (invariably)
+\newacronym{NPB}{NPB}{neuropeptide B} 
+
+ \newacronym{rt}{RT}{radiation therapy}
+ \newacronym{nccn}{NCCN}{National Comprehensive Cancer Network}
+ \newacronym{hif}{HIF}{hypoxia-inducible factor}
+ \newacronym{egfr}{EGFR}{epidermal growth factor receptor}
+ \newacronym{ras}{RAS}{rat sarcoma}
+ \newacronym{hras}{HRAS}{Harvey rat sarcoma viral oncoprotein}
+ \newacronym{erk}{ERK}{extracellular signal-regulated kinases}
+ \newacronym{us}{US}{United States}
+ \newacronym{fda}{FDA}{Food and Drug Administration}
+ \newacronym{tpf}{Tax-PF}{docetaxel, cisplatin, and 5-fluorouracil}
+ \newacronym{tki}{TKI}{tyrosine kinase inhibitor}
+ \newacronym{her}{HER}{human epidermal growth factor receptor}
+ \newacronym{ici}{ICI}{immune-checkpoint inhibitor}
+ %\newacronym{ctla4}{CTLA-4}{cytotoxic T lymphocyte antigen 4}
+ \newacronym{pd1}{PD-1}{programmed death 1}
+ %\newacronym{pdl1}{PD-L1}{programmed death ligand 1}
+ \newacronym{tim3}{TIM-3}{T-cell immunoglobulin mucin protein 3}
+ \newacronym{lag3}{LAG-3}{lymphocyte activation gene 3}
+ \newacronym{ifng}{IFN-$\gamma$}{interferon gamma}
+ \newacronym{tigit}{TIGIT}{T cell immunoglobin and immunoreceptor tyrosine-based inhibitory motif}
+ \newacronym{gitr}{GITR}{glucocorticoid-induced tumor necrosis factor receptor}
+ \newacronym{vista}{VISTA}{V-domain Ig suppressor of T-cell activation}
+ \newacronym{tmsb4x}{TMSB4X}{thymosin beta-4 X-linked}
+ \newacronym{emt}{EMT}{epithelial-mesenchymal-transition}
+ \newacronym{gdc}{GDC}{Genomic Data Commons}
+ \newacronym{nci}{NCI}{the National Cancer Institute}
+ \newacronym{gdac}{GDAC}{Genome Data Analysis Center}
+ \newacronym{rest}{REST}{Representational State Transfer} 
+ \newacronym{api}{API}{Application Programmable Interface}
+\newacronym{grch38}{GRCh38}{Genome Reference Consortium Homo sapiens genome assembly 38}
+\newacronym{fpkm}{FPKM}{Fragments per kilobase per million reads mapped}
+\newacronym{rsem}{RSEM}{RNA-Seq by Expectation-Maximization}
+\newacronym{slca}{SLC35E2A}{solute carrier family 35 member E2A}
+\newacronym{slcb}{SLC35E2B}{solute carrier family 35 member E2B}
+\newacronym{cde}{CDE}{Common Data Element}
+\newacronym{id}{ID}{identification}
+\newacronym{ajcc}{AJCC}{the American Joint Committee on Cancer}
+\newacronym{uicc}{UICC}{he Union for International Cancer Control}
+\newacronym{tnm}{TNM}{the tumor size (T), cervical lymph node metastases (N), and distal metastasis status (M)}
+\newacronym{ci95}{95\% CI}{95\% confidence interval}
+\newacronym{os}{OS}{overall survival}
+\newacronym{rfs}{RFS}{recurrence-free survival}
+\newacronym{hr}{HR}{hazard ratio}
+\newacronym{hpv}{HPV}{human papillomavirus}
+\newacronym{ene}{ENE}{extra-nodal extension}
+\newacronym{lvsi}{LVSI}{lymph-vascular space invasion}
+\newacronym{pni}{PNI}{perineural invasion}
+\newacronym{doi}{DOI}{depth of invasion}
+\newacronym{lnd}{LND}{lymph node density}
+\newacronym{wpoi5}{WPOI-5}{worst pattern of invasion score 5}
+\newacronym{glut4}{GLUT4}{glucose transporters 4}
+\newacronym{slc2a4}{SLC2A4}{solute carrier family 2 member A4}
+\newacronym{trim24}{TRIM24}{tripartite motif-containing 24}
+\newacronym{til}{TIL}{tumor-infiltrating lymphocytes}
+\newacronym{tmb}{TMB}{tumor mutational burden}
+
+%\newacronym{hpa}{HPA}{the Human Protein Atlas}
+\newacronym{cart}{CAR-T}{chimeric antigen receptor T cells}
+
+\newacronym{ptta}{PTTA}{\textit{P} value of t-test or ANOVA}
+\newacronym{anova}{ANOVA}{analysis of variance}
+\newacronym{lcms}{LC-MS/MS}{liquid chromatography with tandem mass spectrometry}
+\newacronym{maldi}{MALDI MS}{matrix-assisted laser desorption/ionization mass spectrometry}
+\newacronym{maldii}{MALDI IMS}{matrix-assisted laser desorption/ionization imaging mass spectrometry}
+
+\newacronym{pcr}{PCR}{polymerase chain reaction}
+\newacronym{rtpcr}{RT-PCR}{reverse-transcription PCR}
+\newacronym{qpcr}{RT-qPCR}{quantitative real-time reverse-transcription PCR}
+
+\newacronym{tmuh}{TMUH}{Taipei Medical University Hospital}
+
+\newacronym{dag}{DAG}{direct acyclic graph}
+
+%ohm$V3V1V2 disserttion
+\newacronym{cd}{CD}{cluster of differentiation}
+\newacronym{ctla4}{CTLA-4}{cytotoxic T-lymphocyte associated protein 4 (CD152)}
+\newacronym{clsm}{CLSM}{confocal laser scanning microscopy}
+\newacronym{dapi}{DAPI}{4’,6-diamidino‐2-phenylindole}
+\newacronym{dc}{DC}{dendritic cell}
+\newacronym{eb}{EB}{Epstein Barr virus}
+\newacronym{ent}{ENT}{ear- nose- and throat,  otorhinolaryngology}
+\newacronym{fas}{Fas}{Fas cell surface death receptor (CD95)} % ligand; Fas -> tumor necrosis factor (TNF) family; 
+\newacronym{fasl}{FasL}{Fas ligand (CD95L or CD178)} % FasL = CD95L or CD178; 
+\newacronym{gphase}{G-phase}{gap phases in mitosis}
+\newacronym{gvhd}{GVHD}{graft versus host disease}
+\newacronym{hiv}{HIV}{human immunodeficiency virus}
+\newacronym{hla}{HLA}{human leukocyte antigen}
+%\newacronym{hpv}{HPV}{human papilloma virus}
+\newacronym{icd}{ICD}{international classification of diseases}
+\newacronym{il}{IL}{interleukin}
+\newacronym{lc}{LC}{langerhans cell}
+\newacronym{lp}{LP}{lichen planus}
+\newacronym{lpl}{LPL}{leukoplakia}
+\newacronym{lpldys}{LPL-dys}{leukoplakia with dysplasia but without malignant transformation}
+\newacronym{lplca}{LPL‐ca}{leukoplakia with dysplasia with malignant transformation}
+\newacronym{mab}{mAb}{monoclonal antibody}
+\newacronym{mdsc}{MDSC}{myelo-derived suppressor cells}
+\newacronym{mhc}{MHC}{major histocompatibility complex}
+%\newacronym{mmp}{MMP}{matrix metalloproteinases}
+\newacronym{nkg2d}{NKG2D}{natural killer group 2 member D}
+%  MICA MICB is the ligand of NKG2D
+\newacronym{mica}{MICA}{MHC-class-I-polypeptide-related sequence A}
+\newacronym{micb}{MICB}{MHC-class-I-polypeptide-related sequence B}
+
+\newacronym{nsaid}{NSAID}{non-steroidal anti-inflammatory drugs}
+\newacronym{olp}{OLP}{oral lichen planus}
+\newacronym{oscc}{OSCC}{oral squamous cell carcinoma}
+\newacronym{pdl1}{PD‐L1}{programmed death-ligand 1 (CD274)}
+\newacronym{pmod}{PMOD}{potentially malignant oral disorder}
+\newacronym{ptld}{PTLD}{post‐transplant lymphoproliferative disorder}
+\newacronym{pvl}{PVL}{proliferative verrucous leukoplakia}
+\newacronym{sir}{SIR}{standard incidence ratio}
+\newacronym{sot}{SOT}{solid organ transplantation}
+\newacronym{taa}{TAA}{tumor associated antigen}
+\newacronym{tam}{TAM}{tumor associated macrophage}
+\newacronym{tcr}{TCR}{T cell receptor}
+%\newacronym{til}{TIL}{tumor infiltrating lymphocyte}
+\newacronym{tgf}{TGF}{transforming growth factor}
+\newacronym{th}{Th}{T helper}
+\newacronym{tls}{TLS}{tertiary lymphoid structure}
+%\newacronym{tnm}{TNM}{tumor, node, metastasis classification system}
+\newacronym{trail}{TRAIL}{tumor necrosis factor-related apoptosis‐inducing ligand}
+\newacronym{treg}{Treg}{regulatory T cell}
+
+\newacronym{aldh2}{ALDH2}{aldehyde dehydrogenase 2}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%---------------------------------
+%
+%. Document
+%
+% -----------------------------------------------------------------------------------------------------------------
+%\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+% MOST template from https://github.com/kuochuanpan/most_proposal/blob/master/most_proposal.tex
+\begin{document}
+% MOST page
+%\includegraphics[trim=1.5cm 0 0 3cm]{cover.pdf}
+
+\thispagestyle{titlepage}
+
+\clearpage
+% \cntext{TMU 口腔醫學院 2021 project}
+% The real title page
+%%%%%%%%%%%%%%%%%%%%%%%%%% title
+\title{\Large \vspace{-2.5cm} \titlecap{Deep learning for whole-slide images and holistic} Electric Healthcare Records in Head and Neck Squamous Cell Carcinoma}
+% or Deep learning for whole slide image and holistic EHR
+% Deep Learning for Whole-slide Images and Electric Healthcare Records in Head and Neck Squamous Cell Carcinoma
+%\author{Li-Hsing Chi}
+%\date{May 2021}
+
+\author{\small PI: Li-Hsing Chi (\cntext{祁力行})$^{1,2}$\\
+{\footnotesize $^{1}$ \quad Division of Oral and Maxillofacial Surgery, Department of Dentistry\unskip, 
+%    Taipei Municipal Wanfang Hospital\unskip, Taipei\unskip, Taiwan\\
+Wan Fang Hospital\unskip, Taipei Medical University}\\
+    
+{\footnotesize $^{2}$ \quad Division of Oral and Maxillofacial Surgery, Department of Dentistry\unskip,
+    Taipei Medical University Hospital\unskip, Taipei Medical University}\\
+    
+%$^{4}$ \quad Genomics Research Center\unskip, Academia Sinica\unskip, Taipei\unskip, Taiwan\\
+    
+%$^{5}$ \quad Graduate Institute of Biomedical Informatics, College of Medical Science and Technology\unskip, Taipei Medical University\unskip, No.172-1, Sec. 2, Keelung Rd.\unskip, Taipei 106\unskip, Taiwan\\
+
+%Taipei\unskip, Taiwan\\
+%{\footnotesize $^1$ Department of Physics and Astronomy, Michigan State University, East Lansing, MI 48824, USA}\\
+%{\footnotesize $^2$Institute of Astronomy, Nation Tsing Hua University, Hsinchu 30013, Taiwan}\\ 
+%{\footnotesize $^3$Department of Physics, Nation Tsing Hua University, Hsinchu 30013, Taiwan}
+}
+\date{\small \today}
+
+
+\maketitle
+
+\thispagestyle{titlepage}
+
+% ------------------------------------------------------
+%
+% Abstract
+%
+% ------------------------------------------------------
+%\section{Abstract} % for navigation
+
+\begin{abstract}
+\cntext{二、研究計畫中英文摘要:}
+
+\textbf{Background:}
+Head and neck squamous cell carcinoma (\acrshort{hnscc}) represents a significant health concern worldwide. Surgery and systemic therapy are still the standard of care for \acrshort{hnscc} patients. The break-through improvement of those interventions should depend on 1) the discovery of high impact prognostic biomarkers, and 2) proper treatment planning by accurate sub-population of those patients.
+The survival analysis of the \acrfull{tcga} dataset is a well-known method to discover the gene expression-based biomarkers of \acrshort{hnscc}. It is necessary to determine a cutoff point of the patients' dichotomization in survival analysis with the continuous gene expression measurements. There is some optimization software for cutoff mining.
+However, the software's determination of cutoffs is usually set at the median, 1/4 quantile, or 3/4 quantile of \acrfull{rnaseq} value to find a significant \textit{P} value by the Kaplan-Meier analysis. There are few clinicopathological or spiritual features available on their pre-processed data sets.
+The survival analysis could conclude the manifest of clinical, pathological, and transcriptomics data to find the prognostic biomarkers.
+
+%Methods: how the study was performed and statistical tests used
+\textbf{Methods:}
+R script was used to develop a comprehensive workflow, named "pvalueTex", running on the Rstudio platform. It includes data retrieving and pre-processing, feature selection, cutoff mining engine, Kaplan-Meier survival analysis, Cox proportional hazard modeling to discover prognostic biomarkers.
+We further plan to develop a deep-learning based data mining as well as validation platform. It might incorporate whole-slide images of pathology from the Cancer Imaging Archive (TCIA) and Taipei Medical University (TMU) biobank.
+%RNA-Seq data of \acrfull{tcga} for survival analysis. 
+Convolutional neural network (CNN) will be used for feature extraction from whole-slide images.
+Recurrent neural network (RNN) will deal with "holistic features" from electric healthcare records (EHR) of Taipei Medical University Hospital (TMUH).
+These patient's features should include physical, pathological, psychological data, and even more spiritual information investigated by physicians.
+% construction of gene expression network.
+%GNN graph neural network for CNN convolutional neural network
+%The Cancer Imaging Archive (TCIA) whole-slide by Deep learning (ResNet)
+% *** AI: deep learning, machine learning \citep{Huang2020}
+%plot http://iltabiai.github.io/tips/latex/2015/09/15/latex-tikzdevice-r.html
+%***Deep learning-based cancer survival prognosis from RNA-Seq data: approaches and evaluations
+%*transfer learning from TCGA model
+%torchvision, NanoMets Models
+%save checkpoint, load then deepcopy()
+
+
+% P-value => \textit{P} value
+% Results: the main findings
+\textbf{Preliminary Results:}
+Using pvalueTex on the \acrshort{tcga} \acrshort{hnscc} cohort, we scanned human protein-coding genes (20,500) programmatically. After adjustment with other confounders, we found that the clinical tumor stage and the surgical margin involvement are independent risk factors in patient survival. 
+According to the resulting tables with Bonferroni adjusted \textit{P} value under optimal cutoff as well as hazard ratio $(>=1.5)$, there were ten candidate biomarkers, named as DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, and DKC1, which are significantly associated with the poor prognosis of \acrfull{os}. At the same time, the other ten genes were over-expressed in the better survival patients (with hazard ratio $<=0.5$), named as ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, IQCN (previous name as KIAA1683), and NPB.
+
+
+%*** validated by \acrfull{hpa}.
+Further validation will be conducted by using deep learning platform.
+% are warranted 
+
+
+%\thispagestyle{titlepage}
+% Conclusions: brief summary and potential implications
+\textbf{Conclusions:}
+%Those 11 validated biomarkers (DKK1, CAMK2N1, STC2, PGK1, SURF4, NDFIP1, STIP1, DKC1, ZNF557, ZNF266, and FCGBP), 
+The candidate biomarkers, clinical tumor size, and surgical margin status are suggested prognosis factors in \acrshort{hnscc} through TCGA analysis.
+The transcriptomic representation of \acrfull{tcia} and TCGA could be applied to validate those candidates by independent TMU cohort (n=46, obtained at TMU Joint Biobank).
+We conclude that expression data of \acrshort{rnaseq} with associated pathological images and holistic features will help to facilitate the biomarker discovery in terms of tumor-agnostic therapy.
+% pvalueTex, equipped with an optimal cutoff finder, 
+
+%Survival analysis using the Cancer Genome Atlas (TCGA) dataset is a well-known method to discover gene expression-based prognostic biomarkers of head and neck squamous cell carcinoma (HNSCC). It is necessary to determine a cutoff point by patients' dichotomization for the continuous gene expression. Usually, an optimization algorithm for cutoff determination has been set at the median or quantiles of RNA sequencing value.
+%There are few clinicopathological features available on those pre-processed datasets. (feature selection or feature engineering issue)
+% validated by the other HNSCC cohort:
+%1) poor prognosis: CAMK2N1 (0.048214), PGK1 (0.009978), SURF4 (0.023127), USP10 (0.017768), NDFIP1 (0.022758), FOXA2 (0.001587);\\ % FOXA2 (0.038125)
+%2) better prognosis: IL19 (0.049731), FCGBP (0.005658), KIAA1683 (IQCN, 0.005886), NPB (0.014177);\\
+
+% row 20: The result showed ten overexpressed genes (symbol as DKK1, CAMK2N1, STC2, PGK1, SURF4, USP10, NDFIP1, FOXA2, STIP1, and DKC1) are significantly associated with a poor prognosis of overall survival. Furthermore, the other ten overexpressed genes (symbol as ZNF557, ZNF266, IL19, MYO1H, FCGBP, LOC148709, EVPLL, PNMA5, IQCN - former symbol as KIAA1683, and NPB) are correlated with better survival.
+
+
+% Keywords
+\textbf{Keyword:}
+%\keyword{
+Head and Neck Squamous Cell Carcinoma (HNSCC);
+%Genome Database\sep
+the Cancer Genome Atlas (TCGA);
+the Cancer Imaging Archive (TCIA);
+RNA-sequencing;
+Survival Analysis;
+Optimal Cutoff;
+Biomarker Discovery; %\sep
+%Tumor Type-agnostic Therapy\sep
+%Immuno-Oncology\sep
+%Targeted Therapy\sep
+%Systemic Therapy\sep
+Surgical Margin;
+Deep Learning;
+Graph Neural Network (GNN);
+Graph Convolutional Neural Network (GCNN);
+Recurrent Neural Network (RNN); 
+Electric Healthcare Records (EHR);
+Holistic Cancer Care;
+Therapeutic Relationship;
+Mindfulness Meditation\\[1cm]
+%}
+
+\cntext{中文摘要:}
+
+\begin{CJK*}{UTF8}{bkai}
+頭頸部鱗狀細胞癌數位病理影像與全人照護電子病歷的深度學習\\[0.3cm]
+
+頭頸部鱗狀細胞癌 (\acrfull{hnscc}) 在全世界都是重要的健康問題。手術、放射治療和全身性治療(化療、免疫)仍然是這些患者的標準治療方式。要如何有突破性的發展，取決於發掘有效的預後生物標記，以分群來制定精準治療計劃。
+利用\acrfull{tcga}資料庫的生存分析，是找尋頭頸部鱗狀細胞癌生物標記最常用的方法。
+我們已使用R語言開發命名為"pvalueTex"的程式(可在Rstudio server 平台執行)，功能包括數據檢索、資料處理、特徵選擇、資料挖礦引擎、Kaplan-Meier 存活分析、Cox比例風險模型，以用來系統性大規模搜尋預後生物標記。
+我們接下來計劃開發深度學習(Deep Learning)數據挖掘和驗證平台。使用癌症數位病理影像(\acrfull{tcia}, 已與TCGA串連)，及臺北醫學大學(TMU) 生物資料庫的46名口腔癌個案，在取得H\&E病理切片數位掃描檔後，配合臺北醫學大學附屬醫院電子病歷，以AI人工智慧演算法，來做存活分析。
+%它包含來自癌症影像檔案 (TCIA) 和臺北醫學大學 (TMU) 生物資料庫的病理學全幻燈片圖像。
+%\acrfull{tcga} 的 %RNA-Seq 數據用於生存分析。
+深度學習的卷積神經網絡(\acrfull{cnn})可由數位病理影像中提取特徵。
+而循環神經網絡(\acrfull{rnn})將處理電子病歷的"全人照護特徵"。
+這些患者的特徵應該包括身體、病理、心理狀態，社會關係，甚至全人照顧醫師所紀錄的靈性紀錄。\\
+結論：
+%那些 11 個經過驗證的生物標誌物（DKK1、CAMK2N1、STC2、PGK1、SURF4、NDFIP1、STIP1、DKC1、ZNF557、ZNF266 和 FCGBP），
+通過TCGA分析，候選生物標記、臨床腫瘤大小和手術切緣狀態都會是頭頸部鱗狀細胞癌患者的重要預後因素。
+而進一步分析\acrshort{tcia}和TMU的癌細胞基因表現量、數位病理影像和全人照護特徵，將有助於驗證候選基因對預後的影響，以發展未來頭頸部鱗狀細胞癌的精準治療。
+\end{CJK*}
+
+\end{abstract}
+
+\clearpage
+
+\end{document}

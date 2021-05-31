@@ -4,6 +4,9 @@
 % Ipe drawing: the extensible drawing editor Ipe; or Inkscape https://ipe.otfried.org/manual/manual.html
 \documentclass[12pt, a4paper]{article}
 
+\usepackage{pdfpages} % for more pages of PDF \includegraphics
+
+%\usepackage[table,xcdraw]{xcolor}
 \usepackage{xcolor}
 \definecolor{asparagus}{rgb}{0.53, 0.66, 0.42}
 
@@ -103,13 +106,24 @@
 \setlength{\parindent}{0cm}
 \setlength{\parskip}{.1cm}
 
-%--- Fancy look --------------------------------------------------------------------------------------------
+%--- Fancy look -------------------------------------------------------------------------------------------- C003
 \pagestyle{fancy} % for header and footer
 \fancyhf{} % clears the header and footer,
 \lhead{\fancyplain{}{\doctitle}}
 \rhead{\fancyplain{}{PI: Li-Hsing Chi}} % *** Fill your name here ***
 \cfoot{\fancyplain{}{\cntext{共} \pageref*{LastPage} \cntext{頁}~~~~\cntext{第} \thepage \cntext{頁}}}
 \lfoot{\underline{\cntext{表} C003}}
+
+%
+% C004 redefine?
+%\fancypagestyle{fancy004}[fancy]{ % based on fancy
+%\fancyhf{} % clears the header and footer,
+%\lhead{\fancyplain{}{\doctitle}}
+%\rhead{\fancyplain{}{PI: Li-Hsing Chi}} % *** Fill your name here ***
+%\cfoot{\fancyplain{}{\cntext{共} \pageref*{LastPage} \cntext{頁}~~~~\cntext{第} \thepage \cntext{頁}}}
+%\fancyfoot[l]{\underline{\cntext{表} C004}}
+%}
+
 
 % --- define the title page 
 
@@ -340,8 +354,10 @@
 
 % MOST template from https://github.com/kuochuanpan/most_proposal/blob/master/most_proposal.tex
 \begin{document}
-% MOST page
-%\includegraphics[trim=1.5cm 0 0 3cm]{cover.pdf}
+\thispagestyle{titlepage}
+% MOST page; cover page C001
+%\includegraphics[trim=1.5cm 0 0 3cm]{MOST_proposal_DeepLearning_HNSCC-C001.pdf}
+\includegraphics[width=18cm]{MOST_proposal_DeepLearning_HNSCC-C001.pdf}
 
 \thispagestyle{titlepage}
 
@@ -384,10 +400,10 @@ Wan Fang Hospital\unskip, Taipei Medical University}\\
 % Abstract
 %
 % ------------------------------------------------------
-\section{Abstract} % for navigation
+%\section{Abstract} % for navigation
 
 \begin{abstract}
-
+\cntext{二、研究計畫中英文摘要:}
 
 \textbf{Background:}
 Head and neck squamous cell carcinoma (\acrshort{hnscc}) represents a significant health concern worldwide. Surgery and systemic therapy are still the standard of care for \acrshort{hnscc} patients. The break-through improvement of those interventions should depend on 1) the discovery of high impact prognostic biomarkers, and 2) proper treatment planning by accurate sub-population of those patients.
@@ -514,6 +530,8 @@ Mindfulness Meditation\\[1cm]
 %「經費」
 %「對社會的貢獻」
 %\section{Introduction}」
+
+\cntext{三、研究計畫內容:}
 
 \section*{\cntext{(一)研究計畫之背景及目的}} % 大約 3 頁 Background and Significance
 %請詳述本研究計畫之背景、目的 具體目標 (Specific Aims)、重要性及國內外有關本計畫之研究情況、重要參考文獻之評述等。
@@ -1389,10 +1407,10 @@ the budget of whole-genome transcriptomics study for survival analysis is still 
 % NCI HE2RNA
 By using the transcriptomic representation of RNA-Seq learned by NCI's HE2RNA project\citep{Schmauch2020},
 %TCIA for whole-slide deep learning
-we could validate and find more biomarkers from holistic \acrshort{ehr} and pathology images by the way of deep learning under R/Pytorch/Keras framework.
+we could validate and find more biomarkers from holistic \acrshort{ehr} and pathology images by the way of deep learning under R/Pytorch/Keras framework.\\[2.5cm]
 
 
-\clearpage
+%\clearpage
 
 
 
@@ -1414,7 +1432,8 @@ Specific Aims %特定研究目標 (specific aims), 執行策略不能互相綁�
 
 \end{outline}
 
-\subsection{\cntext{執行進度}} % Flow Chart => Gantt chart
+%\clearpage
+%\subsection*{\cntext{執行進度}} % Flow Chart => Gantt chart
 % A flowchart of a TeX workflow
 % Author: Stefan Kottwitz
 % https://www.packtpub.com/hardware-and-creative/latex-cookbook
@@ -1438,6 +1457,9 @@ Specific Aims %特定研究目標 (specific aims), 執行策略不能互相綁�
 %  \ganttlink{elem3}{elem4}
 %\end{ganttchart}
 
+\begin{figure}
+    \centering
+%    \includegraphics{}
 
 \begin{ganttchart}[
     bar label node/.style={text width=5cm,align=right,font=\scriptsize\RaggedLeft,anchor=east},
@@ -1470,20 +1492,26 @@ Specific Aims %特定研究目標 (specific aims), 執行策略不能互相綁�
     bar progress label node/.append style={right=4pt},
     bar label font=\normalsize\color{barblue},
     name=pp
-   ]{Preliminary}{2021-04}{2021-06} \\ % name=pp
+   ]{Preliminary Biomarker Discovery}{2021-04}{2021-06} \\ % name=pp
    
 \ganttset{progress label text={}, link/.style={black, -to}}
-
+% aim1
 \ganttgroup{Aim 1}{2021-07}{2021-12} \\
-\ganttbar[progress=4, name=T1A]{Solver Analysis $\&$ Formulation}{2021-07}{2021-10} \\
-\ganttlinkedbar[progress=0]{Development of source code}{2021-10}{2021-12} \\
+\ganttbar[progress=10, name=T1A]{Process of pathology images}{2021-07}{2021-10} \\
+\ganttlinkedbar[progress=0, name=T1B]{Training deep learning model (CNN)}{2021-10}{2021-12} \\
 
+% aim2
 \ganttgroup{Aim 2}{2021-07}{2021-12} \\
-\ganttbar[progress=15, name=T2A]{\cntext{因Covid-19，臨床研究資料庫獨立作業區2021.05.19暫停服務} $\&$ Formulation}{2021-07}{2021-10} \\
-\ganttlinkedbar[progress=0]{Development of source code}{2021-10}{2021-12} \\
+\ganttbar[progress=2, name=T2A]{\cntext{Biobank specimen linking to EHR data(*)}}{2021-07}{2021-10} \\ % 因Covid-19，臨床研究資料庫獨立作業區2021.05.19暫停服務
 
+\ganttnewline
+\ganttlinkedbar[progress=0, name=T2B]{Development of source code (RNN)}{2021-10}{2021-12} \\
+
+
+\ganttnewline
+% aim3
 \ganttgroup{Aim 3}{2021-09}{2022-06} \\
-  \ganttbar[progress=0]{Analysis of Experimental Data $\&$ Validation}{2021-09}{2022-06}
+  \ganttbar[progress=0, name=T3A]{Development of GCNN $\&$ survival/validation}{2021-09}{2022-06}
   \ganttnewline
 %\ganttgroup{Aim 4}{2021-12}{2022-06} \\ %[group top shift =2] to avoid vertically overlap of bars
 %  \ganttbar[progress=0]{Analysis of Experimental Data $\&$ Validation}{2021-12}{2022-06}
@@ -1491,17 +1519,25 @@ Specific Aims %特定研究目標 (specific aims), 執行策略不能互相綁�
   \ganttset{link/.style={green}}
   \ganttlink[link mid=.4]{pp}{T1A}
   \ganttlink[link mid=.159]{pp}{T2A}
+  
+  \ganttset{link/.style={black}}
+  \ganttlink[link mid=.4]{T1B}{T3A}
+  \ganttlink[link mid=.159]{T2B}{T3A}
 \end{ganttchart}
 
+    \caption{\cntext{執行進度}
+    \cntext{(*因Covid-19 pandemic in Taiwan，臨床研究資料庫獨立作業區2021.05.19起暫停服務)}}
+    \label{fig:gantt}
+\end{figure}
 
-\clearpage
+%\clearpage
 
-\subsection{\cntext{計畫主體內容}} 
+\subsection*{\cntext{計畫主體內容}} 
 %[proposal main body] %(計畫的主體內容)” 解釋每個 aim 要怎麼做，著重策略之邏輯性鋪陳，盡量使論述具有說服力。
 %新創一個方法或技術平台，須要詳細交代步驟
 
 %\begin{outline}
-\subsubsection{Aim 1:} Construct a Deep Learning Platform of TCGA/TCIA and TMU dataset\\[0.5cm]
+\subsubsection*{Aim 1:} Construct a Deep Learning Platform of TCGA/TCIA and TMU dataset\\[0.5cm]
 %\end{outline}
 %central issue 1 with preliminary data (key data); fallback approaches %先以概要式的背景介紹破題，點出研究目標的重要性，然後用邏輯之陳述將如何達成目標的策略和方法講清楚。請務必注意：每個研究目標基本上需具備其獨立性 (Independence)，但其重要性卻要在目標之間有所連結，且要能回應總體目標之研究顯著性
 Our preliminary data (biomarker candidates) could be served as the bridge between the prognosis of patients and their pathological images of specimen.
@@ -1680,7 +1716,7 @@ RNA-Seq: \acrlong{rnaseq};
 
 %%%%
 %\begin{outline}
-\subsubsection{Aim 2:} Construct a Deep Learning Platform of Survival Analysis with EHR\\[0.5cm]
+\subsubsection*{Aim 2:} Construct a Deep Learning Platform of Survival Analysis with EHR\\[0.5cm]
 %\end{outline}
 %central issue 2 with preliminary data (Cox model); fallback approaches % 需有充分的文獻分析和縝密的論述來補足，使得 “convincing power” 依然強而有力
 
@@ -1788,7 +1824,7 @@ The "SUB\_DESC", coded by the coding book (data schema) of TMUCRD, should store 
 
 
 
-\subsubsection{Aim 3:} Biomarkers Discovery from RNA-Seq, Whole-slide Images, and EHR from TMU dataset\\[0.5cm]
+\subsubsection*{Aim 3:} Biomarkers Discovery from RNA-Seq, Whole-slide Images, and EHR from TMU dataset\\[0.5cm]
 
 %\1 Aim 3: RNA-Seq Incorporated with Whole-slide Images models from TCIA and TMU\\
 %central issue 3 without preliminary data; fallback approaches
@@ -1859,7 +1895,7 @@ The candidate biomarkers, clinical tumor size, surgical margin status and some h
 %\include{chapter4} % Results (Presentation of Research) C004 or C005...
 %%%%%
 
-\section{\cntext{(三)預期完成之工作項目、成果及績效}}
+\section*{\cntext{(三)預期完成之工作項目、成果及績效}}
 %1.預期完成之工作項目
 \begin{outline}
 
@@ -1888,90 +1924,220 @@ We sincerely want to express our thanks to the \acrshort{hnscc} patients who don
 \end{outline}
 \clearpage
 
-\section*{\cntext{(四)計畫經費之編列}}
+% C004
+%\thispagestyle{fancy004}
+
+\section*{\cntext{四、申請補助經費:}}
+*\cntext{試驗操作組:新台幣二十萬元}\\
+\cntext{*經費細項請於表C005~表C006填寫。}
+%(四)計畫經費之編列}}
 % 核定的經費不會高於所 要求的預算，如經費不足對日後計畫執行也是障礙，因此每項經費的使用最好 想清楚，說明白，比如設備費，逐年需購買哪些圖書?何以需購買電腦、筆 電，尤其國立大學設備資源較充裕，平均四年即更新汰舊電腦，編列時還經常 可見便宜行事的情況，複製經費編列，以致於每年都購買電腦或印表機，顯見 並不適合。參與國際會議及移地研究，停留天數及其必要性都需填寫，說明越 清楚，通過的機會就越高。此外，編列項目越詳細越好，免得日後有需要時， 因計畫書未列，校方不准核銷，而影響計畫的進行。
  
 %主要研究人力，主持人每周平均投入工作時數比例，請「合理」。(100% 就是不合理喔!!請注意。一般而言，20-40%或 50%是比較合理)
-\begin{outline}
+
+%%%% C004 table
+% by https://www.tablesgenerator.com
+% Please add the following required packages to your document preamble:
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+\begin{CJK*}{UTF8}{bkai}
+
+% Please add the following required packages to your document preamble:
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+\begin{table}[hp]
+\centering
+\begin{tabular}{|
+>{\columncolor[HTML]{FFFFFF}}l |
+>{\columncolor[HTML]{FFFFFF}}l |
+>{\columncolor[HTML]{FFFFFF}}l |}
+\hline
+補助項目                 & 預計申請金額                       & 說明                     \\ \hline
+人事費 (兼任助理、臨時工資等)     & 0                            &                        \\ \hline
+耗材及雜項                & 140,230                      &                        \\ \hline
+論文發表費及論文編修費 (含英譯/編輯) & 56,000                       &                        \\ \hline
+合計                   & \multicolumn{2}{l|}{\cellcolor[HTML]{FFFFFF}196,230元} \\ \hline
+\end{tabular}
+\end{table}
+
+\clearpage
+%%% C005
+五、研究人力費:\\
+(1) 兼任助理、臨時工。\\
+(2) 兼任助理、臨時工之每月工作酬金標準，不得超過本院補助專題研究計畫臨時工工作酬金參考表及本院補助專題研究計畫兼任助理、臨時工工作酬金支給標準表之規定。\\[1cm]
+%
+\begin{flushright}
+金額單位:新台幣元
+\end{flushright}
+
+\begin{table}[hp]
+\centering
+\begin{tabular}{|
+>{\columncolor[HTML]{FFFFFF}}l |
+>{\columncolor[HTML]{FFFFFF}}l |
+>{\columncolor[HTML]{FFFFFF}}l |
+>{\columncolor[HTML]{FFFFFF}}l |
+>{\columncolor[HTML]{FFFFFF}}l |
+>{\columncolor[HTML]{FFFFFF}}l |}
+\hline
+類別/級別 & 人數 & 工作 時數(人/月) & 月支酬金 & 小計 & 說明: 最高學歷、工作性質、項目 
+\\ \hline
+      &    &            &      &    &                                   \\ \hline
+      &    &            &      &    &                                   \\ \hline
+      &    &            &      &    &                                   \\ \hline
+\multicolumn{6}{|l|}{\cellcolor[HTML]{FFFFFF}合計}                        \\ \hline
+\end{tabular}
+\end{table}
+
+\clearpage
+%%% C006
+六、耗材、物品及雜項費用:\\
+(1) 凡執行研究計畫所需之耗材、物品(非屬研究設備者)及雜項費用，均可填入本表內。\\
+(2) 說明欄請就該項目之規格、用途等相關資料詳細填寫，以利審查。\\[1cm]
+\begin{flushright}
+金額單位:新台幣元
+\end{flushright}
+
+\begin{table}[hp]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|c|l|c|r|r|r|r|}
+\hline
+項目名稱   & 說明                        & 單位 & \multicolumn{1}{l|}{數量} & \multicolumn{1}{l|}{單價} & \multicolumn{1}{l|}{金額} & \multicolumn{1}{l|}{備註}                                              \\ \hline
+耗材費    & 研究計畫人體試驗委員會審查費            & 次  & 1                       & 12,000                  & 12,000                  & \begin{tabular}[c]{@{}r@{}}審查10,000\\ 修正1,000\\ 結案1,000\end{tabular} \\ \hline
+耗材費    & 生物資料庫使用費(切片費)             & 5片 & 19                      & 330                     & 6270                    &                                                                      \\ \hline
+耗材費    & 生物資料庫使用費(HE染色費)           & 片  & 92                      & 40                      & 3680                    &                                                                      \\ \hline
+耗材費    & 生物資料庫使用費(臨床病歷)            & 每名 & 46                      & 1400                    & 64400                   &                                                                      \\ \hline
+耗材費    & 臺北醫學大學數據處研究資料庫檢索費         & 小時 & 4                       & 0                       & 0                       & 目前免費                                                                 \\ \hline
+儀器使用費  & Aperio ScanScope 數位病理切片掃描 & 小時 & 10                      & 300                     & 3,000                   &                                                                      \\ \hline
+雲端運算   & 國網中心高速電腦GPU人工智慧訓練         & 小時 & 20                      & 689                     & 13,780                  & cm.4xsuper                                                           \\ \hline
+資訊硬體設備 & Mac Mini M1               & 部  & 1                       & 37,100                  & 37,100                  &                                                                      \\ \hline
+合 計    &                           &    &                         &                         & 140,230                 &                                                                      \\ \hline
+\end{tabular}%
+}
+\end{table}
 
 
-%計畫主持人得依計畫實際需要，申請下列各項補助款。
-% https://research.nchu.edu.tw/upfile/editor/files/科技部補助專題研究計畫耗材物品圖書及雜項費用及研究設備費支出用途範例.pdf
+\clearpage
+%%%%%%%%%%%%%%%%
+附件二\\
+\begin{center}
+    %    \centering
+%\begin{tabular}{@{}c@{}}
+%\centering
+主持人個人資料表\\
+%\end{tabular}
+\end{center}
 
-\1 \cntext{業務費}
-%\2 \cntext{研究人事費：34,000 per month}
-%含研究助理費及臨時工資等，以科技部補助專題研究計畫助理人員工作酬金支給標準為核定依據: Ph.D. candidate 34,000 per month (2,000 x 17 units)
+%一、基本資料:      簽名:      \\
+一、基本資料:      簽名:\\  
+\begin{flushright}
+身份證字號: A120475979\hspace{8cm} 填表日期: \today\\
+\end{flushright}
 
-%\2 \cntext{研究主持費：}
-% 近五年內研究績效優異者，得編列研究主持費，經計畫審查小組審核通過後，每人至多核給每月新台幣一萬元 。計畫主持人或共同主持人於研究計畫執行期間僅得由此補助 辦法支領一份研究主持費。於研究計畫執行期間，因離職、轉 任或無法執行該計畫時，即停止核發研究主持費。
-\2 \cntext{耗材費：} %消耗性器材與藥品費、問卷 調查費 及其它事務性費用(如電腦耗材費、郵電費、印刷影印費、資料檢索費、國內差旅費、論文發表費) 在核定 經費限額內核實列支
-\3 \cntext{研究計畫人體試驗委員會審查費: 10,000元，修正案: 1,000元，結案: 1,000元。小計: 12,000元。)}
-\3 \cntext{生物資料庫使用費: 切片費 5片330元，H\&E stain 每片40元，臨床病歷每名 1,400元。46名案例小計: 69,540元。}
-\3 \cntext{臺北醫學大學數據處研究資料庫檢索費: 目前免費}
-% 攜入(linked my data) IRB applying 勾選門診病歷 EHR
-%(使用傳輸網路所供應新穎數據或索取各交換系統資料庫中之資料所需費用)}
-\3 \cntext{儀器使用費: Aperio ScanScope 數位病理切片掃描處理費: 300元/小時，約須10小時，小計3,000元} 
-% AT2 Scanner WSI
-% free at 中央研究院國家基因體醫學研究中心 GRC 5L09B, Aperio AT2 400片自動掃描
-% QuPath; 20x15 mm for 3Gb storage of HDD
-% TMUH pathology: aetherAI 雲象科技
-% 張資昊 Tzu-Hao Chang 醫學資訊研究所 副教授 (兼任core manager) kevinchang@tmu.edu.tw
-%\3 \cntext{資料庫使用費}
-\3 \cntext{程式設計與雲端運算: 國網中心高速電腦GPU人工智慧訓練與儲存費用 cm.4xsuper for PyTorch NTD689/小時，小計13,780元} % 容器運算服務 (Container Compute Service, CCS) 記憶體優化容器：可負擔記憶體內部處理大型資料集之工作負載，加強效能，專為 TWCC 三種容器工作環境設計：
-%PyTorch： GPU 加速的張量運算框架，並以 Python 為前端語言。使用常見的Python 函式庫(如 NumPy、SciPy 和 Cython )便能輕鬆地擴展多項功能。 https://man.twcc.ai/@twccdocs/SJWlN3YDr?type=view 有關網站建置、程式設計和拍攝影片、實作等相關費用 https://man.twcc.ai/@twccdocs/SJWlN3YDr?type=view
-%https://www.twcc.ai 臺灣杉二號
-%\3 \cntext{問卷調查費(實地調查訪問及搜集各種資料所需費用)} 
-%\3 \cntext{受試者禮品、營養品及交通費}
-%\3 \cntext{國內或國際性學會之年費或入會費}
-\3 \cntext{論文發表費: 56,000元 (APC for SCI journal)}
-%(本部補助研究計畫之研究成果發表於國內外著名之學術期刊所需之相關費用)}
+%身份證字號: A120475979\\%[0.2cm]
 
-% http://ohr.tmu.edu.tw/front/jbb1/Charges/news.php?ID=dG11X29ociZDaGFyZ2Vz&Sn=738; 家佑可以打折
-% 校內預算或計畫經費轉帳：不需請購，直接請款，統編為03724606-B，並將繳費單連同初審通過之《會一單》送回聯合人體生物資料庫結案。
-% Unstained paraffin section 切片費 5片/piece 330
-% H\&E stain 片/piece 40
-% Data process and consult fee 基本規格 1,200
-% => https://ods.tmu.edu.tw/portal_c3_cnt.php?owner_num=c3_69585&button_num=c3&folder_id=4165 Taipei Medical University Clinical Research Database (TMUCRD)
-% It collects various electronic medical records (\acrshort{ehr}) data of TMUH, including structured data (such as patient's basic information, medical information, laboratory reports, diagnosis results, treatment procedures, surgery and medication status) and unstructured data (such as physicians records, pathology reports, medical imaging reports).
-%\3 \cntext{電腦使用費: }
-% (使用電腦所需費用，如以執行機構出具之收據報銷，應檢附計算標 準、實際使用時數及耗材支用情形等支出 數據資料)
-%\3 \cntext{翻譯及潤稿費}
-%\3 \cntext{會議餐費(因研究計畫需要召開會議而逾用餐時間所提供之餐點)}
-%\3 \cntext{田野調查之茶點費}
-%\3 \cntext{計畫相關之教育訓練費}
-%\3 \cntext{研究計畫所需的圖書(購置之圖書是否列入財產，由執行機構依「圖書館法」及「財物標準分類」有關財產與非財產之規定辦理)}
+\includegraphics[width=18cm]%, trim=0cm 0 0 3cm]
+{MOST_PI_resume.png}
+%\begin{figure}[hp] %主持人資料表.pdf
+%    \centering
+%    \includegraphics{MOST_PI_resume}
+%    \caption{Caption}
+%    \label{fig:my_label}
+%\end{figure}
 
-%\3 \cntext{物品(非屬研究設備者)} 
-%\3 \cntext{印刷與影印費}
-%\3 \cntext{文具}
-%\3 \cntext{紙張}
-%\3 \cntext{郵電費}
+%%
+
+%\begin{center}
+    二、主要學歷 (由最高學歷依次填寫，若仍在學者，請在學位欄填「肄業」)\\
+%\end{center}
+
+\begin{table}[hp]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+學校名稱                                          & 國別     & 主修學門系所                                  & 學位 & 起訖年月(西元年/月)       \\ \hline
+Taipei Medical University and Academia Sinica & Taiwan & PhD candidate in Translational Medicine & 肄業 & 2013/02 - Present \\ \hline
+Taipei Medical University                     & Taiwan & MS in Biomedical Informatics            & 晉讀 & 2011/09 - 2013/01 \\ \hline
+Taipei Medical University                     & Taiwan & BS in Dentistry                         & 學士 & 1988/09 - 1994/06 \\ \hline
+\end{tabular}%
+}
+\end{table}
 
 
-\1 \cntext{研究設備費:} 
-\2 \cntext{資訊硬體設備 Mac Mini M1 37,100元}
-% Apple 教育優惠 Mac Mini M1
-% Apple M1 晶片配備 8 核心 CPU、8 核心 GPU
-% 16 核心神經網路引擎
-%16GB 統一記憶體
-%1TB SSD 儲存裝置
+%\begin{center}
+    三、現職及與專長相關之經歷 (指與研究相關之專任職務，請依任職之時間先後順序由最 近者往前追溯)\\
+%\end{center}
+\begin{table}[hp]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|l|l|l|}
+\hline
+服務機構                               & 服務部門/系所                          & 職稱                   & 起訖年月(西元年/月)       \\ \hline
+Taipei Municipal Wanfang Hospital  & Oral and Maxillofacial Surgery   & Director             & 2021/04 - Present \\ \hline
+Taipei Medical University Hospital & Oral and Maxillofacial Surgery   & Attending physician & 2002/01 - Present \\ \hline
+Taipei Medical University Hospital & Taiwan Medical Mission in Africa & Attending physician & 2009/05 - 2012/01 \\ \hline
+\end{tabular}%
+}
+\end{table}
 
-%在核定 經費限額內核實列支
-% 凡執行研究計畫所需單價在新台幣一萬元以上且使 用年限在二年以上之各項儀器、機械及資訊設備(含各項電腦設 施、網路系統、周邊設備、套裝軟體、程式設計費)等之購置、 裝置費用及圖書館典藏等，本項設備之採購，以與研究計畫直接 有關者為限，研究設備費補助金額不得超過總補助經費20%
-%\1 \cntext{管理費:} % 5% 為執行機 構配合執行研究 計畫所需之費 用，由執行機構統 籌支用
 
-\1 \cntext{總計: 191,420元}
-\end{outline}
+%\begin{center}
+    四、專長 (請填寫與研究方向有關之學術專長名稱)\\
+%\end{center}
 
 
+\begin{table}[hp]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|l|l|l|}
+\hline
+\begin{tabular}[c]{@{}l@{}}Programming\\ Procient in: R, Python.\\ Familiar with: Matlab, C++.\end{tabular} & \begin{tabular}[c]{@{}l@{}}Languages\\ Chinese, English (uent)\end{tabular} & \begin{tabular}[c]{@{}l@{}}Sports:\\ Swimming, water rescue, \\ SCUBA diving, bicycle cycling,\\ moutaineering\end{tabular} & \begin{tabular}[c]{@{}l@{}}Mindfulness\\ meditation\end{tabular} \\ \hline
+\end{tabular}%
+}
+\end{table}
+\end{CJK*}
+%%
+
+\clearpage
+
+\begin{CJK*}{UTF8}{bkai}
 %\section{\cntext{對社會的貢獻}}
+表C301
+\section*{五、著作目錄:}
+%\cntext{過去研究之表現}}
 
-\section*{\cntext{過去研究之表現}}
 % 申請人過去五年著作及五年以上且深具影響之著作，最好詳細? 精簡
 % * 系統的關聯性 for one researcher
 %而有條理地說明自己近五年來研究的系統性、延續性以及對學界的貢獻，如果 能列出每篇論文被引用的次數，或哪些重要期刊論文曾引用，可以更凸顯自己 的優勢，爭取更有利的評分。個人學術表現既如此重要，因此每一次的申請都 應記得更新個人資料 C302 表，確認與完成登錄著作目錄之作業，產生近 5 年著 作目錄表
+
+(1) 請詳列個人申請截止日前五年內發 表之學術性著作，包括:期刊論文、專書及專書論文、研討會論文、技術報告及其 他等，並請依各類著作之重要性自行排列先後順序。\\
+(2) 各類著作請按發表時間先後順序填寫。各項著作請務必依作者姓名(按原出版之 次序，通訊作者請加註*)、出版年、月份、題目、期刊名稱(專書出版社)、起迄頁數之順序填寫，被接受刊登尚未正式出版者請附被接受函。\\
+(3) 若期刊是屬國內或國際期刊資料庫(如SCI、EI、SSCI、A\&HCI、Scopus、TSSCI 、THCI Core...\\等)所收錄者，請於該著作書目後註明資料庫名稱;若著作係經由國科會補助之研究計畫所產生，請於最後填入相關之國科會計畫編號。\\
+
+\textbf{Publication:}\\
+\begin{outline}
+\1 Chi, L.-H. H. et al. Global Proteomics-based Identification and Validation of Thymosin Beta-4 X-Linked as a Prognostic Marker for Head and Neck Squamous Cell Carcinoma. Sci. Rep. 7, 9031 (2017).[SCI]
+
+\end{outline}
+
 We applied the matrix-assisted laser desorption/ionization (MALDI) imaging mass spectrometry (IMS) and liquid chromatography with tandem mass spectrometry (LC-MS/MS) to identify tumor-associated biomarkers of \acrshort{hnscc}. The gene thymosin beta-4 X-linked (TMSB4X) is a candidate biomarker in HNSCC whose functions resulted in enhanced proliferation and metastasis in vitro and in vivo\citep{Chi2017}.
 This publication has been cited by cancer research of Roška and his colleague, published on Oncotarget\citep{Roska2020}, \citep{Chu2019a}, \citep{Makowiecka2019a}, and by research of epidermal morphogenesis\citep{Padmanabhan2020}.
+
+
+
+\end{CJK*}
+
+
+%% C302 2 pages MOST_proposal_DeepLearning_HNSCC-C302_2
+% \usepackage{pdfpages}
+%\includegraphics[width=18cm, pages={1-}]%, trim=1.5cm 0 0 3cm]{MOST_proposal_DeepLearning_HNSCC-C302}
+\includegraphics[width=18cm]%, trim=1.5cm 0 0 3cm]
+{MOST_proposal_DeepLearning_HNSCC-C302}
+\includegraphics[width=18cm]%, trim=1.5cm 0 0 3cm]
+{MOST_proposal_DeepLearning_HNSCC-C302_2}
+%%
  % ------------------------------------------------------
 %
 % References
@@ -1987,7 +2153,7 @@ This publication has been cited by cancer research of Roška and his colleague, 
 % $ bibtool -f '%s($key)' -Ac -s -v /Users/texchi/Documents/Documents\ -\ Mac\ mini/Holistic.bib /Users/texchi/Documents/Documents\ -\ Mac\ mini/Deep_Learning.bib /Users/texchi/Documents/Documents\ -\ Mac\ mini/pvalueTex.bib /Users/texchi/Documents/Documents\ -\ Mac\ mini/SLC2A4_metabolism.bib /Users/texchi/Documents/Documents\ -\ Mac\ mini/TMSB4X.bib /Users/texchi/Documents/Documents\ -\ Mac\ mini/TCGA_margin_cutoff.bib -o most_merged.bib$
 \end{document}
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\smartdiagramset{uniform sequence color=true}
 % sequence diagram; flow diagram:horizontal
@@ -2206,3 +2372,75 @@ NPB                                            & neuropeptide B                 
 \end{table}
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{outline}
+
+
+%計畫主持人得依計畫實際需要，申請下列各項補助款。
+% https://research.nchu.edu.tw/upfile/editor/files/科技部補助專題研究計畫耗材物品圖書及雜項費用及研究設備費支出用途範例.pdf
+
+\1 \cntext{業務費}
+%\2 \cntext{研究人事費：34,000 per month}
+%含研究助理費及臨時工資等，以科技部補助專題研究計畫助理人員工作酬金支給標準為核定依據: Ph.D. candidate 34,000 per month (2,000 x 17 units)
+
+%\2 \cntext{研究主持費：}
+% 近五年內研究績效優異者，得編列研究主持費，經計畫審查小組審核通過後，每人至多核給每月新台幣一萬元 。計畫主持人或共同主持人於研究計畫執行期間僅得由此補助 辦法支領一份研究主持費。於研究計畫執行期間，因離職、轉 任或無法執行該計畫時，即停止核發研究主持費。
+\2 \cntext{耗材費：} %消耗性器材與藥品費、問卷 調查費 及其它事務性費用(如電腦耗材費、郵電費、印刷影印費、資料檢索費、國內差旅費、論文發表費) 在核定 經費限額內核實列支
+\3 \cntext{研究計畫人體試驗委員會審查費: 10,000元，修正案: 1,000元，結案: 1,000元。小計: 12,000元。)}
+\3 \cntext{生物資料庫使用費: 切片費 5片330元，H\&E stain 每片40元，臨床病歷每名 1,400元。46名案例小計: 69,540元。}
+\3 \cntext{臺北醫學大學數據處研究資料庫檢索費: 目前免費}
+% 攜入(linked my data) IRB applying 勾選門診病歷 EHR
+%(使用傳輸網路所供應新穎數據或索取各交換系統資料庫中之資料所需費用)}
+\3 \cntext{儀器使用費: Aperio ScanScope 數位病理切片掃描處理費: 300元/小時，約須10小時，小計3,000元} 
+% AT2 Scanner WSI
+% free at 中央研究院國家基因體醫學研究中心 GRC 5L09B, Aperio AT2 400片自動掃描
+% QuPath; 20x15 mm for 3Gb storage of HDD
+% TMUH pathology: aetherAI 雲象科技
+% 張資昊 Tzu-Hao Chang 醫學資訊研究所 副教授 (兼任core manager) kevinchang@tmu.edu.tw
+%\3 \cntext{資料庫使用費}
+\3 \cntext{程式設計與雲端運算: 國網中心高速電腦GPU人工智慧訓練與儲存費用 cm.4xsuper for PyTorch NTD689/小時，小計13,780元} % 容器運算服務 (Container Compute Service, CCS) 記憶體優化容器：可負擔記憶體內部處理大型資料集之工作負載，加強效能，專為 TWCC 三種容器工作環境設計：
+%PyTorch： GPU 加速的張量運算框架，並以 Python 為前端語言。使用常見的Python 函式庫(如 NumPy、SciPy 和 Cython )便能輕鬆地擴展多項功能。 https://man.twcc.ai/@twccdocs/SJWlN3YDr?type=view 有關網站建置、程式設計和拍攝影片、實作等相關費用 https://man.twcc.ai/@twccdocs/SJWlN3YDr?type=view
+%https://www.twcc.ai 臺灣杉二號
+%\3 \cntext{問卷調查費(實地調查訪問及搜集各種資料所需費用)} 
+%\3 \cntext{受試者禮品、營養品及交通費}
+%\3 \cntext{國內或國際性學會之年費或入會費}
+\3 \cntext{論文發表費: 56,000元 (APC for SCI journal)}
+%(本部補助研究計畫之研究成果發表於國內外著名之學術期刊所需之相關費用)}
+
+% http://ohr.tmu.edu.tw/front/jbb1/Charges/news.php?ID=dG11X29ociZDaGFyZ2Vz&Sn=738; 家佑可以打折
+% 校內預算或計畫經費轉帳：不需請購，直接請款，統編為03724606-B，並將繳費單連同初審通過之《會一單》送回聯合人體生物資料庫結案。
+% Unstained paraffin section 切片費 5片/piece 330
+% H\&E stain 片/piece 40
+% Data process and consult fee 基本規格 1,200
+% => https://ods.tmu.edu.tw/portal_c3_cnt.php?owner_num=c3_69585&button_num=c3&folder_id=4165 Taipei Medical University Clinical Research Database (TMUCRD)
+% It collects various electronic medical records (\acrshort{ehr}) data of TMUH, including structured data (such as patient's basic information, medical information, laboratory reports, diagnosis results, treatment procedures, surgery and medication status) and unstructured data (such as physicians records, pathology reports, medical imaging reports).
+%\3 \cntext{電腦使用費: }
+% (使用電腦所需費用，如以執行機構出具之收據報銷，應檢附計算標 準、實際使用時數及耗材支用情形等支出 數據資料)
+%\3 \cntext{翻譯及潤稿費}
+%\3 \cntext{會議餐費(因研究計畫需要召開會議而逾用餐時間所提供之餐點)}
+%\3 \cntext{田野調查之茶點費}
+%\3 \cntext{計畫相關之教育訓練費}
+%\3 \cntext{研究計畫所需的圖書(購置之圖書是否列入財產，由執行機構依「圖書館法」及「財物標準分類」有關財產與非財產之規定辦理)}
+
+%\3 \cntext{物品(非屬研究設備者)} 
+%\3 \cntext{印刷與影印費}
+%\3 \cntext{文具}
+%\3 \cntext{紙張}
+%\3 \cntext{郵電費}
+
+
+\1 \cntext{研究設備費:} 
+\2 \cntext{資訊硬體設備 Mac Mini M1 37,100元}
+% Apple 教育優惠 Mac Mini M1
+% Apple M1 晶片配備 8 核心 CPU、8 核心 GPU
+% 16 核心神經網路引擎
+%16GB 統一記憶體
+%1TB SSD 儲存裝置
+
+%在核定 經費限額內核實列支
+% 凡執行研究計畫所需單價在新台幣一萬元以上且使 用年限在二年以上之各項儀器、機械及資訊設備(含各項電腦設 施、網路系統、周邊設備、套裝軟體、程式設計費)等之購置、 裝置費用及圖書館典藏等，本項設備之採購，以與研究計畫直接 有關者為限，研究設備費補助金額不得超過總補助經費20%
+%\1 \cntext{管理費:} % 5% 為執行機 構配合執行研究 計畫所需之費 用，由執行機構統 籌支用
+
+\1 \cntext{總計: 191,420元}
+\end{outline}
